@@ -4,22 +4,21 @@ dependencies {
     api "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
     api "org.graceframework:grace-datastore-gorm-validation:$datastoreVersion"
     api "org.graceframework:grace-datastore-gorm:$datastoreVersion"
-    api project(":grails-datastore-gorm-bson")
+    api project(":grace-datastore-gorm-bson")
 
     implementation "com.github.ben-manes.caffeine:caffeine:$caffeineVersion"
 
-    compileOnly "org.graceframework:grace-datastore-gorm-support:$datastoreVersion", {
-        exclude group:'org.graceframework', module:'grace-datastore-gorm-hibernate-core'
-    }
+    compileOnly "org.graceframework:grace-datastore-gorm-support:$datastoreVersion"
     compileOnly "jakarta.servlet:jakarta.servlet-api:$servletApiVersion"
-    
+
     testImplementation "org.graceframework:grace-datastore-gorm-tck:$datastoreVersion"
     testImplementation "org.graceframework:grace-test-support:$graceVersion"
-    testImplementation "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
+    testImplementation "jakarta.validation:jakarta.validation-api:$jakartaValidationVersion"
+    testImplementation "org.hibernate.validator:hibernate-validator:$hibernateValidatorVersion"
     testImplementation "org.graceframework:grace-datastore-gorm-support:$datastoreVersion", {
         exclude group: "org.graceframework", module:"grace-datastore-gorm-hibernate-core"
     }
-    // testRuntimeOnly 'org.glassfish.web:el-impl:2.2.1-b05'
+    testRuntimeOnly "org.glassfish:jakarta.el:$jakartaElVersion"
     testRuntimeOnly "org.springframework:spring-aop:$springVersion"
 }
 

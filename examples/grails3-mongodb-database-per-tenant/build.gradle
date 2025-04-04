@@ -5,12 +5,9 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-tomcat"
     implementation "jakarta.servlet:jakarta.servlet-api:$servletApiVersion"
     implementation "org.graceframework:grace-core:$graceVersion"
-    // implementation "org.graceframework:grace-dependencies:$grailsVersion", {
-    //     exclude module:'grace-datastore-simple'
-    // }
     implementation "org.graceframework:grace-boot:$graceVersion"
     implementation "org.graceframework:grace-plugin-gsp:$graceVersion"
-    implementation project(":grails-plugin")
+    implementation project(":grace-plugin")
 
     runtimeOnly "org.graceframework.plugins:asset-pipeline-plugin:$assetPipelineVersion"
     runtimeOnly "com.h2database:h2"

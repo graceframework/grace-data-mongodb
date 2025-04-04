@@ -7,12 +7,9 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-tomcat"
     implementation "jakarta.servlet:jakarta.servlet-api:$servletApiVersion"
     implementation "org.graceframework:grace-core:$graceVersion"
-    // implementation "org.graceframework:grace-dependencies:$graceVersion", {
-    //     exclude module:'grails-datastore-simple'
-    // }
     implementation "org.graceframework:grace-boot:$graceVersion"
     implementation "org.graceframework:grace-plugin-gsp:$graceVersion"
-    implementation project(":grails-plugin")
+    implementation project(":grace-plugin")
     implementation "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
 
     runtimeOnly "org.graceframework.plugins:asset-pipeline-plugin:$assetPipelineVersion"

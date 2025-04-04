@@ -4,7 +4,7 @@ package org.grails.datastore.gorm.mongo
 import grails.gorm.annotation.Entity
 import grails.gorm.tests.GormDatastoreSpec
 
-import javax.validation.constraints.Digits
+import jakarta.validation.constraints.Digits
 
 /**
  * Created by graemerocher on 30/12/2016.

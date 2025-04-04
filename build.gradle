@@ -27,29 +27,28 @@ ext {
     nexusPassword = System.getenv("SONATYPE_PASSWORD") ?: project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
 }
 
-ext."signing.keyId" = project.hasProperty("signing.keyId") ? project.getProperty('signing.keyId') : System.getenv('SIGNING_KEY')
-ext."signing.password" = project.hasProperty("signing.password") ? project.getProperty('signing.password') : System.getenv('SIGNING_PASSPHRASE')
-ext."signing.secretKeyRingFile" = project.hasProperty("signing.secretKeyRingFile") ? project.getProperty('signing.secretKeyRingFile') : "${System.properties['user.home']}${File.separator}.gnupg${File.separator}secring.gpg"
+ext."signing.keyId" = System.getenv("SIGNING_KEY") ?: project.hasProperty("signing.keyId") ? project.getProperty('signing.keyId') : null
+ext."signing.password" = System.getenv("SIGNING_PASSPHRASE") ?: project.hasProperty("signing.password") ? project.getProperty('signing.password') : null
+ext."signing.secretKeyRingFile" = project.hasProperty("signing.secretKeyRingFile") ? project.getProperty('signing.secretKeyRingFile') : null
+ext['junit-jupiter.version'] = junitJupiterVersion
 
-if (isReleaseVersion) {
-    apply plugin: 'maven-publish'
-    apply plugin: "io.github.gradle-nexus.publish-plugin"
+apply plugin: 'maven-publish'
+apply plugin: "io.github.gradle-nexus.publish-plugin"
 
-    nexusPublishing {
-        repositories {
-            sonatype {
-                def ossUser = System.getenv("SONATYPE_USERNAME") ?: project.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
-                def ossPass = System.getenv("SONATYPE_PASSWORD") ?: project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
-                def ossStagingProfileId = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: project.hasProperty("sonatypeOssStagingProfileId") ? project.sonatypeOssStagingProfileId : ''
-                nexusUrl = uri("https://s01.oss.sonatype.org/service/local/")
-                username = ossUser
-                password = ossPass
-                stagingProfileId = ossStagingProfileId
-            }
+nexusPublishing {
+    repositories {
+        sonatype {
+            def ossUser = System.getenv("SONATYPE_USERNAME") ?: project.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
+            def ossPass = System.getenv("SONATYPE_PASSWORD") ?: project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
+            def ossStagingProfileId = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: project.hasProperty("sonatypeOssStagingProfileId") ? project.sonatypeOssStagingProfileId : ''
+            nexusUrl = uri("https://s01.oss.sonatype.org/service/local/")
+            snapshotRepositoryUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            username = ossUser
+            password = ossPass
+            stagingProfileId = ossStagingProfileId
         }
     }
 }
-
 
 subprojects { project ->
 
@@ -120,8 +119,8 @@ subprojects { project ->
         return
     }
 
-    boolean isPluginProject = project.name.endsWith("-plugin") && (project.name.startsWith("grails") || project.name.startsWith("rx-"))
-    boolean isGrails3PluginProject = project.name.endsWith("-plugin")
+    boolean isPluginProject = project.name.startsWith("grace") && project.name.endsWith("-plugin")
+    boolean isGracePluginProject = project.name.endsWith("-plugin")
 
     ext {
         projectInfo = new PublishingConvention(project)
@@ -166,21 +165,19 @@ subprojects { project ->
     apply plugin: 'groovy'
 
     if (isPluginProject) {
-        group "org.graceframework.plugins"
-        version(rootProject.version)
+        group = "org.graceframework.plugins"
+        version = rootProject.version
+
+        apply plugin: "org.graceframework.grace-plugin"
     } else {
-        group "org.graceframework"
-        version rootProject.version
+        group = "org.graceframework"
+        version = rootProject.version
+
+        apply plugin: "groovy"
     }
 
     if (project.name == 'docs') {
         return
-    }
-
-    if (isGrails3PluginProject) {
-        apply plugin: "org.graceframework.grace-plugin"
-    } else {
-        apply plugin: "groovy"
     }
 
     apply plugin: "java-library"
@@ -220,25 +217,6 @@ subprojects { project ->
     }
 
     publishing {
-
-        if (isBuildSnapshot) {
-            repositories {
-                maven {
-                    credentials {
-                        def u = System.getenv("ARTIFACTORY_USERNAME") ?: project.hasProperty("artifactoryPublishUsername") ? project.artifactoryPublishUsername : ''
-                        def p = System.getenv("ARTIFACTORY_PASSWORD") ?: project.hasProperty("artifactoryPublishPassword") ? project.artifactoryPublishPassword : ''
-                        username = u
-                        password = p
-                    }
-                    if (isGrails3PluginProject) {
-                        url "https://repo.grails.org/grails/plugins3-snapshots-local"
-                    } else {
-                        url "https://repo.grails.org/grails/libs-snapshots-local"
-                    }
-                }
-            }
-        }
-
         publications {
             maven(MavenPublication) {
 
@@ -274,7 +252,7 @@ subprojects { project ->
                 from components.java
 
                 afterEvaluate {
-                    if (isGrails3PluginProject) {
+                    if (isGracePluginProject) {
                         artifact source:"${sourceSets.main.groovy.outputDir}/META-INF/grails-plugin.xml",
                                 classifier:"plugin",
                                 extension:'xml'
@@ -311,7 +289,7 @@ class PublishingConvention {
     Project project
 
     String projectArtifactId
-    String projectName = 'GORM for MongoDB'
+    String projectName = 'Grace Data MongoDB'
     String projectDescription = 'Provides a GORM Object Mapping implementations for the MongodB Document Database'
     String projectURL = 'https://github.com/graceframework/grace-data-mongodb'
     String projectIssueTrackerUrl = 'https://github.com/graceframework/grace-data-mongodb/issues'
@@ -321,7 +299,7 @@ class PublishingConvention {
         this.project = project
 
         def name = project.name
-        if(name.startsWith('grails') && name.endsWith('-plugin')) {
+        if (name.startsWith('grace') && name.endsWith('-plugin')) {
             name = 'mongodb'
         }
         projectArtifactId = name

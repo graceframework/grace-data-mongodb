@@ -4,9 +4,6 @@ dependencies {
     implementation "org.graceframework:grace-core"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-starter-tomcat"
-    // implementation ("org.graceframework:grace-dependencies") {
-    //     exclude module:'grails-datastore-simple'
-    // }
     implementation "org.graceframework:grace-plugin-codecs"
     implementation "org.graceframework:grace-plugin-services"
     implementation "org.graceframework:grace-plugin-datasource"
@@ -14,7 +11,7 @@ dependencies {
     implementation "org.graceframework:grace-logging"
     implementation "org.graceframework.plugins:cache"
     implementation "org.graceframework.plugins:events"
-    implementation project(":grails-plugin")
+    implementation project(":grace-plugin")
     implementation "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
     implementation "org.graceframework.plugins:views-json"
     implementation "org.graceframework.plugins:views-json-templates"

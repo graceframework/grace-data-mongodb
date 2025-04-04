@@ -77,7 +77,8 @@ class AssignedIdentifierSpec extends GormDatastoreSpec {
     @Issue("GPMONGODB-170")
     void "Test that assigned identifiers work with the constructor"() {
         when: "An entity is saved with an assigned id"
-        def l = new Lake(id: "Lake Ontario", country: "Canada")
+        def l = new Lake(country: "Canada")
+        l.id = "Lake Ontario"
         l.save flush: true
         session.clear()
         l = Lake.get("Lake Ontario")
