@@ -124,42 +124,6 @@ subprojects { project ->
 
     ext {
         projectInfo = new PublishingConvention(project)
-        pomInfo = {
-            delegate.name projectInfo.projectName
-            delegate.description projectInfo.projectDescription
-            delegate.url projectInfo.projectURL
-
-            delegate.licenses {
-                delegate.license {
-                    delegate.name 'The Apache Software License, Version 2.0'
-                    delegate.url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    delegate.distribution 'repo'
-                }
-            }
-
-            delegate.scm {
-                delegate.url projectInfo.projectVcsUrl
-                delegate.connection projectInfo.projectVcsUrl
-                delegate.developerConnection projectInfo.projectVcsUrl
-            }
-
-
-            delegate.developers {
-                delegate.developer {
-                    delegate.id 'graemerocher'
-                    delegate.name 'Graeme Rocher'
-                }
-                delegate.developer {
-                    delegate.id 'jeffscottbrown'
-                    delegate.name 'Jeff Brown'
-                }
-                delegate.developer {
-                    delegate.id 'burtbeckwith'
-                    delegate.name 'Burt Beckwith'
-                }
-            }
-
-        }
     }
 
     apply plugin: 'groovy'
@@ -247,6 +211,14 @@ subprojects { project ->
                         }
                     }
                 }
+                pom.withXml {
+                    def pomNode = asNode()
+                    try {
+                        pomNode.dependencyManagement.replaceNode {}
+                    } catch (Throwable e) {
+                        // ignore
+                    }
+                }
 
                 artifactId projectInfo.projectArtifactId
                 from components.java
@@ -259,11 +231,6 @@ subprojects { project ->
                     }
                 }
 
-                pom.withXml {
-                    def xml = asNode()
-                    def dependency = xml.dependencies.find { dep -> dep.artifactId == 'slf4j-simple' }
-                    dependency?.optional = true
-                }
             }
         }
     }
