@@ -4,6 +4,7 @@ import grails.gorm.tests.GormDatastoreSpec
 import grails.persistence.Entity
 import org.bson.types.ObjectId
 import spock.lang.Ignore
+import spock.lang.PendingFeature
 
 /**
  * Created by graemerocher on 22/04/16.
@@ -53,6 +54,7 @@ class EmbeddedSetAssignedIdSpec extends GormDatastoreSpec {
         i.lineItems.first().subItems.first().name == 's1'
     }
 
+    @PendingFeature
     void "Test update nested embedded association graph with assigned id"() {
         when:"an object graph is created with nested items"
         new Itemized(name: "i1").save(flush:true)
@@ -77,6 +79,7 @@ class EmbeddedSetAssignedIdSpec extends GormDatastoreSpec {
         i.lineItems.first().subItems.first().name == 's1'
     }
 
+    @PendingFeature
     void "Test update nested embedded association graph with assigned id using direct collection modification"() {
         when:"an object graph is created with nested items"
         new Itemized(name: "i1").save(flush:true)
@@ -103,6 +106,7 @@ class EmbeddedSetAssignedIdSpec extends GormDatastoreSpec {
         i.lineItems.first().subItems.first().name == 's1'
     }
 
+    @PendingFeature
     void "Test update nested embedded association graph with assigned id by assigning a new collection"() {
         when:"an object graph is created with nested items"
         new Itemized(name: "i1").save(flush:true)

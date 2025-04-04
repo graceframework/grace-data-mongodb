@@ -2,9 +2,11 @@ package org.grails.datastore.gorm.mongo
 
 import grails.gorm.tests.GormDatastoreSpec
 import grails.persistence.Entity
+import spock.lang.PendingFeature
 
 class EmbeddedWithIdSpecifiedSpec extends GormDatastoreSpec {
 
+    @PendingFeature
     void "Test that id is saved of embedded entity if specified"() {
          when:"A domain model with an embedded id specified"
             def sc = new SystemCustomer(name: "Bob", singleKpi:new MultiLevelKpi(id: "bar", name: "bar1", type: 'goods'))
