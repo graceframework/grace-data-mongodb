@@ -1,26 +1,25 @@
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-logging"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
-    implementation "org.grails:grails-core"
+    implementation "org.graceframework:grace-core"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-starter-tomcat"
-    implementation ("org.grails:grails-dependencies") {
-        exclude module:'grails-datastore-simple'
-    }
-    implementation "org.grails:grails-plugin-codecs"
-    implementation "org.grails:grails-plugin-services"
-    implementation "org.grails:grails-plugin-datasource"
-    implementation "org.grails:grails-web-boot"
-    implementation "org.grails:grails-logging"
-    implementation "org.grails.plugins:cache"
-    implementation "org.grails.plugins:events"
+    // implementation ("org.graceframework:grace-dependencies") {
+    //     exclude module:'grails-datastore-simple'
+    // }
+    implementation "org.graceframework:grace-plugin-codecs"
+    implementation "org.graceframework:grace-plugin-services"
+    implementation "org.graceframework:grace-plugin-datasource"
+    implementation "org.graceframework:grace-boot"
+    implementation "org.graceframework:grace-logging"
+    implementation "org.graceframework.plugins:cache"
+    implementation "org.graceframework.plugins:events"
     implementation project(":grails-plugin")
     implementation "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
-    implementation "org.grails.plugins:views-json"
-    implementation "org.grails.plugins:views-json-templates"
-    implementation 'org.grails.plugins:spring-security-core:4.0.3'
-    implementation 'org.grails.plugins:spring-security-rest:3.0.1'
-    profile "org.grails.profiles:rest-api"
-    testImplementation "org.grails:grails-gorm-testing-support"
-    testImplementation "org.grails:grails-web-testing-support"
+    implementation "org.graceframework.plugins:views-json"
+    implementation "org.graceframework.plugins:views-json-templates"
+    // implementation 'org.graceframework.plugins:spring-security-core:4.0.3'
+    // implementation 'org.graceframework.plugins:spring-security-rest:3.0.1'
+    profile "org.graceframework.profiles:rest-api"
+    testImplementation "org.graceframework:grails-test-support"
 }

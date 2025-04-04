@@ -69,7 +69,7 @@ class BsonPersistentEntityCodec implements Codec {
         DECODERS.put(type, propertyDecoder)
     }
 
-    @Override
+    // @Override
     Object decode(BsonReader bsonReader, DecoderContext decoderContext = DEFAULT_DECODER_CONTEXT) {
         bsonReader.readStartDocument()
         def persistentEntity = entity
@@ -148,7 +148,7 @@ class BsonPersistentEntityCodec implements Codec {
     }
 
 
-    @Override
+    // @Override
     void encode(BsonWriter writer, Object value, EncoderContext encoderContext = DEFAULT_ENCODER_CONTEXT) {
         encode(writer, value, encoderContext, true)
     }

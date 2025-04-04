@@ -5,31 +5,29 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-autoconfigure"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-starter-tomcat"
-    implementation "javax.servlet:javax.servlet-api:$servletApiVersion"
-    implementation "org.grails:grails-core:$grailsVersion"
-    implementation "org.grails:grails-dependencies:$grailsVersion", {
-        exclude module:'grails-datastore-simple'
-    }
-    implementation "org.grails:grails-web-boot:$grailsVersion"
+    implementation "jakarta.servlet:jakarta.servlet-api:$servletApiVersion"
+    implementation "org.graceframework:grace-core:$graceVersion"
+    // implementation "org.graceframework:grace-dependencies:$graceVersion", {
+    //     exclude module:'grails-datastore-simple'
+    // }
+    implementation "org.graceframework:grace-boot:$graceVersion"
+    implementation "org.graceframework:grace-plugin-gsp:$graceVersion"
     implementation project(":grails-plugin")
     implementation "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
 
-    runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails:$assetPipelineVersion"
+    runtimeOnly "org.graceframework.plugins:asset-pipeline-plugin:$assetPipelineVersion"
     runtimeOnly "com.h2database:h2"
-    runtimeOnly "org.grails.plugins:scaffolding:$scaffolingVersion"
-    runtimeOnly "org.grails.plugins:fields:$fieldsVersion"
+    runtimeOnly "org.graceframework.plugins:scaffolding:$scaffolingVersion"
+    runtimeOnly "org.graceframework.plugins:fields:$fieldsVersion"
 
-    testImplementation "org.grails:grails-gorm-testing-support:$testingSupportVersion"
-    testImplementation "org.grails:grails-web-testing-support:$testingSupportVersion"
+    testImplementation "org.graceframework:grace-gorm-testing-support:$testingSupportVersion"
+    testImplementation "org.graceframework:grace-web-testing-support:$testingSupportVersion"
     testImplementation "io.netty:netty-transport:4.1.72.Final"
     testImplementation "io.netty:netty-codec:4.1.72.Final"
     testImplementation "io.netty:netty-handler:4.1.72.Final"
     testImplementation "org.testcontainers:mongodb:1.19.0"
 
-    testImplementation "org.grails.plugins:geb", {
-        exclude group: 'org.gebish', module: 'geb-spock'
-    }
-    testImplementation "org.gebish:geb-spock:$gebVersion"
+    testImplementation "org.graceframework.plugins:geb"
     testImplementation "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
     testImplementation "org.seleniumhq.selenium:selenium-api:$seleniumVersion"
     testImplementation "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
