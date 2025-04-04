@@ -5,7 +5,7 @@ buildscript {
     }
     dependencies {
         classpath "org.graceframework:grace-gradle-plugin:$graceVersion"
-        classpath 'org.asciidoctor:asciidoctor-gradle-jvm:4.0.2'
+        classpath 'org.asciidoctor:asciidoctor-gradle-jvm:4.0.3'
         classpath "com.github.erdi:webdriver-binaries-gradle-plugin:3.2"
         classpath "org.graceframework.plugins:views-gradle:6.3.0-M1"
         classpath "io.github.gradle-nexus:publish-plugin:2.0.0"
