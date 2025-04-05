@@ -1,7 +1,0 @@
-dependencies {
-    api "org.springframework.boot:spring-boot-autoconfigure:$springBootVersion"
-    api "org.apache.groovy:groovy:$groovyVersion"
-    api project(":grace-datastore-gorm-mongodb")
-    api project(":grace-datastore-gorm-mongodb-ext")
-    api "org.springframework:spring-tx:$springVersion"
-}

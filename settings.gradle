@@ -7,8 +7,6 @@ include "grace-datastore-gorm-mongodb-ext"
 include 'docs'
 
 // plugins
-include "boot-plugin"
-project(':boot-plugin').name = 'grace-gorm-mongodb-spring-boot'
 include 'grace-plugin'
 
 // examples
