@@ -3,7 +3,7 @@ package functional.tests
 import geb.spock.GebSpec
 import grails.testing.mixin.integration.Integration
 
-@Integration(applicationClass = Application)
+@Integration
 class AuthorControllerSpec extends GebSpec {
 
     void "Test list authors"() {

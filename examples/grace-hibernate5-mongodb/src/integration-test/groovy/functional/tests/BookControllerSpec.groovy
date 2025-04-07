@@ -1,10 +1,9 @@
 package functional.tests
 
+import geb.spock.GebSpec
 import grails.testing.mixin.integration.Integration
 
-import geb.spock.GebSpec
-
-@Integration(applicationClass = Application)
+@Integration
 class BookControllerSpec extends GebSpec {
 
     void "Test list books"() {

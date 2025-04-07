@@ -14,7 +14,7 @@ ext['groovy.version'] = "$groovyVersion"
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     implementation "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
-    implementation project(":grace-gorm-mongodb-spring-boot")
+    implementation project(":grace-plugin")
 
     testImplementation"org.springframework.boot:spring-boot-starter-test:$springBootVersion"
     testImplementation"org.spockframework:spock-core:$spockVersion"

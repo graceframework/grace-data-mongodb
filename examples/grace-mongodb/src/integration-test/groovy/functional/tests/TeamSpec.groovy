@@ -4,7 +4,7 @@ import grails.testing.mixin.integration.Integration
 
 import spock.lang.Specification
 
-@Integration(applicationClass = Application)
+@Integration
 class TeamSpec extends Specification {
 
     void "get() doesn't throw NPE"() {

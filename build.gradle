@@ -6,7 +6,7 @@ buildscript {
     dependencies {
         classpath "org.graceframework:grace-gradle-plugin:$graceVersion"
         classpath 'org.asciidoctor:asciidoctor-gradle-jvm:4.0.3'
-        classpath "com.github.erdi:webdriver-binaries-gradle-plugin:3.2"
+        classpath "com.github.erdi:webdriver-binaries-gradle-plugin:$webdriverBinariesVersion"
         classpath "org.graceframework.plugins:views-gradle:6.3.0-M1"
         classpath "io.github.gradle-nexus:publish-plugin:2.0.0"
     }
@@ -78,13 +78,13 @@ subprojects { project ->
 
         apply plugin: 'groovy'
 
-        if(project.name.contains('grails3')) {
+        if(project.name.contains('grace')) {
 
             apply plugin:"org.graceframework.grace-web"
             apply plugin:"org.graceframework.grace-gsp"
         }
 
-        boolean usesGeb = project.name.contains('grails3-hibernate5-mongodb') || project.name.contains('grails3-mongodb') || project.name.contains('grails3-mongodb-database-per-tenant')|| project.name.contains('grails3-rxmongodb')
+        boolean usesGeb = project.name.contains('grace-hibernate5-mongodb') || project.name.contains('grace-mongodb') || project.name.contains('grace-mongodb-database-per-tenant')|| project.name.contains('grace-rxmongodb')
 
         if (usesGeb) {
             apply plugin:"com.github.erdi.webdriver-binaries"

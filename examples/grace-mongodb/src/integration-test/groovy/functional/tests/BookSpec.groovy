@@ -10,7 +10,7 @@ import spock.lang.Specification
 /**
  * Created by graemerocher on 12/09/2016.
  */
-@Integration(applicationClass = Application)
+@Integration
 class BookSpec extends Specification {
 
     @Autowired
