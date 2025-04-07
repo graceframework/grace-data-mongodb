@@ -1,28 +1,22 @@
-group "examples"
+group = "examples"
 
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-logging"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-starter-web"
-    implementation "jakarta.servlet:jakarta.servlet-api:$servletApiVersion"
-    implementation "org.graceframework:grace-core:$graceVersion"
-    implementation "org.graceframework:grace-boot:$graceVersion"
-    implementation "org.graceframework:grace-plugin-gsp:$graceVersion"
+    implementation "org.graceframework:grace-core"
+    implementation "org.graceframework:grace-boot"
+    implementation "org.graceframework:grace-plugin-gsp"
     implementation project(":grace-plugin")
-    implementation "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
 
     runtimeOnly "org.graceframework.plugins:asset-pipeline-plugin:$assetPipelineVersion"
     runtimeOnly "com.h2database:h2"
-    runtimeOnly "org.graceframework.plugins:scaffolding:$scaffolingVersion"
-    runtimeOnly "org.graceframework.plugins:fields:$fieldsVersion"
+    runtimeOnly "org.graceframework.plugins:scaffolding"
+    runtimeOnly "org.graceframework.plugins:fields"
 
-    testImplementation "org.graceframework:grace-gorm-testing-support:$testingSupportVersion"
-    testImplementation "org.graceframework:grace-web-testing-support:$testingSupportVersion"
-    testImplementation "io.netty:netty-transport:4.1.72.Final"
-    testImplementation "io.netty:netty-codec:4.1.72.Final"
-    testImplementation "io.netty:netty-handler:4.1.72.Final"
-    testImplementation "org.testcontainers:mongodb:1.19.0"
+    testImplementation "org.graceframework:grace-test-support"
+    // testImplementation "org.testcontainers:mongodb:1.19.0"
 
     testImplementation "org.graceframework.plugins:geb"
     testImplementation "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
@@ -45,11 +39,9 @@ tasks.withType(Test) {
 }
 
 webdriverBinaries {
-    if (!System.getenv().containsKey('CI')) {
-        chromedriver "$chromeDriverVersion"
-        geckodriver "$geckodriverVersion"
+    chromedriver {
+        version = '126.0.6478.126'
+        fallbackTo32Bit = true
     }
+    geckodriver '0.33.0'
 }
-
-
-

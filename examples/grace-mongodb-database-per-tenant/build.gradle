@@ -1,22 +1,22 @@
+group = "examples"
+
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-logging"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-starter-web"
-    implementation "jakarta.servlet:jakarta.servlet-api:$servletApiVersion"
-    implementation "org.graceframework:grace-core:$graceVersion"
-    implementation "org.graceframework:grace-boot:$graceVersion"
-    implementation "org.graceframework:grace-plugin-gsp:$graceVersion"
+    implementation "org.graceframework:grace-core"
+    implementation "org.graceframework:grace-boot"
+    implementation "org.graceframework:grace-plugin-gsp"
     implementation project(":grace-plugin")
 
     runtimeOnly "org.graceframework.plugins:asset-pipeline-plugin:$assetPipelineVersion"
     runtimeOnly "com.h2database:h2"
 
-    implementation "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
-    runtimeOnly "org.graceframework.plugins:scaffolding:$scaffolingVersion"
-    runtimeOnly "org.graceframework.plugins:fields:$fieldsVersion"
+    runtimeOnly "org.graceframework.plugins:scaffolding"
+    runtimeOnly "org.graceframework.plugins:fields"
 
-    testImplementation "org.graceframework:grace-test-support:$testingSupportVersion"
+    testImplementation "org.graceframework:grace-test-support"
     testImplementation "org.graceframework.plugins:geb"
     testImplementation "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
     testImplementation "org.seleniumhq.selenium:selenium-api:$seleniumVersion"
@@ -38,8 +38,9 @@ tasks.withType(Test) {
 }
 
 webdriverBinaries {
-    if (!System.getenv().containsKey('CI')) {
-        chromedriver "$chromeDriverVersion"
-        geckodriver "$geckodriverVersion"
+    chromedriver {
+        version = '126.0.6478.126'
+        fallbackTo32Bit = true
     }
+    geckodriver '0.33.0'
 }

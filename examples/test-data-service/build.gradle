@@ -1,9 +1,11 @@
+group = "examples"
+
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-logging"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
     implementation "org.graceframework:grace-core"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
-    implementation "org.springframework.boot:spring-boot-starter-tomcat"
+    implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.graceframework:grace-plugin-codecs"
     implementation "org.graceframework:grace-plugin-services"
     implementation "org.graceframework:grace-plugin-datasource"
@@ -12,7 +14,6 @@ dependencies {
     implementation "org.graceframework.plugins:cache"
     implementation "org.graceframework.plugins:events"
     implementation project(":grace-plugin")
-    implementation "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
     implementation "org.graceframework.plugins:views-json"
     implementation "org.graceframework.plugins:views-json-templates"
     // implementation 'org.graceframework.plugins:spring-security-core:4.0.3'
