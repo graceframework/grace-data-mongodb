@@ -173,11 +173,16 @@ subprojects { project ->
 
         testImplementation "org.apache.groovy:groovy-json:$groovyVersion"
         testImplementation "org.apache.groovy:groovy-templates:$groovyVersion"
-        testImplementation "org.apache.groovy:groovy-test-junit5:$groovyVersion"
-        testImplementation "org.spockframework:spock-core:$spockVersion", { transitive = false }
-        testImplementation "org.junit.jupiter:junit-jupiter-api:5.10.2"
-        testImplementation "org.junit.platform:junit-platform-runner:1.10.2"
-        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.10.2"
+        testImplementation "org.apache.groovy:groovy-test-junit5:$groovyVersion", {
+            exclude group: "org.junit.platform", module: "junit-platform-launcher"
+            exclude group: "org.junit.jupiter", module: "junit-jupiter-engine"
+        }
+        testImplementation "org.spockframework:spock-core:$spockVersion", {
+            exclude group: "org.junit.platform", module: "junit-platform-engine"
+        }
+        testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+        testImplementation "org.junit.platform:junit-platform-runner:$junitPlatformVersion"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
     }
 
     publishing {
