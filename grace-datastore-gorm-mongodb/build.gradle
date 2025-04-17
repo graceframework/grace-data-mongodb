@@ -11,6 +11,7 @@ dependencies {
     compileOnly "org.graceframework:grace-datastore-gorm-support:$datastoreVersion"
     compileOnly "jakarta.servlet:jakarta.servlet-api:$servletApiVersion"
 
+    testImplementation "org.testcontainers:mongodb:1.19.8"
     testImplementation "org.graceframework:grace-datastore-gorm-tck:$datastoreVersion"
     testImplementation "org.graceframework:grace-test-support:$graceVersion"
     testImplementation "jakarta.validation:jakarta.validation-api:$jakartaValidationVersion"
