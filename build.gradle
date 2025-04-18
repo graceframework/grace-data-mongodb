@@ -1,10 +1,12 @@
 buildscript {
     repositories {
+        // mavenLocal()
         mavenCentral()
         gradlePluginPortal()
     }
     dependencies {
         classpath "org.graceframework:grace-gradle-plugin:$graceVersion"
+        // classpath "org.graceframework.plugins:asset-pipeline-gradle:$assetPipelineVersion"
         classpath 'org.asciidoctor:asciidoctor-gradle-jvm:4.0.3'
         classpath "com.github.erdi:webdriver-binaries-gradle-plugin:$webdriverBinariesVersion"
         classpath "org.graceframework.plugins:views-gradle:6.3.0-M1"
@@ -18,7 +20,6 @@ group = "org.graceframework"
 version = project.projectVersion
 
 ext {
-    hibernatePluginVersion = project.hibernatePluginVersion
     isCiBuild = project.hasProperty("isCiBuild") || System.getenv().get("CI") as Boolean
     isBuildSnapshot = project.version.endsWith("-SNAPSHOT")
     isReleaseVersion = !isBuildSnapshot
@@ -30,7 +31,6 @@ ext {
 ext."signing.keyId" = System.getenv("SIGNING_KEY") ?: project.hasProperty("signing.keyId") ? project.getProperty('signing.keyId') : null
 ext."signing.password" = System.getenv("SIGNING_PASSPHRASE") ?: project.hasProperty("signing.password") ? project.getProperty('signing.password') : null
 ext."signing.secretKeyRingFile" = project.hasProperty("signing.secretKeyRingFile") ? project.getProperty('signing.secretKeyRingFile') : null
-ext['junit-jupiter.version'] = junitJupiterVersion
 
 apply plugin: 'maven-publish'
 apply plugin: "io.github.gradle-nexus.publish-plugin"
@@ -67,21 +67,17 @@ subprojects { project ->
         }
     }
 
-    ext['h2.version'] = h2Version
-    ext['gorm.version'] = datastoreVersion
-    ext['gorm.hibernate5.version'] = hibernatePluginVersion
-    ext['junit-jupiter.version'] = junitJupiterVersion
-    ext['spock.version'] = spockVersion
-    ext['mongodb.version'] = mongodbDriverVersion
-
     if (project.name.startsWith("examples")) {
+        group = "examples"
 
         apply plugin: 'groovy'
 
-        if(project.name.contains('grace')) {
-
+        if (project.name.contains('grace')) {
             apply plugin:"org.graceframework.grace-web"
             apply plugin:"org.graceframework.grace-gsp"
+            // Execution failed for task ':examples-grace-hibernate5-mongodb:assetCompile'.
+            // > java.util.concurrent.ExecutionException: java.lang.NoSuchMethodError: 'void groovy.lang.IntRange.<init>(boolean, boolean, int, int)'
+            // apply plugin: "org.graceframework.asset-pipeline"
         }
 
         boolean usesGeb = project.name.contains('grace-hibernate5-mongodb') || project.name.contains('grace-mongodb') || project.name.contains('grace-mongodb-database-per-tenant')|| project.name.contains('grace-rxmongodb')
@@ -90,18 +86,33 @@ subprojects { project ->
             apply plugin:"com.github.erdi.webdriver-binaries"
         }
 
-        if (project.name == "examples-test-data-service") {
+        if (project.name == "examples-grace-test-data-service") {
             apply plugin:"org.graceframework.grace-web"
             apply plugin:"org.graceframework.plugins.views-json"
         }
 
+        if (project.name == "examples-springboot-mongodb") {
+            apply plugin: 'org.springframework.boot'
+            apply plugin: 'io.spring.dependency-management'
+
+            dependencyManagement {
+                imports {
+                    mavenBom "org.graceframework:grace-bom:$graceVersion"
+                }
+                applyMavenExclusions false
+                generatedPomCustomization {
+                    enabled = false
+                }
+            }
+        }
+
         dependencies {
-            testImplementation "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
-            testImplementation "org.apache.groovy:groovy-test-junit5:$groovyVersion"
-            testImplementation "org.spockframework:spock-core:$spockVersion", { transitive = false }
-            testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
-            testImplementation "org.junit.platform:junit-platform-runner:1.10.2"
-            testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+            testImplementation "org.hibernate.validator:hibernate-validator"
+            testImplementation "org.apache.groovy:groovy-test-junit5"
+            testImplementation "org.spockframework:spock-core", { transitive = false }
+            testImplementation "org.junit.jupiter:junit-jupiter-api"
+            testImplementation "org.junit.platform:junit-platform-runner"
+            testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
         }
 
         tasks.withType(Test) {
@@ -120,11 +131,6 @@ subprojects { project ->
     }
 
     boolean isPluginProject = project.name.startsWith("grace") && project.name.endsWith("-plugin")
-    boolean isGracePluginProject = project.name.endsWith("-plugin")
-
-    ext {
-        projectInfo = new PublishingConvention(project)
-    }
 
     apply plugin: 'groovy'
 
@@ -133,11 +139,22 @@ subprojects { project ->
         version = rootProject.version
 
         apply plugin: "org.graceframework.grace-plugin"
-    } else {
+    }
+    else {
         group = "org.graceframework"
         version = rootProject.version
 
-        apply plugin: "groovy"
+        apply plugin: "io.spring.dependency-management"
+
+        dependencyManagement {
+            imports {
+                mavenBom "org.graceframework:grace-bom:$graceVersion"
+            }
+            applyMavenExclusions false
+            generatedPomCustomization {
+                enabled = false
+            }
+        }
     }
 
     if (project.name == 'docs') {
@@ -156,43 +173,50 @@ subprojects { project ->
         withSourcesJar()
     }
 
-    configurations {
-        all {
-            resolutionStrategy {
-                force "org.apache.groovy:groovy:$groovyVersion"
-                force "org.apache.groovy:groovy-dateutil:$groovyVersion"
-                force "org.apache.groovy:groovy-xml:$groovyVersion"
-                force "org.apache.groovy:groovy-templates:$groovyVersion"
-            }
-        }
-    }
-
     dependencies {
-        api "org.apache.groovy:groovy:$groovyVersion"
-        api "org.apache.groovy:groovy-templates:$groovyVersion"
+        api "org.apache.groovy:groovy"
+        api "org.apache.groovy:groovy-templates"
 
-        testImplementation "org.apache.groovy:groovy-json:$groovyVersion"
-        testImplementation "org.apache.groovy:groovy-templates:$groovyVersion"
-        testImplementation "org.apache.groovy:groovy-test-junit5:$groovyVersion", {
+        testImplementation "org.apache.groovy:groovy-json"
+        testImplementation "org.apache.groovy:groovy-templates"
+        testImplementation "org.apache.groovy:groovy-test-junit5", {
             exclude group: "org.junit.platform", module: "junit-platform-launcher"
             exclude group: "org.junit.jupiter", module: "junit-jupiter-engine"
         }
-        testImplementation "org.spockframework:spock-core:$spockVersion", {
+        testImplementation "org.spockframework:spock-core", {
             exclude group: "org.junit.platform", module: "junit-platform-engine"
         }
-        testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
-        testImplementation "org.junit.platform:junit-platform-runner:$junitPlatformVersion"
-        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+        testImplementation "org.junit.jupiter:junit-jupiter-api"
+        testImplementation "org.junit.platform:junit-platform-runner"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
     }
 
     publishing {
         publications {
             maven(MavenPublication) {
+                def projectArtifactId = project.name
+                def projectName = project.name.split('-')*.capitalize().join(' ')
+                if (project.name == 'grace-plugin') {
+                    projectArtifactId = 'mongodb'
+                    projectName = 'Grace MongoDb Plugin'
+                }
+
+                artifactId projectArtifactId
+                from components.java
+
+                versionMapping {
+                    usage('java-api') {
+                        fromResolutionOf('runtimeClasspath')
+                    }
+                    usage('java-runtime') {
+                        fromResolutionResult()
+                    }
+                }
 
                 pom {
-                    name = projectInfo.projectName
-                    description = projectInfo.projectDescription
-                    url = projectInfo.projectURL
+                    name = projectName                
+                    description = "Grace Data : $projectName"
+                    url = 'https://github.com/graceframework/grace-data-mongodb'
 
                     licenses {
                         license {
@@ -203,7 +227,7 @@ subprojects { project ->
                     }
 
                     scm {
-                        url = 'scm:git@github.com:graceframework/grace-data-mongodb.git'
+                        url = 'https://github.com/graceframework/grace-data-mongodb'
                         connection = 'scm:git@github.com:graceframework/grace-data-mongodb.git'
                         developerConnection = 'scm:git@github.com:graceframework/grace-data-mongodb.git'
                     }
@@ -217,11 +241,8 @@ subprojects { project ->
                     }
                 }
 
-                artifactId projectInfo.projectArtifactId
-                from components.java
-
                 afterEvaluate {
-                    if (isGracePluginProject) {
+                    if (isPluginProject) {
                         artifact source:"${sourceSets.main.groovy.classesDirectory.get()}/META-INF/grails-plugin.xml",
                                 classifier:"plugin",
                                 extension:'xml'
@@ -246,26 +267,5 @@ subprojects { project ->
     //do not generate extra load on Nexus with new staging repository if signing fails
     tasks.withType(io.github.gradlenexus.publishplugin.InitializeNexusStagingRepository).configureEach {
         shouldRunAfter(tasks.withType(Sign))
-    }
-}
-
-class PublishingConvention {
-    Project project
-
-    String projectArtifactId
-    String projectName = 'Grace Data MongoDB'
-    String projectDescription = 'Provides a GORM Object Mapping implementations for the MongodB Document Database'
-    String projectURL = 'https://github.com/graceframework/grace-data-mongodb'
-    String projectIssueTrackerUrl = 'https://github.com/graceframework/grace-data-mongodb/issues'
-    String projectVcsUrl = 'https://github.com/graceframework/grace-data-mongodb'
-
-    PublishingConvention(Project project) {
-        this.project = project
-
-        def name = project.name
-        if (name.startsWith('grace') && name.endsWith('-plugin')) {
-            name = 'mongodb'
-        }
-        projectArtifactId = name
     }
 }

@@ -1,3 +1,5 @@
+rootProject.name = 'Grace.Data.MongoDB'
+
 // core
 include "grace-datastore-gorm-bson"
 include "grace-datastore-gorm-mongodb"

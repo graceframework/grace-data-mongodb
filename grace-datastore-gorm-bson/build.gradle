@@ -1,4 +1,4 @@
 dependencies {
-    api "org.graceframework:grace-datastore-gorm:$datastoreVersion"
+    api "org.graceframework:grace-datastore-gorm"
     api "org.mongodb:bson:$mongodbDriverVersion"
 }
