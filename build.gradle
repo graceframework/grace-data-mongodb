@@ -216,14 +216,6 @@ subprojects { project ->
                         }
                     }
                 }
-                pom.withXml {
-                    def pomNode = asNode()
-                    try {
-                        pomNode.dependencyManagement.replaceNode {}
-                    } catch (Throwable e) {
-                        // ignore
-                    }
-                }
 
                 artifactId projectInfo.projectArtifactId
                 from components.java
