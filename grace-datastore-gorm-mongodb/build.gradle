@@ -2,21 +2,21 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 dependencies {
     api "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
-    api "org.graceframework:grace-datastore-gorm-validation"
-    api "org.graceframework:grace-datastore-gorm"
+    api "org.graceframework:grace-datastore-gorm-validation:$datastoreVersion"
+    api "org.graceframework:grace-datastore-gorm:$datastoreVersion"
     api project(":grace-datastore-gorm-bson")
 
     implementation "com.github.ben-manes.caffeine:caffeine"
 
-    compileOnly "org.graceframework:grace-datastore-gorm-support"
+    compileOnly "org.graceframework:grace-datastore-gorm-support:$datastoreVersion"
     compileOnly "jakarta.servlet:jakarta.servlet-api"
 
     testImplementation "org.testcontainers:mongodb:1.19.8"
     testImplementation "org.graceframework:grace-datastore-gorm-tck:$datastoreVersion"
-    testImplementation "org.graceframework:grace-test-support:"
+    testImplementation "org.graceframework:grace-test-support:$datastoreVersion"
     testImplementation "jakarta.validation:jakarta.validation-api"
     testImplementation "org.hibernate.validator:hibernate-validator"
-    testImplementation "org.graceframework:grace-datastore-gorm-support", {
+    testImplementation "org.graceframework:grace-datastore-gorm-support:$datastoreVersion", {
         exclude group: "org.graceframework", module:"grace-datastore-gorm-hibernate-core"
     }
     testRuntimeOnly "org.glassfish:jakarta.el:$jakartaElVersion"
