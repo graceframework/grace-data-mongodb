@@ -175,7 +175,6 @@ subprojects { project ->
 
     dependencies {
         api "org.apache.groovy:groovy"
-        api "org.apache.groovy:groovy-templates"
 
         testImplementation "org.apache.groovy:groovy-json"
         testImplementation "org.apache.groovy:groovy-templates"
