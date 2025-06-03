@@ -1,0 +1,557 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>7 Multi-Tenancy 2023.3.0-SNAPSHOT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navHeader">
+        
+        <span id="logo">
+            <a href="https://graceframework.org" title="Grace Framework Website">
+                <img src="../img/grace.svg" alt="Grace Framework" />
+            </a>
+        </span>
+        
+        <div class="docHeader">
+            <h1 class="docTitle">Grace Data MongoDB</h1>
+            <h3 class="docSubTitle">Provides an Object-Mapping layer on top of MongoDB</h3>
+        </div>
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/objectMapping.html"><strong>3</strong><span>Mapping Domain Classes</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/querying.html"><strong>4</strong><span>Querying</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multipleDataSources.html"><strong>5</strong><span>Multiple Data Sources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/databaseSwitching.html"><strong>6</strong><span>Switching Database or Collection at Runtime</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multiTenancy.html"><strong>7</strong><span>Multi-Tenancy</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/stateless.html"><strong>8</strong><span>Stateless Mode</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/lowLevelApi.html"><strong>9</strong><span>Using the MongoDB Driver Directly</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/transactions.html"><strong>10</strong><span>Transactions</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>11</strong><span>Unit Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/integrationTesting.html"><strong>12</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" href="../api/index.html">API Docs</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../guide/databaseSwitching.html">&lt;&lt; <strong>6</strong><span>Switching Database or Collection at Runtime</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/stateless.html"><strong>8</strong><span>Stateless Mode</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>7 Multi-Tenancy</h1>
+
+                    <p><strong>Version:</strong> 2023.3.0-SNAPSHOT</p>
+                </div>
+
+                
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#multiTenancyConfiguration"><strong>7.1</strong><span>Configuring Multi Tenancy</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#tenantTransforms"><strong>7.2</strong><span>Multi-Tenancy Transformations</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#multiTenancyModes"><strong>7.3</strong><span>Multi Tenancy Modes</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#dynamicConnectionSources"><strong>7.4</strong><span>Dynamic ConnectionSources</span></a>
+                    </div>
+                    
+                </div>
+                
+
+                
+
+<h1 id="multiTenancy"><a class="anchor" href="#multiTenancy"></a>7 Multi-Tenancy</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multiTenancy.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>GORM for MongoDb supports the following multi-tenancy modes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DATABASE</code> - A separate database with a separate connection pool is used to store each tenants data.</p>
+</li>
+<li>
+<p><code>SCHEMA</code> - The same database, but different schemas are used to store each tenants data.</p>
+</li>
+<li>
+<p><code>DISCRIMINATOR</code> - The same database is used with a discriminator used to partition and isolate data.</p>
+</li>
+</ul>
+</div>
+
+
+<h2 id="multiTenancyConfiguration"><a class="anchor" href="#multiTenancyConfiguration"></a>7.1 Configuring Multi Tenancy</h2>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multiTenancy/multiTenancyConfiguration.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>You can configure Multi-Tenancy the same way described in the <a href="../../hibernate/manual/index.html#multiTenancy">GORM for Hibernate documenation</a>, simply specify a multi tenancy mode and resolver:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">grails</span>:
+    <span class="key">gorm</span>:
+        <span class="key">multiTenancy</span>:
+            <span class="key">mode</span>: <span class="string"><span class="content">DATABASE</span></span>
+            <span class="key">tenantResolverClass</span>: <span class="string"><span class="content">org.grails.datastore.mapping.multitenancy.web.SubDomainTenantResolver</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that if you are using MongoDB and Hibernate together the above configuration will configure both MongoDB <strong>and</strong> Hibernate to use a multi-tenancy mode of <code>DATABASE</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you only want to enable multi-tenancy for MongoDB only you can use the following configuration instead:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">grails</span>:
+    <span class="key">mongodb</span>:
+        <span class="key">multiTenancy</span>:
+            <span class="key">mode</span>: <span class="string"><span class="content">DATABASE</span></span>
+            <span class="key">tenantResolverClass</span>: <span class="string"><span class="content">org.grails.datastore.mapping.multitenancy.web.SubDomainTenantResolver</span></span></code></pre>
+</div>
+</div>
+
+
+<h2 id="tenantTransforms"><a class="anchor" href="#tenantTransforms"></a>7.2 Multi-Tenancy Transformations</h2>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multiTenancy/tenantTransforms.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>The following transformations can be applied to any class to simplify greatly the development of Multi-Tenant applications. These include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@CurrentTenant</code> - Resolve the current tenant for the context of a class or method</p>
+</li>
+<li>
+<p><code>@Tenant</code> - Use a specific tenant for the context of a class or method</p>
+</li>
+<li>
+<p><code>@WithoutTenant</code> - Execute logic without a specific tenant (using the default connection)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.gorm.multitenancy.*</span>
+
+<span class="comment">// resolve the current tenant for every method</span>
+<span class="annotation">@CurrentTenant</span>
+<span class="type">class</span> <span class="class">TeamService</span> {
+
+    <span class="comment">// execute the countPlayers method without a tenant id</span>
+    <span class="annotation">@WithoutTenant</span>
+    <span class="type">int</span> countPlayers() {
+        Player.count()
+    }
+
+    <span class="comment">// use the tenant id &quot;another&quot; for all GORM logic within the method</span>
+    <span class="annotation">@Tenant</span>({<span class="string"><span class="delimiter">&quot;</span><span class="content">another</span><span class="delimiter">&quot;</span></span>})
+    <span class="predefined-type">List</span>&lt;Team&gt; allTwoTeams() {
+        Team.list()
+    }
+
+    <span class="predefined-type">List</span>&lt;Team&gt; listTeams() {
+        Team.list(<span class="key">max</span>:<span class="integer">10</span>)
+    }
+
+    <span class="annotation">@Transactional</span>
+    <span class="type">void</span> addTeam(<span class="predefined-type">String</span> name) {
+        <span class="keyword">new</span> Team(<span class="key">name</span>:name).save(<span class="key">flush</span>:<span class="predefined-constant">true</span>)
+    }
+}</code></pre>
+</div>
+</div>
+
+
+<h2 id="multiTenancyModes"><a class="anchor" href="#multiTenancyModes"></a>7.3 Multi Tenancy Modes</h2>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multiTenancy/multiTenancyModes.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>As mentioned previously, GORM for MongoDB supports all three multi tenancy modes however there are some considerations to keep in mind.</p>
+</div>
+<div class="sect3">
+<h4 id="_database_per_tenant">Database Per Tenant</h4>
+<div class="paragraph">
+<p>When using the <code>DATABASE</code> mode, only GORM methods calls are dispatched to the correct tenant. This means the following will use the tenant id:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// switches to the correct client based on the tenant id</span>
+<span class="predefined-type">Book</span>.list()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, going directly through the <code>MongoClient</code> will not work:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Autowired</span> MongoClient mongoClient
+
+<span class="comment">// uses the default connection and doesn't resolve the tenant it</span>
+mongoClient.getDatabase(<span class="string"><span class="delimiter">&quot;</span><span class="content">book</span><span class="delimiter">&quot;</span></span>).find()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you are working directly with the <code>MongoClient</code> instance you need to make sure you obtain the correct instance. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.gorm.multitenancy.*</span>
+
+<span class="annotation">@Autowired</span> MongoDatastore mongoDatastore
+...
+MongoClient mongoClient =
+        mongoDatastore.getDatastoreForTenantId(Tenants.currentId())
+                      .getMongoClient()</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_schema_per_tenant">Schema Per Tenant</h4>
+<div class="paragraph">
+<p>When using the <code>SCHEMA</code> mode, GORM for MongoDB will use a different MongoDB database, but the same <code>MongoClient</code> instance, for each tenant.</p>
+</div>
+<div class="paragraph">
+<p>However, once again only GORM methods will use the correct database. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// switches to the correct database based on the tenant id</span>
+<span class="predefined-type">Book</span>.list()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, getting the database directly from <code>MongoClient</code> will not work:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Autowired</span> MongoClient mongoClient
+
+<span class="comment">// uses the default connection and doesn't resolve the tenant it</span>
+mongoClient.getDatabase(<span class="string"><span class="delimiter">&quot;</span><span class="content">book</span><span class="delimiter">&quot;</span></span>).find()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To resolve this you should always use the <code>DB</code> property of the class which will ensure the right database is used:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// switches to the correct database based on the tenant id</span>
+<span class="predefined-type">Book</span>.DB.find()</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_partitioned_multi_tenancy">Partitioned Multi-Tenancy</h4>
+<div class="paragraph">
+<p>When using the <code>DISCRIMINATOR</code> approach, GORM for MongoDB will store a <code>tenantId</code> attribute in each MongoDB document and attempt to partition the data.</p>
+</div>
+<div class="paragraph">
+<p>Once again this works only when using GORM methods and even then there are cases where it will not work if you use native MongoDB interfaces.</p>
+</div>
+<div class="paragraph">
+<p>For example the following works fine:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">// correctly includes the `tenantId` in the query</span>
+<span class="predefined-type">Book</span>.list()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As does this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">static</span> <span class="include">com.mongodb.client.model.Filters.*</span>;
+
+<span class="comment">// correctly includes the `tenantId` in the query</span>
+<span class="predefined-type">Book</span>.find(eq(<span class="string"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">The Stand</span><span class="delimiter">&quot;</span></span>)).first()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But this logic bypasses any built into tenant id interception and inclusion:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="predefined-type">Book</span>.collection.find().first()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since you are operating directly on the collection GORM cannot know when you perform a query on said collection.</p>
+</div>
+<div class="paragraph">
+<p>In this case you will have to ensure to include the <code>tenantId</code> manually:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">static</span> <span class="include">com.mongodb.client.model.Filters.*</span>;
+...
+Book.collection.find(eq(<span class="string"><span class="delimiter">&quot;</span><span class="content">tenantId</span><span class="delimiter">&quot;</span></span>, Tenants.currentId())).first()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the same is true of write operations such as inserts that are done with the native API.</p>
+</div>
+</div>
+
+
+<h2 id="dynamicConnectionSources"><a class="anchor" href="#dynamicConnectionSources"></a>7.4 Dynamic ConnectionSources</h2>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multiTenancy/dynamicConnectionSources.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>If you are using a multi-tenancy mode of <code>DATABASE</code> then by default the expectation is that all tenants are configured in your <code>application.yml</code> file.</p>
+</div>
+<div class="paragraph">
+<p>However, it is possible read your Mongo client connection sources dynamically using <a href="../api/org/grails/datastore/mapping/mongo/connections/MongoConnectionSources.html">MongoConnectionSources</a>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>MongoConnectionSources</code> class will read the mongo client configurations from a Mongo collection called <code>mongo.connections</code> by default. To configure it you must specify the <code>connectionSourcesClass</code> in <code>application.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">grails</span>:
+    <span class="key">mongodb</span>:
+        <span class="key">multiTenancy</span>:
+            <span class="key">mode</span>: <span class="string"><span class="content">DATABASE</span></span>
+        <span class="key">connectionSourcesClass</span>: <span class="string"><span class="content">org.grails.datastore.mapping.mongo.connections.MongoConnectionSources</span></span>
+        <span class="key">connectionsCollection</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">myconnections</span><span class="delimiter">&quot;</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can then even add new connections at runtime using the <code>ConnectionSources</code> API:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.gorm.multitenancy.*</span>
+
+<span class="annotation">@Autowired</span> MongoDatastore mongoDatastore
+...
+def configuration = [<span class="key">url</span>:<span class="string"><span class="delimiter">&quot;</span><span class="content">mongodb://localhost/moreBooks</span><span class="delimiter">&quot;</span></span>]
+MongoClient mongoClient =
+        mongoDatastore.connectionSources
+                                          .addConnectionSource(<span class="string"><span class="delimiter">&quot;</span><span class="content">moreBooks</span><span class="delimiter">&quot;</span></span>, configuration)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All new connection sources will be stored within the specified <code>connectionsCollection</code> and if the application is restarted will read from the <code>connectionsCollection</code>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+GORM for MongoDB does not implement provisioning of new MongoDB instances at runtime. This is something that would need to be implemented by a cloud services provider for example.
+</td>
+</tr>
+</table>
+</div>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../guide/databaseSwitching.html">&lt;&lt; <strong>6</strong><span>Switching Database or Collection at Runtime</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/stateless.html"><strong>8</strong><span>Stateless Mode</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Beans/mongo.html">mongo</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Domain Classes</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/DB.html">DB</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/collection.html">collection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/collectionName.html">collectionName</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/countHits.html">countHits</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/dbo.html">dbo</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByGeoIntersects.html">findByGeoIntersects</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByGeoWithin.html">findByGeoWithin</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByNear.html">findByNear</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByNearSphere.html">findByNearSphere</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByWithinBox.html">findByWithinBox</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByWithinCircle.html">findByWithinCircle</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/search.html">search</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/searchTop.html">searchTop</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/useCollection.html">useCollection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/useDatabase.html">useDatabase</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/withCollection.html">withCollection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/withDatabase.html">withDatabase</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    Copyright &copy; 2022-2025 Michael Yan and the original authors. The content is licensed under a Creative Commons Attribution 4.0 International (CC BY SA 4.0) license.
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

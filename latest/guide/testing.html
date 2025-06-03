@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>11 Unit Testing 2023.3.0-SNAPSHOT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navHeader">
+        
+        <span id="logo">
+            <a href="https://graceframework.org" title="Grace Framework Website">
+                <img src="../img/grace.svg" alt="Grace Framework" />
+            </a>
+        </span>
+        
+        <div class="docHeader">
+            <h1 class="docTitle">Grace Data MongoDB</h1>
+            <h3 class="docSubTitle">Provides an Object-Mapping layer on top of MongoDB</h3>
+        </div>
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/objectMapping.html"><strong>3</strong><span>Mapping Domain Classes</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/querying.html"><strong>4</strong><span>Querying</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multipleDataSources.html"><strong>5</strong><span>Multiple Data Sources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/databaseSwitching.html"><strong>6</strong><span>Switching Database or Collection at Runtime</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multiTenancy.html"><strong>7</strong><span>Multi-Tenancy</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/stateless.html"><strong>8</strong><span>Stateless Mode</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/lowLevelApi.html"><strong>9</strong><span>Using the MongoDB Driver Directly</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/transactions.html"><strong>10</strong><span>Transactions</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>11</strong><span>Unit Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/integrationTesting.html"><strong>12</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" href="../api/index.html">API Docs</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../guide/transactions.html">&lt;&lt; <strong>10</strong><span>Transactions</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/integrationTesting.html"><strong>12</strong><span>Integration Testing</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>11 Unit Testing</h1>
+
+                    <p><strong>Version:</strong> 2023.3.0-SNAPSHOT</p>
+                </div>
+
+                
+
+                
+
+<h1 id="testing"><a class="anchor" href="#testing"></a>11 Unit Testing</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/testing.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>To write unit tests with MongoDB and Spock you can simply extend from <code>grails.test.mongodb.MongoSpec</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>MongoSpec</code> is an abstract class that will initialise GORM in the setup phase of the specification being executed. It
+uses by default a <code>MongoClient</code> instance that connects to a MongoDB instance as defined in your configuration
+(by default, <code>localhost</code> and port <code>27017</code>, see <a href="#gettingStarted">[gettingStarted]</a> for more details):</p>
+</div>
+<div class="paragraph">
+<p>It is preferable to use testcontainers to automatically run MongoDB in a containerized environment and not have to run a MongoDB instance locally. The following examples use testcontainers:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">package</span> functional.tests
+
+<span class="keyword">import</span> <span class="include">com.mongodb.client.MongoClient</span>
+<span class="keyword">import</span> <span class="include">com.mongodb.client.MongoClients</span>
+<span class="keyword">import</span> <span class="include">groovy.transform.CompileStatic</span>
+<span class="keyword">import</span> <span class="include">org.testcontainers.containers.MongoDBContainer</span>
+
+<span class="annotation">@CompileStatic</span>
+trait EmbeddedMongoClient {
+
+    <span class="directive">abstract</span> MongoDBContainer getMongoDBContainer()
+
+    MongoClient createMongoClient() {
+        <span class="keyword">if</span> (!mongoDBContainer.isRunning()) {
+            mongoDBContainer.start()
+        }
+        <span class="keyword">return</span> MongoClients.create(mongoDBContainer.getReplicaSetUrl())
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.test.mongodb.MongoSpec</span>
+<span class="keyword">import</span> <span class="include">grails.validation.ValidationException</span>
+<span class="keyword">import</span> <span class="include">org.testcontainers.containers.MongoDBContainer</span>
+<span class="keyword">import</span> <span class="include">org.testcontainers.utility.DockerImageName</span>
+<span class="keyword">import</span> <span class="include">spock.lang.Ignore</span>
+<span class="keyword">import</span> <span class="include">spock.lang.Shared</span>
+
+<span class="type">class</span> <span class="class">LocalMongoUnitSpec</span> <span class="directive">extends</span> MongoSpec <span class="directive">implements</span> EmbeddedMongoClient {
+
+    <span class="annotation">@Shared</span>
+    <span class="directive">final</span> MongoDBContainer mongoDBContainer = <span class="keyword">new</span> MongoDBContainer(DockerImageName.parse(<span class="string"><span class="delimiter">&quot;</span><span class="content">mongo:latest</span><span class="delimiter">&quot;</span></span>))
+
+    <span class="annotation">@Ignore</span>
+    <span class="type">void</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">test fail on error</span><span class="delimiter">&quot;</span></span>() {
+
+        <span class="key">when</span>:
+        <span class="keyword">def</span> invalid = <span class="keyword">new</span> <span class="predefined-type">Book</span>(<span class="key">title</span>: <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
+        invalid.save()
+
+        <span class="key">then</span>:
+        thrown ValidationException
+        invalid.hasErrors()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use your own low-level <code>MongoClient</code> instance, as shown in the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">package</span> functional.tests
+
+<span class="keyword">import</span> <span class="include">grails.test.mongodb.MongoSpec</span>
+<span class="keyword">import</span> <span class="include">org.testcontainers.containers.MongoDBContainer</span>
+<span class="keyword">import</span> <span class="include">org.testcontainers.utility.DockerImageName</span>
+<span class="keyword">import</span> <span class="include">spock.lang.Shared</span>
+
+<span class="type">class</span> <span class="class">BookUnitSpec</span> <span class="directive">extends</span> MongoSpec <span class="directive">implements</span> EmbeddedMongoClient {
+
+    <span class="annotation">@Shared</span>
+    <span class="directive">final</span> MongoDBContainer mongoDBContainer = <span class="keyword">new</span> MongoDBContainer(DockerImageName.parse(<span class="string"><span class="delimiter">&quot;</span><span class="content">mongo:latest</span><span class="delimiter">&quot;</span></span>))
+
+    <span class="type">void</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">Test low-level API extensions</span><span class="delimiter">&quot;</span></span>() {
+        <span class="key">when</span>:
+        <span class="keyword">def</span> db = createMongoClient().getDatabase(<span class="string"><span class="delimiter">&quot;</span><span class="content">test</span><span class="delimiter">&quot;</span></span>)
+<span class="comment">//        db.drop()</span>
+        <span class="comment">// Insert a document</span>
+        db[<span class="string"><span class="delimiter">'</span><span class="content">languages</span><span class="delimiter">'</span></span>].insert([<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Groovy</span><span class="delimiter">'</span></span>])
+        <span class="comment">// A less verbose way to do it</span>
+        db.languages.insert(<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Ruby</span><span class="delimiter">'</span></span>)
+        <span class="comment">// Yet another way</span>
+        db.languages &lt;&lt; [<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Python</span><span class="delimiter">'</span></span>]
+
+        <span class="key">then</span>:
+        db.languages.count() == <span class="integer">3</span>
+    }
+
+    <span class="type">void</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">Test GORM access</span><span class="delimiter">&quot;</span></span>(){
+        <span class="key">when</span>:
+        <span class="predefined-type">Book</span> book = <span class="keyword">new</span> <span class="predefined-type">Book</span>(<span class="key">title</span>: <span class="string"><span class="delimiter">'</span><span class="content">El Quijote</span><span class="delimiter">'</span></span>).save(<span class="key">flush</span>: <span class="predefined-constant">true</span>)
+
+        <span class="key">then</span>:
+        <span class="predefined-type">Book</span>.count() ==<span class="integer">1</span>
+
+        <span class="key">when</span>:
+        book = <span class="predefined-type">Book</span>.findByTitle(<span class="string"><span class="delimiter">'</span><span class="content">El Quijote</span><span class="delimiter">'</span></span>)
+
+        <span class="key">then</span>:
+        book.id
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the default implementation is to scan your classpath searching for domain classes, from the package defined
+in the configuration property <code>grails.codegen.defaultPackage</code>, and all the way down its subpackages. If your application
+is large, classpath scanning may be slow, so it&#8217;s better to override the method <code>getDomainClasses()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Override</span>
+<span class="directive">protected</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">Class</span>&gt; getDomainClasses() {
+    [<span class="predefined-type">Book</span>]
+}</code></pre>
+</div>
+</div>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../guide/transactions.html">&lt;&lt; <strong>10</strong><span>Transactions</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/integrationTesting.html"><strong>12</strong><span>Integration Testing</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Beans/mongo.html">mongo</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Domain Classes</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/DB.html">DB</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/collection.html">collection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/collectionName.html">collectionName</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/countHits.html">countHits</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/dbo.html">dbo</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByGeoIntersects.html">findByGeoIntersects</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByGeoWithin.html">findByGeoWithin</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByNear.html">findByNear</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByNearSphere.html">findByNearSphere</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByWithinBox.html">findByWithinBox</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByWithinCircle.html">findByWithinCircle</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/search.html">search</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/searchTop.html">searchTop</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/useCollection.html">useCollection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/useDatabase.html">useDatabase</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/withCollection.html">withCollection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/withDatabase.html">withDatabase</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    Copyright &copy; 2022-2025 Michael Yan and the original authors. The content is licensed under a Creative Commons Attribution 4.0 International (CC BY SA 4.0) license.
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

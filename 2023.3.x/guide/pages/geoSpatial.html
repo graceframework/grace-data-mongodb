@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>4.3 Geospacial Querying 2023.3.0-SNAPSHOT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navHeader">
+        
+        <span id="logo">
+            <a href="https://graceframework.org" title="Grace Framework Website">
+                <img src="../img/grace.svg" alt="Grace Framework" />
+            </a>
+        </span>
+        
+        <div class="docHeader">
+            <h1 class="docTitle">Grace Data MongoDB</h1>
+            <h3 class="docSubTitle">Provides an Object-Mapping layer on top of MongoDB</h3>
+        </div>
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/objectMapping.html"><strong>3</strong><span>Mapping Domain Classes</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/querying.html"><strong>4</strong><span>Querying</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/multipleDataSources.html"><strong>5</strong><span>Multiple Data Sources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/databaseSwitching.html"><strong>6</strong><span>Switching Database or Collection at Runtime</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/multiTenancy.html"><strong>7</strong><span>Multi-Tenancy</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/stateless.html"><strong>8</strong><span>Stateless Mode</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/lowLevelApi.html"><strong>9</strong><span>Using the MongoDB Driver Directly</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/transactions.html"><strong>10</strong><span>Transactions</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/testing.html"><strong>11</strong><span>Unit Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/integrationTesting.html"><strong>12</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" href="../api/index.html">API Docs</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../../guide/objectMapping.html">&lt;&lt; <strong>3</strong><span>Mapping Domain Classes</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../../guide/multipleDataSources.html"><strong>5</strong><span>Multiple Data Sources</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>4.3 Geospacial Querying</h1>
+
+                    <p><strong>Version:</strong> 2023.3.0-SNAPSHOT</p>
+                </div>
+
+                
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#2dsphere"><strong>4.1</strong><span>Geospacial 2D Sphere Support</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#2dindex"><strong>4.2</strong><span>Geospacial 2D Index Support</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#geoJson"><strong>4.3</strong><span>GeoJSON Data Models</span></a>
+                    </div>
+                    
+                </div>
+                
+
+                
+
+<h2 id="geoSpatial"><a class="anchor" href="#geoSpatial"></a>4.3 Geospacial Querying</h2>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/querying/geoSpatial.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>MongoDB supports storing <a href="https://docs.mongodb.org/manual/applications/geospatial-indexes/">Geospacial data</a> in both flat and spherical surface types.</p>
+</div>
+<div class="paragraph">
+<p>To store data in a flat surface you use a "2d" index, whilst a "2dsphere" index used for spherical data. GORM for MongoDB supports both and the following sections describe how to define and query Geospacial data.</p>
+</div>
+
+
+<h3 id="2dsphere"><a class="anchor" href="#2dsphere"></a>4.3.1 Geospacial 2D Sphere Support</h3>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/querying/geoSpatial/2dsphere.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="sect3">
+<h4 id="_using_a_2dsphere_index">Using a 2dsphere Index</h4>
+<div class="paragraph">
+<p>MongoDB&#8217;s <a href="https://docs.mongodb.org/manual/core/2dsphere/">2dsphere indexes</a> support queries that calculate geometries on an earth-like sphere.</p>
+</div>
+<div class="paragraph">
+<p>Although you can use coordinate pairs in a 2dsphere index, they are considered legacy by the MongoDB documentation and it is recommended you store data using <a href="https://geojson.org/geojson-spec.html#id2">GeoJSON Point</a> types.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+MongoDB legacy coordinate pairs are in latitude / longitude order, whilst GeoJSON points are stored in longitude / latitude order!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To support this GORM for MongoDB features a special type, <code>grails.mongodb.geo.Point</code>, that can be used within domain classes to store geospacial data:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.mongodb.geo.*</span>
+...
+class Restaurant {
+    ObjectId id
+    <span class="predefined-type">Point</span> location
+
+    <span class="directive">static</span> mapping = {
+        location <span class="key">geoIndex</span>:<span class="string"><span class="delimiter">'</span><span class="content">2dsphere</span><span class="delimiter">'</span></span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>Point</code> type gets persisted as a <a href="https://geojson.org/geojson-spec.html#id2">GeoJSON Point</a>. A <code>Point</code> can be constructed from coordinates represented in longitude and latitude (the inverse of 2d index location coordinates!). Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">Restaurant r = <span class="keyword">new</span> Restaurant(<span class="key">location</span>: <span class="keyword">new</span> <span class="predefined-type">Point</span>(<span class="integer">50</span>, <span class="integer">50</span>))
+r.id = <span class="string"><span class="delimiter">&quot;</span><span class="content">Dan's Burgers</span><span class="delimiter">&quot;</span></span>
+r.save(<span class="key">flush</span>:<span class="predefined-constant">true</span>)
+
+Restaurant.findByLocation(<span class="keyword">new</span> <span class="predefined-type">Point</span>(<span class="integer">50</span>,<span class="integer">50</span>))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_querying_a_2dsphere_index">Querying a 2dsphere Index</h4>
+<div class="paragraph">
+<p>Once the 2dsphere index is in place you can use various MongoDB plugin specific dynamic finders to query, including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>findBy&#8230;&#8203;GeoWithin</strong> - Find out whether a <code>Point</code> is within a <code>Box</code>, <code>Polygon</code>, <code>Circle</code> or <code>Sphere</code></p>
+</li>
+<li>
+<p><strong>findBy&#8230;&#8203;GeoIntersects</strong> - Find out whether a <code>Point</code> is within a <code>Box</code>, <code>Polygon</code>, <code>Circle</code> or <code>Sphere</code></p>
+</li>
+<li>
+<p><strong>findBy&#8230;&#8203;Near</strong> - Find out whether any GeoJSON <code>Shape</code> is near the given <code>Point</code></p>
+</li>
+<li>
+<p><strong>findBy&#8230;&#8203;NearSphere</strong> - Find out whether any GeoJSON <code>Shape</code> is near the given <code>Point</code> using spherical geometry.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Some examples:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">Restaurant.findByLocationGeoWithin( <span class="predefined-type">Polygon</span>.valueOf([ [<span class="integer">0</span>, <span class="integer">0</span>], [<span class="integer">100</span>, <span class="integer">0</span>], [<span class="integer">100</span>, <span class="integer">100</span>], [<span class="integer">0</span>, <span class="integer">100</span>], [<span class="integer">0</span>, <span class="integer">0</span>] ]) )
+Restaurant.findByLocationGeoWithin( <span class="predefined-type">Box</span>.valueOf( [[<span class="integer">25</span>, <span class="integer">25</span>], [<span class="integer">100</span>, <span class="integer">100</span>]] ) )
+Restaurant.findByLocationGeoWithin( Circle.valueOf( [[<span class="integer">50</span>, <span class="integer">50</span>], <span class="integer">100</span>] ) )
+Restaurant.findByLocationGeoWithin( Sphere.valueOf( [[<span class="integer">50</span>, <span class="integer">50</span>], <span class="float">0.06</span>]) )
+Restaurant.findByLocationNear( <span class="predefined-type">Point</span>.valueOf( <span class="integer">40</span>, <span class="integer">40</span> ) )</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Note that a <code>Sphere</code> differs from a <code>Circle</code> in that the radius is specified in <a href="https://docs.mongodb.org/manual/tutorial/calculate-distances-using-spherical-geometry-with-2d-geospatial-indexes/">radians</a>.
+There is a special <code>Distance</code> class that can help with radian calculation.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_native_querying_support">Native Querying Support</h4>
+<div class="paragraph">
+<p>In addition to being able to pass any <code>Shape</code> to geospacial query methods you can also pass a map that represents the native values to be passe to the underlying query. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> results = Restaurant.findAllByLocationNear( [<span class="error">$</span><span class="key">geometry</span>: [<span class="key">type</span>:<span class="string"><span class="delimiter">'</span><span class="content">Point</span><span class="delimiter">'</span></span>, <span class="key">coordinates</span>: [<span class="integer">1</span>,<span class="integer">7</span>]], <span class="error">$</span><span class="key">maxDistance</span>:<span class="integer">30000</span>] )</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above example the native query parameters are simply passed to the <a href="https://docs.mongodb.org/manual/reference/operator/query/near/#op._S_near">$near query</a></p>
+</div>
+</div>
+
+
+<h3 id="2dindex"><a class="anchor" href="#2dindex"></a>4.3.2 Geospacial 2D Index Support</h3>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/querying/geoSpatial/2dindex.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>MongoDB supports <a href="https://docs.mongodb.org/manual/core/2d/">2d indexes</a> that store points on a two-dimensional plane. although they are considered legacy and you should use <code>2dsphere</code> indexes instead.</p>
+</div>
+<div class="paragraph">
+<p>It is possible to use a MongoDB 2d index by mapping a list or map property using the <code>geoIndex</code> mapping:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">Hotel</span> {
+    <span class="predefined-type">String</span> name
+    <span class="predefined-type">List</span> location
+
+    <span class="directive">static</span> mapping = {
+        location <span class="key">geoIndex</span>:<span class="string"><span class="delimiter">'</span><span class="content">2d</span><span class="delimiter">'</span></span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default the index creation assumes latitude/longitude and thus is configured for a -180..180 range. If you are indexing something else you can customise this with <code>indexAttributes</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">Hotel</span> {
+    <span class="predefined-type">String</span> name
+    <span class="predefined-type">List</span> location
+
+    <span class="directive">static</span> mapping = {
+        location <span class="key">geoIndex</span>:<span class="string"><span class="delimiter">'</span><span class="content">2d</span><span class="delimiter">'</span></span>, <span class="key">indexAttributes</span>:[<span class="key">min</span>:-<span class="integer">500</span>, <span class="key">max</span>:<span class="integer">500</span>]
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can then save Geo locations using a two dimensional list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">new</span> Hotel(<span class="key">name</span>:<span class="string"><span class="delimiter">&quot;</span><span class="content">Hilton</span><span class="delimiter">&quot;</span></span>, <span class="key">location</span>:[<span class="integer">50</span>, <span class="integer">50</span>]).save()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively you can use a map with keys representing latitude and longitude:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">new</span> Hotel(<span class="key">name</span>:<span class="string"><span class="delimiter">&quot;</span><span class="content">Hilton</span><span class="delimiter">&quot;</span></span>, <span class="key">location</span>:[<span class="key">lat</span>: <span class="float">40.739037d</span>, <span class="type">long</span>: <span class="float">73.992964d</span>]).save()</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You must specify whether the number of a floating point or double by adding a 'd' or 'f' at the end of the number eg. 40.739037d. Groovy&#8217;s default type for decimal numbers is <code>BigDecimal</code> which is not supported by MongoDB.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once you have your data indexed you can use MongoDB specific dynamic finders to find hotels near a given a location:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> h = Hotel.findByLocationNear([<span class="integer">50</span>, <span class="integer">60</span>])
+<span class="keyword">assert</span> h.name == <span class="string"><span class="delimiter">'</span><span class="content">Hilton</span><span class="delimiter">'</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also find a location within a box (bound queries). Boxes are defined by specifying the lower-left and upper-right corners:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> box = [[<span class="float">40.73083d</span>, -<span class="float">73.99756d</span>], [<span class="float">40.741404d</span>,  -<span class="float">73.988135d</span>]]
+<span class="keyword">def</span> h = Hotel.findByLocationWithinBox(box)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also find a location within a circle. Circles are specified using a center and radius:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> center = [<span class="integer">50</span>, <span class="integer">50</span>]
+<span class="keyword">def</span> radius = <span class="integer">10</span>
+<span class="keyword">def</span> h = Hotel.findByLocationWithinCircle([center, radius])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you plan on querying a location and some other value it is recommended to use a compound index:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">Hotel</span> {
+    <span class="predefined-type">String</span> name
+    <span class="predefined-type">List</span> location
+    <span class="type">int</span> stars
+
+    <span class="directive">static</span> mapping = {
+        compoundIndex <span class="key">location</span>:<span class="string"><span class="delimiter">&quot;</span><span class="content">2d</span><span class="delimiter">&quot;</span></span>, <span class="key">stars</span>:<span class="integer">1</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example above you an index is created for both the location and the number of stars a <code>Hotel</code> has.</p>
+</div>
+
+
+<h3 id="geoJson"><a class="anchor" href="#geoJson"></a>4.3.3 GeoJSON Data Models</h3>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/querying/geoSpatial/geoJson.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>You can also store any GeoJSON shape using the <code>grails.mongodb.geo.Shape</code> super class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.mongodb.geo.*</span>
+...
+class Entry {
+    ObjectId id
+    <span class="predefined-type">Shape</span> shape
+
+    <span class="directive">static</span> mapping = {
+        shape <span class="key">geoIndex</span>:<span class="string"><span class="delimiter">'</span><span class="content">2dsphere</span><span class="delimiter">'</span></span>
+    }
+}
+...
+new Entry(<span class="key">shape</span>: <span class="predefined-type">Polygon</span>.valueOf([[[<span class="integer">3</span>, <span class="integer">1</span>], [<span class="integer">1</span>, <span class="integer">2</span>], [<span class="integer">5</span>, <span class="integer">6</span>], [<span class="integer">9</span>, <span class="integer">2</span>], [<span class="integer">4</span>, <span class="integer">3</span>], [<span class="integer">3</span>, <span class="integer">1</span>]]]) ).save()
+<span class="keyword">new</span> Entry(<span class="key">shape</span>: LineString.valueOf([[<span class="integer">5</span>, <span class="integer">2</span>], [<span class="integer">7</span>, <span class="integer">3</span>], [<span class="integer">7</span>, <span class="integer">5</span>], [<span class="integer">9</span>, <span class="integer">4</span>]]) ).save()
+<span class="keyword">new</span> Entry(<span class="key">shape</span>: <span class="predefined-type">Point</span>.valueOf([<span class="integer">5</span>, <span class="integer">2</span>])).save()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then use the <code>findBy*GeoIntersects</code> method to figure out whether shapes intersect with each other:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">assert</span> Entry.findByShapeGeoIntersects( <span class="predefined-type">Polygon</span>.valueOf( [[ [<span class="integer">0</span>,<span class="integer">0</span>], [<span class="integer">3</span>,<span class="integer">0</span>], [<span class="integer">3</span>,<span class="integer">3</span>], [<span class="integer">0</span>,<span class="integer">3</span>], [<span class="integer">0</span>,<span class="integer">0</span>] ]] ) )
+<span class="keyword">assert</span> Entry.findByShapeGeoIntersects( LineString.valueOf( [[<span class="integer">1</span>,<span class="integer">4</span>], [<span class="integer">8</span>,<span class="integer">4</span>]] ) )</code></pre>
+</div>
+</div>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../../guide/objectMapping.html">&lt;&lt; <strong>3</strong><span>Mapping Domain Classes</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../../guide/multipleDataSources.html"><strong>5</strong><span>Multiple Data Sources</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../../ref/Beans/mongo.html">mongo</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Domain Classes</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/DB.html">DB</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/collection.html">collection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/collectionName.html">collectionName</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/countHits.html">countHits</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/dbo.html">dbo</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/findByGeoIntersects.html">findByGeoIntersects</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/findByGeoWithin.html">findByGeoWithin</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/findByNear.html">findByNear</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/findByNearSphere.html">findByNearSphere</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/findByWithinBox.html">findByWithinBox</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/findByWithinCircle.html">findByWithinCircle</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/search.html">search</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/searchTop.html">searchTop</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/useCollection.html">useCollection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/useDatabase.html">useDatabase</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/withCollection.html">withCollection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Domain%20Classes/withDatabase.html">withDatabase</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    Copyright &copy; 2022-2025 Michael Yan and the original authors. The content is licensed under a Creative Commons Attribution 4.0 International (CC BY SA 4.0) license.
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>
