@@ -1,0 +1,15 @@
+Introduced in GORM 6.0, the link:../api/org/grails/datastore/mapping/core/connections/ConnectionSources.html[ConnectionSources] API allows you to introspect the data sources configured for the application:
+
+[source,groovy]
+----
+@Autowired
+MongoDatastore mongoDatastore
+...
+ConnectionSources<MongoClient, MongoConnectionSourceSettings> connectionSources
+					= mongoDatastore.getConnectionSources()
+
+for(ConnectionSource<MongoClient, MongoConnectionSourceSettings> connectionSource in connectionSources) {
+	println "Name $connectionSource.name"
+	MongoClient mongoClient = connectionSource.source
+}
+----

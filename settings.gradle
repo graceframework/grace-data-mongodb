@@ -5,9 +5,6 @@ include "grace-datastore-gorm-bson"
 include "grace-datastore-gorm-mongodb"
 include "grace-datastore-gorm-mongodb-ext"
 
-// documentation
-include 'docs'
-
 // plugins
 include 'grace-plugin'
 

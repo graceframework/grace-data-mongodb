@@ -1,0 +1,54 @@
+introduction:
+    title: Introduction
+    compatibility: Compatibility with GORM for Hibernate
+    releaseNotes: Release Notes
+    upgradeNotes: Upgrade Notes
+
+gettingStarted:
+    title: Getting Started
+    mongoOnly: Using MongoDB Standalone
+    withHibernate: Combining MongoDB and Hibernate
+    advancedConfig: Advanced Configuration
+    springBoot: Using GORM in Spring Boot
+    outsideGrails: GORM for MongoDB without Grails
+
+objectMapping:
+    title: Mapping Domain Classes
+    idGeneration: Identity Generation
+    dirtyChecking: Understanding Dirty Checking
+    writeConcern: Customizing the WriteConcern
+    dynamicAttributes: Dynamic Attributes
+    customTypes: Custom User Types
+
+querying:
+    title: Querying
+    queryingBasics: Basic Querying
+    queryIndexes: Querying Indexing
+    geoSpatial:
+        title: Geospacial Querying
+        2dsphere: Geospacial 2D Sphere Support
+        2dindex: Geospacial 2D Index Support
+        geoJson: GeoJSON Data Models
+    textSearch: Full Text Search
+
+multipleDataSources:
+    title: Multiple Data Sources
+    multipleDataSourcesConfiguration: Configuring Multiple Mongo Clients
+    mappingDomainsToDataSources: Mapping Domain Classes to Mongo Clients
+    mongoClientSwitching: Switching between Mongo Clients
+    connectionSources: The ConnectionSources API
+
+databaseSwitching: Switching Database or Collection at Runtime
+
+multiTenancy:
+    title: Multi-Tenancy
+    multiTenancyConfiguration: Configuring Multi Tenancy
+    tenantTransforms: Multi-Tenancy Transformations
+    multiTenancyModes: Multi Tenancy Modes
+    dynamicConnectionSources: Dynamic ConnectionSources
+
+stateless: Stateless Mode
+lowLevelApi: Using the MongoDB Driver Directly
+transactions: Transactions
+testing: Unit Testing
+integrationTesting: Integration Testing
