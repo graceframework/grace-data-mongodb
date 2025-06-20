@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>5 Multiple Data Sources 2023.3.0-SNAPSHOT</title>
+    <title>6 Multiple Data Sources 2023.3.0-SNAPSHOT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -41,37 +41,40 @@ function addJsClass() {
                         <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/releases.html"><strong>2</strong><span>Release History</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/objectMapping.html"><strong>3</strong><span>Mapping Domain Classes</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/querying.html"><strong>4</strong><span>Querying</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/objectMapping.html"><strong>4</strong><span>Mapping Domain Classes</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/multipleDataSources.html"><strong>5</strong><span>Multiple Data Sources</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/querying.html"><strong>5</strong><span>Querying</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/databaseSwitching.html"><strong>6</strong><span>Switching Database or Collection at Runtime</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multipleDataSources.html"><strong>6</strong><span>Multiple Data Sources</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/multiTenancy.html"><strong>7</strong><span>Multi-Tenancy</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/databaseSwitching.html"><strong>7</strong><span>Switching Database or Collection at Runtime</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/stateless.html"><strong>8</strong><span>Stateless Mode</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multiTenancy.html"><strong>8</strong><span>Multi-Tenancy</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/lowLevelApi.html"><strong>9</strong><span>Using the MongoDB Driver Directly</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/stateless.html"><strong>9</strong><span>Stateless Mode</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/transactions.html"><strong>10</strong><span>Transactions</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/lowLevelApi.html"><strong>10</strong><span>Using the MongoDB Driver Directly</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>11</strong><span>Unit Testing</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/transactions.html"><strong>11</strong><span>Transactions</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/integrationTesting.html"><strong>12</strong><span>Integration Testing</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>12</strong><span>Unit Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/integrationTesting.html"><strong>13</strong><span>Integration Testing</span></a>
                         </div>
                         
                     </div>
@@ -95,18 +98,18 @@ function addJsClass() {
             <div id="main" class="corner-all">
 
                 
-                    <div class="toc-item prev-left"><a href="../guide/querying.html">&lt;&lt; <strong>4</strong><span>Querying</span></a></div>
+                    <div class="toc-item prev-left"><a href="../guide/querying.html">&lt;&lt; <strong>5</strong><span>Querying</span></a></div>
                 
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
                 
-                    <div class="toc-item next-right"><a href="../guide/databaseSwitching.html"><strong>6</strong><span>Switching Database or Collection at Runtime</span> >></a></div>
+                    <div class="toc-item next-right"><a href="../guide/databaseSwitching.html"><strong>7</strong><span>Switching Database or Collection at Runtime</span> >></a></div>
                 
 
 
                 <div class="project">
-                    <h1>5 Multiple Data Sources</h1>
+                    <h1>6 Multiple Data Sources</h1>
 
                     <p><strong>Version:</strong> 2023.3.0-SNAPSHOT</p>
                 </div>
@@ -115,16 +118,16 @@ function addJsClass() {
                 <div id="table-of-content">
                     <h2>Table of Contents</h2>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#multipleDataSourcesConfiguration"><strong>5.1</strong><span>Configuring Multiple Mongo Clients</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#multipleDataSourcesConfiguration"><strong>6.1</strong><span>Configuring Multiple Mongo Clients</span></a>
                     </div>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#mappingDomainsToDataSources"><strong>5.2</strong><span>Mapping Domain Classes to Mongo Clients</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#mappingDomainsToDataSources"><strong>6.2</strong><span>Mapping Domain Classes to Mongo Clients</span></a>
                     </div>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#mongoClientSwitching"><strong>5.3</strong><span>Switching between Mongo Clients</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#mongoClientSwitching"><strong>6.3</strong><span>Switching between Mongo Clients</span></a>
                     </div>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#connectionSources"><strong>5.4</strong><span>The ConnectionSources API</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#connectionSources"><strong>6.4</strong><span>The ConnectionSources API</span></a>
                     </div>
                     
                 </div>
@@ -132,7 +135,7 @@ function addJsClass() {
 
                 
 
-<h1 id="multipleDataSources"><a class="anchor" href="#multipleDataSources"></a>5 Multiple Data Sources</h1>
+<h1 id="multipleDataSources"><a class="anchor" href="#multipleDataSources"></a>6 Multiple Data Sources</h1>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multipleDataSources.adoc"'>
@@ -146,7 +149,7 @@ function addJsClass() {
 </div>
 
 
-<h2 id="multipleDataSourcesConfiguration"><a class="anchor" href="#multipleDataSourcesConfiguration"></a>5.1 Configuring Multiple Mongo Clients</h2>
+<h2 id="multipleDataSourcesConfiguration"><a class="anchor" href="#multipleDataSourcesConfiguration"></a>6.1 Configuring Multiple Mongo Clients</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multipleDataSources/multipleDataSourcesConfiguration.adoc"'>
@@ -159,7 +162,7 @@ function addJsClass() {
 <p>To configure multiple Mongo client connections you need to use the <code>grails.mongodb.connections</code> setting. For example in <code>application.yml</code>:</p>
 </div>
 <div class="listingblock">
-<div class="title">grails-app/conf/application.yml</div>
+<div class="title">app/conf/application.yml</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">grails</span>:
     <span class="key">mongodb</span>:
@@ -176,7 +179,7 @@ function addJsClass() {
 </div>
 
 
-<h2 id="mappingDomainsToDataSources"><a class="anchor" href="#mappingDomainsToDataSources"></a>5.2 Mapping Domain Classes to Mongo Clients</h2>
+<h2 id="mappingDomainsToDataSources"><a class="anchor" href="#mappingDomainsToDataSources"></a>6.2 Mapping Domain Classes to Mongo Clients</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multipleDataSources/mappingDomainsToDataSources.adoc"'>
@@ -257,7 +260,7 @@ function addJsClass() {
 </div>
 
 
-<h2 id="mongoClientSwitching"><a class="anchor" href="#mongoClientSwitching"></a>5.3 Switching between Mongo Clients</h2>
+<h2 id="mongoClientSwitching"><a class="anchor" href="#mongoClientSwitching"></a>6.3 Switching between Mongo Clients</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multipleDataSources/mongoClientSwitching.adoc"'>
@@ -281,7 +284,7 @@ function addJsClass() {
 </div>
 
 
-<h2 id="connectionSources"><a class="anchor" href="#connectionSources"></a>5.4 The ConnectionSources API</h2>
+<h2 id="connectionSources"><a class="anchor" href="#connectionSources"></a>6.4 The ConnectionSources API</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multipleDataSources/connectionSources.adoc"'>
@@ -311,9 +314,9 @@ ConnectionSources&lt;MongoClient, MongoConnectionSourceSettings&gt; connectionSo
 
                 <div style="clear:both;margin-top:15px;"></div>
                 
-                    <div class="toc-item prev-left"><a href="../guide/querying.html">&lt;&lt; <strong>4</strong><span>Querying</span></a></div>
+                    <div class="toc-item prev-left"><a href="../guide/querying.html">&lt;&lt; <strong>5</strong><span>Querying</span></a></div>
                 
-                    <div class="toc-item next-right"><a href="../guide/databaseSwitching.html"><strong>6</strong><span>Switching Database or Collection at Runtime</span> >></a></div>
+                    <div class="toc-item next-right"><a href="../guide/databaseSwitching.html"><strong>7</strong><span>Switching Database or Collection at Runtime</span> >></a></div>
                 
                 <div style="clear:both"></div>
             </div>

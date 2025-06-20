@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>4.3 Geospacial Querying 2023.3.0-SNAPSHOT</title>
+    <title>5.3 Geospacial Querying 2023.3.0-SNAPSHOT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -41,37 +41,40 @@ function addJsClass() {
                         <div class="toc-item" style="margin-left:0"><a href="../../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/releases.html"><strong>2</strong><span>Release History</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/objectMapping.html"><strong>3</strong><span>Mapping Domain Classes</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/querying.html"><strong>4</strong><span>Querying</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/objectMapping.html"><strong>4</strong><span>Mapping Domain Classes</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/multipleDataSources.html"><strong>5</strong><span>Multiple Data Sources</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/querying.html"><strong>5</strong><span>Querying</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/databaseSwitching.html"><strong>6</strong><span>Switching Database or Collection at Runtime</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/multipleDataSources.html"><strong>6</strong><span>Multiple Data Sources</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/multiTenancy.html"><strong>7</strong><span>Multi-Tenancy</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/databaseSwitching.html"><strong>7</strong><span>Switching Database or Collection at Runtime</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/stateless.html"><strong>8</strong><span>Stateless Mode</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/multiTenancy.html"><strong>8</strong><span>Multi-Tenancy</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/lowLevelApi.html"><strong>9</strong><span>Using the MongoDB Driver Directly</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/stateless.html"><strong>9</strong><span>Stateless Mode</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/transactions.html"><strong>10</strong><span>Transactions</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/lowLevelApi.html"><strong>10</strong><span>Using the MongoDB Driver Directly</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/testing.html"><strong>11</strong><span>Unit Testing</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/transactions.html"><strong>11</strong><span>Transactions</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/integrationTesting.html"><strong>12</strong><span>Integration Testing</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/testing.html"><strong>12</strong><span>Unit Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/integrationTesting.html"><strong>13</strong><span>Integration Testing</span></a>
                         </div>
                         
                     </div>
@@ -95,18 +98,18 @@ function addJsClass() {
             <div id="main" class="corner-all">
 
                 
-                    <div class="toc-item prev-left"><a href="../../guide/objectMapping.html">&lt;&lt; <strong>3</strong><span>Mapping Domain Classes</span></a></div>
+                    <div class="toc-item prev-left"><a href="../../guide/objectMapping.html">&lt;&lt; <strong>4</strong><span>Mapping Domain Classes</span></a></div>
                 
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
                 
-                    <div class="toc-item next-right"><a href="../../guide/multipleDataSources.html"><strong>5</strong><span>Multiple Data Sources</span> >></a></div>
+                    <div class="toc-item next-right"><a href="../../guide/multipleDataSources.html"><strong>6</strong><span>Multiple Data Sources</span> >></a></div>
                 
 
 
                 <div class="project">
-                    <h1>4.3 Geospacial Querying</h1>
+                    <h1>5.3 Geospacial Querying</h1>
 
                     <p><strong>Version:</strong> 2023.3.0-SNAPSHOT</p>
                 </div>
@@ -115,13 +118,13 @@ function addJsClass() {
                 <div id="table-of-content">
                     <h2>Table of Contents</h2>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#2dsphere"><strong>4.1</strong><span>Geospacial 2D Sphere Support</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#2dsphere"><strong>5.1</strong><span>Geospacial 2D Sphere Support</span></a>
                     </div>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#2dindex"><strong>4.2</strong><span>Geospacial 2D Index Support</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#2dindex"><strong>5.2</strong><span>Geospacial 2D Index Support</span></a>
                     </div>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#geoJson"><strong>4.3</strong><span>GeoJSON Data Models</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#geoJson"><strong>5.3</strong><span>GeoJSON Data Models</span></a>
                     </div>
                     
                 </div>
@@ -129,7 +132,7 @@ function addJsClass() {
 
                 
 
-<h2 id="geoSpatial"><a class="anchor" href="#geoSpatial"></a>4.3 Geospacial Querying</h2>
+<h2 id="geoSpatial"><a class="anchor" href="#geoSpatial"></a>5.3 Geospacial Querying</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/querying/geoSpatial.adoc"'>
@@ -139,14 +142,14 @@ function addJsClass() {
 
 
 <div class="paragraph">
-<p>MongoDB supports storing <a href="https://docs.mongodb.org/manual/applications/geospatial-indexes/">Geospacial data</a> in both flat and spherical surface types.</p>
+<p>MongoDB supports storing <a href="https://www.mongodb.com/docs/manual/geospatial-queries/#geospatial-data">Geospacial data</a> in both flat and spherical surface types.</p>
 </div>
 <div class="paragraph">
 <p>To store data in a flat surface you use a "2d" index, whilst a "2dsphere" index used for spherical data. GORM for MongoDB supports both and the following sections describe how to define and query Geospacial data.</p>
 </div>
 
 
-<h3 id="2dsphere"><a class="anchor" href="#2dsphere"></a>4.3.1 Geospacial 2D Sphere Support</h3>
+<h3 id="2dsphere"><a class="anchor" href="#2dsphere"></a>5.3.1 Geospacial 2D Sphere Support</h3>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/querying/geoSpatial/2dsphere.adoc"'>
@@ -158,10 +161,10 @@ function addJsClass() {
 <div class="sect3">
 <h4 id="_using_a_2dsphere_index">Using a 2dsphere Index</h4>
 <div class="paragraph">
-<p>MongoDB&#8217;s <a href="https://docs.mongodb.org/manual/core/2dsphere/">2dsphere indexes</a> support queries that calculate geometries on an earth-like sphere.</p>
+<p>MongoDB&#8217;s <a href="https://www.mongodb.com/docs/manual/core/indexes/index-types/geospatial/2dsphere/#std-label-2dsphere-index">2dsphere indexes</a> support queries that calculate geometries on an earth-like sphere.</p>
 </div>
 <div class="paragraph">
-<p>Although you can use coordinate pairs in a 2dsphere index, they are considered legacy by the MongoDB documentation and it is recommended you store data using <a href="https://geojson.org/geojson-spec.html#id2">GeoJSON Point</a> types.</p>
+<p>Although you can use coordinate pairs in a 2dsphere index, they are considered legacy by the MongoDB documentation and it is recommended you store data using <a href="https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.2">GeoJSON Point</a> types.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -193,7 +196,7 @@ class Restaurant {
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>Point</code> type gets persisted as a <a href="https://geojson.org/geojson-spec.html#id2">GeoJSON Point</a>. A <code>Point</code> can be constructed from coordinates represented in longitude and latitude (the inverse of 2d index location coordinates!). Example:</p>
+<p>The <code>Point</code> type gets persisted as a <a href="https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.2">GeoJSON Point</a>. A <code>Point</code> can be constructed from coordinates represented in longitude and latitude (the inverse of 2d index location coordinates!). Example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -263,12 +266,12 @@ There is a special <code>Distance</code> class that can help with radian calcula
 </div>
 </div>
 <div class="paragraph">
-<p>In the above example the native query parameters are simply passed to the <a href="https://docs.mongodb.org/manual/reference/operator/query/near/#op._S_near">$near query</a></p>
+<p>In the above example the native query parameters are simply passed to the <a href="https://www.mongodb.com/docs/manual/reference/operator/query/near/">$near query</a></p>
 </div>
 </div>
 
 
-<h3 id="2dindex"><a class="anchor" href="#2dindex"></a>4.3.2 Geospacial 2D Index Support</h3>
+<h3 id="2dindex"><a class="anchor" href="#2dindex"></a>5.3.2 Geospacial 2D Index Support</h3>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/querying/geoSpatial/2dindex.adoc"'>
@@ -278,7 +281,7 @@ There is a special <code>Distance</code> class that can help with radian calcula
 
 
 <div class="paragraph">
-<p>MongoDB supports <a href="https://docs.mongodb.org/manual/core/2d/">2d indexes</a> that store points on a two-dimensional plane. although they are considered legacy and you should use <code>2dsphere</code> indexes instead.</p>
+<p>MongoDB supports <a href="https://www.mongodb.com/docs/manual/core/indexes/index-types/geospatial/2d/#std-label-2d-index">2d indexes</a> that store points on a two-dimensional plane. although they are considered legacy and you should use <code>2dsphere</code> indexes instead.</p>
 </div>
 <div class="paragraph">
 <p>It is possible to use a MongoDB 2d index by mapping a list or map property using the <code>geoIndex</code> mapping:</p>
@@ -387,7 +390,7 @@ You must specify whether the number of a floating point or double by adding a 'd
 </div>
 
 
-<h3 id="geoJson"><a class="anchor" href="#geoJson"></a>4.3.3 GeoJSON Data Models</h3>
+<h3 id="geoJson"><a class="anchor" href="#geoJson"></a>5.3.3 GeoJSON Data Models</h3>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/querying/geoSpatial/geoJson.adoc"'>
@@ -430,9 +433,9 @@ new Entry(<span class="key">shape</span>: <span class="predefined-type">Polygon<
 
                 <div style="clear:both;margin-top:15px;"></div>
                 
-                    <div class="toc-item prev-left"><a href="../../guide/objectMapping.html">&lt;&lt; <strong>3</strong><span>Mapping Domain Classes</span></a></div>
+                    <div class="toc-item prev-left"><a href="../../guide/objectMapping.html">&lt;&lt; <strong>4</strong><span>Mapping Domain Classes</span></a></div>
                 
-                    <div class="toc-item next-right"><a href="../../guide/multipleDataSources.html"><strong>5</strong><span>Multiple Data Sources</span> >></a></div>
+                    <div class="toc-item next-right"><a href="../../guide/multipleDataSources.html"><strong>6</strong><span>Multiple Data Sources</span> >></a></div>
                 
                 <div style="clear:both"></div>
             </div>

@@ -1,0 +1,517 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>2 Release History 2023.3.0-SNAPSHOT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navHeader">
+        
+        <span id="logo">
+            <a href="https://graceframework.org" title="Grace Framework Website">
+                <img src="../img/grace.svg" alt="Grace Framework" />
+            </a>
+        </span>
+        
+        <div class="docHeader">
+            <h1 class="docTitle">Grace Data MongoDB</h1>
+            <h3 class="docSubTitle">Provides an Object-Mapping layer on top of MongoDB</h3>
+        </div>
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/releases.html"><strong>2</strong><span>Release History</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/objectMapping.html"><strong>4</strong><span>Mapping Domain Classes</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/querying.html"><strong>5</strong><span>Querying</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multipleDataSources.html"><strong>6</strong><span>Multiple Data Sources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/databaseSwitching.html"><strong>7</strong><span>Switching Database or Collection at Runtime</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multiTenancy.html"><strong>8</strong><span>Multi-Tenancy</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/stateless.html"><strong>9</strong><span>Stateless Mode</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/lowLevelApi.html"><strong>10</strong><span>Using the MongoDB Driver Directly</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/transactions.html"><strong>11</strong><span>Transactions</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>12</strong><span>Unit Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/integrationTesting.html"><strong>13</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" href="../api/index.html">API Docs</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../guide/introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>2 Release History</h1>
+
+                    <p><strong>Version:</strong> 2023.3.0-SNAPSHOT</p>
+                </div>
+
+                
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#2023.x"><strong>2.1</strong><span>What's new in 2023.x</span></a>
+                    </div>
+                    
+                </div>
+                
+
+                
+
+<h1 id="releases"><a class="anchor" href="#releases"></a>2 Release History</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/releases.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>To make it easier for users to use and upgrade, Plugin adopts a version policy consistent with the <a href="https://github.com/graceframework/grace-framework">Grace Framework</a>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Plugin Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grace Version</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/graceframework/grace-data-mongodb/tree/2023.3.x">2023.3.x</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2023.3.x</p></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="2023.x"><a class="anchor" href="#2023.x"></a>2.1 What's new in 2023.x</h2>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/releases/2023.x.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="sect2">
+<h3 id="_2023_3_0">2023.3.0</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2023.3.0">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>⭐️ New Features</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Setup github docs workflows</p>
+</li>
+<li>
+<p>Use 'grace-doc' Gradle plugin to generate documentation <a href="https://github.com/graceframework/grace-data-mongodb/issues/26">#26</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Don&#8217;t use deprecated gradle/actions/wrapper-validation in the release workflow</p>
+</li>
+<li>
+<p>Update github workflows - Upgrade to setup-gradle@v4</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgrade to Grace 2023.3.0-RC2 <a href="https://github.com/graceframework/grace-data-mongodb/issues/25">#25</a></p>
+</li>
+<li>
+<p>Upgrade to Grace 2023.3.0-RC1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/23">#23</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Asset Pipeline Plugin 6.3.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/27">#27</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Data 2023.3.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/24">#24</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2023_3_0_rc1">2023.3.0-RC1</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2023.3.0-RC1">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>7ccc904 Update README Update badge versions of Grace, Groovy and Spring Boot</p>
+</li>
+<li>
+<p>f7f65b0 Remove unused dependency on groovy-templates <a href="https://github.com/graceframework/grace-data-mongodb/issues/22">#22</a></p>
+</li>
+<li>
+<p>b536938 Streamline Gradle build scripts: using the Spring Dependency Management Plugin to manage dependencies and versions <a href="https://github.com/graceframework/grace-data-mongodb/issues/21">#21</a></p>
+</li>
+<li>
+<p>1c31ef6 Remove the unnecessary workaround for removing the generated extra dependencyManagement of POM <a href="https://github.com/graceframework/grace-data-mongodb/issues/20">#20</a></p>
+</li>
+<li>
+<p>15aace7 Rename examples/test-data-service to examples/grace-test-data-service</p>
+</li>
+<li>
+<p>d8d5af9 Add missing dependency org.testcontainers:mongodb <a href="https://github.com/graceframework/grace-data-mongodb/issues/18">#18</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>50d78b5 Upgrade to Caffeine 3.1.8 <a href="https://github.com/graceframework/grace-data-mongodb/issues/16">#16</a></p>
+</li>
+<li>
+<p>16cee3a Upgrade to Grace 2023.3.0-M2 <a href="https://github.com/graceframework/grace-data-mongodb/issues/11">#11</a></p>
+</li>
+<li>
+<p>69a25d9 Upgrade to Grace Data 2023.3.0-RC1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/12">#12</a></p>
+</li>
+<li>
+<p>b6c3ff8 Upgrade to Gradle 8.13 <a href="https://github.com/graceframework/grace-data-mongodb/issues/19">#19</a></p>
+</li>
+<li>
+<p>6847aa2 Upgrade to Groovy 4.0.26 <a href="https://github.com/graceframework/grace-data-mongodb/issues/13">#13</a></p>
+</li>
+<li>
+<p>76d2ce2 Upgrade to Java Parser 3.26.4 <a href="https://github.com/graceframework/grace-data-mongodb/issues/15">#15</a></p>
+</li>
+<li>
+<p>d648d04 Upgrade to JUnit Platform 1.10.5 and Jupiter 5.10.5 <a href="https://github.com/graceframework/grace-data-mongodb/issues/17">#17</a></p>
+</li>
+<li>
+<p>e3f7601 Upgrade to Spring Boot 3.3.10 <a href="https://github.com/graceframework/grace-data-mongodb/issues/14">#14</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>9c58a3c Release v2023.3.0-RC1</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2023_3_0_m1">2023.3.0-M1</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2023.3.0-M1">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>⭐️ New Features</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>5abe4b4 Support Grace Framework and Grace Data 2023.3 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>9d1b732 Migrate mongodb plugin.doWithSpring() to Spring Boot AutoConfiguration <a href="https://github.com/graceframework/grace-data-mongodb/issues/8">#8</a></p>
+</li>
+<li>
+<p>5abe4b4 Change Java baseline to 17 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3ab9538 Skip integeration tests</p>
+</li>
+<li>
+<p>6a8ab1f Cleanup build srcripts in examples <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a>0</p>
+</li>
+<li>
+<p>dd4f682 Migrate examples to Grace <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a>0</p>
+</li>
+<li>
+<p>1a445a9 Rename 'grails-app' to 'app'</p>
+</li>
+<li>
+<p>d573165 Remove 'boot-plugin' module <a href="https://github.com/graceframework/grace-data-mongodb/issues/9">#9</a></p>
+</li>
+<li>
+<p>e9a9480 Migrate unknown property 'outputDir' to 'classesDirectory' property <a href="https://github.com/graceframework/grace-data-mongodb/issues/7">#7</a></p>
+</li>
+<li>
+<p>7ab69fe Update README</p>
+</li>
+<li>
+<p>fd99121 Remove extra dependencyManagement of POM</p>
+</li>
+<li>
+<p>ec2bc84 Skip testing</p>
+</li>
+<li>
+<p>68b2236 Add GitHub issue template</p>
+</li>
+<li>
+<p>5d7e3cf Mark failing tests as skipped</p>
+</li>
+<li>
+<p>3070e04 Rename to Grace artifacts</p>
+</li>
+<li>
+<p>6184fd8 Update github workflows <a href="https://github.com/graceframework/grace-data-mongodb/issues/4">#4</a></p>
+</li>
+<li>
+<p>Update Gradle build scripts <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>Migrate examples to Grace apps <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>Fixes docs task <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>4e06158 Upgrade to Asciidoctor Gradle Plugin 4.0.3 <a href="https://github.com/graceframework/grace-data-mongodb/issues/3">#3</a></p>
+</li>
+<li>
+<p>88b3a8e Upgrade to Gradle Nexus Publish Plugin 2.0.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/2">#2</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Grace Framework 2023.3.0-M1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Grace Data 2023.3.0-M1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Grace Asset Pipeline Plugin 6.3.0-M1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>3d5fd96 Upgrade to Gradle 8.12 <a href="https://github.com/graceframework/grace-data-mongodb/issues/6">#6</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Groovy 4.0.24 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>ebc4837 Upgrade to MongoDB Driver 5.0.1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/5">#5</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Spock 2.3-groovy-4.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Spring Framework 6.1.18 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Spring Boot 3.3.7 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ed3e574 Release v2023.3.0-M1</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../guide/introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Beans/mongo.html">mongo</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Domain Classes</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/DB.html">DB</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/collection.html">collection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/collectionName.html">collectionName</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/countHits.html">countHits</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/dbo.html">dbo</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByGeoIntersects.html">findByGeoIntersects</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByGeoWithin.html">findByGeoWithin</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByNear.html">findByNear</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByNearSphere.html">findByNearSphere</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByWithinBox.html">findByWithinBox</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByWithinCircle.html">findByWithinCircle</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/search.html">search</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/searchTop.html">searchTop</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/useCollection.html">useCollection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/useDatabase.html">useDatabase</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/withCollection.html">withCollection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/withDatabase.html">withDatabase</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    Copyright &copy; 2022-2025 Michael Yan and the original authors. The content is licensed under a Creative Commons Attribution 4.0 International (CC BY SA 4.0) license.
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

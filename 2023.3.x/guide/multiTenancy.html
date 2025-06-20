@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>7 Multi-Tenancy 2023.3.0-SNAPSHOT</title>
+    <title>8 Multi-Tenancy 2023.3.0-SNAPSHOT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -41,37 +41,40 @@ function addJsClass() {
                         <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/releases.html"><strong>2</strong><span>Release History</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/objectMapping.html"><strong>3</strong><span>Mapping Domain Classes</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/querying.html"><strong>4</strong><span>Querying</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/objectMapping.html"><strong>4</strong><span>Mapping Domain Classes</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/multipleDataSources.html"><strong>5</strong><span>Multiple Data Sources</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/querying.html"><strong>5</strong><span>Querying</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/databaseSwitching.html"><strong>6</strong><span>Switching Database or Collection at Runtime</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multipleDataSources.html"><strong>6</strong><span>Multiple Data Sources</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/multiTenancy.html"><strong>7</strong><span>Multi-Tenancy</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/databaseSwitching.html"><strong>7</strong><span>Switching Database or Collection at Runtime</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/stateless.html"><strong>8</strong><span>Stateless Mode</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multiTenancy.html"><strong>8</strong><span>Multi-Tenancy</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/lowLevelApi.html"><strong>9</strong><span>Using the MongoDB Driver Directly</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/stateless.html"><strong>9</strong><span>Stateless Mode</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/transactions.html"><strong>10</strong><span>Transactions</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/lowLevelApi.html"><strong>10</strong><span>Using the MongoDB Driver Directly</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>11</strong><span>Unit Testing</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/transactions.html"><strong>11</strong><span>Transactions</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/integrationTesting.html"><strong>12</strong><span>Integration Testing</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>12</strong><span>Unit Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/integrationTesting.html"><strong>13</strong><span>Integration Testing</span></a>
                         </div>
                         
                     </div>
@@ -95,18 +98,18 @@ function addJsClass() {
             <div id="main" class="corner-all">
 
                 
-                    <div class="toc-item prev-left"><a href="../guide/databaseSwitching.html">&lt;&lt; <strong>6</strong><span>Switching Database or Collection at Runtime</span></a></div>
+                    <div class="toc-item prev-left"><a href="../guide/databaseSwitching.html">&lt;&lt; <strong>7</strong><span>Switching Database or Collection at Runtime</span></a></div>
                 
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
                 
-                    <div class="toc-item next-right"><a href="../guide/stateless.html"><strong>8</strong><span>Stateless Mode</span> >></a></div>
+                    <div class="toc-item next-right"><a href="../guide/stateless.html"><strong>9</strong><span>Stateless Mode</span> >></a></div>
                 
 
 
                 <div class="project">
-                    <h1>7 Multi-Tenancy</h1>
+                    <h1>8 Multi-Tenancy</h1>
 
                     <p><strong>Version:</strong> 2023.3.0-SNAPSHOT</p>
                 </div>
@@ -115,16 +118,16 @@ function addJsClass() {
                 <div id="table-of-content">
                     <h2>Table of Contents</h2>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#multiTenancyConfiguration"><strong>7.1</strong><span>Configuring Multi Tenancy</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#multiTenancyConfiguration"><strong>8.1</strong><span>Configuring Multi Tenancy</span></a>
                     </div>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#tenantTransforms"><strong>7.2</strong><span>Multi-Tenancy Transformations</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#tenantTransforms"><strong>8.2</strong><span>Multi-Tenancy Transformations</span></a>
                     </div>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#multiTenancyModes"><strong>7.3</strong><span>Multi Tenancy Modes</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#multiTenancyModes"><strong>8.3</strong><span>Multi Tenancy Modes</span></a>
                     </div>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#dynamicConnectionSources"><strong>7.4</strong><span>Dynamic ConnectionSources</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#dynamicConnectionSources"><strong>8.4</strong><span>Dynamic ConnectionSources</span></a>
                     </div>
                     
                 </div>
@@ -132,7 +135,7 @@ function addJsClass() {
 
                 
 
-<h1 id="multiTenancy"><a class="anchor" href="#multiTenancy"></a>7 Multi-Tenancy</h1>
+<h1 id="multiTenancy"><a class="anchor" href="#multiTenancy"></a>8 Multi-Tenancy</h1>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multiTenancy.adoc"'>
@@ -159,7 +162,7 @@ function addJsClass() {
 </div>
 
 
-<h2 id="multiTenancyConfiguration"><a class="anchor" href="#multiTenancyConfiguration"></a>7.1 Configuring Multi Tenancy</h2>
+<h2 id="multiTenancyConfiguration"><a class="anchor" href="#multiTenancyConfiguration"></a>8.1 Configuring Multi Tenancy</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multiTenancy/multiTenancyConfiguration.adoc"'>
@@ -169,7 +172,7 @@ function addJsClass() {
 
 
 <div class="paragraph">
-<p>You can configure Multi-Tenancy the same way described in the <a href="../../hibernate/manual/index.html#multiTenancy">GORM for Hibernate documenation</a>, simply specify a multi tenancy mode and resolver:</p>
+<p>You can configure Multi-Tenancy the same way described in the <a href="https://graceframework.org/grace-data-hibernate/2023.3.x/guide/multiTenancy.html">GORM for Hibernate documenation</a>, simply specify a multi tenancy mode and resolver:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -197,7 +200,7 @@ function addJsClass() {
 </div>
 
 
-<h2 id="tenantTransforms"><a class="anchor" href="#tenantTransforms"></a>7.2 Multi-Tenancy Transformations</h2>
+<h2 id="tenantTransforms"><a class="anchor" href="#tenantTransforms"></a>8.2 Multi-Tenancy Transformations</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multiTenancy/tenantTransforms.adoc"'>
@@ -258,7 +261,7 @@ function addJsClass() {
 </div>
 
 
-<h2 id="multiTenancyModes"><a class="anchor" href="#multiTenancyModes"></a>7.3 Multi Tenancy Modes</h2>
+<h2 id="multiTenancyModes"><a class="anchor" href="#multiTenancyModes"></a>8.3 Multi Tenancy Modes</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multiTenancy/multiTenancyModes.adoc"'>
@@ -270,8 +273,8 @@ function addJsClass() {
 <div class="paragraph">
 <p>As mentioned previously, GORM for MongoDB supports all three multi tenancy modes however there are some considerations to keep in mind.</p>
 </div>
-<div class="sect3">
-<h4 id="_database_per_tenant">Database Per Tenant</h4>
+<div class="sect2">
+<h3 id="_database_per_tenant">Database Per Tenant</h3>
 <div class="paragraph">
 <p>When using the <code>DATABASE</code> mode, only GORM methods calls are dispatched to the correct tenant. This means the following will use the tenant id:</p>
 </div>
@@ -307,8 +310,8 @@ MongoClient mongoClient =
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_schema_per_tenant">Schema Per Tenant</h4>
+<div class="sect2">
+<h3 id="_schema_per_tenant">Schema Per Tenant</h3>
 <div class="paragraph">
 <p>When using the <code>SCHEMA</code> mode, GORM for MongoDB will use a different MongoDB database, but the same <code>MongoClient</code> instance, for each tenant.</p>
 </div>
@@ -342,8 +345,8 @@ mongoClient.getDatabase(<span class="string"><span class="delimiter">&quot;</spa
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_partitioned_multi_tenancy">Partitioned Multi-Tenancy</h4>
+<div class="sect2">
+<h3 id="_partitioned_multi_tenancy">Partitioned Multi-Tenancy</h3>
 <div class="paragraph">
 <p>When using the <code>DISCRIMINATOR</code> approach, GORM for MongoDB will store a <code>tenantId</code> attribute in each MongoDB document and attempt to partition the data.</p>
 </div>
@@ -397,7 +400,7 @@ Book.collection.find(eq(<span class="string"><span class="delimiter">&quot;</spa
 </div>
 
 
-<h2 id="dynamicConnectionSources"><a class="anchor" href="#dynamicConnectionSources"></a>7.4 Dynamic ConnectionSources</h2>
+<h2 id="dynamicConnectionSources"><a class="anchor" href="#dynamicConnectionSources"></a>8.4 Dynamic ConnectionSources</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/multiTenancy/dynamicConnectionSources.adoc"'>
@@ -459,9 +462,9 @@ GORM for MongoDB does not implement provisioning of new MongoDB instances at run
 
                 <div style="clear:both;margin-top:15px;"></div>
                 
-                    <div class="toc-item prev-left"><a href="../guide/databaseSwitching.html">&lt;&lt; <strong>6</strong><span>Switching Database or Collection at Runtime</span></a></div>
+                    <div class="toc-item prev-left"><a href="../guide/databaseSwitching.html">&lt;&lt; <strong>7</strong><span>Switching Database or Collection at Runtime</span></a></div>
                 
-                    <div class="toc-item next-right"><a href="../guide/stateless.html"><strong>8</strong><span>Stateless Mode</span> >></a></div>
+                    <div class="toc-item next-right"><a href="../guide/stateless.html"><strong>9</strong><span>Stateless Mode</span> >></a></div>
                 
                 <div style="clear:both"></div>
             </div>

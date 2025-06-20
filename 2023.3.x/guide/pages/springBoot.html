@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>2.4 Using GORM in Spring Boot 2023.3.0-SNAPSHOT</title>
+    <title>3.4 Using GORM in Spring Boot 2023.3.0-SNAPSHOT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -41,37 +41,40 @@ function addJsClass() {
                         <div class="toc-item" style="margin-left:0"><a href="../../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/releases.html"><strong>2</strong><span>Release History</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/objectMapping.html"><strong>3</strong><span>Mapping Domain Classes</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/querying.html"><strong>4</strong><span>Querying</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/objectMapping.html"><strong>4</strong><span>Mapping Domain Classes</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/multipleDataSources.html"><strong>5</strong><span>Multiple Data Sources</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/querying.html"><strong>5</strong><span>Querying</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/databaseSwitching.html"><strong>6</strong><span>Switching Database or Collection at Runtime</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/multipleDataSources.html"><strong>6</strong><span>Multiple Data Sources</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/multiTenancy.html"><strong>7</strong><span>Multi-Tenancy</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/databaseSwitching.html"><strong>7</strong><span>Switching Database or Collection at Runtime</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/stateless.html"><strong>8</strong><span>Stateless Mode</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/multiTenancy.html"><strong>8</strong><span>Multi-Tenancy</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/lowLevelApi.html"><strong>9</strong><span>Using the MongoDB Driver Directly</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/stateless.html"><strong>9</strong><span>Stateless Mode</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/transactions.html"><strong>10</strong><span>Transactions</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/lowLevelApi.html"><strong>10</strong><span>Using the MongoDB Driver Directly</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/testing.html"><strong>11</strong><span>Unit Testing</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/transactions.html"><strong>11</strong><span>Transactions</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../../guide/integrationTesting.html"><strong>12</strong><span>Integration Testing</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/testing.html"><strong>12</strong><span>Unit Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/integrationTesting.html"><strong>13</strong><span>Integration Testing</span></a>
                         </div>
                         
                     </div>
@@ -95,18 +98,18 @@ function addJsClass() {
             <div id="main" class="corner-all">
 
                 
-                    <div class="toc-item prev-left"><a href="../../guide/introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                    <div class="toc-item prev-left"><a href="../../guide/releases.html">&lt;&lt; <strong>2</strong><span>Release History</span></a></div>
                 
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
                 
-                    <div class="toc-item next-right"><a href="../../guide/objectMapping.html"><strong>3</strong><span>Mapping Domain Classes</span> >></a></div>
+                    <div class="toc-item next-right"><a href="../../guide/objectMapping.html"><strong>4</strong><span>Mapping Domain Classes</span> >></a></div>
                 
 
 
                 <div class="project">
-                    <h1>2.4 Using GORM in Spring Boot</h1>
+                    <h1>3.4 Using GORM in Spring Boot</h1>
 
                     <p><strong>Version:</strong> 2023.3.0-SNAPSHOT</p>
                 </div>
@@ -115,7 +118,7 @@ function addJsClass() {
 
                 
 
-<h2 id="springBoot"><a class="anchor" href="#springBoot"></a>2.4 Using GORM in Spring Boot</h2>
+<h2 id="springBoot"><a class="anchor" href="#springBoot"></a>3.4 Using GORM in Spring Boot</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/gettingStarted/springBoot.adoc"'>
@@ -129,21 +132,19 @@ function addJsClass() {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">compile("org.grails:gorm-mongodb-spring-boot:2023.3.0-SNAPSHOT")</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy">implementation "org.graceframework:grace-boot:2023.3.0-SNAPSHOT"
+implementation "org.graceframework.plugins:mongodb:2023.3.0-SNAPSHOT"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ensure your Boot <code>Application</code> class is annotated with <code>ComponentScan</code>, example:</p>
+<p>Ensure your Boot <code>Application</code> class is annotated with <code>GrailsComponentScan</code>, example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">org.springframework.boot.SpringApplication</span>
-<span class="keyword">import</span> <span class="include">org.springframework.boot.autoconfigure.EnableAutoConfiguration</span>
-<span class="keyword">import</span> <span class="include">org.springframework.context.annotation.*</span>
+<span class="keyword">import</span> <span class="include">org.springframework.boot.autoconfigure.SpringBootApplication</span>
 
-<span class="annotation">@Configuration</span>
-<span class="annotation">@EnableAutoConfiguration</span>
-<span class="annotation">@ComponentScan</span>
+<span class="annotation">@SpringBootApplication</span>
 <span class="type">class</span> <span class="class">Application</span> {
     <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
         SpringApplication.run Application, args
@@ -158,8 +159,8 @@ function addJsClass() {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Using <code>ComponentScan</code> without a value results in Boot scanning for classes in the same package or any package nested within the <code>Application</code> class package.
-If your GORM entities are in a different package specify the package name as the value of the <code>ComponentScan</code> annotation.
+Using <code>GrailsComponentScan</code> without a value results in Boot scanning for classes in the same package or any package nested within the <code>Application</code> class package.
+If your GORM entities are in a different package specify the package name as the value of the <code>GrailsComponentScan</code> annotation.
 </td>
 </tr>
 </table>
@@ -182,9 +183,9 @@ If your GORM entities are in a different package specify the package name as the
 
                 <div style="clear:both;margin-top:15px;"></div>
                 
-                    <div class="toc-item prev-left"><a href="../../guide/introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                    <div class="toc-item prev-left"><a href="../../guide/releases.html">&lt;&lt; <strong>2</strong><span>Release History</span></a></div>
                 
-                    <div class="toc-item next-right"><a href="../../guide/objectMapping.html"><strong>3</strong><span>Mapping Domain Classes</span> >></a></div>
+                    <div class="toc-item next-right"><a href="../../guide/objectMapping.html"><strong>4</strong><span>Mapping Domain Classes</span> >></a></div>
                 
                 <div style="clear:both"></div>
             </div>

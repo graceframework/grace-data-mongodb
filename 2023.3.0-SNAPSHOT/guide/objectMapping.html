@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>3 Mapping Domain Classes 2023.3.0-SNAPSHOT</title>
+    <title>4 Mapping Domain Classes 2023.3.0-SNAPSHOT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -41,37 +41,40 @@ function addJsClass() {
                         <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/releases.html"><strong>2</strong><span>Release History</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/objectMapping.html"><strong>3</strong><span>Mapping Domain Classes</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/querying.html"><strong>4</strong><span>Querying</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/objectMapping.html"><strong>4</strong><span>Mapping Domain Classes</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/multipleDataSources.html"><strong>5</strong><span>Multiple Data Sources</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/querying.html"><strong>5</strong><span>Querying</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/databaseSwitching.html"><strong>6</strong><span>Switching Database or Collection at Runtime</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multipleDataSources.html"><strong>6</strong><span>Multiple Data Sources</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/multiTenancy.html"><strong>7</strong><span>Multi-Tenancy</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/databaseSwitching.html"><strong>7</strong><span>Switching Database or Collection at Runtime</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/stateless.html"><strong>8</strong><span>Stateless Mode</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multiTenancy.html"><strong>8</strong><span>Multi-Tenancy</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/lowLevelApi.html"><strong>9</strong><span>Using the MongoDB Driver Directly</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/stateless.html"><strong>9</strong><span>Stateless Mode</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/transactions.html"><strong>10</strong><span>Transactions</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/lowLevelApi.html"><strong>10</strong><span>Using the MongoDB Driver Directly</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>11</strong><span>Unit Testing</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/transactions.html"><strong>11</strong><span>Transactions</span></a>
                         </div>
                         
-                        <div class="toc-item" style="margin-left:0"><a href="../guide/integrationTesting.html"><strong>12</strong><span>Integration Testing</span></a>
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>12</strong><span>Unit Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/integrationTesting.html"><strong>13</strong><span>Integration Testing</span></a>
                         </div>
                         
                     </div>
@@ -95,18 +98,18 @@ function addJsClass() {
             <div id="main" class="corner-all">
 
                 
-                    <div class="toc-item prev-left"><a href="../guide/gettingStarted.html">&lt;&lt; <strong>2</strong><span>Getting Started</span></a></div>
+                    <div class="toc-item prev-left"><a href="../guide/gettingStarted.html">&lt;&lt; <strong>3</strong><span>Getting Started</span></a></div>
                 
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
                 
-                    <div class="toc-item next-right"><a href="../guide/querying.html"><strong>4</strong><span>Querying</span> >></a></div>
+                    <div class="toc-item next-right"><a href="../guide/querying.html"><strong>5</strong><span>Querying</span> >></a></div>
                 
 
 
                 <div class="project">
-                    <h1>3 Mapping Domain Classes</h1>
+                    <h1>4 Mapping Domain Classes</h1>
 
                     <p><strong>Version:</strong> 2023.3.0-SNAPSHOT</p>
                 </div>
@@ -115,19 +118,19 @@ function addJsClass() {
                 <div id="table-of-content">
                     <h2>Table of Contents</h2>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#idGeneration"><strong>3.1</strong><span>Identity Generation</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#idGeneration"><strong>4.1</strong><span>Identity Generation</span></a>
                     </div>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#dirtyChecking"><strong>3.2</strong><span>Understanding Dirty Checking</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#dirtyChecking"><strong>4.2</strong><span>Understanding Dirty Checking</span></a>
                     </div>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#writeConcern"><strong>3.3</strong><span>Customizing the WriteConcern</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#writeConcern"><strong>4.3</strong><span>Customizing the WriteConcern</span></a>
                     </div>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#dynamicAttributes"><strong>3.4</strong><span>Dynamic Attributes</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#dynamicAttributes"><strong>4.4</strong><span>Dynamic Attributes</span></a>
                     </div>
                     
-                    <div class="toc-item" style="margin-left:0px"><a href="#customTypes"><strong>3.5</strong><span>Custom User Types</span></a>
+                    <div class="toc-item" style="margin-left:0px"><a href="#customTypes"><strong>4.5</strong><span>Custom User Types</span></a>
                     </div>
                     
                 </div>
@@ -135,7 +138,7 @@ function addJsClass() {
 
                 
 
-<h1 id="objectMapping"><a class="anchor" href="#objectMapping"></a>3 Mapping Domain Classes</h1>
+<h1 id="objectMapping"><a class="anchor" href="#objectMapping"></a>4 Mapping Domain Classes</h1>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/objectMapping.adoc"'>
@@ -144,8 +147,9 @@ function addJsClass() {
 </div>
 
 
-<div class="sect3">
-<h4 id="_basic_mapping">Basic Mapping</h4>
+<div class="sect1">
+<h2 id="_basic_mapping">Basic Mapping</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The way GORM for MongoDB works is to map each domain class to a Mongo collection. For example given a domain class such as:</p>
 </div>
@@ -162,8 +166,10 @@ function addJsClass() {
 <p>This will map onto a MongoDB <a href="https://api.mongodb.org/java/current/com/mongodb/client/MongoCollection.html">Collection</a> called "person".</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_embedded_documents">Embedded Documents</h4>
+</div>
+<div class="sect1">
+<h2 id="_embedded_documents">Embedded Documents</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>It is quite common in MongoDB to embed documents within documents (nested documents). This can be done with GORM embedded types:</p>
 </div>
@@ -205,8 +211,10 @@ function addJsClass() {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_basic_collection_types">Basic Collection Types</h4>
+</div>
+<div class="sect1">
+<h2 id="_basic_collection_types">Basic Collection Types</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>You can also map lists and maps of basic types (such as strings) simply by defining the appropriate collection type:</p>
 </div>
@@ -226,8 +234,10 @@ new Person(<span class="key">friends</span>:[<span class="string"><span class="d
 <p>Basic collection types are stored as native ArrayList and BSON documents within the Mongo documents.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_customized_collection_and_database_mapping">Customized Collection and Database Mapping</h4>
+</div>
+<div class="sect1">
+<h2 id="_customized_collection_and_database_mapping">Customized Collection and Database Mapping</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>You may wish to customize how a domain class maps onto a <code>MongoCollection</code>. This is possible using the <code>mapping</code> block as follows:</p>
 </div>
@@ -259,7 +269,7 @@ new Person(<span class="key">friends</span>:[<span class="string"><span class="d
 </div>
 </div>
 <div class="paragraph">
-<p>If you are using the mapping engine, for non-embedded associations by default GORM for MongoDB will map links between documents using MongoDB <a href="https://docs.mongodb.org/manual/reference/database-references/">database references</a> also known as <code>DBRefs</code>.</p>
+<p>If you are using the mapping engine, for non-embedded associations by default GORM for MongoDB will map links between documents using MongoDB <a href="https://www.mongodb.com/docs/manual/reference/database-references/">database references</a> also known as <code>DBRefs</code>.</p>
 </div>
 <div class="paragraph">
 <p>If you prefer not to use DBRefs then you tell GORM to use direct links by using the <code>reference:false</code> mapping:</p>
@@ -275,9 +285,10 @@ new Person(<span class="key">friends</span>:[<span class="string"><span class="d
 </div>
 </div>
 </div>
+</div>
 
 
-<h2 id="idGeneration"><a class="anchor" href="#idGeneration"></a>3.1 Identity Generation</h2>
+<h2 id="idGeneration"><a class="anchor" href="#idGeneration"></a>4.1 Identity Generation</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/objectMapping/idGeneration.adoc"'>
@@ -295,10 +306,10 @@ new Person(<span class="key">friends</span>:[<span class="string"><span class="d
 </div>
 </div>
 <div class="paragraph">
-<p>Has a property called <code>id</code> of type <code>java.lang.Long</code>. In this case GORM for Mongo will generate a sequence based identifier using the technique <a href="https://docs.mongodb.org/manual/tutorial/isolate-sequence-of-operations/">described in the Mongo documentation</a> on Atomic operations.</p>
+<p>Has a property called <code>id</code> of type <code>java.lang.Long</code>. In this case GORM for Mongo will generate a sequence based identifier using the technique <a href="https://www.mongodb.com/docs/manual/core/write-operations-atomicity/">described in the Mongo documentation</a> on Atomic operations.</p>
 </div>
 <div class="paragraph">
-<p>However, sequence based integer identifiers are not ideal for environments that require <a href="https://docs.mongodb.org/manual/sharding/">sharding</a> (one of the nicer features of Mongo). Hence it is generally advised to use either String based ids:</p>
+<p>However, sequence based integer identifiers are not ideal for environments that require <a href="https://www.mongodb.com/docs/manual/sharding/">sharding</a> (one of the nicer features of Mongo). Hence it is generally advised to use either String based ids:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -308,7 +319,7 @@ new Person(<span class="key">friends</span>:[<span class="string"><span class="d
 </div>
 </div>
 <div class="paragraph">
-<p>Or a native BSON <a href="https://api.mongodb.org/java/current/org/bson/types/ObjectId.html">ObjectId</a>:</p>
+<p>Or a native BSON <a href="https://mongodb.github.io/mongo-java-driver/5.0/apidocs/bson/org/bson/types/ObjectId.html">ObjectId</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -322,8 +333,8 @@ new Person(<span class="key">friends</span>:[<span class="string"><span class="d
 <div class="paragraph">
 <p>BSON <code>ObjectId</code> instances are generated in a similar fashion to <code>UUIDs</code>.</p>
 </div>
-<div class="sect3">
-<h4 id="_assigned_identifiers">Assigned Identifiers</h4>
+<div class="sect2">
+<h3 id="_assigned_identifiers">Assigned Identifiers</h3>
 <div class="paragraph">
 <p>Note that if you manually assign an identifier, then you will need to use the <code>insert</code> method instead of the <code>save</code> method, otherwise GORM can&#8217;t work out whether you are trying to achieve an insert or an update. Example:</p>
 </div>
@@ -344,7 +355,7 @@ p.save()</code></pre>
 </div>
 
 
-<h2 id="dirtyChecking"><a class="anchor" href="#dirtyChecking"></a>3.2 Understanding Dirty Checking</h2>
+<h2 id="dirtyChecking"><a class="anchor" href="#dirtyChecking"></a>4.2 Understanding Dirty Checking</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/objectMapping/dirtyChecking.adoc"'>
@@ -364,7 +375,7 @@ p.save()</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">if</span>( person.hasChanged(<span class="string"><span class="delimiter">'</span><span class="content">firstName</span><span class="delimiter">'</span></span>) ) {
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">if</span> (person.hasChanged(<span class="string"><span class="delimiter">'</span><span class="content">firstName</span><span class="delimiter">'</span></span>)) {
    <span class="comment">// do something</span>
 }</code></pre>
 </div>
@@ -391,8 +402,8 @@ dirty checking and prevent the property from being updated.</p>
 <div class="paragraph">
 <p>This will force GORM for MongoDB to issue an update for the given property name.</p>
 </div>
-<div class="sect3">
-<h4 id="_dirty_checking_and_proxies">Dirty Checking and Proxies</h4>
+<div class="sect2">
+<h3 id="_dirty_checking_and_proxies">Dirty Checking and Proxies</h3>
 <div class="paragraph">
 <p>Dirty checking uses the <code>equals()</code> method to determine if a property has changed. In the case of associations, it is important to recognize that if the association is a proxy, comparing properties on the domain that are not related to the identifier will initialize the proxy, causing another database query.</p>
 </div>
@@ -429,7 +440,7 @@ dirty checking and prevent the property from being updated.</p>
 </div>
 
 
-<h2 id="writeConcern"><a class="anchor" href="#writeConcern"></a>3.3 Customizing the WriteConcern</h2>
+<h2 id="writeConcern"><a class="anchor" href="#writeConcern"></a>4.3 Customizing the WriteConcern</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/objectMapping/writeConcern.adoc"'>
@@ -439,7 +450,7 @@ dirty checking and prevent the property from being updated.</p>
 
 
 <div class="paragraph">
-<p>A feature of MongoDB is its ability to customize how important a database write is to the user. The Java client models this as a <a href="https://api.mongodb.org/java/current/com/mongodb/WriteConcern.html">WriteConcern</a> and there are various options that indicate whether the client cares about server or network errors, or whether the data has been successfully written or not.</p>
+<p>A feature of MongoDB is its ability to customize how important a database write is to the user. The Java client models this as a <a href="https://mongodb.github.io/mongo-java-driver/5.0/apidocs/mongodb-driver-core/com/mongodb/WriteConcern.html">WriteConcern</a> and there are various options that indicate whether the client cares about server or network errors, or whether the data has been successfully written or not.</p>
 </div>
 <div class="paragraph">
 <p>If you wish to customize the <code>WriteConcern</code> for a domain class you can do so in the mapping block:</p>
@@ -470,7 +481,7 @@ For versioned entities, if a lower level of WriteConcern than WriteConcern.ACKNO
 </div>
 
 
-<h2 id="dynamicAttributes"><a class="anchor" href="#dynamicAttributes"></a>3.4 Dynamic Attributes</h2>
+<h2 id="dynamicAttributes"><a class="anchor" href="#dynamicAttributes"></a>4.4 Dynamic Attributes</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/objectMapping/dynamicAttributes.adoc"'>
@@ -511,7 +522,7 @@ println p[<span class="string"><span class="delimiter">'</span><span class="cont
 </div>
 
 
-<h2 id="customTypes"><a class="anchor" href="#customTypes"></a>3.5 Custom User Types</h2>
+<h2 id="customTypes"><a class="anchor" href="#customTypes"></a>4.5 Custom User Types</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2023.3.x/src/docs/guide/objectMapping/customTypes.adoc"'>
@@ -523,10 +534,10 @@ println p[<span class="string"><span class="delimiter">'</span><span class="cont
 <div class="paragraph">
 <p>GORM for MongoDB will persist all common known Java types like String, Integer, URL etc., however if you want to persist one of your own classes that is not a domain class you can implement a custom user type.</p>
 </div>
-<div class="sect3">
-<h4 id="_custom_codecs">Custom Codecs</h4>
+<div class="sect2">
+<h3 id="_custom_codecs">Custom Codecs</h3>
 <div class="paragraph">
-<p>GORM for MongoDB is built ontop of MongoDB&#8217;s BSON encoding framework. This means it is possible to implement custom <a href="https://mongodb.github.io/mongo-java-driver/3.2/bson/codecs">Codecs</a> for encoding and decoding values to and from BSON.</p>
+<p>GORM for MongoDB is built ontop of MongoDB&#8217;s BSON encoding framework. This means it is possible to implement custom <a href="https://mongodb.github.io/mongo-java-driver/5.0/bson/codecs/">Codecs</a> for encoding and decoding values to and from BSON.</p>
 </div>
 <div class="paragraph">
 <p>For example consider the following simple Groovy class:</p>
@@ -591,8 +602,8 @@ println p[<span class="string"><span class="delimiter">'</span><span class="cont
 <p>Or you can create a <code>META-INF/services/org.bson.codecs.Codec</code> file containing the fully qualified class name of the <code>Codec</code>. If there are multiple codec classes you would like to register, put each one on a separate line.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_custom_types_with_gorm">Custom Types with GORM</h4>
+<div class="sect2">
+<h3 id="_custom_types_with_gorm">Custom Types with GORM</h3>
 <div class="paragraph">
 <p>Another option is to define a GORM custom type. For example consider the following class:</p>
 </div>
@@ -619,7 +630,7 @@ println p[<span class="string"><span class="delimiter">'</span><span class="cont
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Custom types should go in src/groovy not grails-app/domain
+Custom types should go in <code>src/groovy</code> not <code>app/domain</code>
 </td>
 </tr>
 </table>
@@ -735,7 +746,7 @@ Person.findByBirthdayBetween(<span class="keyword">new</span> Birthday(<span cla
 <p>However "like" or other query types will not work.</p>
 </div>
 <div class="paragraph">
-<p>To register a custom type in a grails application simply register it as Spring bean. For example, to register the above <code>BirthdayType</code> add the following to grails-app/conf/spring/resources.groovy:</p>
+<p>To register a custom type in a Grace application simply register it as Spring bean. For example, to register the above <code>BirthdayType</code> add the following to grails-app/conf/spring/resources.groovy:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -752,9 +763,9 @@ beans = {
 
                 <div style="clear:both;margin-top:15px;"></div>
                 
-                    <div class="toc-item prev-left"><a href="../guide/gettingStarted.html">&lt;&lt; <strong>2</strong><span>Getting Started</span></a></div>
+                    <div class="toc-item prev-left"><a href="../guide/gettingStarted.html">&lt;&lt; <strong>3</strong><span>Getting Started</span></a></div>
                 
-                    <div class="toc-item next-right"><a href="../guide/querying.html"><strong>4</strong><span>Querying</span> >></a></div>
+                    <div class="toc-item next-right"><a href="../guide/querying.html"><strong>5</strong><span>Querying</span> >></a></div>
                 
                 <div style="clear:both"></div>
             </div>
