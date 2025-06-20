@@ -2,14 +2,14 @@ If you plan to use MongoDB as your primary datastore then you need to remove the
 
 [source,groovy]
 ----
-compile 'org.grails.plugins:hibernate'
+implementation 'org.graceframework.plugins:hibernate'
 ----
 
-With this done all domain classes in grails-app/domain will be persisted via MongoDB and not Hibernate. You can create a domain class by running the regular `create-domain-class` command:
+With this done all domain classes in `app/domain` will be persisted via MongoDB and not Hibernate. You can create a domain class by running the regular `create-domain-class` command:
 
-[source,groovy]
+[source,console]
 ----
-grails create-domain-class Person
+$ grace create-domain-class Person
 ----
 
 The `Person` domain class will automatically be a persistent entity that can be stored in MongoDB.

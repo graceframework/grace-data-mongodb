@@ -1,4 +1,4 @@
-You can configure Multi-Tenancy the same way described in the link:../../hibernate/manual/index.html#multiTenancy[GORM for Hibernate documenation], simply specify a multi tenancy mode and resolver:
+You can configure Multi-Tenancy the same way described in the link:https://graceframework.org/grace-data-hibernate/2023.3.x/guide/multiTenancy.html[GORM for Hibernate documenation], simply specify a multi tenancy mode and resolver:
 
 [source,yaml]
 ----

@@ -1,6 +1,6 @@
 As mentioned previously, GORM for MongoDB supports all three multi tenancy modes however there are some considerations to keep in mind.
 
-==== Database Per Tenant
+=== Database Per Tenant
 
 When using the `DATABASE` mode, only GORM methods calls are dispatched to the correct tenant. This means the following will use the tenant id:
 
@@ -33,7 +33,7 @@ MongoClient mongoClient =
                       .getMongoClient()
 ----
 
-==== Schema Per Tenant
+=== Schema Per Tenant
 
 When using the `SCHEMA` mode, GORM for MongoDB will use a different MongoDB database, but the same `MongoClient` instance, for each tenant.
 
@@ -63,7 +63,7 @@ To resolve this you should always use the `DB` property of the class which will 
 Book.DB.find()
 ----
 
-==== Partitioned Multi-Tenancy
+=== Partitioned Multi-Tenancy
 
 When using the `DISCRIMINATOR` approach, GORM for MongoDB will store a `tenantId` attribute in each MongoDB document and attempt to partition the data.
 

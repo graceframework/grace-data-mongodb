@@ -1,0 +1,11 @@
+To make it easier for users to use and upgrade, Plugin adopts a version policy consistent with the https://github.com/graceframework/grace-framework[Grace Framework].
+
+[cols="1,1"]
+|===
+| Plugin Version
+| Grace Version
+
+| link:{github}/tree/2023.3.x[2023.3.x]
+| 2023.3.x
+
+|===

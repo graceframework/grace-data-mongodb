@@ -6,7 +6,7 @@ You can check whether a given property has changed by using the `hasChanged` met
 
 [source,groovy]
 ----
-if( person.hasChanged('firstName') ) {
+if (person.hasChanged('firstName')) {
    // do something
 }
 ----
@@ -19,7 +19,7 @@ collection type.
 One of the implications of this is if you override the collection with a non-dirty checking aware type it can disable
 dirty checking and prevent the property from being updated.
 
-If any of your updates are not updating the properties that you anticipate you can force an update using the link:../api/org/grails/datastore/mapping/dirty/checking/DirtyCheckable.html#markDirty(java.lang.String)[markDirty()] method:
+If any of your updates are not updating the properties that you anticipate you can force an update using the link:{api}/org/grails/datastore/mapping/dirty/checking/DirtyCheckable.html#markDirty(java.lang.String)[markDirty()] method:
 
 [source,groovy]
 ----
@@ -28,7 +28,7 @@ person.markDirty('firstName')
 
 This will force GORM for MongoDB to issue an update for the given property name.
 
-==== Dirty Checking and Proxies
+=== Dirty Checking and Proxies
 
 Dirty checking uses the `equals()` method to determine if a property has changed. In the case of associations, it is important to recognize that if the association is a proxy, comparing properties on the domain that are not related to the identifier will initialize the proxy, causing another database query.
 

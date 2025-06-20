@@ -5,9 +5,9 @@ By default in GORM entities are supplied with an integer-based identifier. So fo
 class Person {}
 ----
 
-Has a property called `id` of type `java.lang.Long`. In this case GORM for Mongo will generate a sequence based identifier using the technique https://docs.mongodb.org/manual/tutorial/isolate-sequence-of-operations/[described in the Mongo documentation] on Atomic operations.
+Has a property called `id` of type `java.lang.Long`. In this case GORM for Mongo will generate a sequence based identifier using the technique https://www.mongodb.com/docs/manual/core/write-operations-atomicity/[described in the Mongo documentation] on Atomic operations.
 
-However, sequence based integer identifiers are not ideal for environments that require https://docs.mongodb.org/manual/sharding/[sharding] (one of the nicer features of Mongo). Hence it is generally advised to use either String based ids:
+However, sequence based integer identifiers are not ideal for environments that require https://www.mongodb.com/docs/manual/sharding/[sharding] (one of the nicer features of Mongo). Hence it is generally advised to use either String based ids:
 
 [source,groovy]
 ----
@@ -16,7 +16,7 @@ class Person {
 }
 ----
 
-Or a native BSON https://api.mongodb.org/java/current/org/bson/types/ObjectId.html[ObjectId]:
+Or a native BSON https://mongodb.github.io/mongo-java-driver/5.0/apidocs/bson/org/bson/types/ObjectId.html[ObjectId]:
 
 [source,groovy]
 ----
@@ -30,7 +30,7 @@ class Person {
 BSON `ObjectId` instances are generated in a similar fashion to `UUIDs`.
 
 
-==== Assigned Identifiers
+=== Assigned Identifiers
 
 
 Note that if you manually assign an identifier, then you will need to use the `insert` method instead of the `save` method, otherwise GORM can't work out whether you are trying to achieve an insert or an update. Example:

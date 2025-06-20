@@ -1,8 +1,6 @@
+=== Mongo Database Connection Configuration
 
-==== Mongo Database Connection Configuration
-
-
-As mentioned the GORM for MongoDB plugin will configure all the defaults for you, but if you wish to customize those defaults you can do so in the `grails-app/conf/application.groovy` file:
+As mentioned the GORM for MongoDB plugin will configure all the defaults for you, but if you wish to customize those defaults you can do so in the `app/conf/application.groovy` file:
 
 [source,groovy]
 ----
@@ -33,12 +31,11 @@ grails {
 }
 ----
 
-Available options and their descriptions are defined in the https://api.mongodb.org/java/current/com/mongodb/MongoClientOptions.html[MongoClientOptions] javadoc.
+Available options and their descriptions are defined in the https://mongodb.github.io/mongo-java-driver/5.0/apidocs/mongodb-driver-legacy/com/mongodb/MongoClientOptions.html[MongoClientOptions] javadoc.
 
-==== MongoDB Connection Strings
+=== MongoDB Connection Strings
 
-
-Since 2.0, you can also use MongoDB https://docs.mongodb.org/manual/reference/connection-string/[connection strings] to configure the connection:
+Since 2.0, you can also use MongoDB https://www.mongodb.com/docs/manual/reference/connection-string/[connection strings] to configure the connection:
 
 [source,groovy]
 ----
@@ -51,10 +48,7 @@ grails {
 
 Using MongoDB connection strings is currently the most flexible and recommended way to configure MongoDB connections.
 
-
-
-==== Configuration Options Guide
-
+=== Configuration Options Guide
 
 Below is a complete example showing all configuration options:
 
@@ -87,12 +81,9 @@ grails {
 }
 ----
 
+=== Global Mapping Configuration
 
-
-==== Global Mapping Configuration
-
-
-Using the `grails.mongodb.default.mapping` setting in `grails-app/conf/application.groovy` you can configure global mapping options across your domain classes. This is useful if, for example, you want to disable optimistic locking globally or you wish to use `DBRefs` in your association mappings. For example, the following configuration will disable optimistic locking globally and use `DBRefs` for all properties:
+Using the `grails.mongodb.default.mapping` setting in `app/conf/application.groovy` you can configure global mapping options across your domain classes. This is useful if, for example, you want to disable optimistic locking globally or you wish to use `DBRefs` in your association mappings. For example, the following configuration will disable optimistic locking globally and use `DBRefs` for all properties:
 
 [source,groovy]
 ----

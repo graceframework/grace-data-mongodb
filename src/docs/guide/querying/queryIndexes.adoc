@@ -1,6 +1,4 @@
-
-==== Basics
-
+=== Basics
 
 MongoDB doesn't require that you specify indices to query, but like a relational database without specifying indices your queries will be significantly slower.
 
@@ -28,7 +26,7 @@ class Person {
 }
 ----
 
-You can use MongoDB https://docs.mongodb.org/manual/reference/operator/meta/hint/[Query Hints] by passing the `hint` argument to any dynamic finder:
+You can use MongoDB https://www.mongodb.com/docs/manual/reference/method/cursor.hint/#mongodb-method-cursor.hint[Query Hints] by passing the `hint` argument to any dynamic finder:
 
 [source,groovy]
 ----
@@ -44,11 +42,9 @@ Person.withCriteria {
     arguments hint:[1][firstName] }
 ----
 
+=== Compound Indices
 
-==== Compound Indices
-
-
-MongoDB supports the notion of https://docs.mongodb.org/manual/core/index-compound/[compound keys]. GORM for MongoDB enables this feature at the mapping level using the `compoundIndex` mapping:
+MongoDB supports the notion of https://www.mongodb.com/docs/manual/core/indexes/index-types/index-compound/[compound keys]. GORM for MongoDB enables this feature at the mapping level using the `compoundIndex` mapping:
 
 [source,groovy]
 ----
@@ -62,9 +58,7 @@ class Person {
 
 As per the MongoDB docs 1 is for ascending and -1 is for descending.
 
-
-==== Indexing using the 'index' method
-
+=== Indexing using the 'index' method
 
 In addition to the convenience features described above you can use the `index` method to define any index you want. For example:
 
@@ -75,4 +69,4 @@ static mapping = {
 }
 ----
 
-In the above example I define an index on an embedded attribtue of the document. In fact what arguments you pass to the `index` method get passed to the underlying MongoDB https://api.mongodb.org/java/2.12/com/mongodb/DBCollection.html#createIndex(com.mongodb.DBObject,%20com.mongodb.DBObject)[createIndex] method.
+In the above example I define an index on an embedded attribtue of the document. In fact what arguments you pass to the `index` method get passed to the underlying MongoDB https://mongodb.github.io/mongo-java-driver/5.0/apidocs/mongodb-driver-legacy/com/mongodb/DBCollection.html#createIndex(com.mongodb.DBObject,com.mongodb.DBObject)[createIndex] method.

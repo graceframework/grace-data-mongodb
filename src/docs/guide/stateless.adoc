@@ -1,8 +1,6 @@
 GORM for MongoDB supports both stateless and stateful modes for mapping domain classes to MongoDB. In general stateful mapping is superior for write heavy applications and stateless mode better for read heavy applications (particularily when large amounts of data is involved).
 
-
-==== Stateful mode
-
+== Stateful mode
 
 Domain classes are by default stateful, which means when they are read from a MongoDB document their state is stored in the user session (which is typically bound to the request in Grails). This has several advantages for write heavy applications:
 
@@ -24,10 +22,7 @@ b.save(flush:true)
 
 With a stateful entity the updates to the three properties can be batched up and executed in the save() call, when there is no state then 3 updates needs to be executed for each schemaless property (ouch!).
 
-
-
-==== Stateless Domain classes
-
+== Stateless Domain classes
 
 However, stateful domain classes can cause problems for read-heavy applications. Take for example the following code:
 
@@ -63,9 +58,7 @@ class Book {
 }
 ----
 
-
-==== Disadvantages of Stateless Mode
-
+== Disadvantages of Stateless Mode
 
 There are several disadvantages to using stateless domain classes as the default. One disadvantage is that if you are using assigned identifiers GORM cannot detect whether you want to do an insert or an update so you have to be explicit about which one you want:
 
@@ -77,7 +70,6 @@ b.insert()
 ----
 
 In the above case we use the explicit 'insert' method to tell Grails this is an insert not an udpate. Another disadvantage is that reading of schemaless/dynamic properties is more costly. For example:
-
 
 [source,groovy]
 ----
@@ -113,5 +105,3 @@ for(dbo in books) {
 ----
 
 Which would be more efficient.
-
-

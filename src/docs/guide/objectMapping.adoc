@@ -1,6 +1,4 @@
-
-==== Basic Mapping
-
+== Basic Mapping
 
 The way GORM for MongoDB works is to map each domain class to a Mongo collection. For example given a domain class such as:
 
@@ -15,9 +13,7 @@ class Person {
 
 This will map onto a MongoDB https://api.mongodb.org/java/current/com/mongodb/client/MongoCollection.html[Collection] called "person".
 
-
-==== Embedded Documents
-
+== Embedded Documents
 
 It is quite common in MongoDB to embed documents within documents (nested documents). This can be done with GORM embedded types:
 
@@ -56,10 +52,7 @@ class Person {
 }
 ----
 
-
-
-==== Basic Collection Types
-
+== Basic Collection Types
 
 You can also map lists and maps of basic types (such as strings) simply by defining the appropriate collection type:
 
@@ -77,9 +70,7 @@ new Person(friends:['Fred', 'Bob'], pets:[chuck:"Dog", eddie:'Parrot']).save(flu
 
 Basic collection types are stored as native ArrayList and BSON documents within the Mongo documents.
 
-
-==== Customized Collection and Database Mapping
-
+== Customized Collection and Database Mapping
 
 You may wish to customize how a domain class maps onto a `MongoCollection`. This is possible using the `mapping` block as follows:
 
@@ -108,7 +99,7 @@ class Person {
 }
 ----
 
-If you are using the mapping engine, for non-embedded associations by default GORM for MongoDB will map links between documents using MongoDB https://docs.mongodb.org/manual/reference/database-references/[database references] also known as `DBRefs`.
+If you are using the mapping engine, for non-embedded associations by default GORM for MongoDB will map links between documents using MongoDB https://www.mongodb.com/docs/manual/reference/database-references/[database references] also known as `DBRefs`.
 
 If you prefer not to use DBRefs then you tell GORM to use direct links by using the `reference:false` mapping:
 

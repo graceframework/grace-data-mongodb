@@ -1,7 +1,7 @@
 To configure multiple Mongo client connections you need to use the `grails.mongodb.connections` setting. For example in `application.yml`:
 
 [source,yaml]
-.grails-app/conf/application.yml
+.app/conf/application.yml
 ----
 grails:
     mongodb:
