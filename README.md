@@ -5,8 +5,8 @@
 [![Grace on X](https://img.shields.io/twitter/follow/graceframework?style=social)](https://x.com/graceframework)
 
 [![Groovy Version](https://img.shields.io/badge/Groovy-4.0.27-blue?style=flat&color=4298b8)](https://groovy-lang.org/releasenotes/groovy-4.0.html)
-[![Grace Version](https://img.shields.io/badge/Grace-2023.3.0-blue?style=flat&color=f49b06)](https://github.com/graceframework/grace-framework/releases/tag/v2023.3.0)
-[![Spring Boot Version](https://img.shields.io/badge/Spring_Boot-3.3.13-blue?style=flat&color=6db33f)](https://github.com/spring-projects/spring-boot/releases/tag/v3.3.13)
+[![Grace Version](https://img.shields.io/badge/Grace-2024.0.0-blue?style=flat&color=f49b06)](https://github.com/graceframework/grace-framework/releases/tag/v2024.0.0-M1)
+[![Spring Boot Version](https://img.shields.io/badge/Spring_Boot-3.4.7-blue?style=flat&color=6db33f)](https://github.com/spring-projects/spring-boot/releases/tag/v3.4.7)
 
 # Grace Data for MongoDB
 
@@ -19,9 +19,7 @@ This project aims to provide an Object-Mapping layer on top of MongoDB to ease c
 * Session-managed transactions
 * Validating domain instances backed by the Mongo datastore
 
-> [!IMPORTANT]
-> Currently, this plugin has been upgraded to MongoDB Driver 5.0.1, but only support Grace Framework 2023.3.x. 
-
+## Usage
 
 ```gradle
 dependencies {
@@ -33,13 +31,14 @@ dependencies {
 
 To make it easier for users to use and upgrade, Grace Data MongoDB adopts a version policy consistent with the [Grace Framework](https://github.com/graceframework/grace-framework).
 
-| GORM MongoDb Version   | Grace Version |
-|------------------------|---------------|
-| 2023.3.x               | 2023.3.x      |
+| GORM Version | Grace Version | MongoDB Version |
+|--------------|---------------|-----------------|
+| 2024.0.x     | 2024.0.x      | 5.2.1           |
+| 2023.3.x     | 2023.3.x      | 5.0.1           |
 
 ## Ducumentation
 
-* [2023.3.x](https://graceframework.org/grace-data-mongodb/2023.3.x/)
+* [2024.0.x](https://graceframework.org/grace-data-mongodb/2024.0.x/)
 
 ## License
 
