@@ -17,7 +17,7 @@ buildscript {
     }
     dependencies {
         classpath "org.graceframework:grace-gradle-plugin:$graceVersion"
-        // classpath "org.graceframework.plugins:asset-pipeline-gradle:$assetPipelineVersion"
+        classpath "org.graceframework.plugins:asset-pipeline-gradle:$assetPipelineVersion"
         classpath "com.github.erdi:webdriver-binaries-gradle-plugin:$webdriverBinariesVersion"
         classpath "org.graceframework.plugins:views-gradle:$graceViewsVersion"
         classpath "io.github.gradle-nexus:publish-plugin:2.0.0"
@@ -96,11 +96,9 @@ subprojects { project ->
         apply plugin: 'groovy'
 
         if (project.name.contains('grace')) {
-            apply plugin:"org.graceframework.grace-web"
-            apply plugin:"org.graceframework.grace-gsp"
-            // Execution failed for task ':examples-grace-hibernate5-mongodb:assetCompile'.
-            // > java.util.concurrent.ExecutionException: java.lang.NoSuchMethodError: 'void groovy.lang.IntRange.<init>(boolean, boolean, int, int)'
-            // apply plugin: "org.graceframework.asset-pipeline"
+            apply plugin: "org.graceframework.grace-web"
+            apply plugin: "org.graceframework.grace-gsp"
+            apply plugin: "org.graceframework.asset-pipeline"
         }
 
         boolean usesGeb = project.name.contains('grace-hibernate5-mongodb') || project.name.contains('grace-mongodb') || project.name.contains('grace-mongodb-database-per-tenant')|| project.name.contains('grace-rxmongodb')
