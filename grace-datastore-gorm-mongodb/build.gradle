@@ -19,7 +19,7 @@ dependencies {
     testImplementation "org.graceframework:grace-datastore-gorm-support:$datastoreVersion", {
         exclude group: "org.graceframework", module:"grace-datastore-gorm-hibernate-core"
     }
-    testRuntimeOnly "org.glassfish:jakarta.el:$jakartaElVersion"
+    testRuntimeOnly "org.glassfish.expressly:expressly:$jakartaElVersion"
     testRuntimeOnly "org.springframework:spring-aop"
 }
 
