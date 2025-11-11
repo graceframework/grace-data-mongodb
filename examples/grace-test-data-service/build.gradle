@@ -9,11 +9,11 @@ dependencies {
     implementation "org.graceframework:grace-plugin-datasource"
     implementation "org.graceframework:grace-boot"
     implementation "org.graceframework:grace-logging"
-    implementation "org.graceframework.plugins:cache"
-    implementation "org.graceframework.plugins:events"
+    implementation "org.graceframework:grace-plugin-cache"
+    implementation "org.graceframework:grace-plugin-events"
     implementation project(":grace-plugin")
-    implementation "org.graceframework.plugins:views-json"
-    implementation "org.graceframework.plugins:views-json-templates"
+    implementation "org.graceframework:grace-views-json"
+    // implementation "org.graceframework:grace-views-json-templates"
     // implementation 'org.graceframework.plugins:spring-security-core:4.0.3'
     // implementation 'org.graceframework.plugins:spring-security-rest:3.0.1'
     profile "org.graceframework.profiles:rest-api"

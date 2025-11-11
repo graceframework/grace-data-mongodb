@@ -11,8 +11,8 @@ dependencies {
     runtimeOnly "org.graceframework.plugins:asset-pipeline-plugin:$assetPipelineVersion"
     runtimeOnly "com.h2database:h2"
 
-    runtimeOnly "org.graceframework.plugins:scaffolding"
-    runtimeOnly "org.graceframework.plugins:fields"
+    runtimeOnly "org.graceframework:grace-plugin-scaffolding"
+    runtimeOnly "org.graceframework:grace-plugin-fields"
 
     testImplementation "org.graceframework:grace-test-support"
     testImplementation "org.graceframework.plugins:geb"

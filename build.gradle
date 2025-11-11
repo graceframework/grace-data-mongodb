@@ -19,7 +19,6 @@ buildscript {
         classpath "org.graceframework:grace-gradle-plugin:$graceVersion"
         classpath "org.graceframework.plugins:asset-pipeline-gradle:$assetPipelineVersion"
         classpath "com.github.erdi:webdriver-binaries-gradle-plugin:$webdriverBinariesVersion"
-        classpath "org.graceframework.plugins:views-gradle:$graceViewsVersion"
         classpath "io.github.gradle-nexus:publish-plugin:2.0.0"
     }
 }
@@ -109,7 +108,7 @@ subprojects { project ->
 
         if (project.name == "examples-grace-test-data-service") {
             apply plugin:"org.graceframework.grace-web"
-            apply plugin:"org.graceframework.plugins.views-json"
+            apply plugin:"org.graceframework.grace-json"
         }
 
         if (project.name == "examples-springboot-mongodb") {
@@ -325,7 +324,7 @@ tasks.withType(Groovydoc) {
     classpath += configurations.documentation
 }
 
-docs {
+publishGuide {
     dependsOn groovydoc
     sourceDir = project.file('src/docs')
 }
