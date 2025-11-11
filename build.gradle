@@ -17,8 +17,6 @@ buildscript {
     }
     dependencies {
         classpath "org.graceframework:grace-gradle-plugin:$graceVersion"
-        classpath "org.graceframework.plugins:asset-pipeline-gradle:$assetPipelineVersion"
-        classpath "com.github.erdi:webdriver-binaries-gradle-plugin:$webdriverBinariesVersion"
         classpath "io.github.gradle-nexus:publish-plugin:2.0.0"
     }
 }
@@ -32,7 +30,6 @@ ext {
     isCiBuild = project.hasProperty("isCiBuild") || System.getenv().get("CI") as Boolean
     isBuildSnapshot = project.version.endsWith("-SNAPSHOT")
     isReleaseVersion = !isBuildSnapshot
-    servletApiVersion = "6.0.0"
 }
 
 ext."signing.keyId" = System.getenv("SIGNING_KEY") ?: project.hasProperty("signing.keyId") ? project.getProperty('signing.keyId') : null
@@ -89,101 +86,15 @@ allprojects {
 }
 
 subprojects { project ->
-    if (project.name.startsWith("examples")) {
-        group = "examples"
-
-        apply plugin: 'groovy'
-
-        if (project.name.contains('grace')) {
-            apply plugin: "org.graceframework.grace-web"
-            apply plugin: "org.graceframework.grace-gsp"
-            apply plugin: "org.graceframework.asset-pipeline"
-        }
-
-        boolean usesGeb = project.name.contains('grace-hibernate5-mongodb') || project.name.contains('grace-mongodb') || project.name.contains('grace-mongodb-database-per-tenant')|| project.name.contains('grace-rxmongodb')
-
-        if (usesGeb) {
-            apply plugin:"com.github.erdi.webdriver-binaries"
-        }
-
-        if (project.name == "examples-grace-test-data-service") {
-            apply plugin:"org.graceframework.grace-web"
-            apply plugin:"org.graceframework.grace-json"
-        }
-
-        if (project.name == "examples-springboot-mongodb") {
-            apply plugin: 'org.springframework.boot'
-            apply plugin: 'io.spring.dependency-management'
-
-            dependencyManagement {
-                imports {
-                    mavenBom "org.graceframework:grace-bom:$graceVersion"
-                }
-                applyMavenExclusions false
-                generatedPomCustomization {
-                    enabled = false
-                }
-            }
-        }
-
-        dependencies {
-            testImplementation "org.hibernate.validator:hibernate-validator"
-            testImplementation "org.apache.groovy:groovy-test-junit5"
-            testImplementation "org.spockframework:spock-core", { transitive = false }
-            testImplementation "org.junit.jupiter:junit-jupiter-api"
-            testImplementation "org.junit.platform:junit-platform-runner"
-            testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
-        }
-
-        tasks.withType(Test) {
-            useJUnitPlatform()
-            testLogging {
-                showStandardStreams = true
-                exceptionFormat = 'full'
-            }
-        }
-
-        tasks.withType(Jar).configureEach {
-            duplicatesStrategy = DuplicatesStrategy.INCLUDE
-        }
-
-        return
-    }
-
-    boolean isPluginProject = project.name.startsWith("grace") && project.name.endsWith("-plugin")
-
-    apply plugin: 'groovy'
-
-    if (isPluginProject) {
-        group = "org.graceframework.plugins"
-        version = rootProject.version
-
-        apply plugin: "org.graceframework.grace-plugin"
-    }
-    else {
-        group = "org.graceframework"
-        version = rootProject.version
-
-        apply plugin: "io.spring.dependency-management"
-
-        dependencyManagement {
-            imports {
-                mavenBom "org.graceframework:grace-bom:$graceVersion"
-            }
-            applyMavenExclusions false
-            generatedPomCustomization {
-                enabled = false
-            }
-        }
-    }
-
     if (project.name == 'docs') {
         return
     }
 
+    apply plugin: 'groovy'
     apply plugin: "java-library"
     apply plugin: 'maven-publish'
     apply plugin: 'signing'
+    apply plugin: "io.spring.dependency-management"
 
     sourceCompatibility = "17"
     targetCompatibility = "17"
@@ -191,6 +102,16 @@ subprojects { project ->
     java {
         withJavadocJar()
         withSourcesJar()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.graceframework:grace-bom:$graceVersion"
+        }
+        applyMavenExclusions false
+        generatedPomCustomization {
+            enabled = false
+        }
     }
 
     dependencies {
@@ -215,10 +136,6 @@ subprojects { project ->
             maven(MavenPublication) {
                 def projectArtifactId = project.name
                 def projectName = project.name.split('-')*.capitalize().join(' ')
-                if (project.name == 'grace-plugin') {
-                    projectArtifactId = 'mongodb'
-                    projectName = 'Grace MongoDb Plugin'
-                }
 
                 artifactId projectArtifactId
                 from components.java
@@ -259,15 +176,6 @@ subprojects { project ->
                         }
                     }
                 }
-
-                afterEvaluate {
-                    if (isPluginProject) {
-                        artifact source:"${sourceSets.main.groovy.classesDirectory.get()}/META-INF/grails-plugin.xml",
-                                classifier:"plugin",
-                                extension:'xml'
-                    }
-                }
-
             }
         }
     }
@@ -327,4 +235,8 @@ tasks.withType(Groovydoc) {
 publishGuide {
     dependsOn groovydoc
     sourceDir = project.file('src/docs')
+}
+
+task docs {
+    dependsOn groovydoc, publishGuide
 }
