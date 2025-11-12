@@ -106,7 +106,7 @@ class MongoConnectionSourcesSpec extends Specification {
         tenantIds == [test1:1, test2:0]
 
         when:"A data source is added and switched to at runtime"
-        datastore.connectionSources.addConnectionSource("test3",[url:"mongodb://localhost/test3Db"])
+        datastore.connectionSources.addConnectionSource("test3",[url:"mongodb://$serverAddress/test3Db".toString()])
         System.setProperty(SystemPropertyTenantResolver.PROPERTY_NAME, "test3")
 
         then:"The database is usable"

@@ -1,17 +1,31 @@
 package grails.mongodb.bootstrap
 
 import com.mongodb.client.MongoClient
+import de.flapdoodle.embed.mongo.commands.ServerAddress
+import de.flapdoodle.embed.mongo.distribution.Version
+import de.flapdoodle.embed.mongo.transitions.ImmutableMongod
+import de.flapdoodle.embed.mongo.transitions.Mongod
+import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
+import de.flapdoodle.reverse.TransitionWalker
+import spock.lang.Shared
+
 import grails.mongodb.MongoEntity
 import grails.mongodb.geo.Point
 import grails.persistence.Entity
 import org.bson.Document
+
+import grails.validation.ValidationException
+
 import org.grails.datastore.gorm.mongo.Birthday
 import org.grails.datastore.gorm.mongo.BirthdayCodec
+import org.grails.datastore.mapping.config.Settings
+import org.grails.datastore.mapping.core.DatastoreUtils
 import org.grails.datastore.mapping.engine.types.AbstractMappingAwareCustomTypeMarshaller
 import org.grails.datastore.mapping.model.MappingContext
 import org.grails.datastore.mapping.model.PersistentProperty
 import org.grails.datastore.mapping.mongo.MongoDatastore
 import org.grails.datastore.mapping.mongo.config.MongoMappingContext
+import org.grails.datastore.mapping.mongo.config.MongoSettings
 import org.grails.datastore.mapping.query.Query
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Ignore
@@ -23,9 +37,40 @@ import spock.lang.Specification
  */
 class MongoDbDataStoreSpringInitializerSpec extends Specification{
 
+    @Shared
+    Map config
+
+    @Shared
+    protected TransitionWalker.ReachedState<RunningMongodProcess> running
+
+    @Shared
+    protected ServerAddress serverAddress
+
+    void setupSpec() {
+        ImmutableMongod mongodbConfig = Mongod.instance()
+        Version.Main version = Version.Main.V7_0
+
+        this.running = mongodbConfig.start(version)
+        this.serverAddress = running.current().getServerAddress()
+
+        this.config = [
+                (Settings.SETTING_FAIL_ON_ERROR): true,
+                (MongoSettings.SETTING_URL)     : "mongodb://$serverAddress".toString()
+        ]
+    }
+
+    void cleanupSpec() {
+        this.serverAddress = null
+        if (this.running != null) {
+            this.running.close()
+        }
+        this.running = null
+        this.config.clear()
+    }
+
     void "Test that MongoDbDatastoreSpringInitializer can setup GORM for MongoDB from scratch"() {
         when:"the initializer used to setup GORM for MongoDB"
-            def initializer = new MongoDbDataStoreSpringInitializer(Person)
+            def initializer = new MongoDbDataStoreSpringInitializer(DatastoreUtils.createPropertyResolver(config), Person)
             def applicationContext = initializer.configure()
             def mongo = applicationContext.getBean(MongoClient)
             mongo.getDatabase(MongoDbDataStoreSpringInitializer.DEFAULT_DATABASE_NAME).drop()
@@ -37,7 +82,8 @@ class MongoDbDataStoreSpringInitializerSpec extends Specification{
 
     void "Test specify mongo database name settings"() {
         when:"the initializer used to setup GORM for MongoDB"
-        def initializer = new MongoDbDataStoreSpringInitializer(['grails.mongodb.databaseName':'foo'],Person)
+        config['grails.mongodb.databaseName'] = 'foo'
+        def initializer = new MongoDbDataStoreSpringInitializer(DatastoreUtils.createPropertyResolver(config), Person)
         def applicationContext = initializer.configure()
         def mongoDatastore = applicationContext.getBean(MongoDatastore)
 
@@ -50,7 +96,8 @@ class MongoDbDataStoreSpringInitializerSpec extends Specification{
 
     void "Test the alias is created when it is the primary datastore"() {
         when:"the initializer used to setup GORM for MongoDB"
-        def initializer = new MongoDbDataStoreSpringInitializer(['grails.mongodb.databaseName':'foo'],Person)
+        config['grails.mongodb.databaseName'] = 'foo'
+        def initializer = new MongoDbDataStoreSpringInitializer(DatastoreUtils.createPropertyResolver(config), Person)
         def applicationContext = initializer.configure()
         def mongoDatastore = applicationContext.getBean(MongoDatastore)
 
@@ -63,7 +110,8 @@ class MongoDbDataStoreSpringInitializerSpec extends Specification{
 
     void "Test the alias is not created when it is the secondary datastore"() {
         when:"the initializer used to setup GORM for MongoDB"
-        def initializer = new MongoDbDataStoreSpringInitializer(['grails.mongodb.databaseName':'foo'],Person)
+        config['grails.mongodb.databaseName'] = 'foo'
+        def initializer = new MongoDbDataStoreSpringInitializer(DatastoreUtils.createPropertyResolver(config), Person)
         initializer.setSecondaryDatastore(true)
         def applicationContext = initializer.configure()
         def mongoDatastore = applicationContext.getBean(MongoDatastore)
@@ -79,7 +127,7 @@ class MongoDbDataStoreSpringInitializerSpec extends Specification{
     @Ignore // The MongoDB API for this test has been altered / removed with no apparent replacement for getting the number of pooled connections in use
     void "Test withTransaction returns connections when used without session handling"() {
         given:"the initializer used to setup GORM for MongoDB"
-            def initializer = new MongoDbDataStoreSpringInitializer(Person)
+            def initializer = new MongoDbDataStoreSpringInitializer(DatastoreUtils.createPropertyResolver(config), Person)
             def applicationContext = initializer.configure()
             def mongo = applicationContext.getBean(Mongo)
 
@@ -100,16 +148,15 @@ class MongoDbDataStoreSpringInitializerSpec extends Specification{
 
     void "Test that constraints and Geo types work"() {
         given:"the initializer used to setup GORM for MongoDB"
-            def initializer = new MongoDbDataStoreSpringInitializer(Person)
+            def initializer = new MongoDbDataStoreSpringInitializer(DatastoreUtils.createPropertyResolver(config), Person)
             initializer.configure()
             Person.DB.drop()
 
         when:"we try to persist an invalid object"
             def p = new Person().save(flush:true)
 
-        then:"The object is null and not persisted"
-            p == null
-            Person.count() == 0
+        then:"Throw ValidationException"
+            thrown(ValidationException)
 
         when:"We persist a Geo type"
             Person.withNewSession {
@@ -126,7 +173,7 @@ class MongoDbDataStoreSpringInitializerSpec extends Specification{
     @Ignore
     void "Test custom codecs from Spring"() {
         given:"the initializer used to setup GORM for MongoDB"
-        def initializer = new MongoDbDataStoreSpringInitializer(Person)
+        def initializer = new MongoDbDataStoreSpringInitializer(DatastoreUtils.createPropertyResolver(config), Person)
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext()
         applicationContext.beanFactory.registerSingleton("birthdayCodec", new BirthdayCodec())
 
@@ -146,7 +193,7 @@ class MongoDbDataStoreSpringInitializerSpec extends Specification{
     @Ignore
     void "Test custom type marshallers from Spring"() {
         given:"the initializer used to setup GORM for MongoDB"
-        def initializer = new MongoDbDataStoreSpringInitializer(Person)
+        def initializer = new MongoDbDataStoreSpringInitializer(DatastoreUtils.createPropertyResolver(config), Person)
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext()
         applicationContext.beanFactory.registerSingleton("birthdayMarshaller", new BirthdayCustomTypeMarshaller())
 
