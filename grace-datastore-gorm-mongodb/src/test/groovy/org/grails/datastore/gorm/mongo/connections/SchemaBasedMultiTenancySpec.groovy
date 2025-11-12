@@ -1,5 +1,12 @@
 package org.grails.datastore.gorm.mongo.connections
 
+import de.flapdoodle.embed.mongo.commands.ServerAddress
+import de.flapdoodle.embed.mongo.distribution.Version
+import de.flapdoodle.embed.mongo.transitions.ImmutableMongod
+import de.flapdoodle.embed.mongo.transitions.Mongod
+import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
+import de.flapdoodle.reverse.TransitionWalker
+
 import org.grails.datastore.gorm.mongo.City
 import org.grails.datastore.mapping.core.Session
 import org.grails.datastore.mapping.mongo.MongoDatastore
@@ -14,12 +21,25 @@ import spock.lang.Specification
  * Created by graemerocher on 14/07/2016.
  */
 class SchemaBasedMultiTenancySpec extends Specification {
+    @AutoCleanup
+    @Shared
+    MongoDatastore datastore
 
-    @Shared @AutoCleanup MongoDatastore datastore
+    @Shared
+    protected TransitionWalker.ReachedState<RunningMongodProcess> running
+
+    @Shared
+    protected ServerAddress serverAddress
 
     void setupSpec() {
+        ImmutableMongod mongodbConfig = Mongod.instance()
+        Version.Main version = Version.Main.V7_0
+
+        this.running = mongodbConfig.start(version)
+        this.serverAddress = running.current().getServerAddress()
+
         Map config = [
-                (MongoSettings.SETTING_URL): "mongodb://localhost/defaultDb",
+                (MongoSettings.SETTING_URL): "mongodb://$serverAddress/defaultDb".toString(),
                 "grails.gorm.multiTenancy.mode"               :"SCHEMA",
                 "grails.gorm.multiTenancy.tenantResolverClass":SystemPropertyTenantResolver
         ]
@@ -28,6 +48,15 @@ class SchemaBasedMultiTenancySpec extends Specification {
 
     void setup() {
         System.setProperty(SystemPropertyTenantResolver.PROPERTY_NAME, "")
+    }
+
+    void cleanupSpec() {
+        this.serverAddress = null
+        if (this.running != null) {
+            this.running.close()
+        }
+        this.running = null
+        this.datastore.close()
     }
 
     void "Test no tenant id"() {

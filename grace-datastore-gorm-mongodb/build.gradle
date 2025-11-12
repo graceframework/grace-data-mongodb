@@ -3,23 +3,19 @@ plugins {
 }
 
 dependencies {
-    api libs.mongodb.driver.sync
+    api project(":grace-datastore-gorm-bson")
+    implementation libs.caffeine
     api libs.grace.datastore.core
     api libs.grace.datastore.gorm
     api libs.grace.datastore.gorm.validation
-    api project(":grace-datastore-gorm-bson")
+    api libs.grace.datastore.gorm.support
+    api libs.mongodb.driver.sync
 
-    implementation libs.caffeine
-
-    compileOnly libs.grace.datastore.gorm.support
-    compileOnly libs.jakarta.servlet
-
-    // testImplementation "org.testcontainers:mongodb:1.19.8"
+    testImplementation libs.embedmongo
     testImplementation libs.grace.datastore.gorm.tck
     testImplementation libs.grace.test.support
     testImplementation libs.jakarta.validation
     testImplementation libs.hibernate.validator
-    testImplementation libs.grace.datastore.gorm.support
     testRuntimeOnly libs.glassfish.expressly
 }
 

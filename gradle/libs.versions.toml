@@ -2,6 +2,7 @@
 caffeine = "3.1.8"
 commons-validator = "1.9.0"
 ehcache = "2.10.6"
+embedmongo = "4.21.0"
 glassfish-expressly = "5.0.0"
 grace-data = "2024.0.0-SNAPSHOT"
 grace-framework = "2024.0.0-SNAPSHOT"
@@ -34,6 +35,7 @@ spring-framework = "6.2.11"
 caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "caffeine" }
 commons-validator = { module = "commons-validator:commons-validator", version.ref = "commons-validator" }
 ehcache = { module = "net.sf.ehcache:ehcache", version.ref = "ehcache" }
+embedmongo = { module = "de.flapdoodle.embed:de.flapdoodle.embed.mongo", version.ref = "embedmongo" }
 glassfish-expressly = { module = "org.glassfish.expressly:expressly", version.ref = "glassfish-expressly" }
 grace-bootstrap = { module = "org.graceframework:grace-bootstrap", version.ref = "grace-framework" }
 grace-core = { module = "org.graceframework:grace-core", version.ref = "grace-framework" }

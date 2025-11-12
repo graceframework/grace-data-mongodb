@@ -1,6 +1,13 @@
 package org.grails.datastore.gorm.mongo.multitenancy
 
 import com.mongodb.client.model.Filters
+import de.flapdoodle.embed.mongo.commands.ServerAddress
+import de.flapdoodle.embed.mongo.distribution.Version
+import de.flapdoodle.embed.mongo.transitions.ImmutableMongod
+import de.flapdoodle.embed.mongo.transitions.Mongod
+import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
+import de.flapdoodle.reverse.TransitionWalker
+
 import grails.gorm.MultiTenant
 import grails.mongodb.MongoEntity
 import grails.persistence.Entity
@@ -16,12 +23,22 @@ import spock.lang.Specification
 class MongoStaticApiMultiTenancySpec extends Specification {
 
     @Shared  @AutoCleanup MongoDatastore datastore
+    @Shared
+    protected TransitionWalker.ReachedState<RunningMongodProcess> running
+    @Shared
+    protected ServerAddress serverAddress
 
     void setupSpec() {
+        ImmutableMongod mongodbConfig = Mongod.instance()
+        Version.Main version = Version.Main.V7_0
+
+        this.running = mongodbConfig.start(version)
+        this.serverAddress = running.current().getServerAddress()
+
         Map config = [
                 "grails.gorm.multiTenancy.mode"               : "DISCRIMINATOR",
                 "grails.gorm.multiTenancy.tenantResolverClass": SystemPropertyTenantResolver,
-                (MongoSettings.SETTING_URL)                   : "mongodb://localhost/defaultDb",
+                (MongoSettings.SETTING_URL)                   : "mongodb://$serverAddress".toString(),
         ]
         this.datastore = new MongoDatastore(config, getDomainClasses() as Class[])
     }
@@ -30,6 +47,14 @@ class MongoStaticApiMultiTenancySpec extends Specification {
         System.setProperty(SystemPropertyTenantResolver.PROPERTY_NAME, "")
     }
 
+    void cleanupSpec() {
+        this.serverAddress = null
+        if (this.running != null) {
+            this.running.close()
+        }
+        this.running = null
+        this.datastore.close()
+    }
 
     void "test search"() {
         setup: "drop existing database"

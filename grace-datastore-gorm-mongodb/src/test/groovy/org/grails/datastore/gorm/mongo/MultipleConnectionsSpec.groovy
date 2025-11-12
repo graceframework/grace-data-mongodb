@@ -1,7 +1,14 @@
 package org.grails.datastore.gorm.mongo
 
+import de.flapdoodle.embed.mongo.commands.ServerAddress
+import de.flapdoodle.embed.mongo.distribution.Version
+import de.flapdoodle.embed.mongo.transitions.ImmutableMongod
+import de.flapdoodle.embed.mongo.transitions.Mongod
+import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
+import de.flapdoodle.reverse.TransitionWalker
+import spock.lang.AutoCleanup
+
 import grails.gorm.annotation.Entity
-import grails.gorm.tests.GormDatastoreSpec
 import grails.mongodb.MongoEntity
 import org.bson.types.ObjectId
 import org.grails.datastore.mapping.mongo.MongoDatastore
@@ -14,25 +21,44 @@ import spock.lang.Specification
  */
 class MultipleConnectionsSpec extends Specification {
 
-    @Shared MongoDatastore datastore
+    @Shared
+    @AutoCleanup
+    MongoDatastore datastore
+
+    @Shared
+    protected TransitionWalker.ReachedState<RunningMongodProcess> running
+
+    @Shared
+    protected ServerAddress serverAddress
 
     void setupSpec() {
+        ImmutableMongod mongodbConfig = Mongod.instance()
+        Version.Main version = Version.Main.V7_0
+
+        this.running = mongodbConfig.start(version)
+        this.serverAddress = running.current().getServerAddress()
+
         Map config = [
-            (MongoSettings.SETTING_URL)        : "mongodb://localhost/defaultDb",
             (MongoSettings.SETTING_CONNECTIONS): [
                     test1: [
-                            url: "mongodb://localhost/test1Db"
+                            url: "mongodb://$serverAddress/test1Db".toString()
                     ],
                     test2: [
-                            url: "mongodb://localhost/test2Db"
+                            url: "mongodb://$serverAddress/test2Db".toString()
                     ]
-            ]
+            ],
+            (MongoSettings.SETTING_URL)     : "mongodb://$serverAddress".toString()
         ]
         this.datastore = new MongoDatastore(config, getDomainClasses() as Class[])
     }
 
     void cleanupSpec() {
-        datastore.close()
+        this.serverAddress = null
+        if (this.running != null) {
+            this.running.close()
+        }
+        this.running = null
+        this.datastore.close()
     }
 
     void "Test multiple datasources state"() {

@@ -2,6 +2,13 @@ package grails.gorm.tests
 
 import com.mongodb.BasicDBObject
 import com.mongodb.client.MongoClient
+import de.flapdoodle.embed.mongo.commands.ServerAddress
+import de.flapdoodle.embed.mongo.distribution.Version
+import de.flapdoodle.embed.mongo.transitions.ImmutableMongod
+import de.flapdoodle.embed.mongo.transitions.Mongod
+import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
+import de.flapdoodle.reverse.TransitionWalker
+
 import grails.core.DefaultGrailsApplication
 import grails.core.GrailsApplication
 import grails.gorm.validation.PersistentEntityValidator
@@ -34,6 +41,11 @@ abstract class GormDatastoreSpec extends Specification {
 
     static final CURRENT_TEST_NAME = "current.gorm.test"
 
+    @Shared
+    protected TransitionWalker.ReachedState<RunningMongodProcess> running
+    @Shared
+    protected ServerAddress serverAddress
+
     List getDomainClasses() {
         [       Book, ChildEntity, City, ClassWithListArgBeforeValidate, ClassWithNoArgBeforeValidate,
                 ClassWithOverloadedBeforeValidate, CommonTypes, Country, EnumThing, Face, Highway,
@@ -59,8 +71,16 @@ abstract class GormDatastoreSpec extends Specification {
 
         def databaseName = System.getProperty(GormDatastoreSpec.CURRENT_TEST_NAME) ?: 'test'
 
+        ImmutableMongod mongodbConfig = Mongod.instance()
+        Version.Main version = Version.Main.V7_0
 
-        def config = [(MongoSettings.SETTING_DATABASE_NAME): databaseName]
+        this.running = mongodbConfig.start(version)
+        this.serverAddress = running.current().getServerAddress()
+
+        def config = [
+                (MongoSettings.SETTING_DATABASE_NAME): databaseName,
+                (MongoSettings.SETTING_URL): "mongodb://$serverAddress".toString()
+        ]
         // disable decimal type support on Travis, since MongoDB 3.4 support doesn't exist there yet
         if(System.getenv('TRAVIS')) {
             config.put(MongoSettings.SETTING_DECIMAL_TYPE, false)
@@ -129,6 +149,15 @@ abstract class GormDatastoreSpec extends Specification {
         for(cls in getDomainClasses()) {
             GormEnhancer.findValidationApi(cls).setValidator(null)
         }
+    }
+
+    void cleanupSpec() {
+        this.serverAddress = null
+        if (this.running != null) {
+            this.running.close()
+        }
+        this.running = null
+        this.mongoDatastore.close()
     }
 
 }

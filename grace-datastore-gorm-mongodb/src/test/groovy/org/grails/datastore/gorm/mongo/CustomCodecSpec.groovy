@@ -1,5 +1,12 @@
 package org.grails.datastore.gorm.mongo
 
+import de.flapdoodle.embed.mongo.commands.ServerAddress
+import de.flapdoodle.embed.mongo.distribution.Version
+import de.flapdoodle.embed.mongo.transitions.ImmutableMongod
+import de.flapdoodle.embed.mongo.transitions.Mongod
+import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
+import de.flapdoodle.reverse.TransitionWalker
+
 import grails.gorm.time.InstantConverter
 import grails.mongodb.MongoEntity
 import grails.persistence.Entity
@@ -25,6 +32,8 @@ import spock.lang.Specification
 import java.time.Instant
 import java.util.concurrent.atomic.AtomicLong
 
+import org.grails.datastore.mapping.mongo.config.MongoSettings
+
 import static java.time.temporal.ChronoUnit.DAYS
 
 /**
@@ -32,11 +41,39 @@ import static java.time.temporal.ChronoUnit.DAYS
  */
 class CustomCodecSpec extends Specification {
 
-    @AutoCleanup @Shared MongoDatastore datastore = new MongoDatastore(
-            ['grails.mongodb.codecs':[BirthdayCodec,
-                                      InstantAsBsonDateTimeCodec
-            ]],
-            Person, InstantHolder)
+    @AutoCleanup
+    @Shared
+    MongoDatastore datastore
+
+    @Shared
+    protected TransitionWalker.ReachedState<RunningMongodProcess> running
+
+    @Shared
+    protected ServerAddress serverAddress
+
+    void setupSpec() {
+        ImmutableMongod mongodbConfig = Mongod.instance()
+        Version.Main version = Version.Main.V7_0
+
+        this.running = mongodbConfig.start(version)
+        this.serverAddress = running.current().getServerAddress()
+
+        Map config = [
+                'grails.mongodb.codecs': [BirthdayCodec, InstantAsBsonDateTimeCodec],
+                "grails.gorm.multiTenancy.mode"               : "DISCRIMINATOR",
+                (MongoSettings.SETTING_URL)                   : "mongodb://$serverAddress".toString(),
+        ]
+        this.datastore = new MongoDatastore(config, [Person, InstantHolder] as Class[])
+    }
+
+    void cleanupSpec() {
+        this.serverAddress = null
+        if (this.running != null) {
+            this.running.close()
+        }
+        this.running = null
+        this.datastore.close()
+    }
 
     void "Test custom codecs"() {
         when:"A new person is saved"

@@ -2,6 +2,13 @@
 package org.grails.datastore.gorm
 
 import com.mongodb.BasicDBObject
+import de.flapdoodle.embed.mongo.commands.ServerAddress
+import de.flapdoodle.embed.mongo.distribution.Version
+import de.flapdoodle.embed.mongo.transitions.ImmutableMongod
+import de.flapdoodle.embed.mongo.transitions.Mongod
+import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
+import de.flapdoodle.reverse.TransitionWalker
+
 import grails.gorm.tests.GormDatastoreSpec
 import org.bson.Document
 import org.grails.datastore.bson.query.BsonQuery
@@ -27,8 +34,15 @@ class Setup {
 
     static MongoDatastore mongo
     static AbstractMongoSession session
+    static TransitionWalker.ReachedState<RunningMongodProcess> running
+    static ServerAddress serverAddress
 
     static destroy() {
+        serverAddress = null
+        if (running != null) {
+            running.close()
+        }
+        running = null
         session.nativeInterface.dropDatabase( session.defaultDatabase )
         session.disconnect()
         TransactionSynchronizationManager.unbindResource(mongo)
@@ -36,9 +50,18 @@ class Setup {
     }
 
     static Session setup(classes) {
+        ImmutableMongod mongodbConfig = Mongod.instance()
+        Version.Main version = Version.Main.V7_0
+
+        running = mongodbConfig.start(version)
+        serverAddress = running.current().getServerAddress()
+
         def databaseName = System.getProperty(GormDatastoreSpec.CURRENT_TEST_NAME) ?: 'test'
 
-        Map<String,Object> config = [(MongoSettings.SETTING_DATABASE_NAME): databaseName]
+        Map<String,Object> config = [
+                (MongoSettings.SETTING_DATABASE_NAME): databaseName,
+                (MongoSettings.SETTING_URL)          : "mongodb://$serverAddress".toString()
+        ]
 
         // disable decimal type support on Travis, since MongoDB 3.4 support doesn't exist there yet
         if(System.getenv('TRAVIS')) {

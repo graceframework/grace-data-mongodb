@@ -1,5 +1,12 @@
 package org.grails.datastore.gorm.mongo.connections
 
+import de.flapdoodle.embed.mongo.commands.ServerAddress
+import de.flapdoodle.embed.mongo.distribution.Version
+import de.flapdoodle.embed.mongo.transitions.ImmutableMongod
+import de.flapdoodle.embed.mongo.transitions.Mongod
+import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
+import de.flapdoodle.reverse.TransitionWalker
+
 import grails.gorm.annotation.Entity
 import grails.gorm.services.Service
 import grails.gorm.transactions.Transactional
@@ -14,17 +21,40 @@ import spock.lang.Specification
 class MultipleDataSourceConnectionsSpec extends Specification {
 
     @Shared
-    Map config = [
-            'grails.mongodb.url'        : 'mongodb://localhost/grailsDB',
-            'grails.mongodb.connections': [
-                    'books'    : ['url': 'mongodb://localhost/books'],
-                    'moreBooks': ['url': 'mongodb://localhost/moreBooks'],
-            ],
-    ]
+    @AutoCleanup
+    MongoDatastore datastore
 
     @Shared
-    @AutoCleanup
-    MongoDatastore datastore = new MongoDatastore(DatastoreUtils.createPropertyResolver(config), Book, Author)
+    protected TransitionWalker.ReachedState<RunningMongodProcess> running
+
+    @Shared
+    protected ServerAddress serverAddress
+
+    void setupSpec() {
+        ImmutableMongod mongodbConfig = Mongod.instance()
+        Version.Main version = Version.Main.V7_0
+
+        this.running = mongodbConfig.start(version)
+        this.serverAddress = running.current().getServerAddress()
+
+        Map config = [
+                'grails.mongodb.url'        : "mongodb://$serverAddress/grailsDB".toString(),
+                'grails.mongodb.connections': [
+                        'books'    : ['url': "mongodb://$serverAddress/books".toString()],
+                        'moreBooks': ['url': "mongodb://$serverAddress/moreBooks".toString()],
+                ],
+        ]
+        this.datastore = new MongoDatastore(config, Book, Author)
+    }
+
+    void cleanupSpec() {
+        this.serverAddress = null
+        if (this.running != null) {
+            this.running.close()
+        }
+        this.running = null
+        this.datastore.close()
+    }
 
     void "Test map to multiple data sources"() {
 

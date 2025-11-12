@@ -1,6 +1,12 @@
 package org.grails.datastore.gorm.mongo.connections
 
 import com.mongodb.client.MongoClient
+import de.flapdoodle.embed.mongo.commands.ServerAddress
+import de.flapdoodle.embed.mongo.distribution.Version
+import de.flapdoodle.embed.mongo.transitions.ImmutableMongod
+import de.flapdoodle.embed.mongo.transitions.Mongod
+import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
+import de.flapdoodle.reverse.TransitionWalker
 import org.bson.Document
 import org.grails.datastore.mapping.core.Session
 import org.grails.datastore.mapping.mongo.MongoDatastore
@@ -16,24 +22,47 @@ import spock.lang.Specification
  */
 class MongoConnectionSourcesSpec extends Specification {
 
-    @Shared @AutoCleanup MongoDatastore datastore
+    @Shared
+    @AutoCleanup
+    MongoDatastore datastore
+
+    @Shared
+    protected TransitionWalker.ReachedState<RunningMongodProcess> running
+
+    @Shared
+    protected ServerAddress serverAddress
 
     void setupSpec() {
+        ImmutableMongod mongodbConfig = Mongod.instance()
+        Version.Main version = Version.Main.V7_0
+
+        this.running = mongodbConfig.start(version)
+        this.serverAddress = running.current().getServerAddress()
+
         Map config = [
                 "grails.gorm.connectionSourcesClass"          : MongoConnectionSources,
                 "grails.gorm.multiTenancy.mode"               :"DATABASE",
                 "grails.gorm.multiTenancy.tenantResolverClass":SystemPropertyTenantResolver,
-                (MongoSettings.SETTING_URL)                   : "mongodb://localhost/defaultDb",
+                (MongoSettings.SETTING_URL)                   : "mongodb://$serverAddress/defaultDb".toString(),
                 (MongoSettings.SETTING_CONNECTIONS): [
                         test1: [
-                                url: "mongodb://localhost/test1Db"
+                                url: "mongodb://$serverAddress/test1Db".toString()
                         ],
                         test2: [
-                                url: "mongodb://localhost/test2Db"
+                                url: "mongodb://$serverAddress/test2Db".toString()
                         ]
                 ]
         ]
         this.datastore = new MongoDatastore(config, CompanyB)
+    }
+
+    void cleanupSpec() {
+        this.serverAddress = null
+        if (this.running != null) {
+            this.running.close()
+        }
+        this.running = null
+        this.datastore.destroy()
     }
 
     void "Test persist and retrieve entities with multi tenancy"() {

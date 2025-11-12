@@ -16,9 +16,19 @@
 package org.grails.datastore.gorm.mongo.java;
 
 import org.grails.datastore.gorm.mongo.Book;
+import org.grails.datastore.mapping.config.Settings;
 import org.grails.datastore.mapping.core.Session;
 import org.grails.datastore.mapping.model.PersistentEntity;
 import org.grails.datastore.mapping.mongo.MongoDatastore;
+import org.grails.datastore.mapping.mongo.config.MongoSettings;
+
+import de.flapdoodle.embed.mongo.commands.ServerAddress;
+import de.flapdoodle.embed.mongo.distribution.Version;
+import de.flapdoodle.embed.mongo.transitions.ImmutableMongod;
+import de.flapdoodle.embed.mongo.transitions.Mongod;
+import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess;
+import de.flapdoodle.reverse.TransitionWalker;
+import org.apache.groovy.util.Maps;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,6 +38,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 /**
@@ -39,19 +50,33 @@ public class MongoResultListJavaForEachTest {
     MongoDatastore datastore;
     PlatformTransactionManager transactionManager;
     TransactionStatus transaction;
+    TransitionWalker.ReachedState<RunningMongodProcess> running;
+    ServerAddress serverAddress;
+
     @Before
     public void setup() {
-        datastore = new MongoDatastore(Book.class);
-        transactionManager = datastore.getTransactionManager();
-        transaction = transactionManager.getTransaction(new DefaultTransactionDefinition());
+        ImmutableMongod mongodbConfig = Mongod.instance();
+        Version.Main version = Version.Main.V7_0;
 
+        this.running = mongodbConfig.start(version);
+        this.serverAddress = running.current().getServerAddress();
+        Map<String, Object> config = Maps.of(Settings.SETTING_FAIL_ON_ERROR, true,
+                MongoSettings.SETTING_URL, "mongodb://" + serverAddress);
+        this.datastore = new MongoDatastore(config, Book.class);
+        this.transactionManager = datastore.getTransactionManager();
+        this.transaction = transactionManager.getTransaction(new DefaultTransactionDefinition());
     }
 
     @After
     public void cleanup() {
-        transactionManager.commit(transaction);
-        if (datastore != null) {
-            datastore.close();
+        this.serverAddress = null;
+        if (this.running != null) {
+            this.running.close();
+        }
+        this.running = null;
+        this.transactionManager.commit(this.transaction);
+        if (this.datastore != null) {
+            this.datastore.close();
         }
     }
 
