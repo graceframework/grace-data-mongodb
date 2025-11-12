@@ -3,7 +3,6 @@ package org.grails.datastore.bson.codecs
 import groovy.json.JsonSlurper
 import org.bson.codecs.configuration.CodecRegistries
 import org.bson.codecs.configuration.CodecRegistry
-import org.bson.json.JsonMode
 import org.bson.json.JsonWriterSettings
 import org.grails.datastore.bson.json.JsonReader
 import org.grails.datastore.bson.json.JsonWriter
@@ -38,7 +37,7 @@ class BsonPersistentEntityCodecSpec extends Specification {
         format.setTimeZone(UTC)
 
         def date = format.parse('1973/07/09')
-        codec.encode(new JsonWriter(sw,new JsonWriterSettings(JsonMode.STRICT)), new Person(name: "Fred", age: 12, dateOfBirth: date))
+        codec.encode(new JsonWriter(sw, JsonWriterSettings.builder().build()), new Person(name: "Fred", age: 12, dateOfBirth: date))
 
         def json = new JsonSlurper().parseText(sw.toString())
         then:"The result is encoded JSON"

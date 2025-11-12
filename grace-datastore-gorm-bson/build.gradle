@@ -1,4 +1,9 @@
+plugins {
+    id 'grace.build.common'
+}
+
 dependencies {
-    api "org.graceframework:grace-datastore-gorm:$datastoreVersion"
-    api "org.mongodb:bson:$mongodbDriverVersion"
+    api libs.grace.datastore.gorm
+    api libs.mongodb.bson
+    testImplementation libs.groovy.json
 }
