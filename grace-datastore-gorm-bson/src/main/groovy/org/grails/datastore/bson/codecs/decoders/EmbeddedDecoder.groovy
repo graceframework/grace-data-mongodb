@@ -4,6 +4,7 @@ import groovy.transform.CompileStatic
 import org.bson.BsonReader
 import org.bson.codecs.DecoderContext
 import org.bson.codecs.configuration.CodecRegistry
+
 import org.grails.datastore.bson.codecs.BsonPersistentEntityCodec
 import org.grails.datastore.bson.codecs.PropertyDecoder
 import org.grails.datastore.mapping.dirty.checking.DirtyCheckable
@@ -20,16 +21,17 @@ import org.grails.datastore.mapping.reflect.EntityReflector
 class EmbeddedDecoder implements PropertyDecoder<Embedded> {
 
     @Override
-    void decode(BsonReader reader, Embedded property, EntityAccess entityAccess, DecoderContext decoderContext, CodecRegistry codecRegistry) {
+    void decode(BsonReader reader, Embedded property, EntityAccess entityAccess, DecoderContext decoderContext,
+            CodecRegistry codecRegistry) {
         def associatedEntity = property.associatedEntity
         BsonPersistentEntityCodec codec = createEmbeddedEntityCodec(codecRegistry, associatedEntity)
 
         def decoded = codec.decode(reader, decoderContext)
-        if(decoded instanceof DirtyCheckable) {
+        if (decoded instanceof DirtyCheckable) {
             decoded.trackChanges()
         }
 
-        if(property.isBidirectional()) {
+        if (property.isBidirectional()) {
             Association inverseSide = property.getInverseSide()
             EntityReflector associationReflector = property.getAssociatedEntity().getReflector()
             associationReflector.setProperty(
@@ -43,10 +45,11 @@ class EmbeddedDecoder implements PropertyDecoder<Embedded> {
                 property.name,
                 decoded
         )
-
     }
 
-    protected BsonPersistentEntityCodec createEmbeddedEntityCodec(CodecRegistry codecRegistry, PersistentEntity associatedEntity) {
+    protected BsonPersistentEntityCodec createEmbeddedEntityCodec(CodecRegistry codecRegistry,
+            PersistentEntity associatedEntity) {
         new BsonPersistentEntityCodec(codecRegistry, associatedEntity)
     }
+
 }

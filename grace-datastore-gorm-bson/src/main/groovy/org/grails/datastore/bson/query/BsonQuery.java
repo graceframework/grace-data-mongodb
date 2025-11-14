@@ -1,12 +1,37 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.grails.datastore.bson.query;
 
-import grails.gorm.DetachedCriteria;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
+
 import org.bson.BsonReader;
 import org.bson.BsonType;
 import org.bson.Document;
 import org.bson.codecs.EncoderContext;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.codehaus.groovy.runtime.NullObject;
+import org.springframework.dao.InvalidDataAccessResourceUsageException;
+
+import grails.gorm.DetachedCriteria;
+
 import org.grails.datastore.bson.codecs.CodecCustomTypeMarshaller;
 import org.grails.datastore.mapping.config.Property;
 import org.grails.datastore.mapping.core.Session;
@@ -20,20 +45,17 @@ import org.grails.datastore.mapping.model.types.Embedded;
 import org.grails.datastore.mapping.model.types.ToOne;
 import org.grails.datastore.mapping.proxy.ProxyHandler;
 import org.grails.datastore.mapping.query.Query;
-import org.grails.datastore.mapping.query.Restrictions;
 import org.grails.datastore.mapping.reflect.EntityReflector;
-import org.springframework.dao.InvalidDataAccessResourceUsageException;
-
-import java.util.*;
-import java.util.regex.Pattern;
 
 /**
- * A base class for Query implementations that create BSON queries based on MongoDB query format. See https://docs.mongodb.com/manual/tutorial/query-documents/
+ * A base class for Query implementations that create BSON queries based on MongoDB query format.
+ * See https://docs.mongodb.com/manual/tutorial/query-documents/
  *
  * @author Graeme Rocher
  * @since 6.0
  */
 public abstract class BsonQuery extends Query {
+
     public static final String PROJECT_OPERATOR = "$project";
     public static final String SORT_OPERATOR = "$sort";
     public static final String IN_OPERATOR = "$in";
@@ -77,7 +99,7 @@ public abstract class BsonQuery extends Query {
                 Object converted = mappingContext.getConversionService().convert(value, identity.getType());
                 Property mappedForm = identity.getMapping().getMappedForm();
                 String targetProperty = mappedForm.getTargetName();
-                if(targetProperty == null) {
+                if (targetProperty == null) {
                     targetProperty = identity.getName();
                 }
                 query.put(targetProperty, converted);
@@ -91,13 +113,15 @@ public abstract class BsonQuery extends Query {
                 Object value;
                 if ((persistentProperty instanceof Embedded) && criterion.getValue() != null) {
                     value = queryEncoder.encode((Embedded) persistentProperty, criterion.getValue());
-                } else {
+                }
+                else {
                     value = criterion.getValue();
                 }
                 if (value instanceof Pattern) {
                     Pattern pattern = (Pattern) value;
                     query.put(propertyName, new Document(REGEX_OPERATOR, pattern.toString()));
-                } else {
+                }
+                else {
                     query.put(propertyName, value);
                 }
             }
@@ -184,7 +208,9 @@ public abstract class BsonQuery extends Query {
         queryHandlers.put(RLike.class, new QueryHandler<RLike>() {
             public void handle(EmbeddedQueryEncoder queryEncoder, RLike like, Document query, PersistentEntity entity) {
                 Object value = like.getValue();
-                if (value == null) value = "null";
+                if (value == null) {
+                    value = "null";
+                }
                 final String expr = value.toString();
                 Pattern regex = Pattern.compile(expr);
                 String propertyName = getPropertyName(entity, like);
@@ -266,7 +292,7 @@ public abstract class BsonQuery extends Query {
                 for (Criterion criterion : criteria.getCriteria()) {
                     Document negatedQuery = new Document();
                     nor.add(negatedQuery);
-                    if(criterion instanceof PropertyCriterion) {
+                    if (criterion instanceof PropertyCriterion) {
                         PropertyCriterion pc = (PropertyCriterion) criterion;
                         PersistentProperty property = entity.getPropertyByName(pc.getProperty());
                         if (property instanceof Custom) {
@@ -279,7 +305,8 @@ public abstract class BsonQuery extends Query {
                     final QueryHandler queryHandler = queryHandlers.get(criterion.getClass());
                     if (queryHandler != null) {
                         queryHandler.handle(queryEncoder, criterion, negatedQuery, entity);
-                    } else {
+                    }
+                    else {
                         throw new UnsupportedOperationException("Query of type " + criterion.getClass().getSimpleName() + " cannot be negated");
                     }
                 }
@@ -359,7 +386,7 @@ public abstract class BsonQuery extends Query {
             @Override
             public void handle(Junction criteria, String attributeName, BsonReader queryReader) {
                 Object value = readBsonValue(queryReader, queryReader.getCurrentBsonType());
-                if(value != null && !(value instanceof NullObject)) {
+                if (value != null && !(value instanceof NullObject)) {
                     criteria.add(new Query.GreaterThan(attributeName, value));
                 }
             }
@@ -369,7 +396,7 @@ public abstract class BsonQuery extends Query {
             @Override
             public void handle(Junction criteria, String attributeName, BsonReader queryReader) {
                 Object value = readBsonValue(queryReader, queryReader.getCurrentBsonType());
-                if(value != null && !(value instanceof NullObject)) {
+                if (value != null && !(value instanceof NullObject)) {
                     criteria.add(new Query.GreaterThanEquals(attributeName, value));
                 }
             }
@@ -379,7 +406,7 @@ public abstract class BsonQuery extends Query {
             @Override
             public void handle(Junction criteria, String attributeName, BsonReader queryReader) {
                 Object value = readBsonValue(queryReader, queryReader.getCurrentBsonType());
-                if(value != null && !(value instanceof NullObject)) {
+                if (value != null && !(value instanceof NullObject)) {
                     criteria.add(new Query.LessThan(attributeName, value));
                 }
             }
@@ -388,7 +415,7 @@ public abstract class BsonQuery extends Query {
             @Override
             public void handle(Junction criteria, String attributeName, BsonReader queryReader) {
                 Object value = readBsonValue(queryReader, queryReader.getCurrentBsonType());
-                if(value != null && !(value instanceof NullObject)) {
+                if (value != null && !(value instanceof NullObject)) {
                     criteria.add(new Query.LessThanEquals(attributeName, value));
                 }
             }
@@ -397,7 +424,7 @@ public abstract class BsonQuery extends Query {
             @Override
             public void handle(Junction criteria, String attributeName, BsonReader queryReader) {
                 Object value = readBsonValue(queryReader, queryReader.getCurrentBsonType());
-                if(value != null && !(value instanceof NullObject)) {
+                if (value != null && !(value instanceof NullObject)) {
                     criteria.add(new Query.NotEquals(attributeName, value));
                 }
             }
@@ -406,7 +433,7 @@ public abstract class BsonQuery extends Query {
             @Override
             public void handle(Junction criteria, String attributeName, BsonReader queryReader) {
                 Object value = readBsonValue(queryReader, queryReader.getCurrentBsonType());
-                if(value != null) {
+                if (value != null) {
                     criteria.add(new Query.Equals(attributeName, value));
                 }
             }
@@ -416,7 +443,7 @@ public abstract class BsonQuery extends Query {
             @Override
             public void handle(Junction criteria, String attributeName, BsonReader queryReader) {
                 Object value = readBsonValue(queryReader, queryReader.getCurrentBsonType());
-                if(value != null && !(value instanceof NullObject)) {
+                if (value != null && !(value instanceof NullObject)) {
                     criteria.add(new Query.RLike(attributeName, value.toString()));
                 }
             }
@@ -483,12 +510,12 @@ public abstract class BsonQuery extends Query {
     private static List readArrayOfValues(BsonReader queryReader) {
         List values = new ArrayList();
         BsonType bsonType = queryReader.getCurrentBsonType();
-        if(bsonType == BsonType.ARRAY) {
+        if (bsonType == BsonType.ARRAY) {
             queryReader.readStartArray();
             bsonType = queryReader.readBsonType();
-            while(bsonType != BsonType.END_OF_DOCUMENT) {
+            while (bsonType != BsonType.END_OF_DOCUMENT) {
                 Object value = readBsonValue(queryReader, queryReader.getCurrentBsonType());
-                if(value instanceof NullObject) {
+                if (value instanceof NullObject) {
                     value = null;
                 }
                 values.add(value);
@@ -501,8 +528,8 @@ public abstract class BsonQuery extends Query {
     }
 
     private static void parseJunctionDocuments(Junction junction, String attributeName, BsonReader queryReader, BsonType bsonType) {
-        while(bsonType != BsonType.END_OF_DOCUMENT) {
-            if(bsonType == BsonType.DOCUMENT) {
+        while (bsonType != BsonType.END_OF_DOCUMENT) {
+            if (bsonType == BsonType.DOCUMENT) {
                 parseQueryAttributeValue(queryReader, bsonType, attributeName, junction);
             }
             else {
@@ -544,7 +571,7 @@ public abstract class BsonQuery extends Query {
     public static Document createBsonQuery(CodecRegistry registry, PersistentEntity entity, Junction junction) {
         EmbeddedQueryEncoder embeddedQueryEncoder = new CodecRegistryEmbeddedQueryEncoder(registry);
         Document query = new Document();
-        if(junction instanceof Conjunction) {
+        if (junction instanceof Conjunction) {
             populateBsonQuery(embeddedQueryEncoder, query, junction.getCriteria(), entity);
         }
         else {
@@ -591,11 +618,11 @@ public abstract class BsonQuery extends Query {
 
             criteria.add(junction);
 
-            if(isJunction) {
+            if (isJunction) {
                 queryReader.readStartArray();
                 bsonType = queryReader.readBsonType();
-                while(bsonType != BsonType.END_OF_DOCUMENT) {
-                    if(bsonType == BsonType.DOCUMENT) {
+                while (bsonType != BsonType.END_OF_DOCUMENT) {
+                    if (bsonType == BsonType.DOCUMENT) {
                         parseQueryAttributeValue(queryReader, queryReader.getCurrentBsonType(), attributeName, junction);
                     }
                     else {
@@ -606,7 +633,7 @@ public abstract class BsonQuery extends Query {
                 queryReader.readEndArray();
             }
             else {
-                while(bsonType != BsonType.END_OF_DOCUMENT) {
+                while (bsonType != BsonType.END_OF_DOCUMENT) {
                     attributeName = queryReader.readName();
                     bsonType = queryReader.getCurrentBsonType();
                     parseQueryAttributeValue(queryReader, bsonType, attributeName, junction);
@@ -623,10 +650,10 @@ public abstract class BsonQuery extends Query {
         if (bsonType == BsonType.DOCUMENT) {
             queryReader.readStartDocument();
             bsonType = queryReader.getCurrentBsonType();
-            while(bsonType != BsonType.END_OF_DOCUMENT) {
+            while (bsonType != BsonType.END_OF_DOCUMENT) {
                 String operator = queryReader.readName();
                 OperatorHandler operatorHandler = operatorHandlers.get(operator);
-                if(operatorHandler != null) {
+                if (operatorHandler != null) {
                     operatorHandler.handle(junction, attributeName, queryReader);
                 }
                 else {
@@ -635,10 +662,11 @@ public abstract class BsonQuery extends Query {
                 bsonType = queryReader.readBsonType();
             }
             queryReader.readEndDocument();
-        } else {
+        }
+        else {
             Object value = readBsonValue(queryReader, bsonType);
-            if(value != null) {
-                if(value instanceof NullObject) {
+            if (value != null) {
+                if (value instanceof NullObject) {
                     junction.add(new IsNull(attributeName));
                 }
                 else {
@@ -700,7 +728,8 @@ public abstract class BsonQuery extends Query {
             if (targetIdentityName != null) {
                 propertyName = targetIdentityName;
             }
-        } else {
+        }
+        else {
             PersistentProperty property = entity.getPropertyByName(propertyName);
             if (property != null) {
                 propertyName = MappingUtils.getTargetKey(property);
@@ -719,7 +748,8 @@ public abstract class BsonQuery extends Query {
     }
 
     private static void addWherePropertyComparison(Document query, String propertyName, String otherPropertyName, String operator) {
-        query.put(WHERE_OPERATOR, new StringBuilder(THIS_PREFIX).append(propertyName).append(operator).append(THIS_PREFIX).append(otherPropertyName).toString());
+        query.put(WHERE_OPERATOR, new StringBuilder(THIS_PREFIX)
+                .append(propertyName).append(operator).append(THIS_PREFIX).append(otherPropertyName).toString());
     }
 
     private static void handleLike(PersistentEntity entity, Like like, Document query, boolean caseSensitive) {
@@ -747,14 +777,15 @@ public abstract class BsonQuery extends Query {
                 PersistentEntity pe = mappingContext.getPersistentEntity(
                         value.getClass().getName());
                 ProxyHandler proxyHandler = mappingContext.getProxyHandler();
-                if(proxyHandler.isProxy(value)) {
+                if (proxyHandler.isProxy(value)) {
                     values.add(proxyHandler.getIdentifier(value));
                 }
                 else {
                     EntityReflector reflector = mappingContext.getEntityReflector(pe);
                     values.add(reflector.getIdentifier(value));
                 }
-            } else {
+            }
+            else {
                 values.add(value);
             }
         }
@@ -778,41 +809,8 @@ public abstract class BsonQuery extends Query {
         throw new IllegalArgumentException("Argument to size constraint must be a number");
     }
 
-    /**
-     * Handles an individual criterion
-     *
-     * @param <T>
-     */
-    protected interface QueryHandler<T> {
-        void handle(EmbeddedQueryEncoder queryEncoder, T criterion, Document query, PersistentEntity entity);
-    }
-
-    /**
-     * Handles query operators when reading BSON
-     */
-    protected interface OperatorHandler {
-        void handle(Junction criteria, String attributeName, BsonReader queryReader);
-    }
-
-    /**
-     *
-     * Handles a projection
-     *
-     * @param <T>
-     */
-    protected interface ProjectionHandler<T extends Projection> {
-        /**
-         * Handles a projection modifying the aggregation pipeline appropriately
-         *
-         * @param entity        The entity
-         * @param groupByObject The group by object
-         * @param projection    The projection
-         * @return The key to be used to obtain the projected value from the pipeline results
-         */
-        String handle(PersistentEntity entity, Document projectObject, Document groupByObject, T projection);
-    }
-
-    protected static void populateBsonQuery(final EmbeddedQueryEncoder queryEncoder, Document query, List<Criterion> criteria, final PersistentEntity entity) {
+    protected static void populateBsonQuery(final EmbeddedQueryEncoder queryEncoder, Document query, List<Criterion> criteria,
+            final PersistentEntity entity) {
         // if a query combines more than 1 item, wrap the items in individual $and or $or arguments
         // so that property names can't clash (e.g. for an $and containing two $ors)
         for (Criterion criterion : criteria) {
@@ -824,28 +822,33 @@ public abstract class BsonQuery extends Query {
                     PersistentProperty property = entity.getPropertyByName(pc.getProperty());
                     if (property instanceof Custom) {
                         CustomTypeMarshaller customTypeMarshaller = ((Custom) property).getCustomTypeMarshaller();
-                        if(!(customTypeMarshaller instanceof CodecCustomTypeMarshaller)) {
+                        if (!(customTypeMarshaller instanceof CodecCustomTypeMarshaller)) {
                             customTypeMarshaller.query(property, pc, query);
                             continue;
                         }
                     }
                 }
                 queryHandler.handle(queryEncoder, criterion, dbo, entity);
-            } else {
-                throw new InvalidDataAccessResourceUsageException("Queries of type " + criterion.getClass().getSimpleName() + " are not supported by this implementation");
+            }
+            else {
+                throw new InvalidDataAccessResourceUsageException("Queries of type " + criterion.getClass().getSimpleName() +
+                        " are not supported by this implementation");
             }
         }
     }
 
-    protected static void populateBsonQuery(final EmbeddedQueryEncoder queryEncoder, Document query, Junction criteria, final PersistentEntity entity) {
+    protected static void populateBsonQuery(final EmbeddedQueryEncoder queryEncoder, Document query, Junction criteria,
+            final PersistentEntity entity) {
         List subList = null;
         if (criteria instanceof Disjunction) {
             subList = new ArrayList();
             query.put(OR_OPERATOR, subList);
-        } else if (criteria instanceof Conjunction) {
+        }
+        else if (criteria instanceof Conjunction) {
             subList = new ArrayList();
             query.put(AND_OPERATOR, subList);
-        } else if (criteria instanceof Negation) {
+        }
+        else if (criteria instanceof Negation) {
             subList = new ArrayList();
             query.put(NOT_OPERATOR, new Document(OR_OPERATOR, subList));
         }
@@ -869,9 +872,52 @@ public abstract class BsonQuery extends Query {
                     }
                 }
                 queryHandler.handle(queryEncoder, criterion, dbo, entity);
-            } else {
-                throw new InvalidDataAccessResourceUsageException("Queries of type " + criterion.getClass().getSimpleName() + " are not supported by this implementation");
+            }
+            else {
+                throw new InvalidDataAccessResourceUsageException("Queries of type " + criterion.getClass().getSimpleName() +
+                        " are not supported by this implementation");
             }
         }
     }
+
+    /**
+     * Handles an individual criterion
+     *
+     * @param <T>
+     */
+    protected interface QueryHandler<T> {
+
+        void handle(EmbeddedQueryEncoder queryEncoder, T criterion, Document query, PersistentEntity entity);
+
+    }
+
+    /**
+     * Handles query operators when reading BSON
+     */
+    protected interface OperatorHandler {
+
+        void handle(Junction criteria, String attributeName, BsonReader queryReader);
+
+    }
+
+    /**
+     *
+     * Handles a projection
+     *
+     * @param <T>
+     */
+    protected interface ProjectionHandler<T extends Projection> {
+
+        /**
+         * Handles a projection modifying the aggregation pipeline appropriately
+         *
+         * @param entity        The entity
+         * @param groupByObject The group by object
+         * @param projection    The projection
+         * @return The key to be used to obtain the projected value from the pipeline results
+         */
+        String handle(PersistentEntity entity, Document projectObject, Document groupByObject, T projection);
+
+    }
+
 }

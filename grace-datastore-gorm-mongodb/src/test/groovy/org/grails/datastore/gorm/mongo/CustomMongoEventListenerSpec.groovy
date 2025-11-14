@@ -1,60 +1,88 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.grails.datastore.gorm.mongo
 
+import org.springframework.context.ApplicationEvent
+
 import grails.gorm.tests.GormDatastoreSpec
-import grails.gorm.tests.Plant
 import grails.persistence.Entity
+
 import org.grails.datastore.mapping.core.Datastore
 import org.grails.datastore.mapping.engine.event.AbstractPersistenceEvent
 import org.grails.datastore.mapping.engine.event.AbstractPersistenceEventListener
-import org.springframework.context.ApplicationEvent
-import static org.grails.datastore.mapping.engine.event.EventType.*
+
+import static org.grails.datastore.mapping.engine.event.EventType.PostDelete
+import static org.grails.datastore.mapping.engine.event.EventType.PostInsert
+import static org.grails.datastore.mapping.engine.event.EventType.PostLoad
+import static org.grails.datastore.mapping.engine.event.EventType.PostUpdate
+import static org.grails.datastore.mapping.engine.event.EventType.PreDelete
+import static org.grails.datastore.mapping.engine.event.EventType.PreInsert
+import static org.grails.datastore.mapping.engine.event.EventType.PreLoad
+import static org.grails.datastore.mapping.engine.event.EventType.PreUpdate
 
 /**
  */
-class CustomMongoEventListenerSpec extends GormDatastoreSpec{
+class CustomMongoEventListenerSpec extends GormDatastoreSpec {
 
-    void "Test corrects are triggered for persistence life cycle"() {
-        given:"A registered event listener"
-            def listener = new MyPersistenceListener(session.datastore)
-            session.datastore.applicationEventPublisher.addApplicationListener(listener)
+    void 'Test corrects are triggered for persistence life cycle'() {
+        given: 'A registered event listener'
+        def listener = new MyPersistenceListener(session.datastore)
+        session.datastore.applicationEventPublisher.addApplicationListener(listener)
 
-        when:"An entity is saved"
-            def p = new Listener(name:"Cabbage")
-            p.save(flush:true)
+        when: 'An entity is saved'
+        def p = new Listener(name: 'Cabbage')
+        p.save(flush: true)
 
         then:
-            listener.preInsertCount == 1
-            listener.postInsertCount == 1
-            listener.preUpdateCount == 0
-            listener.postUpdateCount == 0
-            listener.preDeleteCount == 0
-            listener.postDeleteCount == 0
-            listener.preLoadCount == 0
-            listener.postLoadCount == 0
+        listener.preInsertCount == 1
+        listener.postInsertCount == 1
+        listener.preUpdateCount == 0
+        listener.postUpdateCount == 0
+        listener.preDeleteCount == 0
+        listener.postDeleteCount == 0
+        listener.preLoadCount == 0
+        listener.postLoadCount == 0
     }
 
     @Override
     List getDomainClasses() {
         [Listener]
     }
+
 }
 
 @Entity
 class Listener {
+
     Long id
     Long version
     String name
 
     def beforeInsert() {
-        println "ENTITY PRE INSERT"
+        println 'ENTITY PRE INSERT'
     }
 
     def afterInsert() {
-        println "ENTITY POST INSERT"
+        println 'ENTITY POST INSERT'
     }
+
 }
 
 class MyPersistenceListener extends AbstractPersistenceEventListener {
+
     int preInsertCount
     int postInsertCount
     int preUpdateCount
@@ -64,12 +92,13 @@ class MyPersistenceListener extends AbstractPersistenceEventListener {
     int preLoadCount
     int postLoadCount
 
-    public MyPersistenceListener(final Datastore datastore) {
+    MyPersistenceListener(final Datastore datastore) {
         super(datastore)
     }
+
     @Override
     protected void onPersistenceEvent(final AbstractPersistenceEvent event) {
-        switch(event.eventType) {
+        switch (event.eventType) {
             case PreInsert:
                 println "LISTENER PRE INSERT ${event.entityObject}"
                 preInsertCount++
@@ -81,32 +110,33 @@ class MyPersistenceListener extends AbstractPersistenceEventListener {
             case PreUpdate:
                 println "LISTENER PRE UPDATE ${event.entityObject}"
                 preUpdateCount++
-                break;
+                break
             case PostUpdate:
                 println "LISTENER POST UPDATE ${event.entityObject}"
                 postUpdateCount++
-                break;
+                break
             case PreDelete:
                 println "LISTENER PRE DELETE ${event.entityObject}"
                 preDeleteCount++
-                break;
+                break
             case PostDelete:
                 println "LISTENER POST DELETE ${event.entityObject}"
                 postDeleteCount++
-                break;
+                break
             case PreLoad:
                 println "LISTENER PRE LOAD ${event.entityObject}"
                 preLoadCount++
-                break;
+                break
             case PostLoad:
                 println "LISTENER POST LOAD ${event.entityObject}"
                 postLoadCount++
-                break;
+                break
         }
     }
 
     @Override
-    public boolean supportsEventType(Class<? extends ApplicationEvent> eventType) {
+    boolean supportsEventType(Class<? extends ApplicationEvent> eventType) {
         return true
     }
+
 }

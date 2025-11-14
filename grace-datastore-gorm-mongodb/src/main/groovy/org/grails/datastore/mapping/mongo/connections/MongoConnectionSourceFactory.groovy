@@ -1,3 +1,18 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.grails.datastore.mapping.mongo.connections
 
 import com.mongodb.MongoClientSettings
@@ -7,13 +22,14 @@ import groovy.transform.CompileStatic
 import org.bson.codecs.Codec
 import org.bson.codecs.configuration.CodecRegistries
 import org.bson.codecs.configuration.CodecRegistry
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.core.env.PropertyResolver
+
 import org.grails.datastore.mapping.core.connections.AbstractConnectionSourceFactory
 import org.grails.datastore.mapping.core.connections.ConnectionSource
 import org.grails.datastore.mapping.core.connections.ConnectionSourceSettings
 import org.grails.datastore.mapping.core.connections.DefaultConnectionSource
 import org.grails.datastore.mapping.mongo.config.MongoSettings
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.core.env.PropertyResolver
 
 /**
  * A factory for building {@link MongoClient} instances
@@ -47,18 +63,20 @@ class MongoConnectionSourceFactory extends AbstractConnectionSourceFactory<Mongo
     }
 
     @Override
-    protected <F extends ConnectionSourceSettings> MongoConnectionSourceSettings buildSettings(String name, PropertyResolver configuration, F fallbackSettings, boolean isDefaultDataSource) {
+    protected <F extends ConnectionSourceSettings> MongoConnectionSourceSettings buildSettings(String name,
+            PropertyResolver configuration, F fallbackSettings, boolean isDefaultDataSource) {
         String prefix = isDefaultDataSource ? MongoSettings.PREFIX : MongoSettings.SETTING_CONNECTIONS + ".$name"
-        MongoConnectionSourceSettingsBuilder settingsBuilder = new MongoConnectionSourceSettingsBuilder(configuration, prefix, fallbackSettings)
+        MongoConnectionSourceSettingsBuilder settingsBuilder =
+                new MongoConnectionSourceSettingsBuilder(configuration, prefix, fallbackSettings)
         MongoClientSettings.Builder builder = clientOptionsBuilder ?: settingsBuilder.clientOptionsBuilder
         MongoConnectionSourceSettings settings = settingsBuilder.build()
-        if(builder != null) {
+        if (builder != null) {
             settings.options = builder
         }
 
-        if(isDefaultDataSource) {
+        if (isDefaultDataSource) {
             CodecRegistry codecRegistry = CodecRegistries.fromCodecs(codecs as List<? extends Codec<?>>)
-            if(this.codecRegistry != null) {
+            if (this.codecRegistry != null) {
                 codecRegistry = CodecRegistries.fromRegistries(codecRegistry, this.codecRegistry)
             }
             settings.codecRegistry = codecRegistry
@@ -67,11 +85,13 @@ class MongoConnectionSourceFactory extends AbstractConnectionSourceFactory<Mongo
     }
 
     @Override
-    ConnectionSource<MongoClient, MongoConnectionSourceSettings> create(String name, MongoConnectionSourceSettings settings) {
+    ConnectionSource<MongoClient, MongoConnectionSourceSettings> create(String name,
+            MongoConnectionSourceSettings settings) {
         MongoClientSettings.Builder builder = settings.options
         if (builder != null) {
             builder = MongoClientSettings.builder(builder.build())
-        } else {
+        }
+        else {
             builder = MongoClientSettings.builder()
         }
 
@@ -81,14 +101,17 @@ class MongoConnectionSourceFactory extends AbstractConnectionSourceFactory<Mongo
     }
 
     @Override
-    def <F extends ConnectionSourceSettings> MongoConnectionSourceSettings buildRuntimeSettings(String name, PropertyResolver configuration, F fallbackSettings) {
-        MongoConnectionSourceSettingsBuilder settingsBuilder = new MongoConnectionSourceSettingsBuilder(configuration, "", fallbackSettings)
+    <F extends ConnectionSourceSettings> MongoConnectionSourceSettings buildRuntimeSettings(String name,
+            PropertyResolver configuration, F fallbackSettings) {
+        MongoConnectionSourceSettingsBuilder settingsBuilder =
+                new MongoConnectionSourceSettingsBuilder(configuration, '', fallbackSettings)
         MongoClientSettings.Builder builder = clientOptionsBuilder ?: settingsBuilder.clientOptionsBuilder
         MongoConnectionSourceSettings settings = settingsBuilder.build()
-        if(builder != null) {
+        if (builder != null) {
             settings.options = builder
         }
         return settings
     }
+
 }
 

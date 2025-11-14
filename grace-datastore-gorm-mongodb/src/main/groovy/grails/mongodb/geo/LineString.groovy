@@ -1,10 +1,11 @@
-/* Copyright (C) 2014 SpringSource
+/*
+ * Copyright 2014-2025 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,20 +26,22 @@ import groovy.transform.EqualsAndHashCode
  */
 @CompileStatic
 @EqualsAndHashCode
-class LineString extends Shape implements GeoJSON{
+class LineString extends Shape implements GeoJSON {
+
     /**
      * The points that constitute the LineString
      */
-    final List<Point>  coordinates
+    final List<Point> coordinates
 
     /**
      * Constructs a LineString for the given {@link Point} instances
      *
      * @param points The {@link Point} instances. Must be at least 2 points.
      */
-    LineString(Point...points) {
-        if(points.size() < 2)
-            throw new IllegalArgumentException("At least 2 points required for a LineString")
+    LineString(Point... points) {
+        if (points.size() < 2) {
+            throw new IllegalArgumentException('At least 2 points required for a LineString')
+        }
         this.coordinates = points.toList()
     }
 
@@ -49,7 +52,7 @@ class LineString extends Shape implements GeoJSON{
      */
     @Override
     List<List<Double>> asList() {
-        coordinates.collect() { Point p -> p.asList()}
+        coordinates.collect { Point p -> p.asList() }
     }
 
     @Override
@@ -59,22 +62,27 @@ class LineString extends Shape implements GeoJSON{
 
     /**
      * Constructs a LineString for the given coordinates
-     * @param coords The coordinates, which should be a list of {@link Point} instances or lists containing x and y values
+     * @param coords The coordinates, which should be a list of {@link Point} instances or lists containing x and y
+     * values
      * @return A LineString
      */
-    public static LineString valueOf(List coords) {
-        if(coords.size() < 2) throw new IllegalArgumentException("Coordinates should contain at least 2 entries for a LineString")
+    static LineString valueOf(List coords) {
+        if (coords.size() < 2) {
+            throw new IllegalArgumentException(
+                    'Coordinates should contain at least 2 entries for a LineString')
+        }
 
-        List<Point> points = (List<Point>) coords.collect() {
-            if(it instanceof Point) {
+        List<Point> points = (List<Point>) coords.collect {
+            if (it instanceof Point) {
                 return it
             }
-            else if(it instanceof List) {
-                return Point.valueOf((List<Number>)it)
+            else if (it instanceof List) {
+                return Point.valueOf((List<Number>) it)
             }
             throw new IllegalArgumentException("Invalid coordinates: $coords")
         }
 
         return new LineString(points as Point[])
     }
+
 }

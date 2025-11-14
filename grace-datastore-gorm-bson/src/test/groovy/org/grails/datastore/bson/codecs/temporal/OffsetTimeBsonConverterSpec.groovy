@@ -1,4 +1,23 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.grails.datastore.bson.codecs.temporal
+
+import java.time.LocalTime
+import java.time.OffsetTime
+import java.time.ZoneOffset
 
 import org.bson.BsonReader
 import org.bson.BsonType
@@ -6,22 +25,18 @@ import org.bson.BsonWriter
 import spock.lang.Shared
 import spock.lang.Specification
 
-import java.time.LocalTime
-import java.time.OffsetTime
-import java.time.ZoneOffset
-
 class OffsetTimeBsonConverterSpec extends Specification implements OffsetTimeBsonConverter {
 
     @Shared
     OffsetTime offsetTime
 
     void setupSpec() {
-        TimeZone.default = TimeZone.getTimeZone("America/Los_Angeles")
-        LocalTime localTime = LocalTime.of(6,5,4,3)
+        TimeZone.default = TimeZone.getTimeZone('America/Los_Angeles')
+        LocalTime localTime = LocalTime.of(6, 5, 4, 3)
         offsetTime = OffsetTime.of(localTime, ZoneOffset.ofHours(-6))
     }
 
-    void "test read"() {
+    void 'test read'() {
         given:
         BsonReader bsonReader = Mock(BsonReader) {
             1 * readInt64() >> 43504000000003
@@ -37,7 +52,7 @@ class OffsetTimeBsonConverterSpec extends Specification implements OffsetTimeBso
         converted.nano == 3
     }
 
-    void "test write"() {
+    void 'test write'() {
         given:
         BsonWriter bsonWriter = Mock(BsonWriter)
 
@@ -48,8 +63,9 @@ class OffsetTimeBsonConverterSpec extends Specification implements OffsetTimeBso
         1 * bsonWriter.writeInt64(43504000000003)
     }
 
-    void "test bson type"() {
+    void 'test bson type'() {
         expect:
         bsonType() == BsonType.INT64
     }
+
 }

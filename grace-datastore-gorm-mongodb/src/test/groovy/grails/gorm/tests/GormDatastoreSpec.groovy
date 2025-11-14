@@ -1,3 +1,18 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package grails.gorm.tests
 
 import com.mongodb.BasicDBObject
@@ -8,11 +23,18 @@ import de.flapdoodle.embed.mongo.transitions.ImmutableMongod
 import de.flapdoodle.embed.mongo.transitions.Mongod
 import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
 import de.flapdoodle.reverse.TransitionWalker
+import org.bson.Document
+import org.springframework.context.support.GenericApplicationContext
+import org.springframework.context.support.StaticMessageSource
+import org.springframework.validation.Validator
+import spock.lang.AutoCleanup
+import spock.lang.Shared
+import spock.lang.Specification
 
 import grails.core.DefaultGrailsApplication
 import grails.core.GrailsApplication
 import grails.gorm.validation.PersistentEntityValidator
-import org.bson.Document
+
 import org.grails.datastore.bson.query.BsonQuery
 import org.grails.datastore.gorm.GormEnhancer
 import org.grails.datastore.gorm.mongo.Birthday
@@ -27,40 +49,32 @@ import org.grails.datastore.mapping.mongo.AbstractMongoSession
 import org.grails.datastore.mapping.mongo.MongoDatastore
 import org.grails.datastore.mapping.mongo.config.MongoSettings
 import org.grails.datastore.mapping.query.Query
-import org.springframework.context.support.GenericApplicationContext
-import org.springframework.context.support.StaticMessageSource
-import org.springframework.validation.Validator
-import spock.lang.AutoCleanup
-import spock.lang.Shared
-import spock.lang.Specification
 
 /**
  * Created by graemerocher on 06/06/16.
  */
 abstract class GormDatastoreSpec extends Specification {
 
-    static final CURRENT_TEST_NAME = "current.gorm.test"
+    static final CURRENT_TEST_NAME = 'current.gorm.test'
 
     @Shared
     protected TransitionWalker.ReachedState<RunningMongodProcess> running
+
     @Shared
     protected ServerAddress serverAddress
 
-    List getDomainClasses() {
-        [       Book, ChildEntity, City, ClassWithListArgBeforeValidate, ClassWithNoArgBeforeValidate,
-                ClassWithOverloadedBeforeValidate, CommonTypes, Country, EnumThing, Face, Highway,
-                Location, ModifyPerson, Nose, OptLockNotVersioned, OptLockVersioned, Person, PersonEvent,
-                Pet, PetType, Plant, PlantCategory, Publication, Task, TestEntity]
-    }
+    @Shared
+    @AutoCleanup
+    MongoDatastore mongoDatastore
 
-    Map getConfiguration() {
-        [:]
-    }
+    @Shared
+    MongoClient mongoClient
 
-    @Shared @AutoCleanup MongoDatastore mongoDatastore
-    @Shared MongoClient mongoClient
-    @Shared GrailsApplication grailsApplication
-    @Shared MappingContext mappingContext
+    @Shared
+    GrailsApplication grailsApplication
+
+    @Shared
+    MappingContext mappingContext
 
     AbstractMongoSession session
 
@@ -79,45 +93,51 @@ abstract class GormDatastoreSpec extends Specification {
 
         def config = [
                 (MongoSettings.SETTING_DATABASE_NAME): databaseName,
-                (MongoSettings.SETTING_URL): "mongodb://$serverAddress".toString()
+                (MongoSettings.SETTING_URL)          : "mongodb://$serverAddress".toString()
         ]
         // disable decimal type support on Travis, since MongoDB 3.4 support doesn't exist there yet
-        if(System.getenv('TRAVIS')) {
+        if (System.getenv('TRAVIS')) {
             config.put(MongoSettings.SETTING_DECIMAL_TYPE, false)
         }
         mongoDatastore = new MongoDatastore(config << getConfiguration())
         mappingContext = mongoDatastore.mappingContext
-        mappingContext.mappingFactory.registerCustomType(new AbstractMappingAwareCustomTypeMarshaller<Birthday, Document, Document>(Birthday) {
-            @Override
-            protected Object writeInternal(PersistentProperty property, String key, Birthday value, Document nativeTarget) {
+        mappingContext.mappingFactory.registerCustomType(
+                new AbstractMappingAwareCustomTypeMarshaller<Birthday, Document, Document>(Birthday) {
 
-                final converted = value.date.time
-                nativeTarget.put(key, converted)
-                return converted
-            }
+                    @Override
+                    protected Object writeInternal(PersistentProperty property, String key, Birthday value,
+                            Document nativeTarget) {
 
-            @Override
-            protected void queryInternal(PersistentProperty property, String key, Query.PropertyCriterion criterion, Document nativeQuery) {
-                if (criterion instanceof Query.Between) {
-                    def dbo = new BasicDBObject()
-                    dbo.put(BsonQuery.GTE_OPERATOR, criterion.getFrom().date.time)
-                    dbo.put(BsonQuery.LTE_OPERATOR, criterion.getTo().date.time)
-                    nativeQuery.put(key, dbo)
-                }
-                else {
-                    nativeQuery.put(key, criterion.value.date.time)
-                }
-            }
+                        final converted = value.date.time
+                        nativeTarget.put(key, converted)
+                        return converted
+                    }
 
-            @Override
-            protected Birthday readInternal(PersistentProperty property, String key, Document nativeSource) {
-                final num = nativeSource.get(key)
-                if (num instanceof Long) {
-                    return new Birthday(new Date(num))
-                }
-                return null
-            }
-        })
+                    @Override
+                    protected void queryInternal(PersistentProperty property, String key,
+                            Query.PropertyCriterion criterion, Document nativeQuery) {
+                        if (criterion instanceof Query.Between) {
+                            def dbo = new BasicDBObject()
+                            dbo.put(BsonQuery.GTE_OPERATOR, criterion.getFrom().date.time)
+                            dbo.put(BsonQuery.LTE_OPERATOR, criterion.getTo().date.time)
+                            nativeQuery.put(key, dbo)
+                        }
+                        else {
+                            nativeQuery.put(key, criterion.value.date.time)
+                        }
+                    }
+
+                    @Override
+                    protected Birthday readInternal(PersistentProperty property, String key, Document nativeSource) {
+                        final num = nativeSource.get(key)
+                        if (num instanceof Long) {
+                            return new Birthday(new Date(num))
+                        }
+                        return null
+                    }
+
+                })
+
         mappingContext.addPersistentEntities(allClasses as Class[])
         mongoClient = mongoDatastore.getMongoClient()
 
@@ -127,12 +147,15 @@ abstract class GormDatastoreSpec extends Specification {
     }
 
     void setupValidator(Class entityClass, Validator validator = null) {
-        PersistentEntity entity = mappingContext.persistentEntities.find { PersistentEntity e -> e.javaClass == entityClass }
+        PersistentEntity entity = mappingContext.persistentEntities.find { PersistentEntity e ->
+            e.javaClass == entityClass
+        }
         def messageSource = new StaticMessageSource()
-        def evaluator = new DefaultConstraintEvaluator(new DefaultConstraintRegistry(messageSource), mappingContext, Collections.emptyMap())
+        def evaluator = new DefaultConstraintEvaluator(new DefaultConstraintRegistry(messageSource), mappingContext,
+                Collections.emptyMap())
         if (entity) {
-            mappingContext.addEntityValidator(entity, validator ?:
-            new PersistentEntityValidator(entity, messageSource, evaluator))
+            mappingContext.addEntityValidator(entity,
+                    validator ?: new PersistentEntityValidator(entity, messageSource, evaluator))
         }
     }
 
@@ -146,7 +169,7 @@ abstract class GormDatastoreSpec extends Specification {
         DatastoreUtils.unbindSession(session)
         mongoDatastore.getMongoClient().getDatabase(mongoDatastore.defaultDatabase).drop()
         mongoDatastore.buildIndex()
-        for(cls in getDomainClasses()) {
+        for (cls in getDomainClasses()) {
             GormEnhancer.findValidationApi(cls).setValidator(null)
         }
     }
@@ -158,6 +181,17 @@ abstract class GormDatastoreSpec extends Specification {
         }
         this.running = null
         this.mongoDatastore.close()
+    }
+
+    List getDomainClasses() {
+        [Book, ChildEntity, City, ClassWithListArgBeforeValidate, ClassWithNoArgBeforeValidate,
+         ClassWithOverloadedBeforeValidate, CommonTypes, Country, EnumThing, Face, Highway,
+         Location, ModifyPerson, Nose, OptLockNotVersioned, OptLockVersioned, Person, PersonEvent,
+         Pet, PetType, Plant, PlantCategory, Publication, Task, TestEntity]
+    }
+
+    Map getConfiguration() {
+        [:]
     }
 
 }

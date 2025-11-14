@@ -1,14 +1,15 @@
 package org.grails.datastore.bson.codecs
 
+import java.time.ZonedDateTime
+
 import groovy.transform.CompileStatic
 import org.bson.BsonReader
 import org.bson.BsonWriter
 import org.bson.codecs.Codec
 import org.bson.codecs.DecoderContext
 import org.bson.codecs.EncoderContext
-import org.grails.datastore.bson.codecs.temporal.ZonedDateTimeBsonConverter
 
-import java.time.ZonedDateTime
+import org.grails.datastore.bson.codecs.temporal.ZonedDateTimeBsonConverter
 
 /**
  * A class to translate a {@link ZonedDateTime} in MongoDB
@@ -30,4 +31,5 @@ class ZonedDateTimeCodec implements Codec<ZonedDateTime>, ZonedDateTimeBsonConve
 
     @Override
     Class<ZonedDateTime> getEncoderClass() { ZonedDateTime }
+
 }

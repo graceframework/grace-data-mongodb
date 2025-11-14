@@ -1,14 +1,15 @@
 package org.grails.datastore.bson.codecs
 
+import java.time.LocalDate
+
 import groovy.transform.CompileStatic
 import org.bson.BsonReader
 import org.bson.BsonWriter
 import org.bson.codecs.Codec
 import org.bson.codecs.DecoderContext
 import org.bson.codecs.EncoderContext
-import org.grails.datastore.bson.codecs.temporal.LocalDateBsonConverter
 
-import java.time.LocalDate
+import org.grails.datastore.bson.codecs.temporal.LocalDateBsonConverter
 
 /**
  * A class to translate a {@link LocalDate} in MongoDB
@@ -30,4 +31,5 @@ class LocalDateCodec implements Codec<LocalDate>, LocalDateBsonConverter {
 
     @Override
     Class<LocalDate> getEncoderClass() { LocalDate }
+
 }

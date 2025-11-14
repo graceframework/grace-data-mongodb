@@ -6,11 +6,11 @@ import org.bson.BsonType
 import org.bson.codecs.DecoderContext
 import org.bson.codecs.configuration.CodecRegistry
 import org.bson.types.ObjectId
+import org.springframework.dao.DataIntegrityViolationException
+
 import org.grails.datastore.bson.codecs.PropertyDecoder
 import org.grails.datastore.mapping.engine.EntityAccess
 import org.grails.datastore.mapping.model.types.Identity
-import org.springframework.dao.DataIntegrityViolationException
-
 
 /**
  * A {@PropertyDecoder} capable of decoding the {@link org.grails.datastore.mapping.model.types.Identity}
@@ -31,9 +31,11 @@ class IdentityDecoder implements PropertyDecoder<Identity> {
 
             @Override
             void decode(BsonReader bsonReader, Identity property, EntityAccess access) {
-                access.setIdentifierNoConversion( bsonReader.readObjectId() )
+                access.setIdentifierNoConversion(bsonReader.readObjectId())
             }
+
         }
+
         IDENTITY_DECODERS[Long] = new IdentityTypeDecoder() {
 
             @Override
@@ -43,8 +45,9 @@ class IdentityDecoder implements PropertyDecoder<Identity> {
 
             @Override
             void decode(BsonReader bsonReader, Identity property, EntityAccess access) {
-                access.setIdentifierNoConversion( bsonReader.readInt64() )
+                access.setIdentifierNoConversion(bsonReader.readInt64())
             }
+
         }
 
         IDENTITY_DECODERS[Integer] = new IdentityTypeDecoder() {
@@ -56,8 +59,9 @@ class IdentityDecoder implements PropertyDecoder<Identity> {
 
             @Override
             void decode(BsonReader bsonReader, Identity property, EntityAccess access) {
-                access.setIdentifierNoConversion( bsonReader.readInt32() )
+                access.setIdentifierNoConversion(bsonReader.readInt32())
             }
+
         }
 
         def stringDecoder = new IdentityTypeDecoder() {
@@ -71,7 +75,9 @@ class IdentityDecoder implements PropertyDecoder<Identity> {
             void decode(BsonReader bsonReader, Identity property, EntityAccess access) {
                 access.setIdentifierNoConversion(bsonReader.readString())
             }
+
         }
+
         IDENTITY_DECODERS[String] = stringDecoder
 
         DEFAULT_DECODERS[BsonType.INT32] = new IdentityTypeDecoder() {
@@ -85,7 +91,9 @@ class IdentityDecoder implements PropertyDecoder<Identity> {
             void decode(BsonReader bsonReader, Identity property, EntityAccess access) {
                 access.setIdentifier(bsonReader.readInt32())
             }
+
         }
+
         DEFAULT_DECODERS[BsonType.STRING] = new IdentityTypeDecoder() {
 
             @Override
@@ -97,7 +105,9 @@ class IdentityDecoder implements PropertyDecoder<Identity> {
             void decode(BsonReader bsonReader, Identity property, EntityAccess access) {
                 access.setIdentifier(bsonReader.readString())
             }
+
         }
+
         DEFAULT_DECODERS[BsonType.INT64] = new IdentityTypeDecoder() {
 
             @Override
@@ -109,7 +119,9 @@ class IdentityDecoder implements PropertyDecoder<Identity> {
             void decode(BsonReader bsonReader, Identity property, EntityAccess access) {
                 access.setIdentifier(bsonReader.readInt64())
             }
+
         }
+
         DEFAULT_DECODERS[BsonType.OBJECT_ID] = new IdentityTypeDecoder() {
 
             @Override
@@ -121,21 +133,25 @@ class IdentityDecoder implements PropertyDecoder<Identity> {
             void decode(BsonReader bsonReader, Identity property, EntityAccess access) {
                 access.setIdentifier(bsonReader.readObjectId())
             }
+
         }
     }
 
     @Override
-    void decode(BsonReader bsonReader, Identity property, EntityAccess access, DecoderContext decoderContext, CodecRegistry codecRegistry) {
+    void decode(BsonReader bsonReader, Identity property, EntityAccess access, DecoderContext decoderContext,
+            CodecRegistry codecRegistry) {
         BsonType bsonType = bsonReader.currentBsonType
         IdentityTypeDecoder decoder = IDENTITY_DECODERS.get(property.type)
-        if(decoder == null) {
+        if (decoder == null) {
             throw new IllegalStateException("Invalid identity type [$property.type}] for entity ${property.owner.name}")
         }
 
-        if(bsonType != decoder.bsonType()) {
+        if (bsonType != decoder.bsonType()) {
             decoder = DEFAULT_DECODERS.get(bsonType)
-            if(decoder == null) {
-                throw new DataIntegrityViolationException("Invalid underlying identifier type [$bsonType] reading entity ${property.owner.name}. Please verify the integrity of your data.")
+            if (decoder == null) {
+                throw new DataIntegrityViolationException(
+                        "Invalid underlying identifier type [$bsonType] reading entity ${property.owner.name}. " +
+                                'Please verify the integrity of your data.')
             }
         }
 
@@ -143,8 +159,11 @@ class IdentityDecoder implements PropertyDecoder<Identity> {
     }
 
     interface IdentityTypeDecoder {
+
         BsonType bsonType()
 
         void decode(BsonReader bsonReader, Identity property, EntityAccess access)
+
     }
+
 }

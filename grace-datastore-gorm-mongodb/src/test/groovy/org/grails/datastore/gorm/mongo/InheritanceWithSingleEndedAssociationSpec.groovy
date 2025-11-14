@@ -1,10 +1,27 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.grails.datastore.gorm.mongo
+
+import org.bson.types.ObjectId
+import spock.lang.Issue
 
 import grails.gorm.tests.GormDatastoreSpec
 import grails.persistence.Entity
-import org.bson.types.ObjectId
+
 import org.grails.datastore.mapping.proxy.EntityProxy
-import spock.lang.Issue
 
 /**
  * @author Graeme Rocher
@@ -12,8 +29,8 @@ import spock.lang.Issue
 class InheritanceWithSingleEndedAssociationSpec extends GormDatastoreSpec {
 
     @Issue('GPMONGODB-304')
-    void "Test that inheritance works correctly with single ended associations"() {
-        given:"An association that uses a parent class type"
+    void 'Test that inheritance works correctly with single ended associations'() {
+        given: 'An association that uses a parent class type'
 
         def a = new NodeA(a: 'A')
         def c = new NodeC(c: 'C')
@@ -22,36 +39,35 @@ class InheritanceWithSingleEndedAssociationSpec extends GormDatastoreSpec {
         a.save(validate: false)
         c.save(validate: false)
         b2.save(validate: false)
-        b.save(flush:true, validate: false)
+        b.save(flush: true, validate: false)
         session.clear()
 
-        when:"The association is queried with the get method"
+        when: 'The association is queried with the get method'
         def nodeB = NodeB.get(b.id)
         def nodeB2 = NodeB.get(b2.id)
 
-        then:"The correct type is returned for the association"
+        then: 'The correct type is returned for the association'
         nodeB.childNode instanceof EntityProxy
         nodeB.childNode.target instanceof NodeA
         nodeB2.childNode instanceof EntityProxy
         nodeB2.childNode.target instanceof NodeC
 
-        when:"The association is queried with a finder"
+        when: 'The association is queried with a finder'
         nodeB = NodeB.findById(b.id)
         nodeB2 = NodeB.findById(b2.id)
-        then:"The correct type is returned for the association"
+        then: 'The correct type is returned for the association'
         nodeB.childNode.target instanceof NodeA
         nodeB2.childNode.target instanceof NodeC
 
 //        nodeB = NodeB.findByB('B')
 //        assertTrue(nodeB.childNode instanceof NodeA) // doesn't work, childNode is a Node
-
-
     }
 
     @Override
     List getDomainClasses() {
         [Node, NodeA, NodeB, NodeC]
     }
+
 }
 
 @Entity
@@ -66,22 +82,29 @@ class Node {
 
     static mapping = {
         version false
-//        collection "node"
+//        collection 'node'
     }
+
 }
 
 @Entity
 class NodeA extends Node {
+
     String a
+
 }
 
 @Entity
 class NodeB extends Node {
+
     String b
     Node childNode
+
 }
 
 @Entity
 class NodeC extends NodeA {
+
     String c
+
 }

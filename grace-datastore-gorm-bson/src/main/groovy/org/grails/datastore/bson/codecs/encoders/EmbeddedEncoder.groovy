@@ -4,6 +4,7 @@ import groovy.transform.CompileStatic
 import org.bson.BsonWriter
 import org.bson.codecs.EncoderContext
 import org.bson.codecs.configuration.CodecRegistry
+
 import org.grails.datastore.bson.codecs.BsonPersistentEntityCodec
 import org.grails.datastore.bson.codecs.PropertyEncoder
 import org.grails.datastore.mapping.engine.EntityAccess
@@ -18,12 +19,12 @@ import org.grails.datastore.mapping.model.types.Embedded
 class EmbeddedEncoder implements PropertyEncoder<Embedded> {
 
     @Override
-    void encode(BsonWriter writer, Embedded property, Object value, EntityAccess parentAccess, EncoderContext encoderContext, CodecRegistry codecRegistry) {
-        if(value != null) {
-
+    void encode(BsonWriter writer, Embedded property, Object value, EntityAccess parentAccess,
+            EncoderContext encoderContext, CodecRegistry codecRegistry) {
+        if (value != null) {
             def mappingContext = parentAccess.persistentEntity.mappingContext
             PersistentEntity associatedEntity = mappingContext.getPersistentEntity(value.getClass().name)
-            if(associatedEntity == null) {
+            if (associatedEntity == null) {
                 associatedEntity = property.associatedEntity
             }
 
@@ -32,7 +33,6 @@ class EmbeddedEncoder implements PropertyEncoder<Embedded> {
             def reflector = mappingContext.getEntityReflector(associatedEntity)
             BsonPersistentEntityCodec codec = createEmbeddedEntityCodec(codecRegistry, associatedEntity)
 
-
             def identifier = reflector.getIdentifier(value)
 
             def hasIdentifier = identifier != null
@@ -40,7 +40,9 @@ class EmbeddedEncoder implements PropertyEncoder<Embedded> {
         }
     }
 
-    protected BsonPersistentEntityCodec createEmbeddedEntityCodec(CodecRegistry codecRegistry, PersistentEntity associatedEntity) {
+    protected BsonPersistentEntityCodec createEmbeddedEntityCodec(CodecRegistry codecRegistry,
+            PersistentEntity associatedEntity) {
         new BsonPersistentEntityCodec(codecRegistry, associatedEntity)
     }
+
 }

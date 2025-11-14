@@ -1,4 +1,21 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package grails.mongodb.api
+
+import java.util.function.Function
 
 import com.mongodb.ReadPreference
 import com.mongodb.client.AggregateIterable
@@ -6,12 +23,12 @@ import com.mongodb.client.FindIterable
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
 import com.mongodb.client.model.FindOneAndDeleteOptions
-import grails.gorm.api.GormStaticOperations
 import org.bson.Document
 import org.bson.conversions.Bson
-import org.grails.datastore.gorm.mongo.MongoCriteriaBuilder
 
-import java.util.function.Function
+import grails.gorm.api.GormStaticOperations
+
+import org.grails.datastore.gorm.mongo.MongoCriteriaBuilder
 
 /**
  * Static operations for GORM for MongoDB
@@ -74,7 +91,7 @@ interface MongoStaticOperations<D> extends GormStaticOperations<D> {
      * @param callable The callable
      * @return The result of the closure
      */
-    public <T> T withCollection(String collectionName, Closure<T> callable)
+    <T> T withCollection(String collectionName, Closure<T> callable)
 
     /**
      * Use the given collection for this entity for the scope of the session
@@ -90,7 +107,7 @@ interface MongoStaticOperations<D> extends GormStaticOperations<D> {
      * @param callable The callable
      * @return The result of the closure
      */
-    public <T> T withDatabase(String databaseName, Closure<T> callable)
+    <T> T withDatabase(String databaseName, Closure<T> callable)
 
     /**
      * Use the given database for this entity for the scope of the session
@@ -108,7 +125,8 @@ interface MongoStaticOperations<D> extends GormStaticOperations<D> {
     int countHits(String query)
 
     /**
-     * Execute a MongoDB aggregation pipeline. Note that the pipeline should return documents that represent this domain class as each return document will be converted to a domain instance in the result set
+     * Execute a MongoDB aggregation pipeline. Note that the pipeline should return documents that represent this
+     * domain class as each return document will be converted to a domain instance in the result set
      *
      * @param pipeline The pipeline
      * @return A mongodb result list
@@ -116,7 +134,8 @@ interface MongoStaticOperations<D> extends GormStaticOperations<D> {
     List<D> aggregate(List pipeline)
 
     /**
-     * Execute a MongoDB aggregation pipeline. Note that the pipeline should return documents that represent this domain class as each return document will be converted to a domain instance in the result set
+     * Execute a MongoDB aggregation pipeline. Note that the pipeline should return documents that represent this
+     * domain class as each return document will be converted to a domain instance in the result set
      *
      * @param pipeline The pipeline
      * @param doWithAggregate A callback to modify the aggregate iterable
@@ -125,13 +144,16 @@ interface MongoStaticOperations<D> extends GormStaticOperations<D> {
     List<D> aggregate(List pipeline, Function<AggregateIterable, AggregateIterable> doWithAggregate)
 
     /**
-     * Execute a MongoDB aggregation pipeline. Note that the pipeline should return documents that represent this domain class as each return document will be converted to a domain instance in the result set
+     * Execute a MongoDB aggregation pipeline. Note that the pipeline should return documents that represent this
+     * domain class as each return document will be converted to a domain instance in the result set
      *
      * @param pipeline The pipeline
      * @param doWithAggregate A callback to modify the aggregate iterable
      * @return A mongodb result list
      */
-    List<D> aggregate(List pipeline, Function<AggregateIterable, AggregateIterable> doWithAggregate, ReadPreference readPreference)
+    List<D> aggregate(List pipeline, Function<AggregateIterable, AggregateIterable> doWithAggregate,
+            ReadPreference readPreference)
+
     /**
      * Search for entities using the given query
      *
@@ -139,6 +161,7 @@ interface MongoStaticOperations<D> extends GormStaticOperations<D> {
      * @return The results
      */
     List<D> search(String query)
+
     /**
      * Search for entities using the given query
      *
@@ -146,6 +169,7 @@ interface MongoStaticOperations<D> extends GormStaticOperations<D> {
      * @return The results
      */
     List<D> search(String query, Map options)
+
     /**
      * Searches for the top results ordered by the MongoDB score
      *
@@ -170,5 +194,6 @@ interface MongoStaticOperations<D> extends GormStaticOperations<D> {
      * @param limit The maximum number of results. Defaults to 5.
      * @return The results
      */
-    List<D> searchTop(String query, int limit, Map options )
+    List<D> searchTop(String query, int limit, Map options)
+
 }

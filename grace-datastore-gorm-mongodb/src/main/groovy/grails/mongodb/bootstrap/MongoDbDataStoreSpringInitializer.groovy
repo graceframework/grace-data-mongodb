@@ -1,10 +1,11 @@
-/* Copyright (C) 2014 SpringSource
+/*
+ * Copyright 2014-2025 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,9 +17,17 @@ package grails.mongodb.bootstrap
 
 import com.mongodb.MongoClientSettings
 import com.mongodb.client.MongoClient
-import grails.mongodb.MongoEntity
 import groovy.transform.CompileStatic
 import groovy.transform.InheritConstructors
+import org.springframework.beans.factory.support.BeanDefinitionRegistry
+import org.springframework.context.ApplicationContext
+import org.springframework.context.ApplicationEventPublisher
+import org.springframework.context.ConfigurableApplicationContext
+import org.springframework.context.support.GenericApplicationContext
+import org.springframework.util.ClassUtils
+
+import grails.mongodb.MongoEntity
+
 import org.grails.datastore.gorm.bootstrap.AbstractDatastoreInitializer
 import org.grails.datastore.gorm.events.ConfigurableApplicationContextEventPublisher
 import org.grails.datastore.gorm.events.DefaultApplicationEventPublisher
@@ -28,12 +37,6 @@ import org.grails.datastore.gorm.support.DatastorePersistenceContextInterceptor
 import org.grails.datastore.mapping.config.DatastoreServiceMethodInvokingFactoryBean
 import org.grails.datastore.mapping.mongo.MongoDatastore
 import org.grails.datastore.mapping.mongo.connections.MongoConnectionSourceFactory
-import org.springframework.beans.factory.support.BeanDefinitionRegistry
-import org.springframework.context.ApplicationContext
-import org.springframework.context.ApplicationEventPublisher
-import org.springframework.context.ConfigurableApplicationContext
-import org.springframework.context.support.GenericApplicationContext
-import org.springframework.util.ClassUtils
 
 /**
  * Used to initialize GORM for MongoDB outside of Grails
@@ -44,11 +47,11 @@ import org.springframework.util.ClassUtils
 @InheritConstructors
 class MongoDbDataStoreSpringInitializer extends AbstractDatastoreInitializer {
 
-    public static final String DEFAULT_DATABASE_NAME = "test"
+    public static final String DEFAULT_DATABASE_NAME = 'test'
 
-    public static final String DATASTORE_TYPE = "mongo"
-    protected String mongoBeanName = "mongo"
-    protected String mongoOptionsBeanName = "mongoOptions"
+    public static final String DATASTORE_TYPE = 'mongo'
+    protected String mongoBeanName = 'mongo'
+    protected String mongoOptionsBeanName = 'mongoOptions'
     protected String databaseName = DEFAULT_DATABASE_NAME
     protected Closure defaultMapping
     protected MongoClientSettings mongoOptions
@@ -83,66 +86,68 @@ class MongoDbDataStoreSpringInitializer extends AbstractDatastoreInitializer {
     @Override
     Closure getBeanDefinitions(BeanDefinitionRegistry beanDefinitionRegistry) {
         return {
-            def callable = getCommonConfiguration(beanDefinitionRegistry, "mongo")
+            def callable = getCommonConfiguration(beanDefinitionRegistry, 'mongo')
             callable.delegate = delegate
             callable.call()
             ApplicationEventPublisher eventPublisher
-            if(beanDefinitionRegistry instanceof ConfigurableApplicationContext){
-                eventPublisher = new ConfigurableApplicationContextEventPublisher((ConfigurableApplicationContext)beanDefinitionRegistry)
+            if (beanDefinitionRegistry instanceof ConfigurableApplicationContext) {
+                eventPublisher = new ConfigurableApplicationContextEventPublisher(
+                        (ConfigurableApplicationContext) beanDefinitionRegistry)
             }
-            else if(resourcePatternResolver.resourceLoader instanceof ConfigurableApplicationContext) {
-                eventPublisher = new ConfigurableApplicationContextEventPublisher((ConfigurableApplicationContext)resourcePatternResolver.resourceLoader)
+            else if (resourcePatternResolver.resourceLoader instanceof ConfigurableApplicationContext) {
+                eventPublisher = new ConfigurableApplicationContextEventPublisher(
+                        (ConfigurableApplicationContext) resourcePatternResolver.resourceLoader)
             }
             else {
                 eventPublisher = new DefaultApplicationEventPublisher()
             }
-            if(mongo == null) {
+            if (mongo == null) {
                 mongoConnectionSourceFactory(MongoConnectionSourceFactory) { bean ->
                     bean.autowire = true
                 }
-                mongoDatastore(MongoDatastore, configuration, ref('mongoConnectionSourceFactory'), eventPublisher, collectMappedClasses(DATASTORE_TYPE))
-                mongo(mongoDatastore:"getMongoClient")
+                mongoDatastore(MongoDatastore, configuration, ref('mongoConnectionSourceFactory'), eventPublisher,
+                        collectMappedClasses(DATASTORE_TYPE))
+                mongo(mongoDatastore: 'getMongoClient')
             }
             else {
-                mongoDatastore(MongoDatastore, mongo, configuration, eventPublisher, collectMappedClasses(DATASTORE_TYPE))
+                mongoDatastore(MongoDatastore, mongo, configuration, eventPublisher,
+                        collectMappedClasses(DATASTORE_TYPE))
             }
 
-            mongoMappingContext(mongoDatastore:"getMappingContext")
+            mongoMappingContext(mongoDatastore: 'getMappingContext')
 
             if (!secondaryDatastore) {
-                registerAlias "mongoMappingContext", "grailsDomainClassMappingContext"
+                registerAlias 'mongoMappingContext', 'grailsDomainClassMappingContext'
             }
 
-            mongoTransactionManager(mongoDatastore:"getTransactionManager")
-            mongoAutoTimestampEventListener(mongoDatastore:"getAutoTimestampEventListener")
-            mongoPersistenceInterceptor(getPersistenceInterceptorClass(), ref("mongoDatastore"))
+            mongoTransactionManager(mongoDatastore: 'getTransactionManager')
+            mongoAutoTimestampEventListener(mongoDatastore: 'getAutoTimestampEventListener')
+            mongoPersistenceInterceptor(getPersistenceInterceptorClass(), ref('mongoDatastore'))
             mongoPersistenceContextInterceptorAggregator(PersistenceContextInterceptorAggregator)
             def transactionManagerBeanName = TRANSACTION_MANAGER_BEAN
             if (!containsRegisteredBean(delegate, beanDefinitionRegistry, transactionManagerBeanName)) {
-                beanDefinitionRegistry.registerAlias("mongoTransactionManager", transactionManagerBeanName)
+                beanDefinitionRegistry.registerAlias('mongoTransactionManager', transactionManagerBeanName)
             }
 
             def classLoader = getClass().getClassLoader()
-            if (beanDefinitionRegistry.containsBeanDefinition('dispatcherServlet') && ClassUtils.isPresent(OSIV_CLASS_NAME, classLoader)) {
-                String interceptorName = "mongoOpenSessionInViewInterceptor"
+            if (beanDefinitionRegistry.containsBeanDefinition('dispatcherServlet') && ClassUtils.isPresent(
+                    OSIV_CLASS_NAME, classLoader)) {
+                String interceptorName = 'mongoOpenSessionInViewInterceptor'
                 "${interceptorName}"(ClassUtils.forName(OSIV_CLASS_NAME, classLoader)) {
-                    datastore = ref("mongoDatastore")
+                    datastore = ref('mongoDatastore')
                 }
             }
 
-            loadDataServices(secondaryDatastore ? "mongo" : null)
-                    .each {serviceName, serviceClass->
+            loadDataServices(secondaryDatastore ? 'mongo' : null)
+                    .each { serviceName, serviceClass ->
                         "$serviceName"(DatastoreServiceMethodInvokingFactoryBean, serviceClass) {
-                            targetObject = ref("mongoDatastore")
+                            targetObject = ref('mongoDatastore')
                             targetMethod = 'getService'
                             arguments = [serviceClass]
                         }
                     }
-
         }
     }
-
-
 
     /**
      * Sets the name of the Mongo bean to use
@@ -151,6 +156,7 @@ class MongoDbDataStoreSpringInitializer extends AbstractDatastoreInitializer {
     void setMongoBeanName(String mongoBeanName) {
         this.mongoBeanName = mongoBeanName
     }
+
     /**
      * The name of the MongoOptions bean
      *
@@ -160,12 +166,14 @@ class MongoDbDataStoreSpringInitializer extends AbstractDatastoreInitializer {
     void setMongoOptionsBeanName(String mongoOptionsBeanName) {
         this.mongoOptionsBeanName = mongoOptionsBeanName
     }
+
     /**
      * Sets the MongoOptions instance to use when constructing the Mongo instance
      */
     void setMongoOptions(MongoClientSettings mongoOptions) {
         this.mongoOptions = mongoOptions
     }
+
     /**
      * Sets a pre-existing Mongo instance to configure for
      * @param mongoClient The Mongo instance
@@ -173,6 +181,7 @@ class MongoDbDataStoreSpringInitializer extends AbstractDatastoreInitializer {
     void setMongoClient(MongoClient mongoClient) {
         this.mongo = mongoClient
     }
+
     /**
      * Sets the name of the MongoDB database to use
      */
@@ -187,4 +196,5 @@ class MongoDbDataStoreSpringInitializer extends AbstractDatastoreInitializer {
     void setDefaultMapping(Closure defaultMapping) {
         this.defaultMapping = defaultMapping
     }
+
 }

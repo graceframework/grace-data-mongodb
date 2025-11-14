@@ -1,14 +1,30 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.grails.datastore.mapping.mongo.connections
 
 import com.mongodb.ConnectionString
 import com.mongodb.MongoClientSettings
 import com.mongodb.MongoCredential
 import groovy.transform.CompileStatic
+import org.springframework.core.env.PropertyResolver
+import org.springframework.util.ReflectionUtils
+
 import org.grails.datastore.mapping.config.ConfigurationBuilder
 import org.grails.datastore.mapping.core.connections.ConnectionSourceSettings
 import org.grails.datastore.mapping.mongo.config.MongoSettings
-import org.springframework.core.env.PropertyResolver
-import org.springframework.util.ReflectionUtils
 
 /**
  * Creates MongoDB configuration
@@ -17,11 +33,13 @@ import org.springframework.util.ReflectionUtils
  * @since 6.0
  */
 @CompileStatic
-class MongoConnectionSourceSettingsBuilder extends ConfigurationBuilder<MongoConnectionSourceSettings, MongoConnectionSourceSettings>{
+class MongoConnectionSourceSettingsBuilder extends ConfigurationBuilder<MongoConnectionSourceSettings,
+        MongoConnectionSourceSettings> {
 
     MongoClientSettings.Builder clientOptionsBuilder
 
-    MongoConnectionSourceSettingsBuilder(PropertyResolver propertyResolver, String configurationPrefix, ConnectionSourceSettings fallback) {
+    MongoConnectionSourceSettingsBuilder(PropertyResolver propertyResolver, String configurationPrefix,
+            ConnectionSourceSettings fallback) {
         super(propertyResolver, configurationPrefix, fallback)
     }
 
@@ -45,8 +63,8 @@ class MongoConnectionSourceSettingsBuilder extends ConfigurationBuilder<MongoCon
 
     @Override
     protected void newChildBuilder(Object builder, String configurationPath) {
-        if(builder instanceof MongoClientSettings.Builder) {
-            clientOptionsBuilder = (MongoClientSettings.Builder)builder
+        if (builder instanceof MongoClientSettings.Builder) {
+            clientOptionsBuilder = (MongoClientSettings.Builder) builder
         }
         applyConnectionString(builder)
         applyCredentials(builder)
@@ -54,8 +72,9 @@ class MongoConnectionSourceSettingsBuilder extends ConfigurationBuilder<MongoCon
 
     @Override
     Object newChildBuilderForFallback(Object childBuilder, Object fallbackConfig) {
-        if(( childBuilder instanceof MongoClientSettings.Builder) && (fallbackConfig instanceof MongoClientSettings.Builder)) {
-            return MongoClientSettings.builder(((MongoClientSettings.Builder)fallbackConfig).build())
+        if ((childBuilder instanceof MongoClientSettings.Builder) && (fallbackConfig instanceof MongoClientSettings.
+                Builder)) {
+            return MongoClientSettings.builder(((MongoClientSettings.Builder) fallbackConfig).build())
         }
         return childBuilder
     }
@@ -81,11 +100,13 @@ class MongoConnectionSourceSettingsBuilder extends ConfigurationBuilder<MongoCon
     }
 
     protected void applyConnectionString(builder) {
-        def applyConnectionStringMethod = ReflectionUtils.findMethod(builder.getClass(), 'applyConnectionString', ConnectionString)
+        def applyConnectionStringMethod =
+                ReflectionUtils.findMethod(builder.getClass(), 'applyConnectionString', ConnectionString)
+
         if (applyConnectionStringMethod != null) {
             ConnectionString connectionString = rootBuilder.url
-            if (connectionString == null) {
 
+            if (connectionString == null) {
                 def username = rootBuilder.username
                 def password = rootBuilder.password
                 def host = rootBuilder.host
@@ -94,7 +115,9 @@ class MongoConnectionSourceSettingsBuilder extends ConfigurationBuilder<MongoCon
                 String uAndP = username && password ? "$username:$password@" : ''
                 connectionString = new ConnectionString("mongodb://${uAndP}${host}:${port}/$databaseName")
             }
+
             applyConnectionStringMethod.invoke(builder, connectionString)
         }
     }
+
 }

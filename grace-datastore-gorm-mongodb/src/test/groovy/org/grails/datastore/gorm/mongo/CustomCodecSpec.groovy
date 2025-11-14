@@ -1,4 +1,22 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.grails.datastore.gorm.mongo
+
+import java.time.Instant
+import java.util.concurrent.atomic.AtomicLong
 
 import de.flapdoodle.embed.mongo.commands.ServerAddress
 import de.flapdoodle.embed.mongo.distribution.Version
@@ -6,10 +24,6 @@ import de.flapdoodle.embed.mongo.transitions.ImmutableMongod
 import de.flapdoodle.embed.mongo.transitions.Mongod
 import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
 import de.flapdoodle.reverse.TransitionWalker
-
-import grails.gorm.time.InstantConverter
-import grails.mongodb.MongoEntity
-import grails.persistence.Entity
 import org.bson.BsonDateTime
 import org.bson.BsonDocumentWrapper
 import org.bson.BsonReader
@@ -19,19 +33,20 @@ import org.bson.codecs.Codec
 import org.bson.codecs.DecoderContext
 import org.bson.codecs.EncoderContext
 import org.bson.types.ObjectId
+import spock.lang.AutoCleanup
+import spock.lang.Shared
+import spock.lang.Specification
+
+import grails.gorm.time.InstantConverter
+import grails.mongodb.MongoEntity
+import grails.persistence.Entity
+
 import org.grails.datastore.bson.codecs.decoders.SimpleDecoder
 import org.grails.datastore.bson.codecs.encoders.SimpleEncoder
 import org.grails.datastore.bson.codecs.temporal.TemporalBsonConverter
 import org.grails.datastore.mapping.engine.EntityAccess
 import org.grails.datastore.mapping.model.PersistentProperty
 import org.grails.datastore.mapping.mongo.MongoDatastore
-import spock.lang.AutoCleanup
-import spock.lang.Shared
-import spock.lang.Specification
-
-import java.time.Instant
-import java.util.concurrent.atomic.AtomicLong
-
 import org.grails.datastore.mapping.mongo.config.MongoSettings
 
 import static java.time.temporal.ChronoUnit.DAYS
@@ -59,9 +74,9 @@ class CustomCodecSpec extends Specification {
         this.serverAddress = running.current().getServerAddress()
 
         Map config = [
-                'grails.mongodb.codecs': [BirthdayCodec, InstantAsBsonDateTimeCodec],
-                "grails.gorm.multiTenancy.mode"               : "DISCRIMINATOR",
-                (MongoSettings.SETTING_URL)                   : "mongodb://$serverAddress".toString(),
+                'grails.mongodb.codecs'        : [BirthdayCodec, InstantAsBsonDateTimeCodec],
+                'grails.gorm.multiTenancy.mode': 'DISCRIMINATOR',
+                (MongoSettings.SETTING_URL)    : "mongodb://$serverAddress".toString(),
         ]
         this.datastore = new MongoDatastore(config, [Person, InstantHolder] as Class[])
     }
@@ -75,29 +90,29 @@ class CustomCodecSpec extends Specification {
         this.datastore.close()
     }
 
-    void "Test custom codecs"() {
-        when:"A new person is saved"
+    void 'Test custom codecs'() {
+        when: 'A new person is saved'
         Person.DB.drop()
         def birthday = new Birthday(new Date())
-        new Person(name: "Fred", birthday: birthday).save(flush:true)
+        new Person(name: 'Fred', birthday: birthday).save(flush: true)
 
         Person p = Person.first()
 
-        then:"The result is correct"
-        p.name == "Fred"
+        then: 'The result is correct'
+        p.name == 'Fred'
         p.birthday
         Person.findByBirthday(birthday)
         !Person.findByBirthday(new Birthday(new Date() - 7))
     }
 
-    void "Test codec overriding for simple type Instant"() {
+    void 'Test codec overriding for simple type Instant'() {
         setup:
         def defaultInstantDecoder = SimpleDecoder.SIMPLE_TYPE_DECODERS[Instant]
         def defaultInstantEncoder = SimpleEncoder.SIMPLE_TYPE_ENCODERS[Instant]
         SimpleDecoder.SIMPLE_TYPE_DECODERS[Instant] = new InstantAsBsonDateTimeDecoder()
         SimpleEncoder.SIMPLE_TYPE_ENCODERS[Instant] = new InstantAsBsonDateTimeEncoder()
 
-        when:"A new instant holder is saved"
+        when: 'A new instant holder is saved'
         InstantAsBsonDateTimeCodec.resetCounts()
         InstantHolder.DB.drop()
         def instant = Instant.now()
@@ -107,10 +122,10 @@ class CustomCodecSpec extends Specification {
         def wrapper = new BsonDocumentWrapper(holder, codecRegistry.get(InstantHolder))
         def serializedInstant = wrapper.get('anInstant')
 
-        holder.save(flush:true)
+        holder.save(flush: true)
         InstantHolder ih = InstantHolder.first()
 
-        then:"The serialization is correct"
+        then: 'The serialization is correct'
         serializedInstant.class == BsonDateTime
         codecRegistry.get(Instant).class == InstantAsBsonDateTimeCodec
         ih.anInstant
@@ -125,21 +140,28 @@ class CustomCodecSpec extends Specification {
         SimpleDecoder.SIMPLE_TYPE_DECODERS[Instant] = defaultInstantDecoder
         SimpleEncoder.SIMPLE_TYPE_ENCODERS[Instant] = defaultInstantEncoder
     }
+
 }
 
 class BirthdayCodec implements Codec<Birthday> {
+
     Birthday decode(BsonReader reader, DecoderContext decoderContext) {
         return new Birthday(new Date(reader.readDateTime()))
     }
+
     void encode(BsonWriter writer, Birthday value, EncoderContext encoderContext) {
         writer.writeDateTime(value.date.time)
     }
+
     Class<Birthday> getEncoderClass() { Birthday }
+
 }
 
 class InstantAsBsonDateTimeCodec implements Codec<Instant> {
+
     public static AtomicLong decodeCount = new AtomicLong()
     public static AtomicLong encodeCount = new AtomicLong()
+
     static void resetCounts() {
         decodeCount.set(0)
         encodeCount.set(0)
@@ -156,6 +178,7 @@ class InstantAsBsonDateTimeCodec implements Codec<Instant> {
     }
 
     Class<Instant> getEncoderClass() { Instant }
+
 }
 
 trait InstantAsBsonDateTimeConverter implements TemporalBsonConverter<Instant>, InstantConverter {
@@ -178,21 +201,27 @@ trait InstantAsBsonDateTimeConverter implements TemporalBsonConverter<Instant>, 
 }
 
 class InstantAsBsonDateTimeEncoder implements SimpleEncoder.TypeEncoder, InstantAsBsonDateTimeConverter {
+
     @Override
     void encode(BsonWriter writer, PersistentProperty property, Object value) {
-        write(writer, (Instant)value)
+        write(writer, (Instant) value)
     }
+
 }
 
 class InstantAsBsonDateTimeDecoder implements SimpleDecoder.TypeDecoder, InstantAsBsonDateTimeConverter {
+
     @Override
     void decode(BsonReader reader, PersistentProperty property, EntityAccess entityAccess) {
         entityAccess.setPropertyNoConversion(property.name, read(reader))
     }
+
 }
 
 @Entity
 class InstantHolder implements MongoEntity<InstantHolder> {
+
     ObjectId id
     Instant anInstant
+
 }

@@ -1,10 +1,11 @@
-/* Copyright (C) 2014 SpringSource
+/*
+ * Copyright 2014-2025 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,16 +15,14 @@
  */
 package org.grails.datastore.gorm.mongo.geo
 
-import com.mongodb.BasicDBObject
-import com.mongodb.DBObject
-import grails.mongodb.geo.GeometryCollection
 import groovy.transform.CompileStatic
 import org.bson.Document
-import org.grails.datastore.mapping.core.Datastore
+
+import grails.mongodb.geo.GeometryCollection
+
 import org.grails.datastore.mapping.engine.types.AbstractMappingAwareCustomTypeMarshaller
 import org.grails.datastore.mapping.model.MappingContext
 import org.grails.datastore.mapping.model.PersistentProperty
-import org.grails.datastore.mapping.mongo.MongoDatastore
 import org.grails.datastore.mapping.mongo.config.MongoMappingContext
 
 /**
@@ -33,9 +32,9 @@ import org.grails.datastore.mapping.mongo.config.MongoMappingContext
  * @since 3.0
  */
 @CompileStatic
-class GeometryCollectionType extends AbstractMappingAwareCustomTypeMarshaller<GeometryCollection, Document, Document>{
+class GeometryCollectionType extends AbstractMappingAwareCustomTypeMarshaller<GeometryCollection, Document, Document> {
 
-    public static final String GEOMETRIES = "geometries"
+    public static final String GEOMETRIES = 'geometries'
 
     GeometryCollectionType() {
         super(GeometryCollection)
@@ -43,12 +42,13 @@ class GeometryCollectionType extends AbstractMappingAwareCustomTypeMarshaller<Ge
 
     @Override
     boolean supports(MappingContext context) {
-        return context instanceof MongoMappingContext;
+        return context instanceof MongoMappingContext
     }
 
     @Override
-    protected Object writeInternal(PersistentProperty property, String key, GeometryCollection value, Document nativeTarget) {
-        if(value != null) {
+    protected Object writeInternal(PersistentProperty property, String key, GeometryCollection value,
+            Document nativeTarget) {
+        if (value != null) {
             def col = new Document()
             col.put(GeoJSONType.GEO_TYPE, GeometryCollection.simpleName)
             col.put(GEOMETRIES, value.asList())
@@ -59,11 +59,11 @@ class GeometryCollectionType extends AbstractMappingAwareCustomTypeMarshaller<Ge
 
     @Override
     protected GeometryCollection readInternal(PersistentProperty property, String key, Document nativeSource) {
-        if(nativeSource != null) {
+        if (nativeSource != null) {
             def col = nativeSource.get(key)
-            if(col instanceof Document) {
+            if (col instanceof Document) {
                 def geometries = col.get(GEOMETRIES)
-                if(geometries instanceof List) {
+                if (geometries instanceof List) {
                     def geoCol = GeometryCollection.valueOf((List) geometries)
                     return geoCol
                 }
@@ -71,4 +71,5 @@ class GeometryCollectionType extends AbstractMappingAwareCustomTypeMarshaller<Ge
         }
         return null
     }
+
 }

@@ -1,11 +1,11 @@
 /*
- * Copyright 2015 original authors
+ * Copyright 2015-2025 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,16 +15,20 @@
  */
 package grails.mongodb
 
+import java.util.function.Function
+
 import com.mongodb.ReadPreference
 import com.mongodb.client.AggregateIterable
 import com.mongodb.client.FindIterable
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
 import com.mongodb.client.model.FindOneAndDeleteOptions
-import grails.mongodb.api.MongoAllOperations
 import groovy.transform.CompileStatic
 import org.bson.Document
 import org.bson.conversions.Bson
+
+import grails.mongodb.api.MongoAllOperations
+
 import org.grails.datastore.gorm.GormEnhancer
 import org.grails.datastore.gorm.GormEntity
 import org.grails.datastore.gorm.mongo.MongoCriteriaBuilder
@@ -37,8 +41,6 @@ import org.grails.datastore.mapping.mongo.AbstractMongoSession
 import org.grails.datastore.mapping.mongo.MongoDatastore
 import org.grails.datastore.mapping.mongo.engine.MongoEntityPersister
 
-import java.util.function.Function
-
 /**
  * Enhances the default {@link GormEntity} class with MongoDB specific methods
  *
@@ -47,7 +49,6 @@ import java.util.function.Function
  */
 @CompileStatic
 trait MongoEntity<D> implements GormEntity<D>, DynamicAttributes {
-
 
     /**
      * Allows accessing to dynamic properties with the dot operator
@@ -71,7 +72,6 @@ trait MongoEntity<D> implements GormEntity<D>, DynamicAttributes {
         DynamicAttributes.super.putAt(name, val)
     }
 
-
     /**
      * Return the DBObject instance for the entity
      *
@@ -81,12 +81,15 @@ trait MongoEntity<D> implements GormEntity<D>, DynamicAttributes {
      */
     @Deprecated
     Document getDbo() {
-        AbstractMongoSession session = (AbstractMongoSession)AbstractDatastore.retrieveSession(MongoDatastore)
+        AbstractMongoSession session = (AbstractMongoSession) AbstractDatastore.retrieveSession(MongoDatastore)
         // check first for embedded cached entries
-        SessionImplementor<Document> si = (SessionImplementor<Document>) session;
+        SessionImplementor<Document> si = (SessionImplementor<Document>) session
         def persistentEntity = session.mappingContext.getPersistentEntity(getClass().name)
-        Document dbo = (Document)si.getCachedEntry(persistentEntity, MongoEntityPersister.createEmbeddedCacheEntryKey(this))
-        if(dbo != null) return dbo
+        Document dbo = (Document) si.getCachedEntry(persistentEntity,
+                MongoEntityPersister.createEmbeddedCacheEntryKey(this))
+        if (dbo != null) {
+            return dbo
+        }
         // otherwise check if instance is contained within session
         if (!session.contains(this)) {
             dbo = new Document()
@@ -94,18 +97,18 @@ trait MongoEntity<D> implements GormEntity<D>, DynamicAttributes {
             return dbo
         }
 
-        EntityPersister persister = (EntityPersister)session.getPersister(this)
+        EntityPersister persister = (EntityPersister) session.getPersister(this)
         def id = persister.getObjectIdentifier(this)
-        dbo = (Document)((SessionImplementor)session).getCachedEntry(persister.getPersistentEntity(), id)
+        dbo = (Document) ((SessionImplementor) session).getCachedEntry(persister.getPersistentEntity(), id)
         if (dbo == null) {
             MongoCollection<Document> coll = session.getCollection(persistentEntity)
-            dbo = coll.find((Bson)new Document(MongoEntityPersister.MONGO_ID_FIELD, id))
-                    .limit(1)
-                    .first()
-
+            dbo = coll.find((Bson) new Document(MongoEntityPersister.MONGO_ID_FIELD, id))
+                      .limit(1)
+                      .first()
         }
         return dbo
     }
+
     /**
      * Finds all of the entities in the collection.
      *
@@ -226,24 +229,28 @@ trait MongoEntity<D> implements GormEntity<D>, DynamicAttributes {
     }
 
     /**
-     * Execute a MongoDB aggregation pipeline. Note that the pipeline should return documents that represent this domain class as each return document will be converted to a domain instance in the result set
+     * Execute a MongoDB aggregation pipeline. Note that the pipeline should return documents that represent this
+     * domain class as each return document will be converted to a domain instance in the result set
      *
      * @param pipeline The pipeline
      * @param doWithAggregate The function to transform the aggregate iterable (optional)
      * @return A mongodb result list
      */
-    static List<D> aggregate(List pipeline, Function<AggregateIterable, AggregateIterable> doWithAggregate = Function.identity()) {
+    static List<D> aggregate(List pipeline,
+            Function<AggregateIterable, AggregateIterable> doWithAggregate = Function.identity()) {
         currentMongoStaticApi().aggregate(pipeline, doWithAggregate)
     }
 
     /**
-     * Execute a MongoDB aggregation pipeline. Note that the pipeline should return documents that represent this domain class as each return document will be converted to a domain instance in the result set
+     * Execute a MongoDB aggregation pipeline. Note that the pipeline should return documents that represent this
+     * domain class as each return document will be converted to a domain instance in the result set
      *
      * @param pipeline The pipeline
      * @param doWithAggregate The function to transform the aggregate iterable (optional)
      * @return A mongodb result list
      */
-    static List<D> aggregate(List pipeline, Function<AggregateIterable, AggregateIterable> doWithAggregate, ReadPreference readPreference) {
+    static List<D> aggregate(List pipeline, Function<AggregateIterable, AggregateIterable> doWithAggregate,
+            ReadPreference readPreference) {
         currentMongoStaticApi().aggregate(pipeline, doWithAggregate, readPreference)
     }
 
@@ -275,16 +282,16 @@ trait MongoEntity<D> implements GormEntity<D>, DynamicAttributes {
      * @param callable The operation
      * @return The return value of the closure
      */
-    static <T> T withConnection(String connectionName, @DelegatesTo(MongoAllOperations)Closure callable) {
+    static <T> T withConnection(String connectionName, @DelegatesTo(MongoAllOperations) Closure callable) {
         def staticApi = GormEnhancer.findStaticApi(this, connectionName)
-        return (T)staticApi.withNewSession {
+        return (T) staticApi.withNewSession {
             callable.setDelegate(staticApi)
             return callable.call()
         }
     }
 
     private static MongoStaticApi currentMongoStaticApi() {
-        (MongoStaticApi)GormEnhancer.findStaticApi(this)
+        (MongoStaticApi) GormEnhancer.findStaticApi(this)
     }
 
 }

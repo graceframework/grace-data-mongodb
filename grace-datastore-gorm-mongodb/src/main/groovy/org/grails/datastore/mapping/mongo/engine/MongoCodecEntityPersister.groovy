@@ -1,11 +1,11 @@
 /*
- * Copyright 2015 original authors
+ * Copyright 2015-2025 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,14 +15,21 @@
  */
 package org.grails.datastore.mapping.mongo.engine
 
+import jakarta.persistence.CascadeType
+
 import com.mongodb.client.MongoClient
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.model.FindOneAndUpdateOptions
 import com.mongodb.client.model.ReturnDocument
-import grails.gorm.DetachedCriteria
 import groovy.transform.CompileStatic
 import org.bson.Document
 import org.bson.types.ObjectId
+import org.springframework.context.ApplicationEventPublisher
+import org.springframework.dao.CannotAcquireLockException
+import org.springframework.dao.DataIntegrityViolationException
+
+import grails.gorm.DetachedCriteria
+
 import org.grails.datastore.mapping.cache.TPCacheAdapterRepository
 import org.grails.datastore.mapping.config.Property
 import org.grails.datastore.mapping.core.IdentityGenerationException
@@ -38,8 +45,16 @@ import org.grails.datastore.mapping.dirty.checking.DirtyCheckingSupport
 import org.grails.datastore.mapping.engine.EntityAccess
 import org.grails.datastore.mapping.engine.ThirdPartyCacheEntityPersister
 import org.grails.datastore.mapping.engine.internal.MappingUtils
-import org.grails.datastore.mapping.model.*
-import org.grails.datastore.mapping.model.types.*
+import org.grails.datastore.mapping.model.ClassMapping
+import org.grails.datastore.mapping.model.IdentityMapping
+import org.grails.datastore.mapping.model.MappingContext
+import org.grails.datastore.mapping.model.PersistentEntity
+import org.grails.datastore.mapping.model.PersistentProperty
+import org.grails.datastore.mapping.model.types.Basic
+import org.grails.datastore.mapping.model.types.Embedded
+import org.grails.datastore.mapping.model.types.ManyToMany
+import org.grails.datastore.mapping.model.types.OneToMany
+import org.grails.datastore.mapping.model.types.ToOne
 import org.grails.datastore.mapping.mongo.MongoCodecSession
 import org.grails.datastore.mapping.mongo.MongoConstants
 import org.grails.datastore.mapping.mongo.MongoDatastore
@@ -48,14 +63,10 @@ import org.grails.datastore.mapping.proxy.ProxyFactory
 import org.grails.datastore.mapping.query.Query
 import org.grails.datastore.mapping.reflect.EntityReflector
 import org.grails.datastore.mapping.reflect.FieldEntityAccess
-import org.springframework.context.ApplicationEventPublisher
-import org.springframework.dao.CannotAcquireLockException
-import org.springframework.dao.DataIntegrityViolationException
-
-import jakarta.persistence.CascadeType
 
 /**
- * An {@org.grails.datastore.mapping.engine.EntityPersister} that uses the MongoDB 3.0 {@link org.bson.codecs.configuration.CodecRegistry} infrastructure
+ * An {@org.grails.datastore.mapping.engine.EntityPersister} that
+ * uses the MongoDB 3.0 {@link org.bson.codecs.configuration.CodecRegistry} infrastructure
  *
  * @author Graeme Rocher
  * @since 5.0.0
@@ -63,14 +74,13 @@ import jakarta.persistence.CascadeType
 @CompileStatic
 class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
 
-    public static final String INSTANCE_PREFIX = "instance:"
+    public static final String INSTANCE_PREFIX = 'instance:'
     public static final String MONGO_ID_FIELD = MongoConstants.MONGO_ID_FIELD
     public static final String MONGO_CLASS_FIELD = MongoConstants.MONGO_CLASS_FIELD
-    protected static final String NEXT_ID = "next_id"
+    protected static final String NEXT_ID = 'next_id'
     protected static final String NEXT_ID_SUFFIX = ".$NEXT_ID"
     public static final String INC_OPERATOR = MongoConstants.INC_OPERATOR
     public static final String ASSIGNED_IDENTIFIER_MAPPING = MongoConstants.ASSIGNED_IDENTIFIER_MAPPING
-
 
     protected final MongoCodecSession mongoSession
     protected final MongoDatastore mongoDatastore
@@ -78,15 +88,16 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
     protected boolean hasStringIdentifier = false
     protected final EntityReflector fastClassData
 
-    MongoCodecEntityPersister(MappingContext mappingContext, PersistentEntity entity, MongoCodecSession session, ApplicationEventPublisher publisher, TPCacheAdapterRepository<Object> cacheAdapterRepository) {
+    MongoCodecEntityPersister(MappingContext mappingContext, PersistentEntity entity, MongoCodecSession session,
+            ApplicationEventPublisher publisher, TPCacheAdapterRepository<Object> cacheAdapterRepository) {
         super(mappingContext, entity, session, publisher, cacheAdapterRepository)
         this.mongoSession = session
         this.mongoDatastore = session.datastore
         this.fastClassData = FieldEntityAccess.getOrIntializeReflector(entity)
         PersistentProperty identity = entity.identity
         if (identity != null) {
-            hasNumericalIdentifier = Long.class.isAssignableFrom(identity.type)
-            hasStringIdentifier = String.class.isAssignableFrom(identity.type)
+            this.hasNumericalIdentifier = Long.class.isAssignableFrom(identity.type)
+            this.hasStringIdentifier = String.class.isAssignableFrom(identity.type)
         }
     }
 
@@ -114,17 +125,15 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
         if (idList.isEmpty()) {
             // don't bother with query if list of keys is empty
             return []
-        } else {
-            createQuery()
-                    .in(pe.identity.name, idList)
-                    .list()
-
+        }
+        else {
+            createQuery().in(pe.identity.name, idList).list()
         }
     }
 
     @Override
-    protected List<Serializable> persistEntities(PersistentEntity pe, @SuppressWarnings("rawtypes") Iterable objs) {
-        objs.collect() {
+    protected List<Serializable> persistEntities(PersistentEntity pe, @SuppressWarnings('rawtypes') Iterable objs) {
+        objs.collect {
             persistEntity(pe, it)
         }
     }
@@ -138,7 +147,8 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
 
         if (cancelLoad(pe, null)) {
             return null
-        } else {
+        }
+        else {
             MongoCollection mongoCollection = getMongoCollection(pe)
             Document idQuery = createIdQuery(key)
             o = mongoCollection
@@ -164,8 +174,6 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
 
     @Override
     protected Serializable persistEntity(PersistentEntity entity, Object obj, boolean isInsert) {
-
-
         ProxyFactory proxyFactory = getProxyFactory()
         // if called internally, obj can potentially be a proxy, which won't work.
         obj = proxyFactory.unwrap(obj)
@@ -178,7 +186,6 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
             return (Serializable) id
         }
 
-
         final boolean idIsNull = id == null
         boolean isUpdate = !idIsNull && !isInsert
         def mongoCodecSession = mongoSession
@@ -188,19 +195,25 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
         }
         if (isUpdate && !getSession().isDirty(obj)) {
             return (Serializable) id
-        } else {
+        }
+        else {
             final EntityAccess entityAccess = createEntityAccess(entity, obj)
             boolean isAssigned = isAssignedId(entity)
             if (!isAssigned && idIsNull) {
                 id = generateIdentifier(entity)
                 if (id != null) {
                     entityAccess.setIdentifier(id)
-                } else {
+                }
+                else {
                     throw new DataIntegrityViolationException("Failed to generate a valid identifier for entity [$obj]")
                 }
-            } else if (idIsNull) {
-                throw new DataIntegrityViolationException("Entity [$obj] has null identifier when identifier strategy is manual assignment. Assign an appropriate identifier before persisting.")
-            } else if (isAssigned && !si.isStateless(entity)) {
+            }
+            else if (idIsNull) {
+                throw new DataIntegrityViolationException(
+                        "Entity [$obj] has null identifier when identifier strategy is manual assignment. " +
+                                'Assign an appropriate identifier before persisting.')
+            }
+            else if (isAssigned && !si.isStateless(entity)) {
                 isUpdate = mongoCodecSession.contains(obj)
             }
 
@@ -209,54 +222,69 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
 
             if (!isUpdate) {
                 MongoCodecEntityPersister self = this
+
                 mongoCodecSession.addPendingInsert(new PendingInsertAdapter(entity, id, obj, entityAccess) {
+
                     @Override
                     void run() {
                         if (!cancelInsert(entity, entityAccess)) {
                             updateCaches(entity, obj, id)
                             addCascadeOperation(new PendingOperationAdapter(entity, id, obj) {
+
                                 @Override
                                 void run() {
                                     self.firePostInsertEvent(entity, entityAccess)
                                 }
+
                             })
-                        } else {
+                        }
+                        else {
                             setVetoed(true)
                         }
                     }
+
                 })
-            } else {
+            }
+            else {
                 mongoCodecSession.addPendingUpdate(new PendingUpdateAdapter(entity, id, obj, entityAccess) {
+
                     @Override
                     void run() {
                         if (!cancelUpdate(entity, entityAccess)) {
                             updateCaches(entity, obj, id)
                             addCascadeOperation(new PendingOperationAdapter(entity, id, obj) {
+
                                 @Override
                                 void run() {
                                     firePostUpdateEvent(entity, entityAccess)
                                 }
+
                             })
-                        } else {
+                        }
+                        else {
                             setVetoed(true)
                         }
                     }
+
                 })
             }
         }
         return id
     }
 
+    @Override
     protected boolean isAssignedId(PersistentEntity persistentEntity) {
         Property mapping = persistentEntity.identity.mapping.mappedForm
         return ASSIGNED_IDENTIFIER_MAPPING.equals(mapping?.generator)
     }
 
-    private boolean isNotUpdateForAssignedId(PersistentEntity persistentEntity, Object obj, boolean update, boolean assignedId, SessionImplementor<Object> si) {
+    private boolean isNotUpdateForAssignedId(PersistentEntity persistentEntity, Object obj, boolean update,
+            boolean assignedId, SessionImplementor<Object> si) {
         return assignedId && update && !si.isStateless(persistentEntity) && !session.contains(obj)
     }
 
-    protected void processAssociations(MongoCodecSession mongoCodecSession, PersistentEntity entity, EntityAccess entityAccess, obj, ProxyFactory proxyFactory, boolean isUpdate) {
+    protected void processAssociations(MongoCodecSession mongoCodecSession, PersistentEntity entity,
+            EntityAccess entityAccess, obj, ProxyFactory proxyFactory, boolean isUpdate) {
         // now we must ensure that all cascades are handled and inserts / updates scheduled
         for (association in entity.associations) {
             def associatedEntity = association.associatedEntity
@@ -275,7 +303,8 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
                                 proxyFactory,
                                 isUpdate)
                     }
-                } else {
+                }
+                else {
                     def propertyName = association.name
                     def value = entityAccess.getProperty(propertyName)
                     if (value != null) {
@@ -289,8 +318,11 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
                                         inverseName,
                                         obj
                                 )
-                            } else if (inverseSide instanceof OneToMany) {
-                                if (isUpdate) continue
+                            }
+                            else if (inverseSide instanceof OneToMany) {
+                                if (isUpdate) {
+                                    continue
+                                }
 
                                 def inverseCollection = inverseAccess.getProperty(inverseName)
 
@@ -307,7 +339,6 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
                                         coll << obj
                                     }
                                 }
-
                             }
                         }
                         if (proxyFactory.isInitialized(value)) {
@@ -319,34 +350,35 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
                             }
                         }
                     }
-
                 }
-            } else if ((association instanceof OneToMany) || (association instanceof ManyToMany)) {
+            }
+            else if ((association instanceof OneToMany) || (association instanceof ManyToMany)) {
                 def propertyName = association.name
                 def value = entityAccess.getProperty(propertyName)
                 boolean shouldPersist = false
                 if (value != null && association.doesCascade(CascadeType.PERSIST)) {
                     if (!isUpdate) {
                         shouldPersist = true
-                    } else {
+                    }
+                    else {
                         if (value instanceof DirtyCheckableCollection) {
-                            def dirtyCheckingCollection = DirtyCheckingSupport.wrap((Collection) value, (DirtyCheckable) obj, propertyName)
+                            def dirtyCheckingCollection = DirtyCheckingSupport.wrap((Collection) value,
+                                    (DirtyCheckable) obj, propertyName)
                             if (((DirtyCheckingCollection) dirtyCheckingCollection).hasChanged()) {
                                 shouldPersist = true
                             }
-                        } else {
+                        }
+                        else {
                             shouldPersist = true
                         }
                     }
 
                     if (shouldPersist) {
-
                         def associatedEntities = (Iterable) value
                         if (association.isBidirectional()) {
                             def inverseSide = association.inverseSide
                             def inverseName = inverseSide.name
                             if (inverseSide instanceof ToOne) {
-
                                 for (ae in associatedEntities) {
                                     createEntityAccess(associatedEntity, ae)
                                             .setPropertyNoConversion(inverseName, obj)
@@ -361,7 +393,8 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
                                 identifiers
                         )
 
-                        def dirtyCheckingCollection = DirtyCheckingSupport.wrap((Collection) value, (DirtyCheckable) obj, propertyName)
+                        def dirtyCheckingCollection = DirtyCheckingSupport.wrap((Collection) value,
+                                (DirtyCheckable) obj, propertyName)
                         entityAccess.setPropertyNoConversion(propertyName, dirtyCheckingCollection)
                     }
                 }
@@ -374,7 +407,8 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
     }
 
     Serializable generateIdentifier(final PersistentEntity persistentEntity) {
-        // If there is a numeric identifier then we need to rely on optimistic concurrency controls to obtain a unique identifer
+        // If there is a numeric identifier then we need to rely on optimistic concurrency controls to obtain a
+        // unique identifer
         // sequence. If the identifier is not numeric then we assume BSON ObjectIds.
         if (hasNumericalIdentifier) {
             final String collectionName = getCollectionName(persistentEntity)
@@ -387,17 +421,21 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
             int attempts = 0
 
             while (true) {
-
                 final options = new FindOneAndUpdateOptions()
                 options.upsert(true).returnDocument(ReturnDocument.AFTER)
-                Document result = dbCollection.findOneAndUpdate(new Document(MONGO_ID_FIELD, collectionName), new Document(INC_OPERATOR, new Document(NEXT_ID, 1L)), options)
-                // result should never be null and we shouldn't come back with an error ,but you never know. We should just retry if this happens...
+                Document result = dbCollection.findOneAndUpdate(new Document(MONGO_ID_FIELD, collectionName),
+                        new Document(INC_OPERATOR, new Document(NEXT_ID, 1L)), options)
+                // result should never be null and we shouldn't come back with an error ,but you never know. We
+                // should just retry if this happens...
                 if (result != null) {
                     return result.getLong(NEXT_ID)
-                } else {
+                }
+                else {
                     attempts++
                     if (attempts > 3) {
-                        throw new IdentityGenerationException("Unable to generate identity for [$persistentEntity.name] using findAndModify after 3 attempts")
+                        throw new IdentityGenerationException(
+                                "Unable to generate identity for [$persistentEntity.name] " +
+                                        'using findAndModify after 3 attempts')
                     }
                 }
             }
@@ -412,37 +450,41 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
         return objectId.toString()
     }
 
-
     @Override
     protected void deleteEntity(PersistentEntity pe, Object obj) {
-
         ProxyFactory proxyFactory = getProxyFactory()
         // if called internally, obj can potentially be a proxy, which won't work.
         Serializable id
         if (proxyFactory.isProxy(obj)) {
             id = proxyFactory.getIdentifier(obj)
-        } else {
+        }
+        else {
             id = getObjectIdentifier(obj)
         }
 
         if (id != null) {
             MongoCodecEntityPersister self = this
             mongoSession.addPendingDelete(new PendingDeleteAdapter(pe, id, obj) {
+
                 @Override
                 void run() {
                     def entityAccess = self.createEntityAccess(pe, obj)
                     if (!self.cancelDelete(pe, entityAccess)) {
                         mongoSession.clear(obj)
                         addCascadeOperation(new PendingOperationAdapter(pe, id, obj) {
+
                             @Override
                             void run() {
                                 self.firePostDeleteEvent pe, entityAccess
                             }
+
                         })
-                    } else {
+                    }
+                    else {
                         setVetoed(true)
                     }
                 }
+
             })
             def access = createEntityAccess(pe, obj)
             for (association in pe.associations) {
@@ -458,7 +500,8 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
                             if (v != null) {
                                 mongoSession.delete(v)
                             }
-                        } else {
+                        }
+                        else {
                             if (v != null) {
                                 mongoSession.delete((Iterable) v)
                             }
@@ -470,12 +513,10 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
     }
 
     @Override
-    protected void deleteEntities(PersistentEntity pe, @SuppressWarnings("rawtypes") Iterable objects) {
+    protected void deleteEntities(PersistentEntity pe, @SuppressWarnings('rawtypes') Iterable objects) {
         def criteria = new DetachedCriteria(pe.javaClass)
-        criteria.in(pe.identity.name, objects.collect() { getObjectIdentifier(it) }.findAll() { it != null })
-        mongoSession.deleteAll(
-                criteria
-        )
+        criteria.in(pe.identity.name, objects.collect { getObjectIdentifier(it) }.findAll { it != null })
+        mongoSession.deleteAll(criteria)
     }
 
     @Override
@@ -485,27 +526,27 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
 
     @Override
     Serializable refresh(Object o) {
-        throw new UnsupportedOperationException("Refresh not supported by codec entity persistence engine")
+        throw new UnsupportedOperationException('Refresh not supported by codec entity persistence engine')
     }
 
     @Override
     Object lock(Serializable id) throws CannotAcquireLockException {
-        throw new UnsupportedOperationException("Pessimistic locks not supported by MongoDB")
+        throw new UnsupportedOperationException('Pessimistic locks not supported by MongoDB')
     }
 
     @Override
     Object lock(Serializable id, int timeout) throws CannotAcquireLockException {
-        throw new UnsupportedOperationException("Pessimistic locks not supported by MongoDB")
+        throw new UnsupportedOperationException('Pessimistic locks not supported by MongoDB')
     }
 
     @Override
     boolean isLocked(Object o) {
-        throw new UnsupportedOperationException("Pessimistic locks not supported by MongoDB")
+        throw new UnsupportedOperationException('Pessimistic locks not supported by MongoDB')
     }
 
     @Override
     void unlock(Object o) {
-        throw new UnsupportedOperationException("Pessimistic locks not supported by MongoDB")
+        throw new UnsupportedOperationException('Pessimistic locks not supported by MongoDB')
     }
 
     @Override
@@ -531,8 +572,8 @@ class MongoCodecEntityPersister extends ThirdPartyCacheEntityPersister<Object> {
         return mongoCollection
     }
 
-
     protected String getCollectionName(PersistentEntity pe) {
         mongoSession.getCollectionName(pe)
     }
+
 }

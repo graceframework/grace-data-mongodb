@@ -6,6 +6,7 @@ import org.bson.BsonReader
 import org.bson.codecs.Codec
 import org.bson.codecs.DecoderContext
 import org.bson.codecs.configuration.CodecRegistry
+
 import org.grails.datastore.bson.codecs.PropertyDecoder
 import org.grails.datastore.mapping.dirty.checking.DirtyCheckable
 import org.grails.datastore.mapping.dirty.checking.DirtyCheckingMap
@@ -22,10 +23,11 @@ class BasicCollectionTypeDecoder implements PropertyDecoder<Basic> {
 
     @CompileDynamic
     @Override
-    void decode(BsonReader reader, Basic property, EntityAccess entityAccess, DecoderContext decoderContext, CodecRegistry codecRegistry) {
+    void decode(BsonReader reader, Basic property, EntityAccess entityAccess, DecoderContext decoderContext,
+            CodecRegistry codecRegistry) {
         CustomTypeMarshaller marshaller = property.customTypeMarshaller
 
-        if(marshaller) {
+        if (marshaller) {
             CustomTypeDecoder.decode(codecRegistry, reader, decoderContext, marshaller, property, entityAccess)
         }
         else {
@@ -34,7 +36,7 @@ class BasicCollectionTypeDecoder implements PropertyDecoder<Basic> {
             def collectionType = property.type
             Codec codec
 
-            if(Set.isAssignableFrom(collectionType)) {
+            if (Set.isAssignableFrom(collectionType)) {
                 codec = codecRegistry.get(List)
             }
             else {
@@ -42,26 +44,26 @@ class BasicCollectionTypeDecoder implements PropertyDecoder<Basic> {
             }
             def value = codec.decode(reader, decoderContext)
             def entity = entityAccess.entity
-            if(value instanceof Collection) {
-                def converted = value.collect() { conversionService.convert(it, componentType) }
+            if (value instanceof Collection) {
+                def converted = value.collect { conversionService.convert(it, componentType) }
 
-
-                if(entity instanceof DirtyCheckable) {
+                if (entity instanceof DirtyCheckable) {
                     converted = DirtyCheckingSupport.wrap(converted, (DirtyCheckable) entity, property.name)
                 }
-                entityAccess.setProperty( property.name, converted )
+                entityAccess.setProperty(property.name, converted)
             }
-            else if(value instanceof Map) {
-                def converted = value.collectEntries() { Map.Entry entry ->
+            else if (value instanceof Map) {
+                def converted = value.collectEntries { Map.Entry entry ->
                     def v = entry.value
                     entry.value = conversionService.convert(v, componentType)
                     return entry
                 }
-                if(entity instanceof DirtyCheckable) {
+                if (entity instanceof DirtyCheckable) {
                     converted = new DirtyCheckingMap(converted, (DirtyCheckable) entity, property.name)
                 }
-                entityAccess.setProperty( property.name, converted)
+                entityAccess.setProperty(property.name, converted)
             }
         }
     }
+
 }

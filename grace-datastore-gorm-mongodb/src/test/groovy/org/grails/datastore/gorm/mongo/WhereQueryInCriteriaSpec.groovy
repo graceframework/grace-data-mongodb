@@ -1,3 +1,18 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.grails.datastore.gorm.mongo
 
 import grails.gorm.annotation.Entity
@@ -11,13 +26,19 @@ class WhereQueryInCriteriaSpec extends GormDatastoreSpec {
     Long owner2Id
 
     private void buildTestData() {
-        new InCritOwner(name: "Foo 1").addToDogs(name: "Chapter 1").addToDogs(name: "Chapter 2").save(flush: true, failOnError: true)
-        def owner2 = new InCritOwner(name: "Foo 2").addToDogs(name: "Chapter 3").addToDogs(name: "Chapter 4").save(flush: true, failOnError: true)
+        new InCritOwner(name: 'Foo 1')
+                .addToDogs(name: 'Chapter 1')
+                .addToDogs(name: 'Chapter 2')
+                .save(flush: true, failOnError: true)
+        def owner2 = new InCritOwner(name: 'Foo 2')
+                .addToDogs(name: 'Chapter 3')
+                .addToDogs(name: 'Chapter 4').save(flush: true, failOnError: true)
+
         owner2Id = owner2.id
         session.clear()
     }
 
-    void "test where query in with list on right side"() {
+    void 'test where query in with list on right side'() {
         given:
         buildTestData()
         List<InCritOwner> owners = InCritOwner.where {
@@ -29,7 +50,7 @@ class WhereQueryInCriteriaSpec extends GormDatastoreSpec {
         owners[0].name == 'Foo 1'
     }
 
-    void "test where query in with list of domains on right side"() {
+    void 'test where query in with list of domains on right side'() {
         given:
         buildTestData()
         def ownerList = [InCritOwner.findByName('Foo 2')]
@@ -43,7 +64,7 @@ class WhereQueryInCriteriaSpec extends GormDatastoreSpec {
         dogs[1].name == 'Chapter 4'
     }
 
-    void "test where query in with list of proxies on right side"() {
+    void 'test where query in with list of proxies on right side'() {
         given:
         buildTestData()
         def ownerList = [InCritOwner.load(owner2Id)]
@@ -59,7 +80,7 @@ class WhereQueryInCriteriaSpec extends GormDatastoreSpec {
 
     // MongoDB doesn't support joins so this won't work
     @Ignore
-    void "test where query in with list on left side"() {
+    void 'test where query in with list on left side'() {
         given:
         buildTestData()
         def dogList = [InCritDog.findByName('Chapter 3'), InCritDog.findByName('Chapter 4')]
@@ -76,17 +97,23 @@ class WhereQueryInCriteriaSpec extends GormDatastoreSpec {
     List getDomainClasses() {
         [InCritOwner, InCritDog]
     }
+
 }
 
 @Entity
 class InCritOwner {
+
     String name
+
     static hasMany = ['dogs': InCritDog]
+
 }
 
 @Entity
 class InCritDog {
-    String name
-    static belongsTo = ['owner': InCritOwner]
-}
 
+    String name
+
+    static belongsTo = ['owner': InCritOwner]
+
+}

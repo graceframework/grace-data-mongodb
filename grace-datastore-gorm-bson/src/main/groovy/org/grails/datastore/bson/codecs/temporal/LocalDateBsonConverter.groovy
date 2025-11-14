@@ -1,12 +1,13 @@
 package org.grails.datastore.bson.codecs.temporal
 
+import java.time.LocalDate
+
 import groovy.transform.CompileStatic
 import org.bson.BsonReader
 import org.bson.BsonType
 import org.bson.BsonWriter
-import grails.gorm.time.LocalDateConverter
 
-import java.time.LocalDate
+import grails.gorm.time.LocalDateConverter
 
 /**
  * A trait to read and write a {@link LocalDate} to MongoDB
@@ -30,4 +31,5 @@ trait LocalDateBsonConverter implements TemporalBsonConverter<LocalDate>, LocalD
     BsonType bsonType() {
         BsonType.DATE_TIME
     }
+
 }

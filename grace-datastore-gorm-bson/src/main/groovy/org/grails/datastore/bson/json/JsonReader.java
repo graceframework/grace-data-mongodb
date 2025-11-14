@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ *   https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,14 +15,22 @@
  */
 package org.grails.datastore.bson.json;
 
-import org.bson.*;
-import org.bson.json.JsonParseException;
-import org.bson.types.Decimal128;
-import org.bson.types.ObjectId;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
+
+import org.bson.AbstractBsonReader;
+import org.bson.BsonBinary;
+import org.bson.BsonContextType;
+import org.bson.BsonDbPointer;
+import org.bson.BsonInvalidOperationException;
+import org.bson.BsonReaderMark;
+import org.bson.BsonRegularExpression;
+import org.bson.BsonTimestamp;
+import org.bson.BsonType;
+import org.bson.json.JsonParseException;
+import org.bson.types.Decimal128;
+import org.bson.types.ObjectId;
 
 /**
  * A simplified fork of {@link org.bson.json.JsonReader} that works with readers and removes processing related to MongoDB
@@ -40,7 +48,7 @@ public class JsonReader extends AbstractBsonReader {
     /**
      * Constructs a new instance with the given JSON string.
      *
-     * @param json     A string representation of a JSON.
+     * @param json A string representation of a JSON.
      */
     public JsonReader(final String json) {
         this(new StringReader(json));
@@ -154,17 +162,22 @@ public class JsonReader extends AbstractBsonReader {
                 if (JsonToken.BOOLEAN_FALSE.equals(value) || JsonToken.BOOLEAN_TRUE.equals(value)) {
                     setCurrentBsonType(BsonType.BOOLEAN);
                     currentValue = Boolean.parseBoolean(value);
-                } else if ("Infinity".equals(value)) {
+                }
+                else if ("Infinity".equals(value)) {
                     setCurrentBsonType(BsonType.DOUBLE);
                     currentValue = Double.POSITIVE_INFINITY;
-                } else if ("NaN".equals(value)) {
+                }
+                else if ("NaN".equals(value)) {
                     setCurrentBsonType(BsonType.DOUBLE);
                     currentValue = Double.NaN;
-                } else if (JsonToken.NULL.equals(value)) {
+                }
+                else if (JsonToken.NULL.equals(value)) {
                     setCurrentBsonType(BsonType.NULL);
-                } else if ("undefined".equals(value)) {
+                }
+                else if ("undefined".equals(value)) {
                     setCurrentBsonType(BsonType.UNDEFINED);
-                } else {
+                }
+                else {
                     noValueFound = true;
                 }
                 break;
@@ -220,7 +233,6 @@ public class JsonReader extends AbstractBsonReader {
             }
         }
     }
-
 
     @Override
     protected void doReadEndDocument() {
@@ -414,10 +426,12 @@ public class JsonReader extends AbstractBsonReader {
             JsonToken token = pushedToken;
             pushedToken = null;
             return token;
-        } else {
+        }
+        else {
             try {
                 return scanner.nextToken();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 throw new JsonParseException("Cannot parse JSON due to IO error: " + e.getMessage(), e);
             }
         }
@@ -426,7 +440,8 @@ public class JsonReader extends AbstractBsonReader {
     private void pushToken(final JsonToken token) {
         if (pushedToken == null) {
             pushedToken = token;
-        } else {
+        }
+        else {
             throw new BsonInvalidOperationException("There is already a pending token.");
         }
     }
@@ -478,7 +493,8 @@ public class JsonReader extends AbstractBsonReader {
             JsonReader.this.currentValue = currentValue;
             try {
                 JsonReader.this.scanner.reader.reset();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 throw new JsonParseException("Failed to reset reader: " + e.getMessage(), e);
             }
             JsonReader.this.setContext(new Context(getParentContext(), getContextType()));
@@ -486,8 +502,8 @@ public class JsonReader extends AbstractBsonReader {
         }
     }
 
-
     protected class Context extends AbstractBsonReader.Context {
+
         protected Context(final AbstractBsonReader.Context parentContext, final BsonContextType contextType) {
             super(parentContext, contextType);
         }
@@ -499,5 +515,7 @@ public class JsonReader extends AbstractBsonReader {
         protected BsonContextType getContextType() {
             return super.getContextType();
         }
+
     }
+
 }

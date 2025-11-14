@@ -1,3 +1,18 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.grails.datastore.gorm.mongo
 
 import grails.gorm.tests.GormDatastoreSpec
@@ -7,9 +22,10 @@ import grails.gorm.tests.Person
  * Tests related to caching of entities.
  */
 class SessionCachingSpec extends GormDatastoreSpec {
-    void "test cache used for get"() {
+
+    void 'test cache used for get'() {
         given:
-        def a = new Person(firstName:"Bob", lastName:"Builder").save()
+        def a = new Person(firstName: 'Bob', lastName: 'Builder').save()
         session.flush()
 
         when:
@@ -21,10 +37,10 @@ class SessionCachingSpec extends GormDatastoreSpec {
         aa.is(a)
     }
 
-    void "test cache used for getAll"() {
+    void 'test cache used for getAll'() {
         given:
-        def a = new Person(firstName:"Bob", lastName:"Builder").save()
-        def b = new Person(firstName:"Another", lastName:"Builder").save()
+        def a = new Person(firstName: 'Bob', lastName: 'Builder').save()
+        def b = new Person(firstName: 'Another', lastName: 'Builder').save()
         session.flush()
         session.clear()
 
@@ -41,13 +57,13 @@ class SessionCachingSpec extends GormDatastoreSpec {
         list[1].is(a)
     }
 
-    void "test unique queried elements are from cache"() {
+    void 'test unique queried elements are from cache'() {
         given:
-        def p = new Person(firstName:"Bob", lastName:"Builder").save()
+        def p = new Person(firstName: 'Bob', lastName: 'Builder').save()
         session.flush()
 
         when:
-        def pp = Person.findByFirstName("Bob")
+        def pp = Person.findByFirstName('Bob')
 
         then:
         p.attached
@@ -56,13 +72,13 @@ class SessionCachingSpec extends GormDatastoreSpec {
         p.is(pp)
     }
 
-    void "test multi-queried elements are in cache"() {
+    void 'test multi-queried elements are in cache'() {
         given:
-        def p = new Person(firstName:"Bob", lastName:"Builder").save()
+        def p = new Person(firstName: 'Bob', lastName: 'Builder').save()
         session.flush()
 
         when:
-        def test = Person.findAllByFirstName("Bob")
+        def test = Person.findAllByFirstName('Bob')
 
         then:
         test.size() == 1
@@ -70,4 +86,5 @@ class SessionCachingSpec extends GormDatastoreSpec {
         test[0].attached
         p.is(test[0])
     }
+
 }

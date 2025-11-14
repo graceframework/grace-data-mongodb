@@ -1,3 +1,18 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.grails.datastore.gorm.mongo
 
 import grails.gorm.tests.GormDatastoreSpec
@@ -6,47 +21,56 @@ import grails.persistence.Entity
 
 class OneToManyWithInheritanceSpec extends GormDatastoreSpec {
 
-    void "Test that a one-to-many with inheritances behaves correctly"() {
-        given:"A one-to-many association inherited from a parent"
-            Animal animal = new Animal().save()
-            Donkey donkey = new Donkey(name: "Eeyore").save()
-            new Carrot(leaves: 1, animal: animal).save()
-            new Carrot(leaves: 2, animal: animal).save()
-            new Carrot(leaves: 3, animal: donkey).save()
-            new Carrot(leaves: 4, animal: donkey).save(flush:true)
-            session.clear()
+    void 'Test that a one-to-many with inheritances behaves correctly'() {
+        given: 'A one-to-many association inherited from a parent'
+        Animal animal = new Animal().save()
+        Donkey donkey = new Donkey(name: 'Eeyore').save()
+        new Carrot(leaves: 1, animal: animal).save()
+        new Carrot(leaves: 2, animal: animal).save()
+        new Carrot(leaves: 3, animal: donkey).save()
+        new Carrot(leaves: 4, animal: donkey).save(flush: true)
+        session.clear()
 
-        when:"The association is loaded"
-            animal = Animal.get(animal.id)
-            donkey = Donkey.get(donkey.id)
+        when: 'The association is loaded'
+        animal = Animal.get(animal.id)
+        donkey = Donkey.get(donkey.id)
 
-        then:"The association is correctly loaded"
-            animal.carrots.size() == 2
-            donkey.carrots.size() == 2
+        then: 'The association is correctly loaded'
+        animal.carrots.size() == 2
+        donkey.carrots.size() == 2
     }
 
     @Override
     List getDomainClasses() {
-       [Animal,Donkey, Carrot]
+        [Animal, Donkey, Carrot]
     }
+
 }
 
 @Entity
 class Donkey extends Animal implements MongoEntity<Donkey> {
+
     String name
+
 }
 
 @Entity
 class Animal implements MongoEntity<Animal> {
+
     String id
     Set carrots = []
-    static hasMany = [carrots:Carrot]
+
+    static hasMany = [carrots: Carrot]
+
 }
 
 @Entity
 class Carrot implements MongoEntity<Carrot> {
+
     Long id
     Integer leaves
     Animal animal
-    static belongsTo = [animal:Animal]
+
+    static belongsTo = [animal: Animal]
+
 }

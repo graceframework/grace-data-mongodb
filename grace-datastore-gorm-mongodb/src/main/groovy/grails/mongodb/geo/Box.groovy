@@ -1,10 +1,11 @@
-/* Copyright (C) 2014 SpringSource
+/*
+ * Copyright 2014-2025 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,7 +26,7 @@ import groovy.transform.EqualsAndHashCode
  */
 @EqualsAndHashCode
 @CompileStatic
-class Box extends Shape{
+class Box extends Shape {
 
     final Point lowerLeft, upperRight
 
@@ -46,7 +47,7 @@ class Box extends Shape{
      *
      * @return The list
      */
-    List<List<Double>> asList() { [ lowerLeft.asList(), upperRight.asList() ] }
+    List<List<Double>> asList() { [lowerLeft.asList(), upperRight.asList()] }
 
     @Override
     String toString() {
@@ -59,8 +60,12 @@ class Box extends Shape{
      * @return A box
      */
     static Box valueOf(List<List<Double>> coords) {
-        if(coords.size() != 2) throw new IllegalArgumentException("Coordinates should contain at least 2 entries for a Box")
+        if (coords.size() != 2) {
+            throw new IllegalArgumentException(
+                    'Coordinates should contain at least 2 entries for a Box')
+        }
 
-        new Box( Point.getPointAtIndex(coords, 0), Point.getPointAtIndex(coords, 1) )
+        new Box(Point.getPointAtIndex(coords, 0), Point.getPointAtIndex(coords, 1))
     }
+
 }

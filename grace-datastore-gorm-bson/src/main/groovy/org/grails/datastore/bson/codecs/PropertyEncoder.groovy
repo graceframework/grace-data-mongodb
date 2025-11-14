@@ -3,6 +3,7 @@ package org.grails.datastore.bson.codecs
 import org.bson.BsonWriter
 import org.bson.codecs.EncoderContext
 import org.bson.codecs.configuration.CodecRegistry
+
 import org.grails.datastore.mapping.engine.EntityAccess
 import org.grails.datastore.mapping.model.PersistentProperty
 
@@ -24,5 +25,7 @@ interface PropertyEncoder<T extends PersistentProperty> {
      * @param encoderContext The encoder context
      * @param codecRegistry The {@link CodecRegistry}
      */
-    void encode(BsonWriter writer, T property, Object value, EntityAccess parentAccess, EncoderContext encoderContext, CodecRegistry codecRegistry)
+    void encode(BsonWriter writer, T property, Object value, EntityAccess parentAccess, EncoderContext encoderContext,
+            CodecRegistry codecRegistry)
+
 }

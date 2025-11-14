@@ -1,10 +1,11 @@
-/* Copyright (C) 2014 SpringSource
+/*
+ * Copyright 2014-2025 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,7 +29,8 @@ import org.springframework.util.Assert
  */
 @CompileStatic
 @EqualsAndHashCode
-class MultiLineString extends Shape implements GeoJSON{
+class MultiLineString extends Shape implements GeoJSON {
+
     final List<LineString> coordinates
 
     MultiLineString(LineString... coordinates) {
@@ -42,7 +44,7 @@ class MultiLineString extends Shape implements GeoJSON{
 
     @Override
     List<List<List<Double>>> asList() {
-        coordinates.collect() { LineString ls -> ls.asList() }
+        coordinates.collect { LineString ls -> ls.asList() }
     }
 
     @Override
@@ -51,16 +53,17 @@ class MultiLineString extends Shape implements GeoJSON{
     }
 
     static MultiLineString valueOf(List coords) {
-        List<LineString> lineStrings = (List<LineString>) coords.collect() {
-            if(it instanceof LineString) {
+        List<LineString> lineStrings = (List<LineString>) coords.collect {
+            if (it instanceof LineString) {
                 return it
             }
-            else if(it instanceof List) {
-                return LineString.valueOf((List)it)
+            else if (it instanceof List) {
+                return LineString.valueOf((List) it)
             }
             throw new IllegalArgumentException("Invalid coordinates: $coords")
         }
 
         return new MultiLineString(lineStrings as LineString[])
     }
+
 }

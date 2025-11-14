@@ -2,9 +2,10 @@ package org.grails.datastore.bson.codecs.decoders
 
 import groovy.transform.CompileStatic
 import org.bson.BsonReader
+
+import org.grails.datastore.bson.codecs.temporal.PeriodBsonConverter
 import org.grails.datastore.mapping.engine.EntityAccess
 import org.grails.datastore.mapping.model.PersistentProperty
-import org.grails.datastore.bson.codecs.temporal.PeriodBsonConverter
 
 import static org.grails.datastore.bson.codecs.decoders.SimpleDecoder.TypeDecoder
 
@@ -20,4 +21,5 @@ class PeriodDecoder implements TypeDecoder, PeriodBsonConverter {
     void decode(BsonReader reader, PersistentProperty property, EntityAccess entityAccess) {
         entityAccess.setPropertyNoConversion(property.name, read(reader))
     }
+
 }

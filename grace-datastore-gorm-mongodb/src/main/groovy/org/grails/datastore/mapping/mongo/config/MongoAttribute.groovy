@@ -1,10 +1,11 @@
-/* Copyright (C) 2011 SpringSource
+/*
+ * Copyright 2011-2025 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,6 +18,7 @@ package org.grails.datastore.mapping.mongo.config
 import groovy.transform.CompileStatic
 import groovy.transform.builder.Builder
 import groovy.transform.builder.SimpleStrategy
+
 import org.grails.datastore.mapping.document.config.Attribute
 
 /**
@@ -29,11 +31,11 @@ import org.grails.datastore.mapping.document.config.Attribute
 @Builder(builderStrategy = SimpleStrategy, prefix = '')
 class MongoAttribute extends Attribute {
 
-    public static final String INDEX_TYPE = "type"
-    public static final String INDEX_TYPE_2D = "2d"
-    public static final String INDEX_TYPE_2DSPHERE = "2dsphere"
+    public static final String INDEX_TYPE = 'type'
+    public static final String INDEX_TYPE_2D = '2d'
+    public static final String INDEX_TYPE_2DSPHERE = '2dsphere'
 
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings('rawtypes')
     private Map indexAttributes
 
     /**
@@ -61,7 +63,6 @@ class MongoAttribute extends Attribute {
             this.indexAttributes.putAll(indexAttributes)
         }
     }
-
 
     /**
      * Configures the index attributes
@@ -105,7 +106,7 @@ class MongoAttribute extends Attribute {
      * @param indexType The geo index type
      */
     void setGeoIndex(String indexType) {
-        if(Boolean.valueOf(indexType)) {
+        if (Boolean.valueOf(indexType)) {
             setIndex(true)
             initIndexAttributes()
             indexAttributes.put(INDEX_TYPE, INDEX_TYPE_2D)
@@ -125,6 +126,7 @@ class MongoAttribute extends Attribute {
         setGeoIndex(indexType)
         return this
     }
+
     /**
      * Sets the index type
      *
@@ -147,10 +149,11 @@ class MongoAttribute extends Attribute {
         return this
     }
 
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings('rawtypes')
     void initIndexAttributes() {
         if (indexAttributes == null) {
             indexAttributes = new HashMap()
         }
     }
+
 }

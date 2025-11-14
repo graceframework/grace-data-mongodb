@@ -1,11 +1,12 @@
 package org.grails.datastore.bson.codecs.encoders
 
+import java.time.ZonedDateTime
+
 import groovy.transform.CompileStatic
 import org.bson.BsonWriter
-import org.grails.datastore.mapping.model.PersistentProperty
-import org.grails.datastore.bson.codecs.temporal.ZonedDateTimeBsonConverter
 
-import java.time.ZonedDateTime
+import org.grails.datastore.bson.codecs.temporal.ZonedDateTimeBsonConverter
+import org.grails.datastore.mapping.model.PersistentProperty
 
 /**
  * A simple encoder for {@link java.time.ZonedDateTime}
@@ -17,6 +18,7 @@ class ZonedDateTimeEncoder implements SimpleEncoder.TypeEncoder, ZonedDateTimeBs
 
     @Override
     void encode(BsonWriter writer, PersistentProperty property, Object value) {
-        write(writer, (ZonedDateTime)value)
+        write(writer, (ZonedDateTime) value)
     }
+
 }

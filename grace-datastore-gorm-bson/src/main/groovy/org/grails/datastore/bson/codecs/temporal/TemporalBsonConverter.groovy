@@ -18,4 +18,5 @@ trait TemporalBsonConverter<T> {
     abstract T read(BsonReader reader)
 
     abstract BsonType bsonType()
+
 }

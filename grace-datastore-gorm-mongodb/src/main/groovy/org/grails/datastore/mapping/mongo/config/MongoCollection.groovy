@@ -1,10 +1,11 @@
-/* Copyright (C) 2010 SpringSource
+/*
+ * Copyright 2010-2025 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,8 +19,8 @@ import com.mongodb.WriteConcern
 import groovy.transform.CompileStatic
 import groovy.transform.builder.Builder
 import groovy.transform.builder.SimpleStrategy
+
 import org.grails.datastore.mapping.config.Entity
-import org.grails.datastore.mapping.config.Property
 import org.grails.datastore.mapping.document.config.Attribute
 import org.grails.datastore.mapping.document.config.Collection
 import org.grails.datastore.mapping.query.Query
@@ -29,7 +30,7 @@ import org.grails.datastore.mapping.query.Query
  *
  * @author Graeme Rocher
  */
-@SuppressWarnings("rawtypes")
+@SuppressWarnings('rawtypes')
 @CompileStatic
 @Builder(builderStrategy = SimpleStrategy, prefix = '')
 class MongoCollection extends Collection {
@@ -40,6 +41,7 @@ class MongoCollection extends Collection {
      * @return The name of the database
      */
     String database
+
     /**
      * @return The {@link WriteConcern} for the collection
      */
@@ -53,9 +55,8 @@ class MongoCollection extends Collection {
         return new MongoAttribute()
     }
 
-
     Query.Order getSort() {
-        return (Query.Order)super.getSort()
+        return (Query.Order) super.getSort()
     }
 
     /**
@@ -65,23 +66,23 @@ class MongoCollection extends Collection {
      */
     MongoCollection setSort(Object s) {
         if (s instanceof Query.Order) {
-            super.setSort( (Query.Order) s )
+            super.setSort((Query.Order) s)
         }
         if (s instanceof Map) {
             Map m = (Map) s
             if (!m.isEmpty()) {
                 Map.Entry entry = (Map.Entry) m.entrySet().iterator().next()
                 Object key = entry.getKey()
-                if ("desc".equalsIgnoreCase(entry.getValue().toString())) {
-                    super.setSort( Query.Order.desc(key.toString()) )
+                if ('desc'.equalsIgnoreCase(entry.getValue().toString())) {
+                    super.setSort(Query.Order.desc(key.toString()))
                 }
                 else {
-                    super.setSort( Query.Order.asc(key.toString()) )
+                    super.setSort(Query.Order.asc(key.toString()))
                 }
             }
         }
         else {
-            super.setSort( Query.Order.asc(s.toString()) )
+            super.setSort(Query.Order.asc(s.toString()))
         }
         return this
     }
@@ -103,13 +104,14 @@ class MongoCollection extends Collection {
     MongoCollection sort(Map sort) {
         setSort(sort)
     }
+
     /**
      * Defines an index
      *
      * @param definition The index definition
      */
     void index(Map<String, Object> definition) {
-        index(definition, Collections.<String,Object>emptyMap())
+        index(definition, Collections.<String, Object> emptyMap())
     }
 
     /**
@@ -119,7 +121,7 @@ class MongoCollection extends Collection {
      * @param options The index options
      */
     void index(Map<String, Object> definition, Map<String, Object> options) {
-        if(definition != null && !definition.isEmpty()) {
+        if (definition != null && !definition.isEmpty()) {
             indices.add(new Index(definition, options))
         }
     }
@@ -175,20 +177,20 @@ class MongoCollection extends Collection {
 
     @Override
     MongoAttribute property(@DelegatesTo(MongoAttribute.class) Closure propertyConfig) {
-        return (MongoAttribute)super.property(propertyConfig)
+        return (MongoAttribute) super.property(propertyConfig)
     }
 
     @Override
     MongoAttribute property(Map propertyConfig) {
-        return (MongoAttribute)super.property(propertyConfig)
+        return (MongoAttribute) super.property(propertyConfig)
     }
     /**
      * Definition of an index
      */
     static class Index {
+
         Map<String, Object> definition = new HashMap<String, Object>()
         Map<String, Object> options = new HashMap<String, Object>()
-
 
         Index(Map<String, Object> definition) {
             this.definition = definition
@@ -206,5 +208,7 @@ class MongoCollection extends Collection {
         Map<String, Object> getOptions() {
             return options
         }
+
     }
+
 }

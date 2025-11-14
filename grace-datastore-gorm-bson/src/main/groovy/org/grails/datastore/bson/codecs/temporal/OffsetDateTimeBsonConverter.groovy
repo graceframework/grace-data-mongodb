@@ -1,12 +1,13 @@
 package org.grails.datastore.bson.codecs.temporal
 
+import java.time.OffsetDateTime
+
 import groovy.transform.CompileStatic
 import org.bson.BsonReader
 import org.bson.BsonType
 import org.bson.BsonWriter
-import grails.gorm.time.OffsetDateTimeConverter
 
-import java.time.OffsetDateTime
+import grails.gorm.time.OffsetDateTimeConverter
 
 /**
  * A trait to read and write a {@link OffsetDateTime} to MongoDB
@@ -30,4 +31,5 @@ trait OffsetDateTimeBsonConverter implements TemporalBsonConverter<OffsetDateTim
     BsonType bsonType() {
         BsonType.DATE_TIME
     }
+
 }

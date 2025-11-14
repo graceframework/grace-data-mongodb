@@ -1,10 +1,11 @@
-/* Copyright (C) 2014 SpringSource
+/*
+ * Copyright 2014-2025 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,10 +15,11 @@
  */
 package org.grails.datastore.gorm.mongo.geo
 
-import com.mongodb.DBObject
-import grails.mongodb.geo.Box
 import groovy.transform.CompileStatic
 import org.bson.Document
+
+import grails.mongodb.geo.Box
+
 import org.grails.datastore.mapping.model.PersistentProperty
 
 /**
@@ -27,7 +29,8 @@ import org.grails.datastore.mapping.model.PersistentProperty
  * @since 2.0
  */
 @CompileStatic
-class BoxType extends AbstractShapeCoordsType<Box>{
+class BoxType extends AbstractShapeCoordsType<Box> {
+
     BoxType() {
         super(Box)
     }
@@ -35,8 +38,9 @@ class BoxType extends AbstractShapeCoordsType<Box>{
     @Override
     protected Box readInternal(PersistentProperty property, String key, Document nativeSource) {
         def coords = nativeSource.get(key)
-        if(coords instanceof List) {
+        if (coords instanceof List) {
             return Box.valueOf(coords)
         }
     }
+
 }

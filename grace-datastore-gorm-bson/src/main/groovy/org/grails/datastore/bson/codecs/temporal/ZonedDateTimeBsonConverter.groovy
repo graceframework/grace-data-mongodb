@@ -1,12 +1,13 @@
 package org.grails.datastore.bson.codecs.temporal
 
-import grails.gorm.time.ZonedDateTimeConverter
+import java.time.ZonedDateTime
+
 import groovy.transform.CompileStatic
 import org.bson.BsonReader
 import org.bson.BsonType
 import org.bson.BsonWriter
 
-import java.time.ZonedDateTime
+import grails.gorm.time.ZonedDateTimeConverter
 
 /**
  * A trait to read and write a {@link ZonedDateTime} to MongoDB
@@ -30,4 +31,5 @@ trait ZonedDateTimeBsonConverter implements TemporalBsonConverter<ZonedDateTime>
     BsonType bsonType() {
         BsonType.DATE_TIME
     }
+
 }

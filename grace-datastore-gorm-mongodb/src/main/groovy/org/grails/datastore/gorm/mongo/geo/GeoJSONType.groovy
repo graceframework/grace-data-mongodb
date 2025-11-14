@@ -1,10 +1,11 @@
-/* Copyright (C) 2014 SpringSource
+/*
+ * Copyright 2014-2025 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,10 +15,12 @@
  */
 package org.grails.datastore.gorm.mongo.geo
 
-import grails.mongodb.geo.GeoJSON
-import grails.mongodb.geo.Shape
 import groovy.transform.CompileStatic
 import org.bson.Document
+
+import grails.mongodb.geo.GeoJSON
+import grails.mongodb.geo.Shape
+
 import org.grails.datastore.mapping.core.Datastore
 import org.grails.datastore.mapping.engine.types.AbstractMappingAwareCustomTypeMarshaller
 import org.grails.datastore.mapping.model.MappingContext
@@ -35,8 +38,8 @@ import org.grails.datastore.mapping.query.Query
 @CompileStatic
 abstract class GeoJSONType<T extends Shape> extends AbstractMappingAwareCustomTypeMarshaller<T, Document, Document> {
 
-    public static final String COORDINATES = "coordinates"
-    public static final String GEO_TYPE = "type"
+    public static final String COORDINATES = 'coordinates'
+    public static final String GEO_TYPE = 'type'
 
     GeoJSONType(Class<T> targetType) {
         super(targetType)
@@ -44,18 +47,18 @@ abstract class GeoJSONType<T extends Shape> extends AbstractMappingAwareCustomTy
 
     @Override
     boolean supports(MappingContext context) {
-        return context instanceof MongoMappingContext;
+        return context instanceof MongoMappingContext
     }
 
     @Override
     boolean supports(Datastore datastore) {
-        return datastore instanceof MongoDatastore;
+        return datastore instanceof MongoDatastore
     }
 
     @Override
     protected Object writeInternal(PersistentProperty property, String key, T value, Document nativeTarget) {
-        if(value != null) {
-            Document pointData = convertToGeoDocument((Shape)value)
+        if (value != null) {
+            Document pointData = convertToGeoDocument((Shape) value)
             nativeTarget.put(key, pointData)
             return pointData
         }
@@ -71,11 +74,11 @@ abstract class GeoJSONType<T extends Shape> extends AbstractMappingAwareCustomTy
     @Override
     protected T readInternal(PersistentProperty property, String key, Document nativeSource) {
         def obj = nativeSource.get(key)
-        if(obj instanceof Document) {
-            Document pointData = (Document)obj
+        if (obj instanceof Document) {
+            Document pointData = (Document) obj
             def coords = pointData.get(COORDINATES)
 
-            if(coords instanceof List) {
+            if (coords instanceof List) {
                 return createFromCoords(coords)
             }
         }
@@ -85,16 +88,17 @@ abstract class GeoJSONType<T extends Shape> extends AbstractMappingAwareCustomTy
     abstract T createFromCoords(List<List<Double>> coords)
 
     @Override
-    protected void queryInternal(PersistentProperty property, String key, Query.PropertyCriterion value, Document nativeQuery) {
-        if(value instanceof Query.Equals) {
+    protected void queryInternal(PersistentProperty property, String key, Query.PropertyCriterion value,
+            Document nativeQuery) {
+        if (value instanceof Query.Equals) {
             def v = value.getValue()
-            if(v instanceof GeoJSON) {
+            if (v instanceof GeoJSON) {
                 Shape shape = (Shape) v
 
                 def geoJson = convertToGeoDocument(shape)
                 nativeQuery.put(key, geoJson)
             }
-            else if( v instanceof Shape) {
+            else if (v instanceof Shape) {
                 nativeQuery.put(key, v.asList())
             }
             else {
@@ -105,4 +109,5 @@ abstract class GeoJSONType<T extends Shape> extends AbstractMappingAwareCustomTy
             super.queryInternal(property, key, value, nativeQuery)
         }
     }
+
 }

@@ -13,13 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.grails.datastore.bson.json;
-
-import org.bson.*;
-import org.bson.json.JsonWriterSettings;
-import org.bson.types.Decimal128;
-import org.bson.types.ObjectId;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -28,6 +22,17 @@ import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
 import java.util.TimeZone;
+
+import org.bson.AbstractBsonWriter;
+import org.bson.BSONException;
+import org.bson.BsonBinary;
+import org.bson.BsonContextType;
+import org.bson.BsonDbPointer;
+import org.bson.BsonRegularExpression;
+import org.bson.BsonTimestamp;
+import org.bson.json.JsonWriterSettings;
+import org.bson.types.Decimal128;
+import org.bson.types.ObjectId;
 
 /**
  * Simplified fork of {@link org.bson.json.JsonWriter} that ignores behaviour specific to MongoDB and produces more compat output
@@ -64,7 +69,8 @@ public class JsonWriter extends AbstractBsonWriter {
             setContext(new Context(getContext(), contextType, settings.getIndentCharacters()));
 
             writer.write(JsonToken.OPEN_BRACE);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
     }
@@ -76,10 +82,12 @@ public class JsonWriter extends AbstractBsonWriter {
             if (getContext().getContextType() == BsonContextType.SCOPE_DOCUMENT) {
                 setContext(getContext().getParentContext());
                 writeEndDocument();
-            } else {
+            }
+            else {
                 setContext(getContext().getParentContext());
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
     }
@@ -90,16 +98,19 @@ public class JsonWriter extends AbstractBsonWriter {
             writeNameHelper(getName());
             writer.write(JsonToken.OPEN_BRACKET);
             setContext(new Context(getContext(), BsonContextType.ARRAY, settings.getIndentCharacters()));
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
 
     }
+
     @Override
     protected void doWriteEndArray() {
         try {
             writer.write(JsonToken.CLOSE_BRACKET);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
         setContext(getContext().getParentContext());
@@ -113,7 +124,8 @@ public class JsonWriter extends AbstractBsonWriter {
             byte[] data = value.getData();
             writer.write(Base64.getEncoder().encodeToString(data));
             setState(getNextState());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
     }
@@ -124,7 +136,8 @@ public class JsonWriter extends AbstractBsonWriter {
             writeNameHelper(getName());
             writer.write(value ? JsonToken.BOOLEAN_TRUE : JsonToken.BOOLEAN_FALSE);
             setState(getNextState());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
     }
@@ -137,10 +150,11 @@ public class JsonWriter extends AbstractBsonWriter {
             writeNameHelper(getName());
             writer.write(JsonToken.QUOTE);
             Date date = new Date(value);
-            writer.write( df.format(date) );
+            writer.write(df.format(date));
             writer.write(JsonToken.QUOTE);
             setState(getNextState());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
     }
@@ -156,7 +170,8 @@ public class JsonWriter extends AbstractBsonWriter {
             writeNameHelper(getName());
             writer.write(Double.toString(value));
             setState(getNextState());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
 
@@ -167,7 +182,8 @@ public class JsonWriter extends AbstractBsonWriter {
         try {
             writeNameHelper(getName());
             writer.write(Integer.toString(value));
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
     }
@@ -184,7 +200,8 @@ public class JsonWriter extends AbstractBsonWriter {
                 writer.write(Long.toString(value));
                 writer.write(JsonToken.QUOTE);
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
     }
@@ -196,7 +213,8 @@ public class JsonWriter extends AbstractBsonWriter {
             writer.write(JsonToken.QUOTE);
             writer.write(value.toString());
             writer.write(JsonToken.QUOTE);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
     }
@@ -226,10 +244,10 @@ public class JsonWriter extends AbstractBsonWriter {
         try {
             writeNameHelper(getName());
             writer.write(JsonToken.NULL);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
-
     }
 
     @Override
@@ -237,7 +255,8 @@ public class JsonWriter extends AbstractBsonWriter {
         try {
             writeNameHelper(getName());
             writer.write(value.toString());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
     }
@@ -260,9 +279,10 @@ public class JsonWriter extends AbstractBsonWriter {
                     writer.write(escaped);
                     writer.write(JsonToken.FORWARD_SLASH);
                     writer.write(regularExpression.getOptions());
-                break;
+                    break;
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
     }
@@ -272,10 +292,10 @@ public class JsonWriter extends AbstractBsonWriter {
         try {
             writeNameHelper(getName());
             writeStringHelper(value);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
-
     }
 
     @Override
@@ -293,7 +313,8 @@ public class JsonWriter extends AbstractBsonWriter {
         try {
             writeNameHelper(getName());
             writer.write("undefined");
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
     }
@@ -302,7 +323,8 @@ public class JsonWriter extends AbstractBsonWriter {
     public void flush() {
         try {
             writer.flush();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throwBsonException(e);
         }
     }
@@ -434,4 +456,5 @@ public class JsonWriter extends AbstractBsonWriter {
             return (Context) super.getParentContext();
         }
     }
+
 }

@@ -1,21 +1,38 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.grails.datastore.gorm.mongo
+
+import org.bson.types.ObjectId
+import spock.lang.Issue
 
 import grails.gorm.tests.GormDatastoreSpec
 import grails.persistence.Entity
-import org.bson.types.ObjectId
-import spock.lang.Issue
 
 /**
  * Test cases for GPMONGODB-296 (and GPMONGODB-302).
  */
 @Issue('GPMONGODB-296')
 class QueriesWithIdenticallyNamedPartsSpec extends GormDatastoreSpec {
+
     @Override
     List getDomainClasses() {
         return [Foo]
     }
 
-    void "Ors and ands work together"() {
+    void 'Ors and ands work together'() {
         given:
         def foos = [
                 new Foo(1, 1, 1, 1).save(),
@@ -25,7 +42,7 @@ class QueriesWithIdenticallyNamedPartsSpec extends GormDatastoreSpec {
         ]
         session.flush()
 
-        when: "ors combined in implicit conjuction"
+        when: 'ors combined in implicit conjuction'
         def results = Foo.createCriteria().list {
             or {
                 eq 'a', 1
@@ -42,7 +59,7 @@ class QueriesWithIdenticallyNamedPartsSpec extends GormDatastoreSpec {
         results.contains(foos[1])
         results.contains(foos[2])
 
-        when: "ors combined in explicit conjunction"
+        when: 'ors combined in explicit conjunction'
         results = Foo.createCriteria().list {
             and {
                 or {
@@ -62,7 +79,7 @@ class QueriesWithIdenticallyNamedPartsSpec extends GormDatastoreSpec {
         results.contains(foos[2])
     }
 
-    void "Multiple queries on same property work"() {
+    void 'Multiple queries on same property work'() {
         given:
         def foos = [
                 new Foo(1, 2, 3, 4).save(),
@@ -73,7 +90,7 @@ class QueriesWithIdenticallyNamedPartsSpec extends GormDatastoreSpec {
         session.flush()
         def results
 
-        when: "Multiple inList queries are combined"
+        when: 'Multiple inList queries are combined'
         results = Foo.createCriteria().list {
             inList 'a', [1, 2, 3]
             inList 'a', [2, 4]
@@ -83,7 +100,7 @@ class QueriesWithIdenticallyNamedPartsSpec extends GormDatastoreSpec {
         results.size() == 1
         results.contains(foos[1])
 
-        when: "Multiple inList queries with immutable list parameters are combined"
+        when: 'Multiple inList queries with immutable list parameters are combined'
         results = Foo.createCriteria().list {
             inList 'a', [1, 2, 3].asImmutable()
             inList 'a', [2, 4].asImmutable()
@@ -93,7 +110,7 @@ class QueriesWithIdenticallyNamedPartsSpec extends GormDatastoreSpec {
         results.size() == 1
         results.contains(foos[1])
 
-        when: "Eq and in queries are combined"
+        when: 'Eq and in queries are combined'
         results = Foo.createCriteria().list {
             eq 'a', 2
             inList 'a', [2, 4]
@@ -103,7 +120,7 @@ class QueriesWithIdenticallyNamedPartsSpec extends GormDatastoreSpec {
         results.size() == 1
         results.contains(foos[1])
 
-        when: "Multiple property queries are combined"
+        when: 'Multiple property queries are combined'
         results = Foo.createCriteria().list {
             geProperty 'a', 'd'
             ltProperty 'a', 'c'
@@ -113,10 +130,12 @@ class QueriesWithIdenticallyNamedPartsSpec extends GormDatastoreSpec {
         results.size() == 1
         results.contains(foos[2])
     }
+
 }
 
 @Entity
 class Foo {
+
     ObjectId id
 
     Foo(Integer a = null, Integer b = null, Integer c = null, Integer d = null) {
@@ -137,4 +156,5 @@ class Foo {
         c nullable: true
         d nullable: true
     }
+
 }

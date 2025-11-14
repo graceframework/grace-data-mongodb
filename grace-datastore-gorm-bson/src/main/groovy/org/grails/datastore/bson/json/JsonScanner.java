@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ *   https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,13 +15,12 @@
  */
 package org.grails.datastore.bson.json;
 
-
-import org.bson.BsonRegularExpression;
-import org.bson.json.JsonParseException;
-
 import java.io.IOException;
 import java.io.PushbackReader;
 import java.io.Reader;
+
+import org.bson.BsonRegularExpression;
+import org.bson.json.JsonParseException;
 
 /**
  * Parses the string representation of a JSON object into a set of {@link JsonToken}-derived objects.
@@ -30,21 +29,19 @@ import java.io.Reader;
  */
 class JsonScanner {
 
-    private static final char[] NFINITY = new char[]{'n', 'f', 'i', 'n', 'i', 't', 'y'};
+    private static final char[] NFINITY = new char[] { 'n', 'f', 'i', 'n', 'i', 't', 'y' };
 
     final PushbackReader reader;
     int position;
 
-
     /**
-     * Constructs a a new {@code JSONScanner} that produces values scanned from specified {@code JSONBuffer}.
+     * Constructs a new {@code JSONScanner} that produces values scanned from specified {@code JSONBuffer}.
      *
      * @param reader A reader to be scanned.
      */
     public JsonScanner(final Reader reader) {
         this.reader = new PushbackReader(reader);
     }
-
 
     /**
      * Finds and returns the next complete token from this scanner. If scanner reached the end of the source, it will return a token with
@@ -54,7 +51,6 @@ class JsonScanner {
      * @throws JsonParseException if source is invalid.
      */
     public JsonToken nextToken() throws IOException {
-
         int c = readCharacter();
         while (c != -1 && Character.isWhitespace(c)) {
             c = readCharacter();
@@ -88,9 +84,11 @@ class JsonScanner {
             default:
                 if (c == JsonToken.MINUS || Character.isDigit(c)) {
                     return scanNumber((char) c);
-                } else if (c == '$' || c == '_' || Character.isLetter(c)) {
-                    return scanUnquotedString((char)c);
-                } else {
+                }
+                else if (c == '$' || c == '_' || Character.isLetter(c)) {
+                    return scanUnquotedString((char) c);
+                }
+                else {
                     reader.unread(c);
                     throw new JsonParseException("Invalid JSON input. Position: %d. Character: '%c'.", position, c);
                 }
@@ -115,7 +113,6 @@ class JsonScanner {
      * @throws JsonParseException if regular expression representation is not valid.
      */
     private JsonToken scanRegularExpression() throws IOException {
-
         JsonScanner.RegularExpressionState state = JsonScanner.RegularExpressionState.IN_PATTERN;
         StringBuilder optionsBuilder = new StringBuilder();
         StringBuilder regexBuilder = new StringBuilder();
@@ -129,17 +126,17 @@ class JsonScanner {
                             break;
                         case JsonToken.BACK_SLASH:
                             state = JsonScanner.RegularExpressionState.IN_ESCAPE_SEQUENCE;
-                            regexBuilder.append((char)c);
+                            regexBuilder.append((char) c);
                             break;
                         default:
                             state = JsonScanner.RegularExpressionState.IN_PATTERN;
-                            regexBuilder.append((char)c);
+                            regexBuilder.append((char) c);
                             break;
                     }
                     break;
                 case IN_ESCAPE_SEQUENCE:
                     state = RegularExpressionState.IN_PATTERN;
-                    regexBuilder.append((char)c);
+                    regexBuilder.append((char) c);
                     break;
                 case IN_OPTIONS:
                     switch (c) {
@@ -148,7 +145,7 @@ class JsonScanner {
                         case 'x':
                         case 's':
                             state = JsonScanner.RegularExpressionState.IN_OPTIONS;
-                            optionsBuilder.append((char)c);
+                            optionsBuilder.append((char) c);
                             break;
                         case JsonToken.COMMA:
                         case JsonToken.CLOSE_BRACE:
@@ -160,7 +157,8 @@ class JsonScanner {
                         default:
                             if (Character.isWhitespace(c)) {
                                 state = JsonScanner.RegularExpressionState.DONE;
-                            } else {
+                            }
+                            else {
                                 state = JsonScanner.RegularExpressionState.INVALID;
                             }
                             break;
@@ -185,15 +183,15 @@ class JsonScanner {
     /**
      * Reads {@code StringToken} from source.
      *
-     * @return The string token.
      * @param startChar
+     * @return The string token.
      */
     private JsonToken scanUnquotedString(char startChar) throws IOException {
         StringBuilder builder = new StringBuilder();
         builder.append(startChar);
         int c = readCharacter();
         while (c == '$' || c == '_' || Character.isLetterOrDigit(c)) {
-            builder.append((char)c);
+            builder.append((char) c);
             c = readCharacter();
         }
         reader.unread(c);
@@ -221,7 +219,6 @@ class JsonScanner {
      */
     //CHECKSTYLE:OFF
     private JsonToken scanNumber(final char firstChar) throws IOException {
-
         int c = firstChar;
 
         JsonScanner.NumberState state;
@@ -242,7 +239,6 @@ class JsonScanner {
 
         JsonTokenType type = JsonTokenType.INT64;
 
-
         while (true) {
             c = readCharacter();
 
@@ -250,18 +246,19 @@ class JsonScanner {
                 case SAW_LEADING_MINUS:
                     switch (c) {
                         case '0':
-                            numberBuilder.append((char)c);
+                            numberBuilder.append((char) c);
                             state = JsonScanner.NumberState.SAW_LEADING_ZERO;
                             break;
                         case 'I':
-                            numberBuilder.append((char)c);
+                            numberBuilder.append((char) c);
                             state = JsonScanner.NumberState.SAW_MINUS_I;
                             break;
                         default:
-                            numberBuilder.append((char)c);
+                            numberBuilder.append((char) c);
                             if (Character.isDigit(c)) {
                                 state = JsonScanner.NumberState.SAW_INTEGER_DIGITS;
-                            } else {
+                            }
+                            else {
                                 state = JsonScanner.NumberState.INVALID;
                             }
                             break;
@@ -271,12 +268,12 @@ class JsonScanner {
                 case SAW_INTEGER_DIGITS:
                     switch (c) {
                         case '.':
-                            numberBuilder.append((char)c);
+                            numberBuilder.append((char) c);
                             state = JsonScanner.NumberState.SAW_DECIMAL_POINT;
                             break;
                         case 'e':
                         case 'E':
-                            numberBuilder.append((char)c);
+                            numberBuilder.append((char) c);
                             state = JsonScanner.NumberState.SAW_EXPONENT_LETTER;
                             break;
                         case JsonToken.COMMA:
@@ -288,11 +285,13 @@ class JsonScanner {
                             break;
                         default:
                             if (Character.isDigit(c)) {
-                                numberBuilder.append((char)c);
+                                numberBuilder.append((char) c);
                                 state = JsonScanner.NumberState.SAW_INTEGER_DIGITS;
-                            } else if (Character.isWhitespace(c)) {
+                            }
+                            else if (Character.isWhitespace(c)) {
                                 state = JsonScanner.NumberState.DONE;
-                            } else {
+                            }
+                            else {
                                 state = JsonScanner.NumberState.INVALID;
                             }
                             break;
@@ -301,9 +300,10 @@ class JsonScanner {
                 case SAW_DECIMAL_POINT:
                     type = JsonTokenType.DOUBLE;
                     if (Character.isDigit(c)) {
-                        numberBuilder.append((char)c);
+                        numberBuilder.append((char) c);
                         state = JsonScanner.NumberState.SAW_FRACTION_DIGITS;
-                    } else {
+                    }
+                    else {
                         state = JsonScanner.NumberState.INVALID;
                     }
                     break;
@@ -311,7 +311,7 @@ class JsonScanner {
                     switch (c) {
                         case 'e':
                         case 'E':
-                            numberBuilder.append((char)c);
+                            numberBuilder.append((char) c);
                             state = JsonScanner.NumberState.SAW_EXPONENT_LETTER;
                             break;
                         case JsonToken.COMMA:
@@ -323,11 +323,13 @@ class JsonScanner {
                             break;
                         default:
                             if (Character.isDigit(c)) {
-                                numberBuilder.append((char)c);
+                                numberBuilder.append((char) c);
                                 state = JsonScanner.NumberState.SAW_FRACTION_DIGITS;
-                            } else if (Character.isWhitespace(c)) {
+                            }
+                            else if (Character.isWhitespace(c)) {
                                 state = JsonScanner.NumberState.DONE;
-                            } else {
+                            }
+                            else {
                                 state = JsonScanner.NumberState.INVALID;
                             }
                             break;
@@ -338,14 +340,15 @@ class JsonScanner {
                     switch (c) {
                         case '+':
                         case '-':
-                            numberBuilder.append((char)c);
+                            numberBuilder.append((char) c);
                             state = JsonScanner.NumberState.SAW_EXPONENT_SIGN;
                             break;
                         default:
                             if (Character.isDigit(c)) {
-                                numberBuilder.append((char)c);
+                                numberBuilder.append((char) c);
                                 state = JsonScanner.NumberState.SAW_EXPONENT_DIGITS;
-                            } else {
+                            }
+                            else {
                                 state = JsonScanner.NumberState.INVALID;
                             }
                             break;
@@ -353,9 +356,10 @@ class JsonScanner {
                     break;
                 case SAW_EXPONENT_SIGN:
                     if (Character.isDigit(c)) {
-                        numberBuilder.append((char)c);
+                        numberBuilder.append((char) c);
                         state = JsonScanner.NumberState.SAW_EXPONENT_DIGITS;
-                    } else {
+                    }
+                    else {
                         state = JsonScanner.NumberState.INVALID;
                     }
                     break;
@@ -369,11 +373,13 @@ class JsonScanner {
                             break;
                         default:
                             if (Character.isDigit(c)) {
-                                numberBuilder.append((char)c);
+                                numberBuilder.append((char) c);
                                 state = JsonScanner.NumberState.SAW_EXPONENT_DIGITS;
-                            } else if (Character.isWhitespace(c)) {
+                            }
+                            else if (Character.isWhitespace(c)) {
                                 state = JsonScanner.NumberState.DONE;
-                            } else {
+                            }
+                            else {
                                 state = JsonScanner.NumberState.INVALID;
                             }
                             break;
@@ -381,14 +387,14 @@ class JsonScanner {
                     break;
                 case SAW_MINUS_I:
                     boolean sawMinusInfinity = true;
-                    numberBuilder.append((char)c);
+                    numberBuilder.append((char) c);
                     for (int i = 0; i < NFINITY.length; i++) {
                         if (c != NFINITY[i]) {
                             sawMinusInfinity = false;
                             break;
                         }
                         c = readCharacter();
-                        numberBuilder.append((char)c);
+                        numberBuilder.append((char) c);
                     }
                     if (sawMinusInfinity) {
                         type = JsonTokenType.DOUBLE;
@@ -403,12 +409,14 @@ class JsonScanner {
                             default:
                                 if (Character.isWhitespace(c)) {
                                     state = JsonScanner.NumberState.DONE;
-                                } else {
+                                }
+                                else {
                                     state = JsonScanner.NumberState.INVALID;
                                 }
                                 break;
                         }
-                    } else {
+                    }
+                    else {
                         state = JsonScanner.NumberState.INVALID;
                     }
                     break;
@@ -422,11 +430,13 @@ class JsonScanner {
                     reader.unread(c);
                     if (type == JsonTokenType.DOUBLE) {
                         return new JsonToken(JsonTokenType.DOUBLE, Double.parseDouble(numberBuilder.toString()));
-                    } else {
+                    }
+                    else {
                         long value = Long.parseLong(numberBuilder.toString());
                         if (value < Integer.MIN_VALUE || value > Integer.MAX_VALUE) {
                             return new JsonToken(JsonTokenType.INT64, value);
-                        } else {
+                        }
+                        else {
                             return new JsonToken(JsonTokenType.INT32, (int) value);
                         }
                     }
@@ -444,7 +454,6 @@ class JsonScanner {
      */
     //CHECKSTYLE:OFF
     private JsonToken scanString(final char quoteCharacter) throws IOException {
-
         StringBuilder sb = new StringBuilder();
 
         while (true) {
@@ -486,7 +495,7 @@ class JsonScanner {
                             int u3 = readCharacter();
                             int u4 = readCharacter();
                             if (u4 != -1) {
-                                String hex = new String(new char[]{(char) u1, (char) u2, (char) u3, (char) u4});
+                                String hex = new String(new char[] { (char) u1, (char) u2, (char) u3, (char) u4 });
                                 sb.append((char) Integer.parseInt(hex, 16));
                             }
                             break;
@@ -530,4 +539,5 @@ class JsonScanner {
         DONE,
         INVALID
     }
+
 }

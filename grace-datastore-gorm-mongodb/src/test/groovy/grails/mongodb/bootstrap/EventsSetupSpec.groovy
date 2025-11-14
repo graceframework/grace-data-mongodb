@@ -1,3 +1,18 @@
+/*
+ * Copyright 2016-2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package grails.mongodb.bootstrap
 
 import de.flapdoodle.embed.mongo.commands.ServerAddress
@@ -6,16 +21,15 @@ import de.flapdoodle.embed.mongo.transitions.ImmutableMongod
 import de.flapdoodle.embed.mongo.transitions.Mongod
 import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
 import de.flapdoodle.reverse.TransitionWalker
+import spock.lang.AutoCleanup
+import spock.lang.Shared
+import spock.lang.Specification
 
 import grails.gorm.annotation.Entity
 import grails.mongodb.MongoEntity
 
 import org.grails.datastore.mapping.config.Settings
 import org.grails.datastore.mapping.mongo.MongoDatastore
-import spock.lang.AutoCleanup
-import spock.lang.Shared
-import spock.lang.Specification
-
 import org.grails.datastore.mapping.mongo.config.MongoSettings
 
 /**
@@ -60,18 +74,21 @@ class EventsSetupSpec extends Specification {
         setup:
         MyEventSender.DB.drop()
         when:
-        new MyEventSender(name: "fred").save(flush:true)
+        new MyEventSender(name: 'fred').save(flush: true)
 
         then:
         MyEventSender.first().name == 'FRED'
     }
+
 }
 
 @Entity
 class MyEventSender implements MongoEntity<MyEventSender> {
+
     String name
 
     def beforeInsert() {
         name = name.toUpperCase()
     }
+
 }
