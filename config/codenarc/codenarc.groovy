@@ -283,7 +283,7 @@ ruleset {
     // ExplicitLinkedListInstantiation
     // ExplicitStackInstantiation
     // ExplicitTreeSetInstantiation
-    // GStringAsMapKey
+    GStringAsMapKey
     // GStringExpressionWithinString
     // GetterMethodCouldBeProperty
     // GroovyLangImmutable
@@ -356,7 +356,7 @@ ruleset {
     PackageName
     PackageNameMatchesFilePath
     ParameterName
-    PropertyName
+    // PropertyName
     VariableName
 
     // rulesets/security.xml
@@ -404,7 +404,7 @@ ruleset {
     UnnecessaryDefInFieldDeclaration
     UnnecessaryDefInMethodDeclaration
     UnnecessaryDefInVariableDeclaration
-    UnnecessaryDotClass
+    // UnnecessaryDotClass
     UnnecessaryDoubleInstantiation
     // UnnecessaryElseStatement
     UnnecessaryFinalOnPrivateMethod
