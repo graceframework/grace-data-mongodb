@@ -487,6 +487,7 @@ public class MongoQuery extends BsonQuery implements QueryArgumentsAware {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected List executeQuery(final PersistentEntity entity, final Junction criteria) {
         final AbstractMongoSession mongoSession = this.mongoSession;
         com.mongodb.client.MongoCollection<Document> collection = mongoSession.getCollection(entity);
@@ -494,7 +495,7 @@ public class MongoQuery extends BsonQuery implements QueryArgumentsAware {
         final List<Projection> projectionList = projections().getProjectionList();
         if (uniqueResult && projectionList.isEmpty()) {
             if (this.isCodecPersister) {
-                collection = collection.withDocumentClass(entity.getJavaClass());
+                collection = collection.withDocumentClass((Class<Document>) entity.getJavaClass());
             }
             final Object dbObject;
             if (criteria.isEmpty()) {
@@ -529,7 +530,7 @@ public class MongoQuery extends BsonQuery implements QueryArgumentsAware {
         if (projectionList.isEmpty()) {
             if (this.isCodecPersister) {
                 collection = collection
-                        .withDocumentClass(entity.getJavaClass())
+                        .withDocumentClass((Class<Document>) entity.getJavaClass())
                         .withCodecRegistry(mongoSession.getDatastore().getCodecRegistry());
             }
             cursor = executeQuery(entity, criteria, collection, query);
