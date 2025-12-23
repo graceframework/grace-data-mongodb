@@ -1,6 +1,6 @@
 === Mongo Database Connection Configuration
 
-As mentioned the GORM for MongoDB plugin will configure all the defaults for you, but if you wish to customize those defaults you can do so in the `app/conf/application.groovy` file:
+As mentioned the Grace Data MongoDB plugin will configure all the defaults for you, but if you wish to customize those defaults you can do so in the `app/conf/application.groovy` file:
 
 [source,groovy]
 ----

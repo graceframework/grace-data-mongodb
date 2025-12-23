@@ -1,4 +1,4 @@
-As mentioned previously, GORM for MongoDB supports all three multi tenancy modes however there are some considerations to keep in mind.
+As mentioned previously, Grace Data MongoDB supports all three multi tenancy modes however there are some considerations to keep in mind.
 
 === Database Per Tenant
 
@@ -35,7 +35,7 @@ MongoClient mongoClient =
 
 === Schema Per Tenant
 
-When using the `SCHEMA` mode, GORM for MongoDB will use a different MongoDB database, but the same `MongoClient` instance, for each tenant.
+When using the `SCHEMA` mode, Grace Data MongoDB will use a different MongoDB database, but the same `MongoClient` instance, for each tenant.
 
 However, once again only GORM methods will use the correct database. For example:
 
@@ -65,7 +65,7 @@ Book.DB.find()
 
 === Partitioned Multi-Tenancy
 
-When using the `DISCRIMINATOR` approach, GORM for MongoDB will store a `tenantId` attribute in each MongoDB document and attempt to partition the data.
+When using the `DISCRIMINATOR` approach, Grace Data MongoDB will store a `tenantId` attribute in each MongoDB document and attempt to partition the data.
 
 Once again this works only when using GORM methods and even then there are cases where it will not work if you use native MongoDB interfaces.
 

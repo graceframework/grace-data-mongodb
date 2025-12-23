@@ -13,7 +13,7 @@ if (person.hasChanged('firstName')) {
 
 This method is defined by the `org.grails.datastore.mapping.dirty.checking.DirtyCheckable` trait.
 
-In the case of collections and association types GORM for MongoDB will wrap each collection in a dirty checking aware
+In the case of collections and association types Grace Data MongoDB will wrap each collection in a dirty checking aware
 collection type.
 
 One of the implications of this is if you override the collection with a non-dirty checking aware type it can disable
@@ -26,7 +26,7 @@ If any of your updates are not updating the properties that you anticipate you c
 person.markDirty('firstName')
 ----
 
-This will force GORM for MongoDB to issue an update for the given property name.
+This will force Grace Data MongoDB to issue an update for the given property name.
 
 === Dirty Checking and Proxies
 

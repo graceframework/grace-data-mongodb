@@ -8,7 +8,7 @@ class Plant {
 }
 ----
 
-Here there are two fixed properties, `name` and `goesInPatch`, that will be persisted into the MongoDB document. Using GORM for MongoDB you can however use dynamic properties via the Groovy subscript operator. For example:
+Here there are two fixed properties, `name` and `goesInPatch`, that will be persisted into the MongoDB document. Using Grace Data MongoDB you can however use dynamic properties via the Groovy subscript operator. For example:
 
 [source,groovy]
 ----

@@ -1,9 +1,9 @@
-If you wish to use GORM for MongoDB outside of a Grace application you should declare the necessary dependencies, for example in Gradle:
+If you wish to use Grace Data MongoDB outside of a Grace application you should declare the necessary dependencies, for example in Gradle:
 
 [source,groovy,subs="attributes"]
 ----
 implementation "org.graceframework:grace-boot:{version}"
-implementation "org.graceframework.plugins:mongodb:{version}"
+implementation "org.graceframework:grace-boot-mongodb:{version}"
 ----
 
 Then annotate your entities with the `grails.gorm.annotation.Entity` annotation:

@@ -1,18 +1,20 @@
-To use GORM for MongoDB in Spring Boot add the necessary dependencies to your Boot application:
+To use Grace Data MongoDB in Spring Boot add the necessary dependencies to your Spring Boot application:
 
 [source,groovy,subs="attributes"]
 ----
 implementation "org.graceframework:grace-boot:{version}"
-implementation "org.graceframework.plugins:mongodb:{version}"
+implementation "org.graceframework:grace-boot-mongodb:{version}"
 ----
 
-Ensure your Boot `Application` class is annotated with `GrailsComponentScan`, example:
+Ensure your Boot `Application` class is annotated with `@GrailsComponentScan`, example:
 
 [source,groovy]
 ----
+import grails.boot.GrailsComponentScan
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
+@GrailsComponentScan
 @SpringBootApplication
 class Application {
     static void main(String[] args) {
@@ -21,7 +23,7 @@ class Application {
 }
 ----
 
-NOTE: Using `GrailsComponentScan` without a value results in Boot scanning for classes in the same package or any package nested within the `Application` class package.
+NOTE: Using `@GrailsComponentScan` without a value results in Boot scanning for classes in the same package or any package nested within the `Application` class package.
 If your GORM entities are in a different package specify the package name as the value of the `GrailsComponentScan` annotation.
 
 Finally create your GORM entities and ensure they are annotated with `grails.persistence.Entity`:

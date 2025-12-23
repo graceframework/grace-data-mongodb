@@ -13,8 +13,7 @@ gettingStarted:
     mongoOnly: Using MongoDB Standalone
     withHibernate: Combining MongoDB and Hibernate
     advancedConfig: Advanced Configuration
-    springBoot: Using GORM in Spring Boot
-    outsideGrails: GORM for MongoDB without Grails
+    springBoot: Using Grace Data MongoDB in Spring Boot
 
 objectMapping:
     title: Mapping Domain Classes

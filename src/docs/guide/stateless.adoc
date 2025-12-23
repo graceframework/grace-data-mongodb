@@ -1,8 +1,8 @@
-GORM for MongoDB supports both stateless and stateful modes for mapping domain classes to MongoDB. In general stateful mapping is superior for write heavy applications and stateless mode better for read heavy applications (particularily when large amounts of data is involved).
+Grace Data MongoDB supports both stateless and stateful modes for mapping domain classes to MongoDB. In general stateful mapping is superior for write heavy applications and stateless mode better for read heavy applications (particularily when large amounts of data is involved).
 
 == Stateful mode
 
-Domain classes are by default stateful, which means when they are read from a MongoDB document their state is stored in the user session (which is typically bound to the request in Grails). This has several advantages for write heavy applications:
+Domain classes are by default stateful, which means when they are read from a MongoDB document their state is stored in the user session (which is typically bound to the request in the Grace framework). This has several advantages for write heavy applications:
 
 * GORM can automatically detect whether a call to save() is a an update or an insert and act appropriately
 * GORM stores the state of the read MongoDB document and therefore updates to schemaless properties don't require an extra query
@@ -69,7 +69,7 @@ b.id = "The Book"
 b.insert()
 ----
 
-In the above case we use the explicit 'insert' method to tell Grails this is an insert not an udpate. Another disadvantage is that reading of schemaless/dynamic properties is more costly. For example:
+In the above case we use the explicit 'insert' method to tell the Grace framework this is an insert not an udpate. Another disadvantage is that reading of schemaless/dynamic properties is more costly. For example:
 
 [source,groovy]
 ----

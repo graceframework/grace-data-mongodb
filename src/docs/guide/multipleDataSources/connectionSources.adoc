@@ -1,4 +1,4 @@
-Introduced in GORM 6.0, the link:{api}/org/grails/datastore/mapping/core/connections/ConnectionSources.html[ConnectionSources] API allows you to introspect the data sources configured for the application:
+Introduced in Grace Data 2022.0, the link:{api}/org/grails/datastore/mapping/core/connections/ConnectionSources.html[ConnectionSources] API allows you to introspect the data sources configured for the application:
 
 [source,groovy]
 ----

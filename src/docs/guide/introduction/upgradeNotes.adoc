@@ -1,6 +1,6 @@
 ==== Dependency Upgrades
 
-GORM 2023.3 supports Apache Groovy 4.0, Java 17, MongoDB Driver 5.0 and Spring 6.1.x.
+Grace Data MongoDB {version} supports Apache Groovy 4.0, Java 17, MongoDB Driver 5.2 and Spring 6.2.x.
 
 Each of these underlying components may have changes that require altering your application. These changes are beyond the scope of this documentation.
 

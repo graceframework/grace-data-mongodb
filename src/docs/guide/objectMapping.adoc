@@ -1,6 +1,6 @@
 == Basic Mapping
 
-The way GORM for MongoDB works is to map each domain class to a Mongo collection. For example given a domain class such as:
+The way Grace Data MongoDB works is to map each domain class to a Mongo collection. For example given a domain class such as:
 
 [source,groovy]
 ----
@@ -15,7 +15,7 @@ This will map onto a MongoDB https://api.mongodb.org/java/current/com/mongodb/cl
 
 == Embedded Documents
 
-It is quite common in MongoDB to embed documents within documents (nested documents). This can be done with GORM embedded types:
+It is quite common in MongoDB to embed documents within documents (nested documents). This can be done with Grace Data MongoDB embedded types:
 
 [source,groovy]
 ----
@@ -99,7 +99,7 @@ class Person {
 }
 ----
 
-If you are using the mapping engine, for non-embedded associations by default GORM for MongoDB will map links between documents using MongoDB https://www.mongodb.com/docs/manual/reference/database-references/[database references] also known as `DBRefs`.
+If you are using the mapping engine, for non-embedded associations by default Grace Data MongoDB will map links between documents using MongoDB https://www.mongodb.com/docs/manual/reference/database-references/[database references] also known as `DBRefs`.
 
 If you prefer not to use DBRefs then you tell GORM to use direct links by using the `reference:false` mapping:
 

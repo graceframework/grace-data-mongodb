@@ -6,7 +6,7 @@ Although you can use coordinate pairs in a 2dsphere index, they are considered l
 
 WARNING: MongoDB legacy coordinate pairs are in latitude / longitude order, whilst GeoJSON points are stored in longitude / latitude order!
 
-To support this GORM for MongoDB features a special type, `grails.mongodb.geo.Point`, that can be used within domain classes to store geospacial data:
+To support this Grace Data MongoDB features a special type, `grails.mongodb.geo.Point`, that can be used within domain classes to store geospacial data:
 
 [source,groovy]
 ----

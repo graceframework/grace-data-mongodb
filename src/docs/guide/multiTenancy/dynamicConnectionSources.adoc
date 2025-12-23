@@ -30,4 +30,4 @@ MongoClient mongoClient =
 
 All new connection sources will be stored within the specified `connectionsCollection` and if the application is restarted will read from the `connectionsCollection`.
 
-WARNING: GORM for MongoDB does not implement provisioning of new MongoDB instances at runtime. This is something that would need to be implemented by a cloud services provider for example.
+WARNING: Grace Data MongoDB does not implement provisioning of new MongoDB instances at runtime. This is something that would need to be implemented by a cloud services provider for example.

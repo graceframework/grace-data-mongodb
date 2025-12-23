@@ -1,1 +1,1 @@
-GORM for MongoDB supports the notion of multiple data sources where multiple individual `MongoClient` instances can be configured and switched between.
+Grace Data MongoDB supports the notion of multiple data sources where multiple individual `MongoClient` instances can be configured and switched between.

@@ -1,11 +1,11 @@
 == Basic Setup
 
-To get started with GORM for MongoDB within Grails you need configure it as a dependency in `build.gradle`:
+To get started with Grace Data MongoDB within Grace framework you need configure it as a dependency in `build.gradle`:
 
 [source,groovy,subs="attributes"]
 ----
 dependencies {
-    implementation 'org.graceframework.plugins:mongodb:{version}'
+    implementation 'org.graceframework:grace-boot-mongodb:{version}'
 }
 ----
 
