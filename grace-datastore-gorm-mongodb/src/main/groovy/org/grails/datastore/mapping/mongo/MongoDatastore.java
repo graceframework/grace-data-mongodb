@@ -634,6 +634,7 @@ public class MongoDatastore extends AbstractDatastore
     /**
      * @return The transaction manager
      */
+    @Override
     public PlatformTransactionManager getTransactionManager() {
         return this.transactionManager;
     }

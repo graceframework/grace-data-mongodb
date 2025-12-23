@@ -51,9 +51,7 @@ class MongoDbDataStoreSpringInitializer extends AbstractDatastoreInitializer {
 
     public static final String DATASTORE_TYPE = 'mongo'
     protected String mongoBeanName = 'mongo'
-    protected String mongoOptionsBeanName = 'mongoOptions'
     protected String databaseName = DEFAULT_DATABASE_NAME
-    protected Closure defaultMapping
     protected MongoClientSettings mongoOptions
     protected MongoClient mongo
 
@@ -150,24 +148,6 @@ class MongoDbDataStoreSpringInitializer extends AbstractDatastoreInitializer {
     }
 
     /**
-     * Sets the name of the Mongo bean to use
-     */
-    @Deprecated
-    void setMongoBeanName(String mongoBeanName) {
-        this.mongoBeanName = mongoBeanName
-    }
-
-    /**
-     * The name of the MongoOptions bean
-     *
-     * @param mongoOptionsBeanName The mongo options bean name
-     */
-    @Deprecated
-    void setMongoOptionsBeanName(String mongoOptionsBeanName) {
-        this.mongoOptionsBeanName = mongoOptionsBeanName
-    }
-
-    /**
      * Sets the MongoOptions instance to use when constructing the Mongo instance
      */
     void setMongoOptions(MongoClientSettings mongoOptions) {
@@ -187,14 +167,6 @@ class MongoDbDataStoreSpringInitializer extends AbstractDatastoreInitializer {
      */
     void setDatabaseName(String databaseName) {
         this.databaseName = databaseName
-    }
-
-    /**
-     * Sets the default MongoDB GORM mapping configuration
-     */
-    @Deprecated
-    void setDefaultMapping(Closure defaultMapping) {
-        this.defaultMapping = defaultMapping
     }
 
 }

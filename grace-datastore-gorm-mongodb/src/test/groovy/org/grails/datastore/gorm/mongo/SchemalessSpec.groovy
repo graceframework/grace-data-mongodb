@@ -32,7 +32,6 @@ class SchemalessSpec extends GormDatastoreSpec {
 
         then:
         p.name == 'Pineapple'
-        p.dbo.color == 'Yellow'
         p['color'] == 'Yellow'
 
         when:
@@ -43,7 +42,6 @@ class SchemalessSpec extends GormDatastoreSpec {
 
         then:
         p.name == 'Pineapple'
-        p.dbo.color == 'Yellow'
         p['color'] == 'Yellow'
         p['hasLeaves'] == true
 

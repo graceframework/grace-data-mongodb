@@ -15,8 +15,6 @@
  */
 package grails.mongodb.api
 
-import org.bson.Document
-
 import grails.gorm.api.GormInstanceOperations
 
 /**
@@ -25,15 +23,5 @@ import grails.gorm.api.GormInstanceOperations
  * @since 6.0
  */
 interface MongoInstanceOperations<D> extends GormInstanceOperations<D> {
-
-    /**
-     * Return the DBObject instance for the entity
-     *
-     * @deprecated use dynamic properties instead
-     * @param instance The instance
-     * @return The DBObject instance
-     */
-    @Deprecated
-    Document getDbo(D instance)
 
 }
