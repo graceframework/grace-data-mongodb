@@ -1,0 +1,63 @@
+=== 2024.0.0-M1
+
+link:{github}/releases/tag/v2024.0.0-M1[release notes]
+
+⭐️ New Features
+
+* Remove grace-datastore-gorm-mongodb-ext 
+* Consolidate gorm-mongodb-ext into gorm-mongodb link:{github}/issues/48[#48]
+* Restructure Gradle builds link:{github}/issues/42[#42]
+  - Use Gradle version catalog to simplify dependency management
+  - Sharing Build Logic using buildSrc
+  - Update Checkstyle and CodeNarc plugin
+* Merge mongodb plugin into the grace-framework link:{github}/issues/40[#40]
+* Relocate `examples` to the grace-data-examples link:{github}/issues/41[#41]
+
+🐞 Bug Fixes
+
+* Remove ambiguous overloading methods 'deleteOne()' and 'find()' 
+* Remove deprecated methods
+* Fixed failed tests: MongoDbDataStoreSpringInitializerSpec and MongoConnectionSourcesSpec link:{github}/issues/43[#43]
+* Fix failed tests: initializationError caused by mongodb setup Test using Embedded MongoDB link:{github}/issues/43[#43]
+
+🛠 Improvements
+
+* Update README - Update badge version of Groovy and remove the Spring Boot badge
+* Add release notes for 2024.x
+* Add header license
+* Add Checkstyle and Codenarc versions to Gradle version catalog Improve the 'clean' 'docs' tasks link:{github}/issues/45[#45]
+* Update Codenarc rules link:{github}/issues/44[#44]
+* Code formatting with Checkstyle and Codenarc link:{github}/issues/44[#44]
+* Update GitHub workflows Currently, don't execute Checkstyle and Codenarc tasks, we will do it later
+* Cleanup build scripts
+* Build against to Grace 2024.0.0 snapshots
+  - Migrate to the new scaffolding, fields, cache, events, hibernate plugins
+  - Upgrade to Groovy 4.0.29
+  - Rename app/init to app/boot
+* Update README
+  - Update document links
+  - Update badge version of Grace and Spring Boot
+  - Update supported versions
+* Update README - Update badge version of Grace, Groovy and Spring Boot
+* Migrate to Central Portal OSSRH Staging API link:{github}/issues/34[#34]
+
+🚀 Dependency Upgrades
+
+* Upgrade to Eclipse Expressly 5.0.0 link:{github}/issues/39[#39]
+* Upgrade to Grace 2024.0.0-M1 link:{github}/issues/30[#30]
+* Upgrade to Grace 2023.3.0 link:{github}/issues/29[#29]
+* Upgrade to Grace Asset Pipeline Plugin 7.0.0-M1 link:{github}/issues/36[#36] link:{github}/issues/37[#37]
+* Upgrade to Grace Data 2024.0.0-M1 link:{github}/issues/46[#46]
+* Upgrade to Gradle 8.14.3 link:{github}/issues/38[#38]
+* Upgrade to Groovy 4.0.27 link:{github}/issues/31[#31]
+* Upgrade to MongoDB Driver 5.2.1 link:{github}/issues/35[#35]
+* Upgrade to Spring Framework 6.2.15 link:{github}/issues/47[#47]
+
+⚙️ Tasks
+
+* Release v2024.0.0-M1
+* Update GitHub workflows
+* Bump gradle/actions from 4.0.0 to 4.4.2
+* Bump actions/checkout from 4 to 5
+* Update GitHub workflows - Switch to 2024.0.x
+* Next development version: 2024.0.0-SNAPSHOT
