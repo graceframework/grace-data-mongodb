@@ -4,13 +4,12 @@
 [![Grace Document](https://img.shields.io/badge/Grace_Document-latest-blue?style=flat&logo=asciidoctor&logoColor=E40046&labelColor=ffffff&color=f49b06)](https://graceframework.org/grace-data-mongodb/latest/)
 [![Grace on X](https://img.shields.io/twitter/follow/graceframework?style=social)](https://x.com/graceframework)
 
-[![Groovy Version](https://img.shields.io/badge/Groovy-4.0.27-blue?style=flat&color=4298b8)](https://groovy-lang.org/releasenotes/groovy-4.0.html)
+[![Groovy Version](https://img.shields.io/badge/Groovy-4.0.29-blue?style=flat&color=4298b8)](https://groovy-lang.org/releasenotes/groovy-4.0.html)
 [![Grace Version](https://img.shields.io/badge/Grace-2024.0.0-blue?style=flat&color=f49b06)](https://github.com/graceframework/grace-framework/releases/tag/v2024.0.0-M1)
-[![Spring Boot Version](https://img.shields.io/badge/Spring_Boot-3.4.7-blue?style=flat&color=6db33f)](https://github.com/spring-projects/spring-boot/releases/tag/v3.4.7)
 
-# Grace Data for MongoDB
+# Grace Data MongoDB
 
-This project implements [GORM](https://github.com/graceframework/grace-data) for the [MongoDB Document Database](https://www.mongodb.com).
+This project implements [Grace Data](https://github.com/graceframework/grace-data) for the [MongoDB Document Database](https://www.mongodb.com).
 
 This project aims to provide an Object-Mapping layer on top of MongoDB to ease common activities such as:
 
@@ -23,7 +22,7 @@ This project aims to provide an Object-Mapping layer on top of MongoDB to ease c
 
 ```gradle
 dependencies {
-    implementation "org.graceframework.plugins:mongodb"
+    implementation "org.graceframework:grace-boot-mongodb"
 }
 ```
 
