@@ -27,11 +27,9 @@ plugins {
     id 'signing'
     id 'eclipse'
     id 'idea'
-    // alias libs.plugins.grace.doc
+    alias libs.plugins.grace.doc
     alias libs.plugins.gradle.nexus.publish
 }
-
-apply plugin: 'org.graceframework.grace-doc'
 
 ext {
     isCiBuild = project.hasProperty("isCiBuild") || System.getenv().get("CI") as Boolean
@@ -96,13 +94,9 @@ tasks.withType(Groovydoc) {
     classpath += configurations.documentation
 }
 
-publishGuide {
+docs {
     dependsOn groovydoc
     sourceDir = project.file('src/docs')
-}
-
-tasks.register('docs') { task ->
-    task.dependsOn groovydoc, publishGuide
 }
 
 nexusPublishing {
