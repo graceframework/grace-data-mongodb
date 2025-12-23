@@ -1,8 +1,0 @@
-plugins {
-    id 'grace.build.common'
-}
-
-dependencies {
-    api libs.mongodb.driver.sync
-    api project(":grace-datastore-gorm-mongodb")
-}
