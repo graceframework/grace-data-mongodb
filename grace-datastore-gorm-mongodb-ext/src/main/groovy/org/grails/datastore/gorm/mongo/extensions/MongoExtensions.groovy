@@ -343,10 +343,6 @@ class MongoExtensions {
                 .first()
     }
 
-    static FindIterable<Document> find(MongoCollection<Document> collection, final Map<String, Object> query) {
-        collection.find(toBson(query))
-    }
-
     static <T> FindIterable<T> find(MongoCollection<T> collection, final Map<String, Object> query, Class<T> type) {
         collection.find(toBson(query), type)
     }
@@ -427,10 +423,6 @@ class MongoExtensions {
         collection
                 .withWriteConcern(writeConcern)
                 .deleteMany(toBson(query))
-    }
-
-    static DeleteResult deleteOne(final MongoCollection<Document> collection, final Map<String, Object> query) {
-        collection.deleteOne(toBson(query))
     }
 
     static DeleteResult deleteOne(final MongoCollection<Document> collection, final Map<String, Object> query,
