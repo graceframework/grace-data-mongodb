@@ -128,7 +128,7 @@ function addJsClass() {
 
 
 <div class="paragraph">
-<p>MongoDB doesn&#8217;t support transactions directly, however GORM for MongoDB does batch up inserts and updates until the session is flushed. This makes it possible to support some rollback options.</p>
+<p>MongoDB doesn&#8217;t support transactions directly, however Grace Data MongoDB does batch up inserts and updates until the session is flushed. This makes it possible to support some rollback options.</p>
 </div>
 <div class="paragraph">
 <p>You can use either transactional services or the static <code>withTransaction</code> method. To mark a service as using the MongoDB transaction manager, use the static <code>transactional</code> property with the value <code>'mongo'</code>:</p>

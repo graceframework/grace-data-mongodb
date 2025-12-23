@@ -128,13 +128,13 @@ function addJsClass() {
 
 
 <div class="paragraph">
-<p>GORM for MongoDB supports both stateless and stateful modes for mapping domain classes to MongoDB. In general stateful mapping is superior for write heavy applications and stateless mode better for read heavy applications (particularily when large amounts of data is involved).</p>
+<p>Grace Data MongoDB supports both stateless and stateful modes for mapping domain classes to MongoDB. In general stateful mapping is superior for write heavy applications and stateless mode better for read heavy applications (particularily when large amounts of data is involved).</p>
 </div>
 <div class="sect1">
 <h2 id="_stateful_mode">Stateful mode</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Domain classes are by default stateful, which means when they are read from a MongoDB document their state is stored in the user session (which is typically bound to the request in Grails). This has several advantages for write heavy applications:</p>
+<p>Domain classes are by default stateful, which means when they are read from a MongoDB document their state is stored in the user session (which is typically bound to the request in the Grace framework). This has several advantages for write heavy applications:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -225,7 +225,7 @@ b.insert()</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In the above case we use the explicit 'insert' method to tell Grails this is an insert not an udpate. Another disadvantage is that reading of schemaless/dynamic properties is more costly. For example:</p>
+<p>In the above case we use the explicit 'insert' method to tell the Grace framework this is an insert not an udpate. Another disadvantage is that reading of schemaless/dynamic properties is more costly. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">

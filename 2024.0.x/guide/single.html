@@ -116,9 +116,7 @@ function addJsClass(el) {
                             
                             <div class="toc-item" style="margin-left:10px"><a href="#advancedConfig"><strong>3.3</strong><span>Advanced Configuration</span></a></div>
                             
-                            <div class="toc-item" style="margin-left:10px"><a href="#springBoot"><strong>3.4</strong><span>Using GORM in Spring Boot</span></a></div>
-                            
-                            <div class="toc-item" style="margin-left:10px"><a href="#outsideGrails"><strong>3.5</strong><span>GORM for MongoDB without Grails</span></a></div>
+                            <div class="toc-item" style="margin-left:10px"><a href="#springBoot"><strong>3.4</strong><span>Using Grace Data MongoDB in Spring Boot</span></a></div>
                             
                             <div class="toc-item" style="margin-left:0px"><a href="#objectMapping"><strong>4</strong><span>Mapping Domain Classes</span></a></div>
                             
@@ -300,7 +298,7 @@ function addJsClass(el) {
 <div class="sect3">
 <h4 id="_dependency_upgrades">Dependency Upgrades</h4>
 <div class="paragraph">
-<p>GORM 2023.3 supports Apache Groovy 4.0, Java 17, MongoDB Driver 5.0 and Spring 6.1.x.</p>
+<p>Grace Data MongoDB 2024.0.0-SNAPSHOT supports Apache Groovy 4.0, Java 17, MongoDB Driver 5.2 and Spring 6.2.x.</p>
 </div>
 <div class="paragraph">
 <p>Each of these underlying components may have changes that require altering your application. These changes are beyond the scope of this documentation.</p>
@@ -855,12 +853,12 @@ abstract class BookService {
 <h2 id="_basic_setup">Basic Setup</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To get started with GORM for MongoDB within Grails you need configure it as a dependency in <code>build.gradle</code>:</p>
+<p>To get started with Grace Data MongoDB within Grace framework you need configure it as a dependency in <code>build.gradle</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy">dependencies {
-    implementation 'org.graceframework.plugins:mongodb:2024.0.0-SNAPSHOT'
+    implementation 'org.graceframework:grace-boot-mongodb:2024.0.0-SNAPSHOT'
 }</code></pre>
 </div>
 </div>
@@ -981,7 +979,7 @@ abstract class BookService {
 <div class="sect2">
 <h3 id="_mongo_database_connection_configuration">Mongo Database Connection Configuration</h3>
 <div class="paragraph">
-<p>As mentioned the GORM for MongoDB plugin will configure all the defaults for you, but if you wish to customize those defaults you can do so in the <code>app/conf/application.groovy</code> file:</p>
+<p>As mentioned the Grace Data MongoDB plugin will configure all the defaults for you, but if you wish to customize those defaults you can do so in the <code>app/conf/application.groovy</code> file:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1090,7 +1088,7 @@ abstract class BookService {
 </div>
 
 
-<h2 id="springBoot"><a class="anchor" href="#springBoot"></a>3.4 Using GORM in Spring Boot</h2>
+<h2 id="springBoot"><a class="anchor" href="#springBoot"></a>3.4 Using Grace Data MongoDB in Spring Boot</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2024.0.x/src/docs/guide/gettingStarted/springBoot.adoc"'>
@@ -1100,22 +1098,24 @@ abstract class BookService {
 
 
 <div class="paragraph">
-<p>To use GORM for MongoDB in Spring Boot add the necessary dependencies to your Boot application:</p>
+<p>To use Grace Data MongoDB in Spring Boot add the necessary dependencies to your Spring Boot application:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy">implementation "org.graceframework:grace-boot:2024.0.0-SNAPSHOT"
-implementation "org.graceframework.plugins:mongodb:2024.0.0-SNAPSHOT"</code></pre>
+implementation "org.graceframework:grace-boot-mongodb:2024.0.0-SNAPSHOT"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ensure your Boot <code>Application</code> class is annotated with <code>GrailsComponentScan</code>, example:</p>
+<p>Ensure your Boot <code>Application</code> class is annotated with <code>@GrailsComponentScan</code>, example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">org.springframework.boot.SpringApplication</span>
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.boot.GrailsComponentScan</span>
+<span class="keyword">import</span> <span class="include">org.springframework.boot.SpringApplication</span>
 <span class="keyword">import</span> <span class="include">org.springframework.boot.autoconfigure.SpringBootApplication</span>
 
+<span class="annotation">@GrailsComponentScan</span>
 <span class="annotation">@SpringBootApplication</span>
 <span class="type">class</span> <span class="class">Application</span> {
     <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
@@ -1131,7 +1131,7 @@ implementation "org.graceframework.plugins:mongodb:2024.0.0-SNAPSHOT"</code></pr
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Using <code>GrailsComponentScan</code> without a value results in Boot scanning for classes in the same package or any package nested within the <code>Application</code> class package.
+Using <code>@GrailsComponentScan</code> without a value results in Boot scanning for classes in the same package or any package nested within the <code>Application</code> class package.
 If your GORM entities are in a different package specify the package name as the value of the <code>GrailsComponentScan</code> annotation.
 </td>
 </tr>
@@ -1153,69 +1153,6 @@ If your GORM entities are in a different package specify the package name as the
 </div>
 
 
-<h2 id="outsideGrails"><a class="anchor" href="#outsideGrails"></a>3.5 GORM for MongoDB without Grails</h2>
-
-<div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2024.0.x/src/docs/guide/gettingStarted/outsideGrails.adoc"'>
-        <i class='fa fa-pencil-square-o'></i> Improve this doc
-    </button>
-</div>
-
-
-<div class="paragraph">
-<p>If you wish to use GORM for MongoDB outside of a Grace application you should declare the necessary dependencies, for example in Gradle:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">implementation "org.graceframework:grace-boot:2024.0.0-SNAPSHOT"
-implementation "org.graceframework.plugins:mongodb:2024.0.0-SNAPSHOT"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then annotate your entities with the <code>grails.gorm.annotation.Entity</code> annotation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Entity</span>
-<span class="type">class</span> <span class="class">Person</span> {
-    <span class="predefined-type">String</span> name
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then you need to place the bootstrap logic somewhere in the loading sequence of your application which uses <code>MongoDatastore</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> datastore = <span class="keyword">new</span> MongoDatastore(Person)
-
-println Person.count()</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For configuration you can either pass a map or an instance of the <code>org.springframework.core.env.PropertyResolver</code> interface:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> initializer = <span class="keyword">new</span> MongoDatastore([<span class="string"><span class="delimiter">'</span><span class="content">grails.mongodb.url</span><span class="delimiter">'</span></span>:<span class="string"><span class="delimiter">'</span><span class="content">http://myserver</span><span class="delimiter">'</span></span>], Person)
-
-println Person.count()</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you are using Spring with an existing <code>ApplicationContext</code> you can instead call <code>MongoDbDataStoreSpringInitializer.configureForBeanDefinitionRegistry</code> prior to refreshing the context. You can pass the Spring <code>Environment</code> object to the constructor for configuration:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">ApplicationContext myApplicationContext = ...
-def initializer = <span class="keyword">new</span> MongoDbDataStoreSpringInitializer(myApplicationContext.getEnvironment(), Person)
-initializer.configureForBeanDefinitionRegistry(myApplicationContext)
-
-println Person.count()</code></pre>
-</div>
-</div>
-
-
 <h1 id="objectMapping"><a class="anchor" href="#objectMapping"></a>4 Mapping Domain Classes</h1>
 
 <div class='contribute-btn'>
@@ -1229,7 +1166,7 @@ println Person.count()</code></pre>
 <h2 id="_basic_mapping">Basic Mapping</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The way GORM for MongoDB works is to map each domain class to a Mongo collection. For example given a domain class such as:</p>
+<p>The way Grace Data MongoDB works is to map each domain class to a Mongo collection. For example given a domain class such as:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1249,7 +1186,7 @@ println Person.count()</code></pre>
 <h2 id="_embedded_documents">Embedded Documents</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is quite common in MongoDB to embed documents within documents (nested documents). This can be done with GORM embedded types:</p>
+<p>It is quite common in MongoDB to embed documents within documents (nested documents). This can be done with Grace Data MongoDB embedded types:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1347,7 +1284,7 @@ new Person(<span class="key">friends</span>:[<span class="string"><span class="d
 </div>
 </div>
 <div class="paragraph">
-<p>If you are using the mapping engine, for non-embedded associations by default GORM for MongoDB will map links between documents using MongoDB <a href="https://www.mongodb.com/docs/manual/reference/database-references/">database references</a> also known as <code>DBRefs</code>.</p>
+<p>If you are using the mapping engine, for non-embedded associations by default Grace Data MongoDB will map links between documents using MongoDB <a href="https://www.mongodb.com/docs/manual/reference/database-references/">database references</a> also known as <code>DBRefs</code>.</p>
 </div>
 <div class="paragraph">
 <p>If you prefer not to use DBRefs then you tell GORM to use direct links by using the <code>reference:false</code> mapping:</p>
@@ -1462,7 +1399,7 @@ p.save()</code></pre>
 <p>This method is defined by the <code>org.grails.datastore.mapping.dirty.checking.DirtyCheckable</code> trait.</p>
 </div>
 <div class="paragraph">
-<p>In the case of collections and association types GORM for MongoDB will wrap each collection in a dirty checking aware
+<p>In the case of collections and association types Grace Data MongoDB will wrap each collection in a dirty checking aware
 collection type.</p>
 </div>
 <div class="paragraph">
@@ -1478,7 +1415,7 @@ dirty checking and prevent the property from being updated.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>This will force GORM for MongoDB to issue an update for the given property name.</p>
+<p>This will force Grace Data MongoDB to issue an update for the given property name.</p>
 </div>
 <div class="sect2">
 <h3 id="_dirty_checking_and_proxies">Dirty Checking and Proxies</h3>
@@ -1580,7 +1517,7 @@ For versioned entities, if a lower level of WriteConcern than WriteConcern.ACKNO
 </div>
 </div>
 <div class="paragraph">
-<p>Here there are two fixed properties, <code>name</code> and <code>goesInPatch</code>, that will be persisted into the MongoDB document. Using GORM for MongoDB you can however use dynamic properties via the Groovy subscript operator. For example:</p>
+<p>Here there are two fixed properties, <code>name</code> and <code>goesInPatch</code>, that will be persisted into the MongoDB document. Using Grace Data MongoDB you can however use dynamic properties via the Groovy subscript operator. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1610,12 +1547,12 @@ println p[<span class="string"><span class="delimiter">'</span><span class="cont
 
 
 <div class="paragraph">
-<p>GORM for MongoDB will persist all common known Java types like String, Integer, URL etc., however if you want to persist one of your own classes that is not a domain class you can implement a custom user type.</p>
+<p>Grace Data MongoDB will persist all common known Java types like String, Integer, URL etc., however if you want to persist one of your own classes that is not a domain class you can implement a custom user type.</p>
 </div>
 <div class="sect2">
 <h3 id="_custom_codecs">Custom Codecs</h3>
 <div class="paragraph">
-<p>GORM for MongoDB is built ontop of MongoDB&#8217;s BSON encoding framework. This means it is possible to implement custom <a href="https://mongodb.github.io/mongo-java-driver/5.0/bson/codecs/">Codecs</a> for encoding and decoding values to and from BSON.</p>
+<p>Grace Data MongoDB is built ontop of MongoDB&#8217;s BSON encoding framework. This means it is possible to implement custom <a href="https://mongodb.github.io/mongo-java-driver/5.0/bson/codecs/">Codecs</a> for encoding and decoding values to and from BSON.</p>
 </div>
 <div class="paragraph">
 <p>For example consider the following simple Groovy class:</p>
@@ -1861,7 +1798,7 @@ beans = {
 
 
 <div class="paragraph">
-<p>GORM for MongoDB supports all of the <a href="https://graceframework.org/grace-data-hibernate/2023.3.x/guide/querying.html">regular methods</a> for executing GORM queries apart from HQL, which is a Hibernate specific query language more appropriate for SQL databases.</p>
+<p>Grace Data MongoDB supports all of the <a href="https://graceframework.org/grace-data-hibernate/2023.3.x/guide/querying.html">regular methods</a> for executing GORM queries apart from HQL, which is a Hibernate specific query language more appropriate for SQL databases.</p>
 </div>
 <div class="paragraph">
 <p>If you wish to execute a native MongoDB query you can use the <code>find</code> method that takes a <a href="https://mongodb.github.io/mongo-java-driver/5.0/apidocs/bson/org/bson/conversions/Bson.html">Bson</a> argument. For example:</p>
@@ -1970,7 +1907,7 @@ Document doc = Product.collection
 <div class="sect2">
 <h3 id="_compound_indices">Compound Indices</h3>
 <div class="paragraph">
-<p>MongoDB supports the notion of <a href="https://www.mongodb.com/docs/manual/core/indexes/index-types/index-compound/">compound keys</a>. GORM for MongoDB enables this feature at the mapping level using the <code>compoundIndex</code> mapping:</p>
+<p>MongoDB supports the notion of <a href="https://www.mongodb.com/docs/manual/core/indexes/index-types/index-compound/">compound keys</a>. Grace Data MongoDB enables this feature at the mapping level using the <code>compoundIndex</code> mapping:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2017,7 +1954,7 @@ Document doc = Product.collection
 <p>MongoDB supports storing <a href="https://www.mongodb.com/docs/manual/geospatial-queries/#geospatial-data">Geospacial data</a> in both flat and spherical surface types.</p>
 </div>
 <div class="paragraph">
-<p>To store data in a flat surface you use a "2d" index, whilst a "2dsphere" index used for spherical data. GORM for MongoDB supports both and the following sections describe how to define and query Geospacial data.</p>
+<p>To store data in a flat surface you use a "2d" index, whilst a "2dsphere" index used for spherical data. Grace Data MongoDB supports both and the following sections describe how to define and query Geospacial data.</p>
 </div>
 
 
@@ -2051,7 +1988,7 @@ MongoDB legacy coordinate pairs are in latitude / longitude order, whilst GeoJSO
 </table>
 </div>
 <div class="paragraph">
-<p>To support this GORM for MongoDB features a special type, <code>grails.mongodb.geo.Point</code>, that can be used within domain classes to store geospacial data:</p>
+<p>To support this Grace Data MongoDB features a special type, <code>grails.mongodb.geo.Point</code>, that can be used within domain classes to store geospacial data:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2368,7 +2305,7 @@ new Entry(<span class="key">shape</span>: <span class="predefined-type">Polygon<
 
 
 <div class="paragraph">
-<p>GORM for MongoDB supports the notion of multiple data sources where multiple individual <code>MongoClient</code> instances can be configured and switched between.</p>
+<p>Grace Data MongoDB supports the notion of multiple data sources where multiple individual <code>MongoClient</code> instances can be configured and switched between.</p>
 </div>
 
 
@@ -2517,7 +2454,7 @@ new Entry(<span class="key">shape</span>: <span class="predefined-type">Polygon<
 
 
 <div class="paragraph">
-<p>Introduced in GORM 6.0, the <a href="../api/org/grails/datastore/mapping/core/connections/ConnectionSources.html">ConnectionSources</a> API allows you to introspect the data sources configured for the application:</p>
+<p>Introduced in Grace Data 2022.0, the <a href="../api/org/grails/datastore/mapping/core/connections/ConnectionSources.html">ConnectionSources</a> API allows you to introspect the data sources configured for the application:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2707,7 +2644,7 @@ ConnectionSources&lt;MongoClient, MongoConnectionSourceSettings&gt; connectionSo
 
 
 <div class="paragraph">
-<p>As mentioned previously, GORM for MongoDB supports all three multi tenancy modes however there are some considerations to keep in mind.</p>
+<p>As mentioned previously, Grace Data MongoDB supports all three multi tenancy modes however there are some considerations to keep in mind.</p>
 </div>
 <div class="sect2">
 <h3 id="_database_per_tenant">Database Per Tenant</h3>
@@ -2749,7 +2686,7 @@ MongoClient mongoClient =
 <div class="sect2">
 <h3 id="_schema_per_tenant">Schema Per Tenant</h3>
 <div class="paragraph">
-<p>When using the <code>SCHEMA</code> mode, GORM for MongoDB will use a different MongoDB database, but the same <code>MongoClient</code> instance, for each tenant.</p>
+<p>When using the <code>SCHEMA</code> mode, Grace Data MongoDB will use a different MongoDB database, but the same <code>MongoClient</code> instance, for each tenant.</p>
 </div>
 <div class="paragraph">
 <p>However, once again only GORM methods will use the correct database. For example:</p>
@@ -2784,7 +2721,7 @@ mongoClient.getDatabase(<span class="string"><span class="delimiter">&quot;</spa
 <div class="sect2">
 <h3 id="_partitioned_multi_tenancy">Partitioned Multi-Tenancy</h3>
 <div class="paragraph">
-<p>When using the <code>DISCRIMINATOR</code> approach, GORM for MongoDB will store a <code>tenantId</code> attribute in each MongoDB document and attempt to partition the data.</p>
+<p>When using the <code>DISCRIMINATOR</code> approach, Grace Data MongoDB will store a <code>tenantId</code> attribute in each MongoDB document and attempt to partition the data.</p>
 </div>
 <div class="paragraph">
 <p>Once again this works only when using GORM methods and even then there are cases where it will not work if you use native MongoDB interfaces.</p>
@@ -2889,7 +2826,7 @@ MongoClient mongoClient =
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-GORM for MongoDB does not implement provisioning of new MongoDB instances at runtime. This is something that would need to be implemented by a cloud services provider for example.
+Grace Data MongoDB does not implement provisioning of new MongoDB instances at runtime. This is something that would need to be implemented by a cloud services provider for example.
 </td>
 </tr>
 </table>
@@ -2906,13 +2843,13 @@ GORM for MongoDB does not implement provisioning of new MongoDB instances at run
 
 
 <div class="paragraph">
-<p>GORM for MongoDB supports both stateless and stateful modes for mapping domain classes to MongoDB. In general stateful mapping is superior for write heavy applications and stateless mode better for read heavy applications (particularily when large amounts of data is involved).</p>
+<p>Grace Data MongoDB supports both stateless and stateful modes for mapping domain classes to MongoDB. In general stateful mapping is superior for write heavy applications and stateless mode better for read heavy applications (particularily when large amounts of data is involved).</p>
 </div>
 <div class="sect1">
 <h2 id="_stateful_mode">Stateful mode</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Domain classes are by default stateful, which means when they are read from a MongoDB document their state is stored in the user session (which is typically bound to the request in Grails). This has several advantages for write heavy applications:</p>
+<p>Domain classes are by default stateful, which means when they are read from a MongoDB document their state is stored in the user session (which is typically bound to the request in the Grace framework). This has several advantages for write heavy applications:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3003,7 +2940,7 @@ b.insert()</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In the above case we use the explicit 'insert' method to tell Grails this is an insert not an udpate. Another disadvantage is that reading of schemaless/dynamic properties is more costly. For example:</p>
+<p>In the above case we use the explicit 'insert' method to tell the Grace framework this is an insert not an udpate. Another disadvantage is that reading of schemaless/dynamic properties is more costly. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3142,7 +3079,7 @@ Person.collection.findOne(<span class="key">firstName</span>:<span class="string
 
 
 <div class="paragraph">
-<p>MongoDB doesn&#8217;t support transactions directly, however GORM for MongoDB does batch up inserts and updates until the session is flushed. This makes it possible to support some rollback options.</p>
+<p>MongoDB doesn&#8217;t support transactions directly, however Grace Data MongoDB does batch up inserts and updates until the session is flushed. This makes it possible to support some rollback options.</p>
 </div>
 <div class="paragraph">
 <p>You can use either transactional services or the static <code>withTransaction</code> method. To mark a service as using the MongoDB transaction manager, use the static <code>transactional</code> property with the value <code>'mongo'</code>:</p>

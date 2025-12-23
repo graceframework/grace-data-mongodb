@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>3.4 Using GORM in Spring Boot 2024.0.0-SNAPSHOT</title>
+    <title>3.4 Using Grace Data MongoDB in Spring Boot 2024.0.0-SNAPSHOT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -109,7 +109,7 @@ function addJsClass() {
 
 
                 <div class="project">
-                    <h1>3.4 Using GORM in Spring Boot</h1>
+                    <h1>3.4 Using Grace Data MongoDB in Spring Boot</h1>
 
                     <p><strong>Version:</strong> 2024.0.0-SNAPSHOT</p>
                 </div>
@@ -118,7 +118,7 @@ function addJsClass() {
 
                 
 
-<h2 id="springBoot"><a class="anchor" href="#springBoot"></a>3.4 Using GORM in Spring Boot</h2>
+<h2 id="springBoot"><a class="anchor" href="#springBoot"></a>3.4 Using Grace Data MongoDB in Spring Boot</h2>
 
 <div class='contribute-btn'>
     <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2024.0.x/src/docs/guide/gettingStarted/springBoot.adoc"'>
@@ -128,22 +128,24 @@ function addJsClass() {
 
 
 <div class="paragraph">
-<p>To use GORM for MongoDB in Spring Boot add the necessary dependencies to your Boot application:</p>
+<p>To use Grace Data MongoDB in Spring Boot add the necessary dependencies to your Spring Boot application:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy">implementation "org.graceframework:grace-boot:2024.0.0-SNAPSHOT"
-implementation "org.graceframework.plugins:mongodb:2024.0.0-SNAPSHOT"</code></pre>
+implementation "org.graceframework:grace-boot-mongodb:2024.0.0-SNAPSHOT"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ensure your Boot <code>Application</code> class is annotated with <code>GrailsComponentScan</code>, example:</p>
+<p>Ensure your Boot <code>Application</code> class is annotated with <code>@GrailsComponentScan</code>, example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">org.springframework.boot.SpringApplication</span>
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">grails.boot.GrailsComponentScan</span>
+<span class="keyword">import</span> <span class="include">org.springframework.boot.SpringApplication</span>
 <span class="keyword">import</span> <span class="include">org.springframework.boot.autoconfigure.SpringBootApplication</span>
 
+<span class="annotation">@GrailsComponentScan</span>
 <span class="annotation">@SpringBootApplication</span>
 <span class="type">class</span> <span class="class">Application</span> {
     <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
@@ -159,7 +161,7 @@ implementation "org.graceframework.plugins:mongodb:2024.0.0-SNAPSHOT"</code></pr
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Using <code>GrailsComponentScan</code> without a value results in Boot scanning for classes in the same package or any package nested within the <code>Application</code> class package.
+Using <code>@GrailsComponentScan</code> without a value results in Boot scanning for classes in the same package or any package nested within the <code>Application</code> class package.
 If your GORM entities are in a different package specify the package name as the value of the <code>GrailsComponentScan</code> annotation.
 </td>
 </tr>
