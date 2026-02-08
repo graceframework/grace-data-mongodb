@@ -7,8 +7,7 @@ ehcache = "2.10.6"
 embedmongo = "4.21.0"
 glassfish-expressly = "5.0.0"
 grace-data = "2024.0.0-M1"
-grace-framework = "2024.0.0-SNAPSHOT"
-grace-gradle = "2024.0.0-M1"
+grace-framework = "2024.0.0-M2"
 groovy = "4.0.29"
 h2 = "2.3.232"
 hibernate-ehcache = "5.6.15.Final"
@@ -95,5 +94,5 @@ spring-orm = { module = "org.springframework:spring-orm", version.ref = "spring-
 spring-web = { module = "org.springframework:spring-web", version.ref = "spring-framework" }
 
 [plugins]
-grace-doc = { id = "org.graceframework.grace-doc", version.ref = "grace-gradle" }
+grace-doc = { id = "org.graceframework.grace-doc", version.ref = "grace-framework" }
 gradle-nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexus-publish" }
