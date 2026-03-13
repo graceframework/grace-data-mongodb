@@ -1,3 +1,25 @@
+=== 2024.0.0-RC1
+
+link:{github}/releases/tag/v2024.0.0-RC1[release notes]
+
+🛠 Improvements
+
+* Add release notes for 2024.0.0-RC1
+* Update copyright in doc.properties 
+
+🚀 Dependency Upgrades
+
+* Upgrade to Grace 2024.0.0-M2 link:{github}/issues/50[#50]
+* Upgrade to Grace Data 2024.0.0-RC1 link:{github}/issues/52[#52]
+* Upgrade to Gradle 8.14.4 link:{github}/issues/49[#49]
+* Upgrade to Groovy 4.0.30 link:{github}/issues/51[#51]
+* Upgrade to Hibernate Validator 8.0.3.Final link:{github}/issues/53[#53]
+* Upgrade to Spring Framework 6.2.16 link:{github}/issues/54[#54]
+
+⚙️ Tasks
+
+* Release v2024.0.0-RC1
+
 === 2024.0.0-M1
 
 link:{github}/releases/tag/v2024.0.0-M1[release notes]
