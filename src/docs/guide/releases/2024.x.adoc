@@ -1,3 +1,26 @@
+=== 2024.0.0
+
+link:{github}/releases/tag/v2024.0.0[release notes]
+
+🛠 Improvements
+
+* Add release notes for 2024.0.0
+* Update spring api link in doc.properties 
+* Clean up unused versions and libraries in the Gradle version catalog link:{github}/issues/58[#58]
+
+🚀 Dependency Upgrades
+
+* Upgrade to Grace 2024.0.0-RC1 link:{github}/issues/55[#55]
+* Upgrade to Grace Data 2024.0.0 link:{github}/issues/56[#56]
+* Upgrade to Spring Framework 6.2.17 link:{github}/issues/57[#57]
+
+⚙️ Tasks
+
+* Release v2024.0.0
+* Upgrade to gradle/actions/setup-gradle@v5.0.2 
+* Upgrade to actions/setup-java@v5 
+* Upgrade to actions/checkout@v6 
+
 === 2024.0.0-RC1
 
 link:{github}/releases/tag/v2024.0.0-RC1[release notes]
@@ -5,7 +28,7 @@ link:{github}/releases/tag/v2024.0.0-RC1[release notes]
 🛠 Improvements
 
 * Add release notes for 2024.0.0-RC1
-* Update copyright in doc.properties 
+* Update copyright in doc.properties
 
 🚀 Dependency Upgrades
 
@@ -26,7 +49,7 @@ link:{github}/releases/tag/v2024.0.0-M1[release notes]
 
 ⭐️ New Features
 
-* Remove grace-datastore-gorm-mongodb-ext 
+* Remove grace-datastore-gorm-mongodb-ext
 * Consolidate gorm-mongodb-ext into gorm-mongodb link:{github}/issues/48[#48]
 * Restructure Gradle builds link:{github}/issues/42[#42]
   - Use Gradle version catalog to simplify dependency management
@@ -37,7 +60,7 @@ link:{github}/releases/tag/v2024.0.0-M1[release notes]
 
 🐞 Bug Fixes
 
-* Remove ambiguous overloading methods 'deleteOne()' and 'find()' 
+* Remove ambiguous overloading methods 'deleteOne()' and 'find()'
 * Remove deprecated methods
 * Fixed failed tests: MongoDbDataStoreSpringInitializerSpec and MongoConnectionSourcesSpec link:{github}/issues/43[#43]
 * Fix failed tests: initializationError caused by mongodb setup Test using Embedded MongoDB link:{github}/issues/43[#43]
