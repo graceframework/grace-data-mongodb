@@ -4,8 +4,8 @@
 [![Grace Document](https://img.shields.io/badge/Grace_Document-latest-blue?style=flat&logo=asciidoctor&logoColor=E40046&labelColor=ffffff&color=f49b06)](https://graceframework.org/grace-data-mongodb/latest/)
 [![Grace on X](https://img.shields.io/twitter/follow/graceframework?style=social)](https://x.com/graceframework)
 
-[![Groovy Version](https://img.shields.io/badge/Groovy-4.0.30-blue?style=flat&color=4298b8)](https://groovy-lang.org/releasenotes/groovy-4.0.html)
-[![Grace Version](https://img.shields.io/badge/Grace-2024.0.0-blue?style=flat&color=f49b06)](https://github.com/graceframework/grace-framework/releases/tag/v2024.0.0)
+[![Groovy Version](https://img.shields.io/badge/Groovy-4.0.31-blue?style=flat&color=4298b8)](https://groovy-lang.org/releasenotes/groovy-4.0.html)
+[![Grace Version](https://img.shields.io/badge/Grace-2024.1.0-blue?style=flat&color=f49b06)](https://github.com/graceframework/grace-framework/releases/tag/v2024.1.0-M2)
 
 # Grace Data MongoDB
 
@@ -32,12 +32,13 @@ To make it easier for users to use and upgrade, Grace Data MongoDB adopts a vers
 
 | GORM Version | Grace Version | MongoDB Version |
 |--------------|---------------|-----------------|
+| 2024.1.x     | 2024.1.x      | 5.5.2           |
 | 2024.0.x     | 2024.0.x      | 5.2.1           |
 | 2023.3.x     | 2023.3.x      | 5.0.1           |
 
 ## Ducumentation
 
-* [2024.0.x](https://graceframework.org/grace-data-mongodb/2024.0.x/)
+* [2024.1.x](https://graceframework.org/grace-data-mongodb/2024.1.x/)
 
 ## License
 
