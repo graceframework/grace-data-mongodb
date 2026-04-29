@@ -1,3 +1,32 @@
+=== 2024.1.0-M1
+
+link:{github}/releases/tag/v2024.1.0-M1[release notes]
+
+🛠 Improvements
+
+* Add release notes for 2024.1.0-M1
+* Update spring api link in doc.properties 
+* Update README
+* Update doc.properties - switch to 2024.1.x branch - update spring version
+* Cleanup unused `snakeyaml` in Gradle version catalog link:{github}/issues/67[#67]
+
+🚀 Dependency Upgrades
+
+* Upgrade to Embedded MongoDB 4.24.0 link:{github}/issues/66[#66]
+* Upgrade to Grace Gradle Plugin 2024.1.0-M2 link:{github}/issues/59[#59]
+* Upgrade to Grace Data 2024.1.0-M1 link:{github}/issues/62[#62]
+* Upgrade to Groovy 4.0.31 link:{github}/issues/60[#60]
+* Upgrade to JUnit Jupiter 5.12.2 link:{github}/issues/63[#63]
+* Upgrade to JUnit Platform 1.12.2 link:{github}/issues/64[#64]
+* Upgrade to MongoDB 5.5.2 link:{github}/issues/65[#65]
+* Upgrade to Spring Framework 6.2.18 link:{github}/issues/61[#61]
+
+⚙️ Tasks
+
+* Release v2024.1.0-M1
+* Switch to branch 2024.1.x Update GitHub workflows
+* Next development version: 2024.1.0-SNAPSHOT
+
 === 2024.0.0
 
 link:{github}/releases/tag/v2024.0.0[release notes]
