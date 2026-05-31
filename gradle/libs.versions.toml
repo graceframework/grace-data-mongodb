@@ -6,7 +6,7 @@ commons-validator = "1.9.0"
 embedmongo = "4.24.0"
 glassfish-expressly = "5.0.0"
 grace-data = "2024.1.0-M1"
-grace-framework = "2024.1.0-M2"
+grace-gradle = "2024.1.0-M2"
 groovy = "4.0.31"
 h2 = "2.3.232"
 hibernate-validator = "8.0.3.Final"
@@ -33,8 +33,6 @@ caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "c
 commons-validator = { module = "commons-validator:commons-validator", version.ref = "commons-validator" }
 embedmongo = { module = "de.flapdoodle.embed:de.flapdoodle.embed.mongo", version.ref = "embedmongo" }
 glassfish-expressly = { module = "org.glassfish.expressly:expressly", version.ref = "glassfish-expressly" }
-grace-bootstrap = { module = "org.graceframework:grace-bootstrap", version.ref = "grace-framework" }
-grace-core = { module = "org.graceframework:grace-core", version.ref = "grace-framework" }
 grace-datastore-core = { module = "org.graceframework:grace-datastore-core", version.ref = "grace-data" }
 grace-datastore-gorm = { module = "org.graceframework:grace-datastore-gorm", version.ref = "grace-data" }
 grace-datastore-gorm-async = { module = "org.graceframework:grace-datastore-gorm-async", version.ref = "grace-data" }
@@ -43,7 +41,6 @@ grace-datastore-gorm-tck = { module = "org.graceframework:grace-datastore-gorm-t
 grace-datastore-gorm-test = { module = "org.graceframework:grace-datastore-gorm-test", version.ref = "grace-data" }
 grace-datastore-gorm-validation = { module = "org.graceframework:grace-datastore-gorm-validation", version.ref = "grace-data" }
 grace-datastore-web = { module = "org.graceframework:grace-datastore-web", version.ref = "grace-data" }
-grace-test-support = { module = "org.graceframework:grace-test-support", version.ref = "grace-framework" }
 groovy-ant = { module = "org.apache.groovy:groovy-ant", version.ref = "groovy" }
 groovy-core = { module = "org.apache.groovy:groovy", version.ref = "groovy" }
 groovy-dateutil = { module = "org.apache.groovy:groovy-dateutil", version.ref = "groovy" }
@@ -86,5 +83,5 @@ spring-orm = { module = "org.springframework:spring-orm", version.ref = "spring-
 spring-web = { module = "org.springframework:spring-web", version.ref = "spring-framework" }
 
 [plugins]
-grace-doc = { id = "org.graceframework.grace-doc", version.ref = "grace-framework" }
+grace-doc = { id = "org.graceframework.grace-doc", version.ref = "grace-gradle" }
 gradle-nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexus-publish" }
