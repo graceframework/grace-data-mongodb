@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2025 the original author or authors.
+ * Copyright 2016-2026 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,9 @@ package org.grails.datastore.gorm.mongo
 
 import org.bson.types.ObjectId
 import spock.lang.Ignore
-import spock.lang.PendingFeature
 
+import grails.gorm.annotation.Entity
 import grails.gorm.tests.GormDatastoreSpec
-import grails.persistence.Entity
 
 /**
  * Created by graemerocher on 22/04/16.
@@ -70,7 +69,6 @@ class EmbeddedSetAssignedIdSpec extends GormDatastoreSpec {
         i.lineItems.first().subItems.first().name == 's1'
     }
 
-    @PendingFeature
     void 'Test update nested embedded association graph with assigned id'() {
         when: 'an object graph is created with nested items'
         new Itemized(name: 'i1').save(flush: true)
@@ -94,7 +92,6 @@ class EmbeddedSetAssignedIdSpec extends GormDatastoreSpec {
         i.lineItems.first().subItems.first().name == 's1'
     }
 
-    @PendingFeature
     void 'Test update nested embedded association graph with assigned id using direct collection modification'() {
         when: 'an object graph is created with nested items'
         new Itemized(name: 'i1').save(flush: true)
@@ -120,7 +117,6 @@ class EmbeddedSetAssignedIdSpec extends GormDatastoreSpec {
         i.lineItems.first().subItems.first().name == 's1'
     }
 
-    @PendingFeature
     void 'Test update nested embedded association graph with assigned id by assigning a new collection'() {
         when: 'an object graph is created with nested items'
         new Itemized(name: 'i1').save(flush: true)

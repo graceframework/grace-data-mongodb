@@ -25,7 +25,7 @@ import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
 
-import grails.persistence.Entity
+import grails.gorm.annotation.Entity
 
 import org.grails.datastore.mapping.config.Settings
 import org.grails.datastore.mapping.mongo.MongoDatastore

@@ -18,8 +18,8 @@ package grails.gorm.tests.listener
 import org.springframework.context.ApplicationEvent
 
 import grails.gorm.DetachedCriteria
+import grails.gorm.annotation.Entity
 import grails.gorm.tests.GormDatastoreSpec
-import grails.persistence.Entity
 
 import org.grails.datastore.mapping.core.Datastore
 import org.grails.datastore.mapping.engine.event.AbstractPersistenceEvent

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2025 the original author or authors.
+ * Copyright 2016-2026 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import grails.gorm.tests.Plant
 import org.grails.datastore.mapping.config.Settings
 import org.grails.datastore.mapping.mongo.MongoDatastore
 import org.grails.datastore.mapping.mongo.config.MongoSettings
+import org.grails.datastore.mapping.validation.ValidationException
 
 /**
  * Created by graemerocher on 16/12/16.
@@ -76,7 +77,7 @@ class FailOnErrorSetupSpec extends Specification {
 
         then:
         plant.errors.hasErrors()
-        thrown grails.validation.ValidationException
+        thrown ValidationException
     }
 
 }

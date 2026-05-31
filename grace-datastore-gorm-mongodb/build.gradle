@@ -13,8 +13,9 @@ dependencies {
 
     testImplementation libs.embedmongo
     testImplementation libs.grace.datastore.gorm.tck
-    testImplementation libs.grace.test.support
+    testImplementation libs.grace.datastore.gorm.test
     testImplementation libs.jakarta.validation
+    testImplementation libs.javassist
     testImplementation libs.hibernate.validator
     testRuntimeOnly libs.glassfish.expressly
 }

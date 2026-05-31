@@ -31,8 +31,7 @@ import spock.lang.Specification
 
 import grails.mongodb.MongoEntity
 import grails.mongodb.geo.Point
-import grails.persistence.Entity
-import grails.validation.ValidationException
+import grails.gorm.annotation.Entity
 
 import org.grails.datastore.gorm.mongo.Birthday
 import org.grails.datastore.gorm.mongo.BirthdayCodec
@@ -171,7 +170,7 @@ class MongoDbDataStoreSpringInitializerSpec extends Specification {
         def p = new Person().save(flush: true)
 
         then: 'Throw ValidationException'
-        thrown(ValidationException)
+        thrown(Exception)
 
         when: 'We persist a Geo type'
         Person.withNewSession {

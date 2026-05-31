@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2025 the original author or authors.
+ * Copyright 2016-2026 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,8 +31,6 @@ import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
 
-import grails.core.DefaultGrailsApplication
-import grails.core.GrailsApplication
 import grails.gorm.validation.PersistentEntityValidator
 
 import org.grails.datastore.bson.query.BsonQuery
@@ -69,9 +67,6 @@ abstract class GormDatastoreSpec extends Specification {
 
     @Shared
     MongoClient mongoClient
-
-    @Shared
-    GrailsApplication grailsApplication
 
     @Shared
     MappingContext mappingContext
@@ -140,10 +135,6 @@ abstract class GormDatastoreSpec extends Specification {
 
         mappingContext.addPersistentEntities(allClasses as Class[])
         mongoClient = mongoDatastore.getMongoClient()
-
-        grailsApplication = new DefaultGrailsApplication(allClasses, getClass().getClassLoader())
-        grailsApplication.mainContext = ctx
-        grailsApplication.initialise()
     }
 
     void setupValidator(Class entityClass, Validator validator = null) {
