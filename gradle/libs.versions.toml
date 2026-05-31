@@ -48,6 +48,7 @@ groovy-json = { module = "org.apache.groovy:groovy-json", version.ref = "groovy"
 groovy-sql = { module = "org.apache.groovy:groovy-sql", version.ref = "groovy" }
 groovy-test = { module = "org.apache.groovy:groovy-test", version.ref = "groovy" }
 groovy-test-junit5 = { module = "org.apache.groovy:groovy-test-junit5", version.ref = "groovy" }
+groovy-toml = { module = "org.apache.groovy:groovy-toml", version.ref = "groovy" }
 h2 = { module = "com.h2database:h2", version.ref = "h2" }
 hibernate-validator = { module = "org.hibernate.validator:hibernate-validator", version.ref = "hibernate-validator" }
 jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api", version.ref = "jakarta-annotation" }
