@@ -101,8 +101,8 @@ if (location.href.indexOf('is-external=true') == -1) {
             <!-- todo: direct known subclasses -->
             <hr>
 
-<pre>@groovy.transform.EqualsAndHashCode
-@groovy.transform.CompileStatic
+<pre>@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/transform/EqualsAndHashCode.html' title='EqualsAndHashCode'>EqualsAndHashCode</a>
+@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/transform/CompileStatic.html' title='CompileStatic'>CompileStatic</a>
 class Sphere
 extends <a href='../../../grails/mongodb/geo/Shape.html'>Shape</a></pre>
 
@@ -196,14 +196,14 @@ extends <a href='../../../grails/mongodb/geo/Shape.html'>Shape</a></pre>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>java.util.List&lt;? extends java.lang.Object&gt;</code></td>
+                            <td class="colLast"><code><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;? extends <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a>&gt;</code></td>
                             <td class="colLast"><code><strong><a href="#asList()">asList</a></strong>()</code><br>The sphere coordinate list with the radius in radians</td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>static&nbsp;<a href='../../../grails/mongodb/geo/Sphere.html'>Sphere</a></code></td>
-                            <td class="colLast"><code><strong><a href="#valueOf(java.util.List, grails.mongodb.geo.Metric)">valueOf</a></strong>(java.util.List coords, <a href='../../../grails/mongodb/geo/Metric.html'>Metric</a> metric)</code><br>Constructs a Sphere for the given coordinate list and optional metric</td>
+                            <td class="colLast"><code><strong><a href="#valueOf(java.util.List, grails.mongodb.geo.Metric)">valueOf</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a> coords, <a href='../../../grails/mongodb/geo/Metric.html'>Metric</a> metric)</code><br>Constructs a Sphere for the given coordinate list and optional metric</td>
                         </tr>
                         
                     </table>
@@ -303,7 +303,7 @@ extends <a href='../../../grails/mongodb/geo/Shape.html'>Shape</a></pre>
                         <a name="asList()"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>java.util.List&lt;? extends java.lang.Object&gt; <strong>asList</strong>()</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;? extends <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a>&gt; <strong>asList</strong>()</h4>
                                 <p> The sphere coordinate list with the radius in radians <DL><DT><B>Returns:</B></DT><DD>A coordinate list</DD></DL></p>
                             </li>
                         </ul>
@@ -311,7 +311,7 @@ extends <a href='../../../grails/mongodb/geo/Shape.html'>Shape</a></pre>
                         <a name="valueOf(java.util.List, grails.mongodb.geo.Metric)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>static&nbsp;<a href='../../../grails/mongodb/geo/Sphere.html'>Sphere</a> <strong>valueOf</strong>(java.util.List coords, <a href='../../../grails/mongodb/geo/Metric.html'>Metric</a> metric)</h4>
+                                <h4>static&nbsp;<a href='../../../grails/mongodb/geo/Sphere.html'>Sphere</a> <strong>valueOf</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a> coords, <a href='../../../grails/mongodb/geo/Metric.html'>Metric</a> metric)</h4>
                                 <p> Constructs a Sphere for the given coordinate list and optional metric <DL><DT><B>Parameters:</B></DT><DD><code>coords</code> -  The coordinate list</DD><DD><code>metric</code> -  The metric to use to calculate radians (defaults to <a href='../../../grails/mongodb/geo/Metric.html#NEUTRAL' title='Metric.NEUTRAL'>Metric.NEUTRAL</a></DD></DL><DL><DT><B>Returns:</B></DT><DD>A Sphere</DD></DL></p>
                             </li>
                         </ul>

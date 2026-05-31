@@ -101,9 +101,9 @@ if (location.href.indexOf('is-external=true') == -1) {
             <!-- todo: direct known subclasses -->
             <hr>
 
-<pre>@groovy.transform.CompileStatic
+<pre>@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/transform/CompileStatic.html' title='CompileStatic'>CompileStatic</a>
 class GeometryCollectionType
-extends AbstractMappingAwareCustomTypeMarshaller&lt;GeometryCollection, Document, Document&gt;</pre>
+extends <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/engine/types/AbstractMappingAwareCustomTypeMarshaller.html' title='AbstractMappingAwareCustomTypeMarshaller'>AbstractMappingAwareCustomTypeMarshaller</a>&lt;GeometryCollection, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a>, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a>&gt;</pre>
 
     <p> Custom type implementation for persisting GeometryCollection instances <DL><DT><B>Authors:</B></DT><DD>Graeme Rocher</DD></DL><DL><DT><B>Since:</B></DT><DD>3.0</DD></DL></p>
 
@@ -134,7 +134,7 @@ extends AbstractMappingAwareCustomTypeMarshaller&lt;GeometryCollection, Document
                         </tr>
                         
                         <tr class="altColor">
-                            <td class="colFirst"><code><strong>static&nbsp;java.lang.String</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong>static&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#GEOMETRIES">GEOMETRIES</a></code></td>
                             <td class="colLast"></td>
                         </tr>
@@ -193,19 +193,19 @@ extends AbstractMappingAwareCustomTypeMarshaller&lt;GeometryCollection, Document
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;<a href='../../../../../../grails/mongodb/geo/GeometryCollection.html'>GeometryCollection</a></code></td>
-                            <td class="colLast"><code><strong><a href="#readInternal(org.grails.datastore.mapping.model.PersistentProperty, java.lang.String, org.bson.Document)">readInternal</a></strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentProperty.html'>PersistentProperty</a> property, java.lang.String key, <a href='../../../../../../org.bson.Document.html'>Document</a> nativeSource)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#readInternal(org.grails.datastore.mapping.model.PersistentProperty, java.lang.String, org.bson.Document)">readInternal</a></strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentProperty.html' title='PersistentProperty'>PersistentProperty</a> property, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> key, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeSource)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>boolean</code></td>
-                            <td class="colLast"><code><strong><a href="#supports(org.grails.datastore.mapping.model.MappingContext)">supports</a></strong>(<a href='../../../../../../org.grails.datastore.mapping.model.MappingContext.html'>MappingContext</a> context)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#supports(org.grails.datastore.mapping.model.MappingContext)">supports</a></strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/MappingContext.html' title='MappingContext'>MappingContext</a> context)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>protected&nbsp;java.lang.Object</code></td>
-                            <td class="colLast"><code><strong><a href="#writeInternal(org.grails.datastore.mapping.model.PersistentProperty, java.lang.String, grails.mongodb.geo.GeometryCollection, org.bson.Document)">writeInternal</a></strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentProperty.html'>PersistentProperty</a> property, java.lang.String key, <a href='../../../../../../grails/mongodb/geo/GeometryCollection.html'>GeometryCollection</a> value, <a href='../../../../../../org.bson.Document.html'>Document</a> nativeTarget)</code><br></td>
+                            <td class="colLast"><code>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a></code></td>
+                            <td class="colLast"><code><strong><a href="#writeInternal(org.grails.datastore.mapping.model.PersistentProperty, java.lang.String, grails.mongodb.geo.GeometryCollection, org.bson.Document)">writeInternal</a></strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentProperty.html' title='PersistentProperty'>PersistentProperty</a> property, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> key, <a href='../../../../../../grails/mongodb/geo/GeometryCollection.html'>GeometryCollection</a> value, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeTarget)</code><br></td>
                         </tr>
                         
                     </table>
@@ -234,7 +234,7 @@ extends AbstractMappingAwareCustomTypeMarshaller&lt;GeometryCollection, Document
                         <a name="GEOMETRIES"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>public&nbsp;static&nbsp;final&nbsp;java.lang.String <strong>GEOMETRIES</strong></h4>
+                                <h4>public&nbsp;static&nbsp;final&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>GEOMETRIES</strong></h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -279,7 +279,7 @@ extends AbstractMappingAwareCustomTypeMarshaller&lt;GeometryCollection, Document
                         <a name="readInternal(org.grails.datastore.mapping.model.PersistentProperty, java.lang.String, org.bson.Document)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;<a href='../../../../../../grails/mongodb/geo/GeometryCollection.html'>GeometryCollection</a> <strong>readInternal</strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentProperty.html'>PersistentProperty</a> property, java.lang.String key, <a href='../../../../../../org.bson.Document.html'>Document</a> nativeSource)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;<a href='../../../../../../grails/mongodb/geo/GeometryCollection.html'>GeometryCollection</a> <strong>readInternal</strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentProperty.html' title='PersistentProperty'>PersistentProperty</a> property, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> key, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeSource)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -287,7 +287,7 @@ extends AbstractMappingAwareCustomTypeMarshaller&lt;GeometryCollection, Document
                         <a name="supports(org.grails.datastore.mapping.model.MappingContext)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>boolean <strong>supports</strong>(<a href='../../../../../../org.grails.datastore.mapping.model.MappingContext.html'>MappingContext</a> context)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>boolean <strong>supports</strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/MappingContext.html' title='MappingContext'>MappingContext</a> context)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -295,7 +295,7 @@ extends AbstractMappingAwareCustomTypeMarshaller&lt;GeometryCollection, Document
                         <a name="writeInternal(org.grails.datastore.mapping.model.PersistentProperty, java.lang.String, grails.mongodb.geo.GeometryCollection, org.bson.Document)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;java.lang.Object <strong>writeInternal</strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentProperty.html'>PersistentProperty</a> property, java.lang.String key, <a href='../../../../../../grails/mongodb/geo/GeometryCollection.html'>GeometryCollection</a> value, <a href='../../../../../../org.bson.Document.html'>Document</a> nativeTarget)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> <strong>writeInternal</strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentProperty.html' title='PersistentProperty'>PersistentProperty</a> property, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> key, <a href='../../../../../../grails/mongodb/geo/GeometryCollection.html'>GeometryCollection</a> value, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeTarget)</h4>
                                 <p></p>
                             </li>
                         </ul>

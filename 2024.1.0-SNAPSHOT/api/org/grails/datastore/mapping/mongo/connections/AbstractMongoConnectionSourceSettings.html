@@ -106,11 +106,11 @@ if (location.href.indexOf('is-external=true') == -1) {
             <!-- todo: direct known subclasses -->
             <hr>
 
-<pre>@groovy.transform.AutoClone
-@groovy.transform.builder.Builder(builderStrategy: SimpleStrategy, prefix: )
-@groovy.transform.CompileStatic
+<pre>@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/transform/AutoClone.html' title='AutoClone'>AutoClone</a>
+@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/transform/builder/Builder.html' title='Builder'>Builder</a>(builderStrategy: SimpleStrategy, prefix: )
+@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/transform/CompileStatic.html' title='CompileStatic'>CompileStatic</a>
 abstract class AbstractMongoConnectionSourceSettings
-extends <a href='../../../../../../org.grails.datastore.mapping.core.connections.ConnectionSourceSettings.html'>ConnectionSourceSettings</a>
+extends <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html' title='ConnectionSourceSettings'>ConnectionSourceSettings</a>
 implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/MongoSettings.html'>MongoSettings</a></pre>
 
     <p> <DL><DT><B>Authors:</B></DT><DD>Graeme Rocher</DD></DL><DL><DT><B>Since:</B></DT><DD>6.0</DD></DL></p>
@@ -142,13 +142,30 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         </tr>
                         
                         <tr class="altColor">
-                            <td class="colFirst"><code><strong>protected&nbsp;<a href='../../../../../../com.mongodb.ConnectionString.html'>ConnectionString</a></strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/ConnectionString.html' title='ConnectionString'>ConnectionString</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#connectionString">connectionString</a></code></td>
                             <td class="colLast">The connection string</td>
                         </tr>
                         
                     </table>
                    </ul>
+                </li>
+                
+                <li class="blockList"><a name="field_summary"><!--   --></a>
+                    <ul class="blockList">
+                    <table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Inherited fields summary table">
+                        <caption><span>Inherited fields</span><span class="tabEnd">&nbsp;</span></caption>
+                        <tr>
+                            <th class="colFirst" scope="col">Fields inherited from class</th>
+                            <th class="colLast" scope="col">Fields</th>
+                        </tr>
+                                                <tr class="altColor">
+                            <td class="colFirst"><strong><code>class <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html' title='ConnectionSourceSettings'>ConnectionSourceSettings</a></code></strong></td>
+                            <td class="colLast"><code>__$stMC, PREFIX, SETTING_AUTO_FLUSH, SETTING_FLUSH_MODE, SETTING_FAIL_ON_ERROR, SETTING_MARK_DIRTY, SETTING_DEFAULT_MAPPING, SETTING_DEFAULT_CONSTRAINTS, SETTING_CUSTOM_TYPES, SETTING_MULTI_TENANCY_MODE, SETTING_MULTI_TENANT_RESOLVER_CLASS, SETTING_MULTI_TENANT_RESOLVER, SETTING_DATASOURCES, SETTING_DATASOURCE, SETTING_DB_CREATE</code></td>
+                        </tr>
+
+                    </table>
+                    </ul>
                 </li>
                 
             </ul>
@@ -168,22 +185,22 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         </tr>
                         
                         <tr class="altColor">
-                            <td class="colFirst"><code><strong><a href='../../../../../../org.bson.codecs.configuration.CodecRegistry.html'>CodecRegistry</a></strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong><a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/codecs/configuration/CodecRegistry.html' title='CodecRegistry'>CodecRegistry</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#codecRegistry">codecRegistry</a></code><br>An additional codec registry</td>
                         </tr>
                         
                         <tr class="rowColor">
-                            <td class="colFirst"><code><strong>java.util.List&lt;java.lang.Class&lt;? extends Codec&gt;&gt;</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html' title='Class'>Class</a>&lt;? extends <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/codecs/Codec.html' title='Codec'>Codec</a>&gt;&gt;</strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#codecs">codecs</a></code><br>Custom MongoDB codecs</td>
                         </tr>
                         
                         <tr class="altColor">
-                            <td class="colFirst"><code><strong>java.lang.String</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#connectionsCollection">connectionsCollection</a></code><br>The collection name to use to resolve connections when using <a href='../../../../../../org/grails/datastore/mapping/mongo/connections/MongoConnectionSources.html' title='MongoConnectionSources'>MongoConnectionSources</a></td>
                         </tr>
                         
                         <tr class="rowColor">
-                            <td class="colFirst"><code><strong>java.lang.String</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#databaseName">databaseName</a></code><br>The default database name</td>
                         </tr>
                         
@@ -193,22 +210,22 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         </tr>
                         
                         <tr class="rowColor">
-                            <td class="colFirst"><code><strong>java.lang.String</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#engine">engine</a></code><br>The engine to use by default</td>
                         </tr>
                         
                         <tr class="altColor">
-                            <td class="colFirst"><code><strong>java.lang.String</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#host">host</a></code><br>The host name to use</td>
                         </tr>
                         
                         <tr class="rowColor">
-                            <td class="colFirst"><code><strong>java.lang.String</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#password">password</a></code><br>The password to use</td>
                         </tr>
                         
                         <tr class="altColor">
-                            <td class="colFirst"><code><strong>java.lang.Integer</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html' title='Integer'>Integer</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#port">port</a></code><br>The port to use</td>
                         </tr>
                         
@@ -218,7 +235,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         </tr>
                         
                         <tr class="altColor">
-                            <td class="colFirst"><code><strong>java.lang.String</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#username">username</a></code><br>The username to use</td>
                         </tr>
                         
@@ -272,26 +289,44 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>java.lang.String</code></td>
+                            <td class="colLast"><code><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></code></td>
                             <td class="colLast"><code><strong><a href="#getDatabase()">getDatabase</a></strong>()</code><br> <DL><DT><B>Returns:</B></DT><DD>Obtain the database name</DD></DL></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code><a href='../../../../../../com.mongodb.ConnectionString.html'>ConnectionString</a></code></td>
+                            <td class="colLast"><code><a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/ConnectionString.html' title='ConnectionString'>ConnectionString</a></code></td>
                             <td class="colLast"><code><strong><a href="#getUrl()">getUrl</a></strong>()</code><br> <DL><DT><B>Returns:</B></DT><DD>Obtain the final URL whether from the connection string or the host/port setting</DD></DL></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>void</code></td>
-                            <td class="colLast"><code><strong><a href="#url(com.mongodb.ConnectionString)">url</a></strong>(<a href='../../../../../../com.mongodb.ConnectionString.html'>ConnectionString</a> connectionString)</code><br> <DL><DT><B>Parameters:</B></DT><DD><code>connectionString</code> -  The connection string</DD></DL></td>
+                            <td class="colLast"><code><strong><a href="#url(com.mongodb.ConnectionString)">url</a></strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/ConnectionString.html' title='ConnectionString'>ConnectionString</a> connectionString)</code><br> <DL><DT><B>Parameters:</B></DT><DD><code>connectionString</code> -  The connection string</DD></DL></td>
                         </tr>
                         
                     </table>
                    </ul>
               </li>
             
+            <li class="blockList"><a name="method_summary"><!--   --></a>
+                    <h3>Inherited Methods Summary</h3>
+                    <ul class="blockList">
+                    <table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Inherited Methods Summary table">
+                        <caption><span>Inherited Methods</span><span class="tabEnd">&nbsp;</span></caption>
+                        <tr>
+                            <th class="colFirst" scope="col">Methods inherited from class</th>
+                            <th class="colLast" scope="col">Name</th>
+                        </tr>
+                        
+                        <tr class="altColor">
+                            <td class="colFirst"><code>class <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html' title='ConnectionSourceSettings'>ConnectionSourceSettings</a></code></td>
+                            <td class="colLast"><code><a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#$getLookup()' title='$getLookup'>$getLookup</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#autoFlush(boolean)' title='autoFlush'>autoFlush</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#autowire(boolean)' title='autowire'>autowire</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#clone()' title='clone'>clone</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#clone()' title='clone'>clone</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#connectionSourcesClass(java.lang.Class)' title='connectionSourcesClass'>connectionSourcesClass</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#custom(org.grails.datastore.mapping.core.connections.ConnectionSourceSettings$CustomSettings)' title='custom'>custom</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#defaults(org.grails.datastore.mapping.core.connections.ConnectionSourceSettings$DefaultSettings)' title='defaults'>defaults</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#equals(java.lang.Object)' title='equals'>equals</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#failOnError(boolean)' title='failOnError'>failOnError</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#failOnErrorPackages(java.util.List)' title='failOnErrorPackages'>failOnErrorPackages</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#flushMode(jakarta.persistence.FlushModeType)' title='flushMode'>flushMode</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getAutoFlush()' title='getAutoFlush'>getAutoFlush</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getAutowire()' title='getAutowire'>getAutowire</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getClass()' title='getClass'>getClass</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getConnectionSourcesClass()' title='getConnectionSourcesClass'>getConnectionSourcesClass</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getCustom()' title='getCustom'>getCustom</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getDefault()' title='getDefault'>getDefault</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getDefaults()' title='getDefaults'>getDefaults</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getFailOnError()' title='getFailOnError'>getFailOnError</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getFailOnErrorPackages()' title='getFailOnErrorPackages'>getFailOnErrorPackages</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getFlushMode()' title='getFlushMode'>getFlushMode</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getMarkDirty()' title='getMarkDirty'>getMarkDirty</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getMetaClass()' title='getMetaClass'>getMetaClass</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getMultiTenancy()' title='getMultiTenancy'>getMultiTenancy</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#getProperty(java.lang.String)' title='getProperty'>getProperty</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#hashCode()' title='hashCode'>hashCode</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#invokeMethod(java.lang.String, java.lang.Object)' title='invokeMethod'>invokeMethod</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#isAutoFlush()' title='isAutoFlush'>isAutoFlush</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#isAutowire()' title='isAutowire'>isAutowire</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#isFailOnError()' title='isFailOnError'>isFailOnError</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#markDirty(java.lang.Boolean)' title='markDirty'>markDirty</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#multiTenancy(org.grails.datastore.mapping.multitenancy.MultiTenancySettings)' title='multiTenancy'>multiTenancy</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#notify()' title='notify'>notify</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#notifyAll()' title='notifyAll'>notifyAll</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setAutoFlush(boolean)' title='setAutoFlush'>setAutoFlush</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setAutowire(boolean)' title='setAutowire'>setAutowire</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setConnectionSourcesClass(java.lang.Class)' title='setConnectionSourcesClass'>setConnectionSourcesClass</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setCustom(org.grails.datastore.mapping.core.connections.ConnectionSourceSettings$CustomSettings)' title='setCustom'>setCustom</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setDefault(org.grails.datastore.mapping.core.connections.ConnectionSourceSettings$DefaultSettings)' title='setDefault'>setDefault</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setDefaults(org.grails.datastore.mapping.core.connections.ConnectionSourceSettings$DefaultSettings)' title='setDefaults'>setDefaults</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setFailOnError(boolean)' title='setFailOnError'>setFailOnError</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setFailOnErrorPackages(java.util.List)' title='setFailOnErrorPackages'>setFailOnErrorPackages</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setFlushMode(jakarta.persistence.FlushModeType)' title='setFlushMode'>setFlushMode</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setMarkDirty(java.lang.Boolean)' title='setMarkDirty'>setMarkDirty</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setMetaClass(groovy.lang.MetaClass)' title='setMetaClass'>setMetaClass</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setMultiTenancy(org.grails.datastore.mapping.multitenancy.MultiTenancySettings)' title='setMultiTenancy'>setMultiTenancy</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#setProperty(java.lang.String, java.lang.Object)' title='setProperty'>setProperty</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#this$dist$get$1(java.lang.String)' title='this$dist$get$1'>this$dist$get$1</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#this$dist$invoke$1(java.lang.String, java.lang.Object)' title='this$dist$invoke$1'>this$dist$invoke$1</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#this$dist$set$1(java.lang.String, java.lang.Object)' title='this$dist$set$1'>this$dist$set$1</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#toString()' title='toString'>toString</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#wait()' title='wait'>wait</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#wait(long)' title='wait'>wait</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/connections/ConnectionSourceSettings.html#wait(long, int)' title='wait'>wait</a></code></td>
+                        </tr>
+                    </table>
+                   </ul>
+              </li>
+                
         </ul>
         
     </li>
@@ -314,7 +349,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <a name="connectionString"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>protected&nbsp;<a href='../../../../../../com.mongodb.ConnectionString.html'>ConnectionString</a> <strong>connectionString</strong></h4>
+                                <h4>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/ConnectionString.html' title='ConnectionString'>ConnectionString</a> <strong>connectionString</strong></h4>
                                 <p> The connection string</p>
                             </li>
                         </ul>
@@ -334,7 +369,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <a name="codecRegistry"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4><a href='../../../../../../org.bson.codecs.configuration.CodecRegistry.html'>CodecRegistry</a> <strong>codecRegistry</strong></h4>
+                                <h4><a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/codecs/configuration/CodecRegistry.html' title='CodecRegistry'>CodecRegistry</a> <strong>codecRegistry</strong></h4>
                                 <p> An additional codec registry</p>
                             </li>
                         </ul>
@@ -342,7 +377,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <a name="codecs"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>java.util.List&lt;java.lang.Class&lt;? extends Codec&gt;&gt; <strong>codecs</strong></h4>
+                                <h4><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html' title='Class'>Class</a>&lt;? extends <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/codecs/Codec.html' title='Codec'>Codec</a>&gt;&gt; <strong>codecs</strong></h4>
                                 <p> Custom MongoDB codecs</p>
                             </li>
                         </ul>
@@ -350,7 +385,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <a name="connectionsCollection"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>java.lang.String <strong>connectionsCollection</strong></h4>
+                                <h4><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>connectionsCollection</strong></h4>
                                 <p> The collection name to use to resolve connections when using <a href='../../../../../../org/grails/datastore/mapping/mongo/connections/MongoConnectionSources.html' title='MongoConnectionSources'>MongoConnectionSources</a></p>
                             </li>
                         </ul>
@@ -358,7 +393,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <a name="databaseName"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>java.lang.String <strong>databaseName</strong></h4>
+                                <h4><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>databaseName</strong></h4>
                                 <p> The default database name</p>
                             </li>
                         </ul>
@@ -367,14 +402,14 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <ul class="blockListLast">
                             <li class="blockList">
                                 <h4>boolean <strong>decimalType</strong></h4>
-                                <p> Whether to use the decimal128 type for BigDecimal values <DL><DT><B>See Also:</B></DT><DD>org.bson.types.Decimal128</DD></DL></p>
+                                <p> Whether to use the decimal128 type for BigDecimal values <DL><DT><B>See Also:</B></DT><DD><a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/types/Decimal128.html' title='Decimal128'>Decimal128</a></DD></DL></p>
                             </li>
                         </ul>
                     
                         <a name="engine"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>java.lang.String <strong>engine</strong></h4>
+                                <h4><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>engine</strong></h4>
                                 <p> The engine to use by default</p>
                             </li>
                         </ul>
@@ -382,7 +417,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <a name="host"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>java.lang.String <strong>host</strong></h4>
+                                <h4><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>host</strong></h4>
                                 <p> The host name to use</p>
                             </li>
                         </ul>
@@ -390,7 +425,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <a name="password"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>java.lang.String <strong>password</strong></h4>
+                                <h4><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>password</strong></h4>
                                 <p> The password to use</p>
                             </li>
                         </ul>
@@ -398,7 +433,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <a name="port"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>java.lang.Integer <strong>port</strong></h4>
+                                <h4><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html' title='Integer'>Integer</a> <strong>port</strong></h4>
                                 <p> The port to use</p>
                             </li>
                         </ul>
@@ -414,7 +449,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <a name="username"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>java.lang.String <strong>username</strong></h4>
+                                <h4><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>username</strong></h4>
                                 <p> The username to use</p>
                             </li>
                         </ul>
@@ -457,7 +492,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <a name="getDatabase()"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>java.lang.String <strong>getDatabase</strong>()</h4>
+                                <h4><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>getDatabase</strong>()</h4>
                                 <p> <DL><DT><B>Returns:</B></DT><DD>Obtain the database name</DD></DL></p>
                             </li>
                         </ul>
@@ -465,7 +500,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <a name="getUrl()"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4><a href='../../../../../../com.mongodb.ConnectionString.html'>ConnectionString</a> <strong>getUrl</strong>()</h4>
+                                <h4><a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/ConnectionString.html' title='ConnectionString'>ConnectionString</a> <strong>getUrl</strong>()</h4>
                                 <p> <DL><DT><B>Returns:</B></DT><DD>Obtain the final URL whether from the connection string or the host/port setting</DD></DL></p>
                             </li>
                         </ul>
@@ -473,7 +508,7 @@ implements <a href='../../../../../../org/grails/datastore/mapping/mongo/config/
                         <a name="url(com.mongodb.ConnectionString)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>void <strong>url</strong>(<a href='../../../../../../com.mongodb.ConnectionString.html'>ConnectionString</a> connectionString)</h4>
+                                <h4>void <strong>url</strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/ConnectionString.html' title='ConnectionString'>ConnectionString</a> connectionString)</h4>
                                 <p> <DL><DT><B>Parameters:</B></DT><DD><code>connectionString</code> -  The connection string</DD></DL></p>
                             </li>
                         </ul>

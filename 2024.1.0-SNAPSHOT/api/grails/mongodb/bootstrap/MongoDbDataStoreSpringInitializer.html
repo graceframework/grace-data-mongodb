@@ -101,9 +101,9 @@ if (location.href.indexOf('is-external=true') == -1) {
             <!-- todo: direct known subclasses -->
             <hr>
 
-<pre>@groovy.transform.InheritConstructors
+<pre>@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/transform/InheritConstructors.html' title='InheritConstructors'>InheritConstructors</a>
 class MongoDbDataStoreSpringInitializer
-extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreInitializer.html'>AbstractDatastoreInitializer</a></pre>
+extends <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html' title='AbstractDatastoreInitializer'>AbstractDatastoreInitializer</a></pre>
 
     <p> Used to initialize GORM for MongoDB outside of Grails <DL><DT><B>Authors:</B></DT><DD>Graeme Rocher</DD></DL><DL><DT><B>Since:</B></DT><DD>2.0</DD></DL></p>
 
@@ -134,43 +134,60 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         </tr>
                         
                         <tr class="altColor">
-                            <td class="colFirst"><code><strong>static&nbsp;java.lang.String</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong>static&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#DATASTORE_TYPE">DATASTORE_TYPE</a></code></td>
                             <td class="colLast"></td>
                         </tr>
                         
                         <tr class="rowColor">
-                            <td class="colFirst"><code><strong>static&nbsp;java.lang.String</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong>static&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#DEFAULT_DATABASE_NAME">DEFAULT_DATABASE_NAME</a></code></td>
                             <td class="colLast"></td>
                         </tr>
                         
                         <tr class="altColor">
-                            <td class="colFirst"><code><strong>protected&nbsp;java.lang.String</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#databaseName">databaseName</a></code></td>
                             <td class="colLast"></td>
                         </tr>
                         
                         <tr class="rowColor">
-                            <td class="colFirst"><code><strong>protected&nbsp;<a href='../../../com.mongodb.client.MongoClient.html'>MongoClient</a></strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/MongoClient.html' title='MongoClient'>MongoClient</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#mongo">mongo</a></code></td>
                             <td class="colLast"></td>
                         </tr>
                         
                         <tr class="altColor">
-                            <td class="colFirst"><code><strong>protected&nbsp;java.lang.String</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#mongoBeanName">mongoBeanName</a></code></td>
                             <td class="colLast"></td>
                         </tr>
                         
                         <tr class="rowColor">
-                            <td class="colFirst"><code><strong>protected&nbsp;<a href='../../../com.mongodb.MongoClientSettings.html'>MongoClientSettings</a></strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/MongoClientSettings.html' title='MongoClientSettings'>MongoClientSettings</a></strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#mongoOptions">mongoOptions</a></code></td>
                             <td class="colLast"></td>
                         </tr>
                         
                     </table>
                    </ul>
+                </li>
+                
+                <li class="blockList"><a name="field_summary"><!--   --></a>
+                    <ul class="blockList">
+                    <table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Inherited fields summary table">
+                        <caption><span>Inherited fields</span><span class="tabEnd">&nbsp;</span></caption>
+                        <tr>
+                            <th class="colFirst" scope="col">Fields inherited from class</th>
+                            <th class="colLast" scope="col">Fields</th>
+                        </tr>
+                                                <tr class="altColor">
+                            <td class="colFirst"><strong><code>class <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html' title='AbstractDatastoreInitializer'>AbstractDatastoreInitializer</a></code></strong></td>
+                            <td class="colLast"><code>TRANSACTION_MANAGER_BEAN, ENTITY_CLASS_RESOURCE_PATTERN, OSIV_CLASS_NAME, __$stMC</code></td>
+                        </tr>
+
+                    </table>
+                    </ul>
                 </li>
                 
             </ul>
@@ -222,50 +239,68 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code><a href='../../../org.springframework.context.ApplicationContext.html'>ApplicationContext</a></code></td>
+                            <td class="colLast"><code><a href='https://docs.spring.io/spring-framework/docs/6.2.18/javadoc-api/org/springframework/context/ApplicationContext.html' title='ApplicationContext'>ApplicationContext</a></code></td>
                             <td class="colLast"><code><strong><a href="#configure()">configure</a></strong>()</code><br>Configures for an existing Mongo instance</td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>groovy.lang.Closure</code></td>
-                            <td class="colLast"><code><strong><a href="#getBeanDefinitions(org.springframework.beans.factory.support.BeanDefinitionRegistry)">getBeanDefinitions</a></strong>(<a href='../../../org.springframework.beans.factory.support.BeanDefinitionRegistry.html'>BeanDefinitionRegistry</a> beanDefinitionRegistry)</code><br></td>
+                            <td class="colLast"><code><a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a></code></td>
+                            <td class="colLast"><code><strong><a href="#getBeanDefinitions(org.springframework.beans.factory.support.BeanDefinitionRegistry)">getBeanDefinitions</a></strong>(<a href='https://docs.spring.io/spring-framework/docs/6.2.18/javadoc-api/org/springframework/beans/factory/support/BeanDefinitionRegistry.html' title='BeanDefinitionRegistry'>BeanDefinitionRegistry</a> beanDefinitionRegistry)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>protected&nbsp;java.lang.Class&lt;AbstractDatastorePersistenceContextInterceptor&gt;</code></td>
+                            <td class="colLast"><code>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html' title='Class'>Class</a>&lt;<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/support/AbstractDatastorePersistenceContextInterceptor.html' title='AbstractDatastorePersistenceContextInterceptor'>AbstractDatastorePersistenceContextInterceptor</a>&gt;</code></td>
                             <td class="colLast"><code><strong><a href="#getPersistenceInterceptorClass()">getPersistenceInterceptorClass</a></strong>()</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;boolean</code></td>
-                            <td class="colLast"><code><strong><a href="#isMappedClass(java.lang.String, java.lang.Class)">isMappedClass</a></strong>(java.lang.String datastoreType, java.lang.Class cls)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#isMappedClass(java.lang.String, java.lang.Class)">isMappedClass</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> datastoreType, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html' title='Class'>Class</a> cls)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>void</code></td>
-                            <td class="colLast"><code><strong><a href="#setDatabaseName(java.lang.String)">setDatabaseName</a></strong>(java.lang.String databaseName)</code><br>Sets the name of the MongoDB database to use</td>
+                            <td class="colLast"><code><strong><a href="#setDatabaseName(java.lang.String)">setDatabaseName</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> databaseName)</code><br>Sets the name of the MongoDB database to use</td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>void</code></td>
-                            <td class="colLast"><code><strong><a href="#setMongoClient(com.mongodb.client.MongoClient)">setMongoClient</a></strong>(<a href='../../../com.mongodb.client.MongoClient.html'>MongoClient</a> mongoClient)</code><br>Sets a pre-existing Mongo instance to configure for</td>
+                            <td class="colLast"><code><strong><a href="#setMongoClient(com.mongodb.client.MongoClient)">setMongoClient</a></strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/MongoClient.html' title='MongoClient'>MongoClient</a> mongoClient)</code><br>Sets a pre-existing Mongo instance to configure for</td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>void</code></td>
-                            <td class="colLast"><code><strong><a href="#setMongoOptions(com.mongodb.MongoClientSettings)">setMongoOptions</a></strong>(<a href='../../../com.mongodb.MongoClientSettings.html'>MongoClientSettings</a> mongoOptions)</code><br>Sets the MongoOptions instance to use when constructing the Mongo instance</td>
+                            <td class="colLast"><code><strong><a href="#setMongoOptions(com.mongodb.MongoClientSettings)">setMongoOptions</a></strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/MongoClientSettings.html' title='MongoClientSettings'>MongoClientSettings</a> mongoOptions)</code><br>Sets the MongoOptions instance to use when constructing the Mongo instance</td>
                         </tr>
                         
                     </table>
                    </ul>
               </li>
             
+            <li class="blockList"><a name="method_summary"><!--   --></a>
+                    <h3>Inherited Methods Summary</h3>
+                    <ul class="blockList">
+                    <table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Inherited Methods Summary table">
+                        <caption><span>Inherited Methods</span><span class="tabEnd">&nbsp;</span></caption>
+                        <tr>
+                            <th class="colFirst" scope="col">Methods inherited from class</th>
+                            <th class="colLast" scope="col">Name</th>
+                        </tr>
+                        
+                        <tr class="altColor">
+                            <td class="colFirst"><code>class <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html' title='AbstractDatastoreInitializer'>AbstractDatastoreInitializer</a></code></td>
+                            <td class="colLast"><code><a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#$getLookup()' title='$getLookup'>$getLookup</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#configure()' title='configure'>configure</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#configureForBeanDefinitionRegistry(org.springframework.beans.factory.support.BeanDefinitionRegistry)' title='configureForBeanDefinitionRegistry'>configureForBeanDefinitionRegistry</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#equals(java.lang.Object)' title='equals'>equals</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#findEventPublisher(org.springframework.beans.factory.support.BeanDefinitionRegistry)' title='findEventPublisher'>findEventPublisher</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#findMessageSource(org.springframework.beans.factory.support.BeanDefinitionRegistry)' title='findMessageSource'>findMessageSource</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#getAdditionalBeansConfiguration(org.springframework.beans.factory.support.BeanDefinitionRegistry, java.lang.String)' title='getAdditionalBeansConfiguration'>getAdditionalBeansConfiguration</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#getBeanDefinitions(org.springframework.beans.factory.support.BeanDefinitionRegistry)' title='getBeanDefinitions'>getBeanDefinitions</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#getClass()' title='getClass'>getClass</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#getCommonConfiguration(org.springframework.beans.factory.support.BeanDefinitionRegistry, java.lang.String)' title='getCommonConfiguration'>getCommonConfiguration</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#getConfiguration()' title='getConfiguration'>getConfiguration</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#getMetaClass()' title='getMetaClass'>getMetaClass</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#getOriginalConfiguration()' title='getOriginalConfiguration'>getOriginalConfiguration</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#getPackages()' title='getPackages'>getPackages</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#getPersistentClasses()' title='getPersistentClasses'>getPersistentClasses</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#getProperty(java.lang.String)' title='getProperty'>getProperty</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#getRegisterApplicationIfNotPresent()' title='getRegisterApplicationIfNotPresent'>getRegisterApplicationIfNotPresent</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#getResourcePatternResolver()' title='getResourcePatternResolver'>getResourcePatternResolver</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#hashCode()' title='hashCode'>hashCode</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#invokeMethod(java.lang.String, java.lang.Object)' title='invokeMethod'>invokeMethod</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#isRegisterApplicationIfNotPresent()' title='isRegisterApplicationIfNotPresent'>isRegisterApplicationIfNotPresent</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#notify()' title='notify'>notify</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#notifyAll()' title='notifyAll'>notifyAll</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#setConfiguration(org.springframework.core.env.PropertyResolver)' title='setConfiguration'>setConfiguration</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#setMetaClass(groovy.lang.MetaClass)' title='setMetaClass'>setMetaClass</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#setOriginalConfiguration(java.lang.Object)' title='setOriginalConfiguration'>setOriginalConfiguration</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#setPackages(java.util.Collection)' title='setPackages'>setPackages</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#setPersistentClasses(java.util.Collection)' title='setPersistentClasses'>setPersistentClasses</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#setProperty(java.lang.String, java.lang.Object)' title='setProperty'>setProperty</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#setRegisterApplicationIfNotPresent(boolean)' title='setRegisterApplicationIfNotPresent'>setRegisterApplicationIfNotPresent</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#setResourceLoader(org.springframework.core.io.ResourceLoader)' title='setResourceLoader'>setResourceLoader</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#setResourcePatternResolver(org.springframework.core.io.support.PathMatchingResourcePatternResolver)' title='setResourcePatternResolver'>setResourcePatternResolver</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#setSecondaryDatastore(boolean)' title='setSecondaryDatastore'>setSecondaryDatastore</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#this$dist$get$1(java.lang.String)' title='this$dist$get$1'>this$dist$get$1</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#this$dist$invoke$1(java.lang.String, java.lang.Object)' title='this$dist$invoke$1'>this$dist$invoke$1</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#this$dist$set$1(java.lang.String, java.lang.Object)' title='this$dist$set$1'>this$dist$set$1</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#toString()' title='toString'>toString</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#wait()' title='wait'>wait</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#wait(long)' title='wait'>wait</a>, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/bootstrap/AbstractDatastoreInitializer.html#wait(long, int)' title='wait'>wait</a></code></td>
+                        </tr>
+                    </table>
+                   </ul>
+              </li>
+                
         </ul>
         
     </li>
@@ -288,7 +323,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="DATASTORE_TYPE"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>public&nbsp;static&nbsp;final&nbsp;java.lang.String <strong>DATASTORE_TYPE</strong></h4>
+                                <h4>public&nbsp;static&nbsp;final&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>DATASTORE_TYPE</strong></h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -296,7 +331,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="DEFAULT_DATABASE_NAME"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>public&nbsp;static&nbsp;final&nbsp;java.lang.String <strong>DEFAULT_DATABASE_NAME</strong></h4>
+                                <h4>public&nbsp;static&nbsp;final&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>DEFAULT_DATABASE_NAME</strong></h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -304,7 +339,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="databaseName"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>protected&nbsp;java.lang.String <strong>databaseName</strong></h4>
+                                <h4>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>databaseName</strong></h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -312,7 +347,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="mongo"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>protected&nbsp;<a href='../../../com.mongodb.client.MongoClient.html'>MongoClient</a> <strong>mongo</strong></h4>
+                                <h4>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/MongoClient.html' title='MongoClient'>MongoClient</a> <strong>mongo</strong></h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -320,7 +355,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="mongoBeanName"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>protected&nbsp;java.lang.String <strong>mongoBeanName</strong></h4>
+                                <h4>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>mongoBeanName</strong></h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -328,7 +363,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="mongoOptions"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>protected&nbsp;<a href='../../../com.mongodb.MongoClientSettings.html'>MongoClientSettings</a> <strong>mongoOptions</strong></h4>
+                                <h4>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/MongoClientSettings.html' title='MongoClientSettings'>MongoClientSettings</a> <strong>mongoOptions</strong></h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -373,7 +408,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="configure()"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@groovy.transform.CompileStatic<br><a href='../../../org.springframework.context.ApplicationContext.html'>ApplicationContext</a> <strong>configure</strong>()</h4>
+                                <h4>@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/transform/CompileStatic.html' title='CompileStatic'>CompileStatic</a><br><a href='https://docs.spring.io/spring-framework/docs/6.2.18/javadoc-api/org/springframework/context/ApplicationContext.html' title='ApplicationContext'>ApplicationContext</a> <strong>configure</strong>()</h4>
                                 <p> Configures for an existing Mongo instance <DL><DT><B>Parameters:</B></DT><DD><code>mongo</code> -  The instance of Mongo</DD></DL><DL><DT><B>Returns:</B></DT><DD>The configured ApplicationContext</DD></DL></p>
                             </li>
                         </ul>
@@ -381,7 +416,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="getBeanDefinitions(org.springframework.beans.factory.support.BeanDefinitionRegistry)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>groovy.lang.Closure <strong>getBeanDefinitions</strong>(<a href='../../../org.springframework.beans.factory.support.BeanDefinitionRegistry.html'>BeanDefinitionRegistry</a> beanDefinitionRegistry)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br><a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a> <strong>getBeanDefinitions</strong>(<a href='https://docs.spring.io/spring-framework/docs/6.2.18/javadoc-api/org/springframework/beans/factory/support/BeanDefinitionRegistry.html' title='BeanDefinitionRegistry'>BeanDefinitionRegistry</a> beanDefinitionRegistry)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -389,7 +424,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="getPersistenceInterceptorClass()"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;java.lang.Class&lt;AbstractDatastorePersistenceContextInterceptor&gt; <strong>getPersistenceInterceptorClass</strong>()</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html' title='Class'>Class</a>&lt;<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/support/AbstractDatastorePersistenceContextInterceptor.html' title='AbstractDatastorePersistenceContextInterceptor'>AbstractDatastorePersistenceContextInterceptor</a>&gt; <strong>getPersistenceInterceptorClass</strong>()</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -397,7 +432,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="isMappedClass(java.lang.String, java.lang.Class)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;boolean <strong>isMappedClass</strong>(java.lang.String datastoreType, java.lang.Class cls)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;boolean <strong>isMappedClass</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> datastoreType, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html' title='Class'>Class</a> cls)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -405,7 +440,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="setDatabaseName(java.lang.String)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>void <strong>setDatabaseName</strong>(java.lang.String databaseName)</h4>
+                                <h4>void <strong>setDatabaseName</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> databaseName)</h4>
                                 <p> Sets the name of the MongoDB database to use</p>
                             </li>
                         </ul>
@@ -413,7 +448,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="setMongoClient(com.mongodb.client.MongoClient)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>void <strong>setMongoClient</strong>(<a href='../../../com.mongodb.client.MongoClient.html'>MongoClient</a> mongoClient)</h4>
+                                <h4>void <strong>setMongoClient</strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/MongoClient.html' title='MongoClient'>MongoClient</a> mongoClient)</h4>
                                 <p> Sets a pre-existing Mongo instance to configure for <DL><DT><B>Parameters:</B></DT><DD><code>mongoClient</code> -  The Mongo instance</DD></DL></p>
                             </li>
                         </ul>
@@ -421,7 +456,7 @@ extends <a href='../../../org.grails.datastore.gorm.bootstrap.AbstractDatastoreI
                         <a name="setMongoOptions(com.mongodb.MongoClientSettings)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>void <strong>setMongoOptions</strong>(<a href='../../../com.mongodb.MongoClientSettings.html'>MongoClientSettings</a> mongoOptions)</h4>
+                                <h4>void <strong>setMongoOptions</strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/MongoClientSettings.html' title='MongoClientSettings'>MongoClientSettings</a> mongoOptions)</h4>
                                 <p> Sets the MongoOptions instance to use when constructing the Mongo instance</p>
                             </li>
                         </ul>

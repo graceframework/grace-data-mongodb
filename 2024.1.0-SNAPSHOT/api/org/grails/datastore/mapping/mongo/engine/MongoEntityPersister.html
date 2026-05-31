@@ -91,7 +91,7 @@ if (location.href.indexOf('is-external=true') == -1) {
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><ul class="inheritance"></ul></li><li><ul class="inheritance"></ul></li><li><ul class="inheritance"></ul></li><li>org.grails.datastore.mapping.mongo.engine.MongoEntityPersister
+<li><ul class="inheritance"></ul></li><li><ul class="inheritance"></ul></li><li><ul class="inheritance"></ul></li><li><ul class="inheritance"></ul></li><li><ul class="inheritance"></ul></li><li><ul class="inheritance"></ul></li><li>org.grails.datastore.mapping.mongo.engine.MongoEntityPersister
 </ul>
 <div class="description">
     <ul class="blockList">
@@ -101,11 +101,11 @@ if (location.href.indexOf('is-external=true') == -1) {
             <!-- todo: direct known subclasses -->
             <hr>
 
-<pre>@java.lang.SuppressWarnings({ "rawtypes", "unchecked" })
+<pre>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/SuppressWarnings.html' title='SuppressWarnings'>SuppressWarnings</a>({ "rawtypes", "unchecked" })
 public class MongoEntityPersister
 extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html'>AbstractMongoObectEntityPersister</a></pre>
 
-    <p> A org.grails.datastore.mapping.engine.EntityPersister implementation for the Mongo document store
+    <p> A <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/engine/EntityPersister.html' title='EntityPersister'>EntityPersister</a> implementation for the Mongo document store
   <DL><DT><B>Authors:</B></DT><DD>Graeme Rocher</DD></DL><DL><DT><B>Since:</B></DT><DD>1.0</DD></DL></p>
 
           </li>
@@ -135,7 +135,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         </tr>
                         
                         <tr class="altColor">
-                            <td class="colFirst"><code><strong>static&nbsp;ValueRetrievalStrategy&lt;Document&gt;</strong></code>&nbsp;</td>
+                            <td class="colFirst"><code><strong>static&nbsp;ValueRetrievalStrategy&lt;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a>&gt;</strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#VALUE_RETRIEVAL_STRATEGY">VALUE_RETRIEVAL_STRATEGY</a></code></td>
                             <td class="colLast"></td>
                         </tr>
@@ -184,7 +184,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         
                         <tr class="altColor">
                             <td class="colFirst">
-                                <code><strong><a href="#MongoEntityPersister(org.grails.datastore.mapping.model.MappingContext, org.grails.datastore.mapping.model.PersistentEntity, org.grails.datastore.mapping.mongo.MongoSession, org.springframework.context.ApplicationEventPublisher)">MongoEntityPersister</a></strong>(<a href='../../../../../../org.grails.datastore.mapping.model.MappingContext.html'>MappingContext</a> mappingContext, <a href='../../../../../../org.grails.datastore.mapping.model.PersistentEntity.html'>PersistentEntity</a> entity, <a href='../../../../../../org/grails/datastore/mapping/mongo/MongoSession.html'>MongoSession</a> mongoSession, <a href='../../../../../../org.springframework.context.ApplicationEventPublisher.html'>ApplicationEventPublisher</a> publisher)</code><br></td>
+                                <code><strong><a href="#MongoEntityPersister(org.grails.datastore.mapping.model.MappingContext, org.grails.datastore.mapping.model.PersistentEntity, org.grails.datastore.mapping.mongo.MongoSession, org.springframework.context.ApplicationEventPublisher)">MongoEntityPersister</a></strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/MappingContext.html' title='MappingContext'>MappingContext</a> mappingContext, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentEntity.html' title='PersistentEntity'>PersistentEntity</a> entity, <a href='../../../../../../org/grails/datastore/mapping/mongo/MongoSession.html'>MongoSession</a> mongoSession, <a href='https://docs.spring.io/spring-framework/docs/6.2.18/javadoc-api/org/springframework/context/ApplicationEventPublisher.html' title='ApplicationEventPublisher'>ApplicationEventPublisher</a> publisher)</code><br></td>
                         </tr>
                         
                     </table>
@@ -210,80 +210,80 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>protected&nbsp;<a href='../../../../../../org.bson.Document.html'>Document</a></code></td>
-                            <td class="colLast"><code><strong><a href="#createDBObjectWithKey(java.lang.Object)">createDBObjectWithKey</a></strong>(java.lang.Object key)</code><br></td>
+                            <td class="colLast"><code>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a></code></td>
+                            <td class="colLast"><code><strong><a href="#createDBObjectWithKey(java.lang.Object)">createDBObjectWithKey</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> key)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>protected&nbsp;<a href='../../../../../../org.bson.Document.html'>Document</a></code></td>
-                            <td class="colLast"><code><strong><a href="#createNewEntry(java.lang.String, java.lang.Object)">createNewEntry</a></strong>(java.lang.String family, java.lang.Object instance)</code><br></td>
+                            <td class="colLast"><code>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a></code></td>
+                            <td class="colLast"><code><strong><a href="#createNewEntry(java.lang.String, java.lang.Object)">createNewEntry</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> family, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> instance)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>protected&nbsp;<a href='../../../../../../org.bson.Document.html'>Document</a></code></td>
-                            <td class="colLast"><code><strong><a href="#createNewEntry(java.lang.String)">createNewEntry</a></strong>(java.lang.String family)</code><br></td>
+                            <td class="colLast"><code>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a></code></td>
+                            <td class="colLast"><code><strong><a href="#createNewEntry(java.lang.String)">createNewEntry</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> family)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>public&nbsp;<a href='../../../../../../org.grails.datastore.mapping.query.Query.html'>Query</a></code></td>
+                            <td class="colLast"><code>public&nbsp;<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/query/Query.html' title='Query'>Query</a></code></td>
                             <td class="colLast"><code><strong><a href="#createQuery()">createQuery</a></strong>()</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;void</code></td>
-                            <td class="colLast"><code><strong><a href="#deleteEntries(java.lang.String, List)">deleteEntries</a></strong>(java.lang.String family, java.util.List&lt;java.lang.Object&gt; keys)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#deleteEntries(java.lang.String, List)">deleteEntries</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> family, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a>&gt; keys)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;void</code></td>
-                            <td class="colLast"><code><strong><a href="#deleteEntry(java.lang.String, java.lang.Object, java.lang.Object)">deleteEntry</a></strong>(java.lang.String family, java.lang.Object key, java.lang.Object entry)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#deleteEntry(java.lang.String, java.lang.Object, java.lang.Object)">deleteEntry</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> family, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> key, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> entry)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>protected&nbsp;java.lang.Object</code></td>
-                            <td class="colLast"><code><strong><a href="#generateIdentifier(org.grails.datastore.mapping.model.PersistentEntity, org.bson.Document)">generateIdentifier</a></strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentEntity.html'>PersistentEntity</a> persistentEntity, <a href='../../../../../../org.bson.Document.html'>Document</a> nativeEntry)</code><br></td>
+                            <td class="colLast"><code>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a></code></td>
+                            <td class="colLast"><code><strong><a href="#generateIdentifier(org.grails.datastore.mapping.model.PersistentEntity, org.bson.Document)">generateIdentifier</a></strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentEntity.html' title='PersistentEntity'>PersistentEntity</a> persistentEntity, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeEntry)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>protected&nbsp;java.lang.String</code></td>
-                            <td class="colLast"><code><strong><a href="#getCollectionName(org.grails.datastore.mapping.model.PersistentEntity, org.bson.Document)">getCollectionName</a></strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentEntity.html'>PersistentEntity</a> persistentEntity, <a href='../../../../../../org.bson.Document.html'>Document</a> nativeEntry)</code><br></td>
+                            <td class="colLast"><code>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></code></td>
+                            <td class="colLast"><code><strong><a href="#getCollectionName(org.grails.datastore.mapping.model.PersistentEntity, org.bson.Document)">getCollectionName</a></strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentEntity.html' title='PersistentEntity'>PersistentEntity</a> persistentEntity, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeEntry)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>public&nbsp;static&nbsp;java.lang.Object</code></td>
-                            <td class="colLast"><code><strong><a href="#getSimpleNativePropertyValue(java.lang.Object, org.grails.datastore.mapping.model.MappingContext)">getSimpleNativePropertyValue</a></strong>(java.lang.Object value, <a href='../../../../../../org.grails.datastore.mapping.model.MappingContext.html'>MappingContext</a> mappingContext)</code><br>Convert a value into a type suitable for use in Mongo. </td>
+                            <td class="colLast"><code>public&nbsp;static&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a></code></td>
+                            <td class="colLast"><code><strong><a href="#getSimpleNativePropertyValue(java.lang.Object, org.grails.datastore.mapping.model.MappingContext)">getSimpleNativePropertyValue</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> value, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/MappingContext.html' title='MappingContext'>MappingContext</a> mappingContext)</code><br>Convert a value into a type suitable for use in Mongo. </td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>public&nbsp;java.lang.Object</code></td>
-                            <td class="colLast"><code><strong><a href="#getValue(org.bson.Document, java.lang.String)">getValue</a></strong>(<a href='../../../../../../org.bson.Document.html'>Document</a> document, java.lang.String name)</code><br></td>
+                            <td class="colLast"><code>public&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a></code></td>
+                            <td class="colLast"><code><strong><a href="#getValue(org.bson.Document, java.lang.String)">getValue</a></strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> document, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> name)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;boolean</code></td>
-                            <td class="colLast"><code><strong><a href="#isEmbeddedEntry(java.lang.Object)">isEmbeddedEntry</a></strong>(java.lang.Object entry)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#isEmbeddedEntry(java.lang.Object)">isEmbeddedEntry</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> entry)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;void</code></td>
-                            <td class="colLast"><code><strong><a href="#loadEmbeddedCollection(org.grails.datastore.mapping.model.types.EmbeddedCollection, org.grails.datastore.mapping.engine.EntityAccess, java.lang.Object, java.lang.String)">loadEmbeddedCollection</a></strong>(<a href='../../../../../../org.grails.datastore.mapping.model.types.EmbeddedCollection.html'>EmbeddedCollection</a> embeddedCollection, <a href='../../../../../../org.grails.datastore.mapping.engine.EntityAccess.html'>EntityAccess</a> ea, java.lang.Object embeddedInstances, java.lang.String propertyKey)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#loadEmbeddedCollection(org.grails.datastore.mapping.model.types.EmbeddedCollection, org.grails.datastore.mapping.engine.EntityAccess, java.lang.Object, java.lang.String)">loadEmbeddedCollection</a></strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/types/EmbeddedCollection.html' title='EmbeddedCollection'>EmbeddedCollection</a> embeddedCollection, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/engine/EntityAccess.html' title='EntityAccess'>EntityAccess</a> ea, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> embeddedInstances, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> propertyKey)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>protected&nbsp;<a href='../../../../../../org.bson.Document.html'>Document</a></code></td>
-                            <td class="colLast"><code><strong><a href="#retrieveEntry(org.grails.datastore.mapping.model.PersistentEntity, java.lang.String, java.io.Serializable)">retrieveEntry</a></strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentEntity.html'>PersistentEntity</a> persistentEntity, java.lang.String family, java.io.Serializable key)</code><br></td>
+                            <td class="colLast"><code>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a></code></td>
+                            <td class="colLast"><code><strong><a href="#retrieveEntry(org.grails.datastore.mapping.model.PersistentEntity, java.lang.String, java.io.Serializable)">retrieveEntry</a></strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentEntity.html' title='PersistentEntity'>PersistentEntity</a> persistentEntity, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> family, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html' title='Serializable'>Serializable</a> key)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
@@ -295,31 +295,31 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>public&nbsp;static&nbsp;void</code></td>
-                            <td class="colLast"><code><strong><a href="#setDBObjectValue(org.bson.Document, java.lang.String, java.lang.Object, org.grails.datastore.mapping.model.MappingContext)">setDBObjectValue</a></strong>(<a href='../../../../../../org.bson.Document.html'>Document</a> nativeEntry, java.lang.String key, java.lang.Object value, <a href='../../../../../../org.grails.datastore.mapping.model.MappingContext.html'>MappingContext</a> mappingContext)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#setDBObjectValue(org.bson.Document, java.lang.String, java.lang.Object, org.grails.datastore.mapping.model.MappingContext)">setDBObjectValue</a></strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeEntry, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> key, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> value, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/MappingContext.html' title='MappingContext'>MappingContext</a> mappingContext)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>protected&nbsp;void</code></td>
-                            <td class="colLast"><code><strong><a href="#setEntryValue(org.bson.Document, java.lang.String, java.lang.Object)">setEntryValue</a></strong>(<a href='../../../../../../org.bson.Document.html'>Document</a> nativeEntry, java.lang.String key, java.lang.Object value)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#setEntryValue(org.bson.Document, java.lang.String, java.lang.Object)">setEntryValue</a></strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeEntry, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> key, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> value)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>public&nbsp;void</code></td>
-                            <td class="colLast"><code><strong><a href="#setValue(org.bson.Document, java.lang.String, java.lang.Object)">setValue</a></strong>(<a href='../../../../../../org.bson.Document.html'>Document</a> document, java.lang.String name, java.lang.Object value)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#setValue(org.bson.Document, java.lang.String, java.lang.Object)">setValue</a></strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> document, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> name, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> value)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>protected&nbsp;java.lang.Object</code></td>
-                            <td class="colLast"><code><strong><a href="#storeEntry(org.grails.datastore.mapping.model.PersistentEntity, org.grails.datastore.mapping.engine.EntityAccess, java.lang.Object, org.bson.Document)">storeEntry</a></strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentEntity.html'>PersistentEntity</a> persistentEntity, <a href='../../../../../../org.grails.datastore.mapping.engine.EntityAccess.html'>EntityAccess</a> entityAccess, java.lang.Object storeId, <a href='../../../../../../org.bson.Document.html'>Document</a> nativeEntry)</code><br></td>
+                            <td class="colLast"><code>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a></code></td>
+                            <td class="colLast"><code><strong><a href="#storeEntry(org.grails.datastore.mapping.model.PersistentEntity, org.grails.datastore.mapping.engine.EntityAccess, java.lang.Object, org.bson.Document)">storeEntry</a></strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentEntity.html' title='PersistentEntity'>PersistentEntity</a> persistentEntity, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/engine/EntityAccess.html' title='EntityAccess'>EntityAccess</a> entityAccess, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> storeId, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeEntry)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>public&nbsp;void</code></td>
-                            <td class="colLast"><code><strong><a href="#updateEntry(org.grails.datastore.mapping.model.PersistentEntity, org.grails.datastore.mapping.engine.EntityAccess, java.lang.Object, org.bson.Document)">updateEntry</a></strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentEntity.html'>PersistentEntity</a> persistentEntity, <a href='../../../../../../org.grails.datastore.mapping.engine.EntityAccess.html'>EntityAccess</a> ea, java.lang.Object key, <a href='../../../../../../org.bson.Document.html'>Document</a> entry)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#updateEntry(org.grails.datastore.mapping.model.PersistentEntity, org.grails.datastore.mapping.engine.EntityAccess, java.lang.Object, org.bson.Document)">updateEntry</a></strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentEntity.html' title='PersistentEntity'>PersistentEntity</a> persistentEntity, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/engine/EntityAccess.html' title='EntityAccess'>EntityAccess</a> ea, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> key, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> entry)</code><br></td>
                         </tr>
                         
                     </table>
@@ -338,7 +338,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         
                         <tr class="altColor">
                             <td class="colFirst"><code>class <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html'>AbstractMongoObectEntityPersister</a></code></td>
-                            <td class="colLast"><code><a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#cascadeDeleteCollection(org.grails.datastore.mapping.engine.EntityAccess, org.grails.datastore.mapping.model.types.Association)'>cascadeDeleteCollection</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#createInstanceCacheEntryKey(java.lang.Object)'>createInstanceCacheEntryKey</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#discriminatePersistentEntity(org.grails.datastore.mapping.model.PersistentEntity, T)'>discriminatePersistentEntity</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#doesRequirePropertyIndexing()'>doesRequirePropertyIndexing</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#formulateDatabaseReference(org.grails.datastore.mapping.model.PersistentEntity, org.grails.datastore.mapping.model.types.Association, java.io.Serializable)'>formulateDatabaseReference</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getAssociationIndexer(T, org.grails.datastore.mapping.model.types.Association)'>getAssociationIndexer</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getCollectionName(org.grails.datastore.mapping.model.PersistentEntity)'>getCollectionName</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getCollectionName(org.grails.datastore.mapping.model.PersistentEntity, T)'>getCollectionName</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getEmbedded(T, java.lang.String)'>getEmbedded</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getEntityFamily()'>getEntityFamily</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getEntryValue(T, java.lang.String)'>getEntryValue</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getIdentifierForKey(java.lang.Object)'>getIdentifierForKey</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getManyToManyKeys(org.grails.datastore.mapping.model.PersistentEntity, java.lang.Object, java.io.Serializable, T, org.grails.datastore.mapping.model.types.ManyToMany)'>getManyToManyKeys</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getMongoSession()'>getMongoSession</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getPropertyIndexer(org.grails.datastore.mapping.model.PersistentProperty)'>getPropertyIndexer</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getPropertyKey(org.grails.datastore.mapping.model.PersistentProperty)'>getPropertyKey</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#isDirty(java.lang.Object, java.lang.Object)'>isDirty</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#isReference(org.grails.datastore.mapping.model.types.Association)'>isReference</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#loadEmbeddedCollectionKeys(org.grails.datastore.mapping.model.types.Association, org.grails.datastore.mapping.engine.EntityAccess, T)'>loadEmbeddedCollectionKeys</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#refreshObjectStateFromNativeEntry(org.grails.datastore.mapping.model.PersistentEntity, java.lang.Object, java.io.Serializable, T, boolean)'>refreshObjectStateFromNativeEntry</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#retrieveAllEntities(org.grails.datastore.mapping.model.PersistentEntity, Iterable)'>retrieveAllEntities</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#retrieveAllEntities(org.grails.datastore.mapping.model.PersistentEntity, java.io.Serializable)'>retrieveAllEntities</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#setEmbedded(T, java.lang.String, T)'>setEmbedded</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#setEmbeddedCollection(T, java.lang.String, Collection, List)'>setEmbeddedCollection</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#setEmbeddedCollectionKeys(org.grails.datastore.mapping.model.types.Association, org.grails.datastore.mapping.engine.EntityAccess, T, List)'>setEmbeddedCollectionKeys</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#setEmbeddedMap(T, java.lang.String, java.util.Map, Map)'>setEmbeddedMap</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#setManyToMany(org.grails.datastore.mapping.model.PersistentEntity, java.lang.Object, T, org.grails.datastore.mapping.model.types.ManyToMany, java.util.Collection, Map)'>setManyToMany</a></code></td>
+                            <td class="colLast"><code><a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#cascadeDeleteCollection(org.grails.datastore.mapping.engine.EntityAccess, org.grails.datastore.mapping.model.types.Association)'>cascadeDeleteCollection</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#createInstanceCacheEntryKey(java.lang.Object)'>createInstanceCacheEntryKey</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#discriminatePersistentEntity(org.grails.datastore.mapping.model.PersistentEntity, T)'>discriminatePersistentEntity</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#doesRequirePropertyIndexing()'>doesRequirePropertyIndexing</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#formulateDatabaseReference(org.grails.datastore.mapping.model.PersistentEntity, org.grails.datastore.mapping.model.types.Association, java.io.Serializable)'>formulateDatabaseReference</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getAssociationIndexer(T, org.grails.datastore.mapping.model.types.Association)'>getAssociationIndexer</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getCollectionName(org.grails.datastore.mapping.model.PersistentEntity)'>getCollectionName</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getCollectionName(org.grails.datastore.mapping.model.PersistentEntity, T)'>getCollectionName</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getEmbedded(T, java.lang.String)'>getEmbedded</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getEntityFamily()'>getEntityFamily</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getEntryValue(T, java.lang.String)'>getEntryValue</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getIdentifierForKey(java.lang.Object)'>getIdentifierForKey</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getManyToManyKeys(org.grails.datastore.mapping.model.PersistentEntity, java.lang.Object, java.io.Serializable, T, org.grails.datastore.mapping.model.types.ManyToMany)'>getManyToManyKeys</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getMongoSession()'>getMongoSession</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getPropertyIndexer(org.grails.datastore.mapping.model.PersistentProperty)'>getPropertyIndexer</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#getPropertyKey(org.grails.datastore.mapping.model.PersistentProperty)'>getPropertyKey</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#isDirty(java.lang.Object, java.lang.Object)'>isDirty</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#isReference(org.grails.datastore.mapping.model.types.Association)'>isReference</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#loadEmbeddedCollectionKeys(org.grails.datastore.mapping.model.types.Association, org.grails.datastore.mapping.engine.EntityAccess, T)'>loadEmbeddedCollectionKeys</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#refreshObjectStateFromNativeEntry(org.grails.datastore.mapping.model.PersistentEntity, java.lang.Object, java.io.Serializable, T, boolean)'>refreshObjectStateFromNativeEntry</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#retrieveAllEntities(org.grails.datastore.mapping.model.PersistentEntity, Iterable)'>retrieveAllEntities</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#retrieveAllEntities(org.grails.datastore.mapping.model.PersistentEntity, java.io.Serializable)'>retrieveAllEntities</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#setEmbedded(T, java.lang.String, T)'>setEmbedded</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#setEmbeddedCollection(T, java.lang.String, Collection, List)'>setEmbeddedCollection</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#setEmbeddedCollectionKeys(org.grails.datastore.mapping.model.types.Association, org.grails.datastore.mapping.engine.EntityAccess, T, List)'>setEmbeddedCollectionKeys</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#setEmbeddedMap(T, java.lang.String, java.util.Map, Map)'>setEmbeddedMap</a>, <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/AbstractMongoObectEntityPersister.html#setManyToMany(org.grails.datastore.mapping.model.PersistentEntity, java.lang.Object, T, org.grails.datastore.mapping.model.types.ManyToMany, org.grails.datastore.mapping.document.config.Collection, Map)'>setManyToMany</a></code></td>
                         </tr>
                     </table>
                    </ul>
@@ -366,7 +366,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="VALUE_RETRIEVAL_STRATEGY"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>public&nbsp;static&nbsp;final&nbsp;ValueRetrievalStrategy&lt;Document&gt; <strong>VALUE_RETRIEVAL_STRATEGY</strong></h4>
+                                <h4>public&nbsp;static&nbsp;final&nbsp;ValueRetrievalStrategy&lt;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a>&gt; <strong>VALUE_RETRIEVAL_STRATEGY</strong></h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -390,7 +390,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="MongoEntityPersister(org.grails.datastore.mapping.model.MappingContext, org.grails.datastore.mapping.model.PersistentEntity, org.grails.datastore.mapping.mongo.MongoSession, org.springframework.context.ApplicationEventPublisher)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>public&nbsp;<strong>MongoEntityPersister</strong>(<a href='../../../../../../org.grails.datastore.mapping.model.MappingContext.html'>MappingContext</a> mappingContext, <a href='../../../../../../org.grails.datastore.mapping.model.PersistentEntity.html'>PersistentEntity</a> entity, <a href='../../../../../../org/grails/datastore/mapping/mongo/MongoSession.html'>MongoSession</a> mongoSession, <a href='../../../../../../org.springframework.context.ApplicationEventPublisher.html'>ApplicationEventPublisher</a> publisher)</h4>
+                                <h4>public&nbsp;<strong>MongoEntityPersister</strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/MappingContext.html' title='MappingContext'>MappingContext</a> mappingContext, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentEntity.html' title='PersistentEntity'>PersistentEntity</a> entity, <a href='../../../../../../org/grails/datastore/mapping/mongo/MongoSession.html'>MongoSession</a> mongoSession, <a href='https://docs.spring.io/spring-framework/docs/6.2.18/javadoc-api/org/springframework/context/ApplicationEventPublisher.html' title='ApplicationEventPublisher'>ApplicationEventPublisher</a> publisher)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -411,7 +411,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="createDBObjectWithKey(java.lang.Object)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>protected&nbsp;<a href='../../../../../../org.bson.Document.html'>Document</a> <strong>createDBObjectWithKey</strong>(java.lang.Object key)</h4>
+                                <h4>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> <strong>createDBObjectWithKey</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> key)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -419,7 +419,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="createNewEntry(java.lang.String, java.lang.Object)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;<a href='../../../../../../org.bson.Document.html'>Document</a> <strong>createNewEntry</strong>(java.lang.String family, java.lang.Object instance)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> <strong>createNewEntry</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> family, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> instance)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -427,7 +427,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="createNewEntry(java.lang.String)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;<a href='../../../../../../org.bson.Document.html'>Document</a> <strong>createNewEntry</strong>(java.lang.String family)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> <strong>createNewEntry</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> family)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -435,7 +435,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="createQuery()"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>public&nbsp;<a href='../../../../../../org.grails.datastore.mapping.query.Query.html'>Query</a> <strong>createQuery</strong>()</h4>
+                                <h4>public&nbsp;<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/query/Query.html' title='Query'>Query</a> <strong>createQuery</strong>()</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -443,7 +443,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="deleteEntries(java.lang.String, List)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;void <strong>deleteEntries</strong>(java.lang.String family, java.util.List&lt;java.lang.Object&gt; keys)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;void <strong>deleteEntries</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> family, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a>&gt; keys)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -451,7 +451,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="deleteEntry(java.lang.String, java.lang.Object, java.lang.Object)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;void <strong>deleteEntry</strong>(java.lang.String family, java.lang.Object key, java.lang.Object entry)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;void <strong>deleteEntry</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> family, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> key, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> entry)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -459,7 +459,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="generateIdentifier(org.grails.datastore.mapping.model.PersistentEntity, org.bson.Document)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;java.lang.Object <strong>generateIdentifier</strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentEntity.html'>PersistentEntity</a> persistentEntity, <a href='../../../../../../org.bson.Document.html'>Document</a> nativeEntry)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> <strong>generateIdentifier</strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentEntity.html' title='PersistentEntity'>PersistentEntity</a> persistentEntity, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeEntry)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -467,7 +467,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="getCollectionName(org.grails.datastore.mapping.model.PersistentEntity, org.bson.Document)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;java.lang.String <strong>getCollectionName</strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentEntity.html'>PersistentEntity</a> persistentEntity, <a href='../../../../../../org.bson.Document.html'>Document</a> nativeEntry)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>getCollectionName</strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentEntity.html' title='PersistentEntity'>PersistentEntity</a> persistentEntity, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeEntry)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -475,7 +475,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="getSimpleNativePropertyValue(java.lang.Object, org.grails.datastore.mapping.model.MappingContext)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>public&nbsp;static&nbsp;java.lang.Object <strong>getSimpleNativePropertyValue</strong>(java.lang.Object value, <a href='../../../../../../org.grails.datastore.mapping.model.MappingContext.html'>MappingContext</a> mappingContext)</h4>
+                                <h4>public&nbsp;static&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> <strong>getSimpleNativePropertyValue</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> value, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/MappingContext.html' title='MappingContext'>MappingContext</a> mappingContext)</h4>
                                 <p> Convert a value into a type suitable for use in Mongo. Collections and maps are converted recursively. The
  mapping context is used for the conversion if possible, otherwise toString() is the eventual fallback.
       <DL><DT><B>Parameters:</B></DT><DD><code>value</code> -           The value to convert (or null)</DD><DD><code>mappingContext</code> -  The mapping context.</DD></DL><DL><DT><B>Returns:</B></DT><DD>The converted value (or null)</DD></DL></p>
@@ -485,7 +485,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="getValue(org.bson.Document, java.lang.String)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>public&nbsp;java.lang.Object <strong>getValue</strong>(<a href='../../../../../../org.bson.Document.html'>Document</a> document, java.lang.String name)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>public&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> <strong>getValue</strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> document, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> name)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -493,7 +493,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="isEmbeddedEntry(java.lang.Object)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;boolean <strong>isEmbeddedEntry</strong>(java.lang.Object entry)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;boolean <strong>isEmbeddedEntry</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> entry)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -501,7 +501,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="loadEmbeddedCollection(org.grails.datastore.mapping.model.types.EmbeddedCollection, org.grails.datastore.mapping.engine.EntityAccess, java.lang.Object, java.lang.String)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;void <strong>loadEmbeddedCollection</strong>(<a href='../../../../../../org.grails.datastore.mapping.model.types.EmbeddedCollection.html'>EmbeddedCollection</a> embeddedCollection, <a href='../../../../../../org.grails.datastore.mapping.engine.EntityAccess.html'>EntityAccess</a> ea, java.lang.Object embeddedInstances, java.lang.String propertyKey)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;void <strong>loadEmbeddedCollection</strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/types/EmbeddedCollection.html' title='EmbeddedCollection'>EmbeddedCollection</a> embeddedCollection, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/engine/EntityAccess.html' title='EntityAccess'>EntityAccess</a> ea, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> embeddedInstances, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> propertyKey)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -509,7 +509,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="retrieveEntry(org.grails.datastore.mapping.model.PersistentEntity, java.lang.String, java.io.Serializable)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;<a href='../../../../../../org.bson.Document.html'>Document</a> <strong>retrieveEntry</strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentEntity.html'>PersistentEntity</a> persistentEntity, java.lang.String family, java.io.Serializable key)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> <strong>retrieveEntry</strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentEntity.html' title='PersistentEntity'>PersistentEntity</a> persistentEntity, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> family, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html' title='Serializable'>Serializable</a> key)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -525,7 +525,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="setDBObjectValue(org.bson.Document, java.lang.String, java.lang.Object, org.grails.datastore.mapping.model.MappingContext)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>public&nbsp;static&nbsp;void <strong>setDBObjectValue</strong>(<a href='../../../../../../org.bson.Document.html'>Document</a> nativeEntry, java.lang.String key, java.lang.Object value, <a href='../../../../../../org.grails.datastore.mapping.model.MappingContext.html'>MappingContext</a> mappingContext)</h4>
+                                <h4>public&nbsp;static&nbsp;void <strong>setDBObjectValue</strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeEntry, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> key, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> value, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/MappingContext.html' title='MappingContext'>MappingContext</a> mappingContext)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -533,7 +533,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="setEntryValue(org.bson.Document, java.lang.String, java.lang.Object)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;void <strong>setEntryValue</strong>(<a href='../../../../../../org.bson.Document.html'>Document</a> nativeEntry, java.lang.String key, java.lang.Object value)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;void <strong>setEntryValue</strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeEntry, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> key, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> value)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -541,7 +541,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="setValue(org.bson.Document, java.lang.String, java.lang.Object)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>public&nbsp;void <strong>setValue</strong>(<a href='../../../../../../org.bson.Document.html'>Document</a> document, java.lang.String name, java.lang.Object value)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>public&nbsp;void <strong>setValue</strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> document, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> name, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> value)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -549,7 +549,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="storeEntry(org.grails.datastore.mapping.model.PersistentEntity, org.grails.datastore.mapping.engine.EntityAccess, java.lang.Object, org.bson.Document)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>protected&nbsp;java.lang.Object <strong>storeEntry</strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentEntity.html'>PersistentEntity</a> persistentEntity, <a href='../../../../../../org.grails.datastore.mapping.engine.EntityAccess.html'>EntityAccess</a> entityAccess, java.lang.Object storeId, <a href='../../../../../../org.bson.Document.html'>Document</a> nativeEntry)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>protected&nbsp;<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> <strong>storeEntry</strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentEntity.html' title='PersistentEntity'>PersistentEntity</a> persistentEntity, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/engine/EntityAccess.html' title='EntityAccess'>EntityAccess</a> entityAccess, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> storeId, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> nativeEntry)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -557,7 +557,7 @@ extends <a href='../../../../../../org/grails/datastore/mapping/mongo/engine/Abs
                         <a name="updateEntry(org.grails.datastore.mapping.model.PersistentEntity, org.grails.datastore.mapping.engine.EntityAccess, java.lang.Object, org.bson.Document)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>public&nbsp;void <strong>updateEntry</strong>(<a href='../../../../../../org.grails.datastore.mapping.model.PersistentEntity.html'>PersistentEntity</a> persistentEntity, <a href='../../../../../../org.grails.datastore.mapping.engine.EntityAccess.html'>EntityAccess</a> ea, java.lang.Object key, <a href='../../../../../../org.bson.Document.html'>Document</a> entry)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>public&nbsp;void <strong>updateEntry</strong>(<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/model/PersistentEntity.html' title='PersistentEntity'>PersistentEntity</a> persistentEntity, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/engine/EntityAccess.html' title='EntityAccess'>EntityAccess</a> ea, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a> key, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a> entry)</h4>
                                 <p></p>
                             </li>
                         </ul>

@@ -106,9 +106,9 @@ if (location.href.indexOf('is-external=true') == -1) {
             <!-- todo: direct known subclasses -->
             <hr>
 
-<pre>@groovy.transform.CompileStatic
+<pre>@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/transform/CompileStatic.html' title='CompileStatic'>CompileStatic</a>
 class MongoStaticApi&lt;D&gt;
-extends GormStaticApi&lt;D&gt;
+extends <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/GormStaticApi.html' title='GormStaticApi'>GormStaticApi</a>&lt;D&gt;
 implements MongoAllOperations&lt;D&gt;</pre>
 
     <p> MongoDB static API implementation <DL><DT><B>Authors:</B></DT><DD>Graeme Rocher</DD></DL><DL><DT><B>Since:</B></DT><DD>6.0</DD></DL></p>
@@ -148,7 +148,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         
                         <tr class="altColor">
                             <td class="colFirst">
-                                <code><strong><a href="#MongoStaticApi(Class, org.grails.datastore.mapping.core.Datastore, List, org.springframework.transaction.PlatformTransactionManager)">MongoStaticApi</a></strong>(java.lang.Class&lt;D&gt; persistentClass, <a href='../../../../../../org.grails.datastore.mapping.core.Datastore.html'>Datastore</a> datastore, java.util.List&lt;FinderMethod&gt; finders, <a href='../../../../../../org.springframework.transaction.PlatformTransactionManager.html'>PlatformTransactionManager</a> transactionManager)</code><br></td>
+                                <code><strong><a href="#MongoStaticApi(Class, org.grails.datastore.mapping.core.Datastore, List, org.springframework.transaction.PlatformTransactionManager)">MongoStaticApi</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html' title='Class'>Class</a>&lt;D&gt; persistentClass, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/Datastore.html' title='Datastore'>Datastore</a> datastore, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/finders/FinderMethod.html' title='FinderMethod'>FinderMethod</a>&gt; finders, <a href='https://docs.spring.io/spring-framework/docs/6.2.18/javadoc-api/org/springframework/transaction/PlatformTransactionManager.html' title='PlatformTransactionManager'>PlatformTransactionManager</a> transactionManager)</code><br></td>
                         </tr>
                         
                     </table>
@@ -174,26 +174,26 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>java.util.List&lt;D&gt;</code></td>
-                            <td class="colLast"><code><strong><a href="#aggregate(java.util.List, Function)">aggregate</a></strong>(java.util.List pipeline, java.util.function.Function&lt;AggregateIterable, AggregateIterable&gt; doWithAggregate)</code><br></td>
+                            <td class="colLast"><code><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;D&gt;</code></td>
+                            <td class="colLast"><code><strong><a href="#aggregate(java.util.List, Function)">aggregate</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a> pipeline, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html' title='Function'>Function</a>&lt;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/AggregateIterable.html' title='AggregateIterable'>AggregateIterable</a>, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/AggregateIterable.html' title='AggregateIterable'>AggregateIterable</a>&gt; doWithAggregate)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>java.util.List&lt;D&gt;</code></td>
-                            <td class="colLast"><code><strong><a href="#aggregate(java.util.List, Function, com.mongodb.ReadPreference)">aggregate</a></strong>(java.util.List pipeline, java.util.function.Function&lt;AggregateIterable, AggregateIterable&gt; doWithAggregate, <a href='../../../../../../com.mongodb.ReadPreference.html'>ReadPreference</a> readPreference)</code><br></td>
+                            <td class="colLast"><code><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;D&gt;</code></td>
+                            <td class="colLast"><code><strong><a href="#aggregate(java.util.List, Function, com.mongodb.ReadPreference)">aggregate</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a> pipeline, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html' title='Function'>Function</a>&lt;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/AggregateIterable.html' title='AggregateIterable'>AggregateIterable</a>, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/AggregateIterable.html' title='AggregateIterable'>AggregateIterable</a>&gt; doWithAggregate, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/ReadPreference.html' title='ReadPreference'>ReadPreference</a> readPreference)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>java.lang.Number</code></td>
-                            <td class="colLast"><code><strong><a href="#count(org.bson.conversions.Bson)">count</a></strong>(<a href='../../../../../../org.bson.conversions.Bson.html'>Bson</a> filter)</code><br></td>
+                            <td class="colLast"><code><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html' title='Number'>Number</a></code></td>
+                            <td class="colLast"><code><strong><a href="#count(org.bson.conversions.Bson)">count</a></strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/conversions/Bson.html' title='Bson'>Bson</a> filter)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>int</code></td>
-                            <td class="colLast"><code><strong><a href="#countHits(java.lang.String)">countHits</a></strong>(java.lang.String query)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#countHits(java.lang.String)">countHits</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> query)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
@@ -204,74 +204,74 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>FindIterable&lt;D&gt;</code></td>
-                            <td class="colLast"><code><strong><a href="#find(org.bson.conversions.Bson)">find</a></strong>(<a href='../../../../../../org.bson.conversions.Bson.html'>Bson</a> filter)</code><br></td>
+                            <td class="colLast"><code><a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/FindIterable.html' title='FindIterable'>FindIterable</a>&lt;D&gt;</code></td>
+                            <td class="colLast"><code><strong><a href="#find(org.bson.conversions.Bson)">find</a></strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/conversions/Bson.html' title='Bson'>Bson</a> filter)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>D</code></td>
-                            <td class="colLast"><code><strong><a href="#findOneAndDelete(org.bson.conversions.Bson, com.mongodb.client.model.FindOneAndDeleteOptions)">findOneAndDelete</a></strong>(<a href='../../../../../../org.bson.conversions.Bson.html'>Bson</a> filter, <a href='../../../../../../com.mongodb.client.model.FindOneAndDeleteOptions.html'>FindOneAndDeleteOptions</a> options)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#findOneAndDelete(org.bson.conversions.Bson, com.mongodb.client.model.FindOneAndDeleteOptions)">findOneAndDelete</a></strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/conversions/Bson.html' title='Bson'>Bson</a> filter, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/model/FindOneAndDeleteOptions.html' title='FindOneAndDeleteOptions'>FindOneAndDeleteOptions</a> options)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>MongoCollection&lt;Document&gt;</code></td>
+                            <td class="colLast"><code><a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/MongoCollection.html' title='MongoCollection'>MongoCollection</a>&lt;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a>&gt;</code></td>
                             <td class="colLast"><code><strong><a href="#getCollection()">getCollection</a></strong>()</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>java.lang.String</code></td>
+                            <td class="colLast"><code><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></code></td>
                             <td class="colLast"><code><strong><a href="#getCollectionName()">getCollectionName</a></strong>()</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code><a href='../../../../../../com.mongodb.client.MongoDatabase.html'>MongoDatabase</a></code></td>
+                            <td class="colLast"><code><a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/MongoDatabase.html' title='MongoDatabase'>MongoDatabase</a></code></td>
                             <td class="colLast"><code><strong><a href="#getDB()">getDB</a></strong>()</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>java.util.List&lt;D&gt;</code></td>
-                            <td class="colLast"><code><strong><a href="#search(java.lang.String, java.util.Map)">search</a></strong>(java.lang.String query, java.util.Map options)</code><br></td>
+                            <td class="colLast"><code><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;D&gt;</code></td>
+                            <td class="colLast"><code><strong><a href="#search(java.lang.String, java.util.Map)">search</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> query, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html' title='Map'>Map</a> options)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>java.util.List&lt;D&gt;</code></td>
-                            <td class="colLast"><code><strong><a href="#searchTop(java.lang.String, int, java.util.Map)">searchTop</a></strong>(java.lang.String query, int limit, java.util.Map options)</code><br></td>
+                            <td class="colLast"><code><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;D&gt;</code></td>
+                            <td class="colLast"><code><strong><a href="#searchTop(java.lang.String, int, java.util.Map)">searchTop</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> query, int limit, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html' title='Map'>Map</a> options)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>java.lang.String</code></td>
-                            <td class="colLast"><code><strong><a href="#useCollection(java.lang.String)">useCollection</a></strong>(java.lang.String collectionName)</code><br></td>
+                            <td class="colLast"><code><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></code></td>
+                            <td class="colLast"><code><strong><a href="#useCollection(java.lang.String)">useCollection</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> collectionName)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>java.lang.String</code></td>
-                            <td class="colLast"><code><strong><a href="#useDatabase(java.lang.String)">useDatabase</a></strong>(java.lang.String databaseName)</code><br></td>
+                            <td class="colLast"><code><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a></code></td>
+                            <td class="colLast"><code><strong><a href="#useDatabase(java.lang.String)">useDatabase</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> databaseName)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code>&lt;T&gt;</code></td>
                             <td class="colLast"><code>T</code></td>
-                            <td class="colLast"><code><strong><a href="#withCollection(java.lang.String, Closure)">withCollection</a></strong>(java.lang.String collectionName, groovy.lang.Closure&lt;T&gt; callable)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#withCollection(java.lang.String, Closure)">withCollection</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> collectionName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a>&lt;T&gt; callable)</code><br></td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code>&lt;T&gt;</code></td>
                             <td class="colLast"><code>T</code></td>
-                            <td class="colLast"><code><strong><a href="#withDatabase(java.lang.String, Closure)">withDatabase</a></strong>(java.lang.String databaseName, groovy.lang.Closure&lt;T&gt; callable)</code><br></td>
+                            <td class="colLast"><code><strong><a href="#withDatabase(java.lang.String, Closure)">withDatabase</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> databaseName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a>&lt;T&gt; callable)</code><br></td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>protected&nbsp;<a href='../../../../../../org.bson.conversions.Bson.html'>Bson</a></code></td>
-                            <td class="colLast"><code><strong><a href="#wrapFilterWithMultiTenancy(org.bson.conversions.Bson)">wrapFilterWithMultiTenancy</a></strong>(<a href='../../../../../../org.bson.conversions.Bson.html'>Bson</a> filter)</code><br></td>
+                            <td class="colLast"><code>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/conversions/Bson.html' title='Bson'>Bson</a></code></td>
+                            <td class="colLast"><code><strong><a href="#wrapFilterWithMultiTenancy(org.bson.conversions.Bson)">wrapFilterWithMultiTenancy</a></strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/conversions/Bson.html' title='Bson'>Bson</a> filter)</code><br></td>
                         </tr>
                         
                     </table>
@@ -306,7 +306,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="MongoStaticApi(Class, org.grails.datastore.mapping.core.Datastore, List, org.springframework.transaction.PlatformTransactionManager)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4><strong>MongoStaticApi</strong>(java.lang.Class&lt;D&gt; persistentClass, <a href='../../../../../../org.grails.datastore.mapping.core.Datastore.html'>Datastore</a> datastore, java.util.List&lt;FinderMethod&gt; finders, <a href='../../../../../../org.springframework.transaction.PlatformTransactionManager.html'>PlatformTransactionManager</a> transactionManager)</h4>
+                                <h4><strong>MongoStaticApi</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html' title='Class'>Class</a>&lt;D&gt; persistentClass, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/mapping/core/Datastore.html' title='Datastore'>Datastore</a> datastore, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;<a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/finders/FinderMethod.html' title='FinderMethod'>FinderMethod</a>&gt; finders, <a href='https://docs.spring.io/spring-framework/docs/6.2.18/javadoc-api/org/springframework/transaction/PlatformTransactionManager.html' title='PlatformTransactionManager'>PlatformTransactionManager</a> transactionManager)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -327,7 +327,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="aggregate(java.util.List, Function)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>java.util.List&lt;D&gt; <strong>aggregate</strong>(java.util.List pipeline, java.util.function.Function&lt;AggregateIterable, AggregateIterable&gt; doWithAggregate)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;D&gt; <strong>aggregate</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a> pipeline, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html' title='Function'>Function</a>&lt;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/AggregateIterable.html' title='AggregateIterable'>AggregateIterable</a>, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/AggregateIterable.html' title='AggregateIterable'>AggregateIterable</a>&gt; doWithAggregate)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -335,7 +335,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="aggregate(java.util.List, Function, com.mongodb.ReadPreference)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>java.util.List&lt;D&gt; <strong>aggregate</strong>(java.util.List pipeline, java.util.function.Function&lt;AggregateIterable, AggregateIterable&gt; doWithAggregate, <a href='../../../../../../com.mongodb.ReadPreference.html'>ReadPreference</a> readPreference)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;D&gt; <strong>aggregate</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a> pipeline, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html' title='Function'>Function</a>&lt;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/AggregateIterable.html' title='AggregateIterable'>AggregateIterable</a>, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/AggregateIterable.html' title='AggregateIterable'>AggregateIterable</a>&gt; doWithAggregate, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/ReadPreference.html' title='ReadPreference'>ReadPreference</a> readPreference)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -343,7 +343,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="count(org.bson.conversions.Bson)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>java.lang.Number <strong>count</strong>(<a href='../../../../../../org.bson.conversions.Bson.html'>Bson</a> filter)</h4>
+                                <h4><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html' title='Number'>Number</a> <strong>count</strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/conversions/Bson.html' title='Bson'>Bson</a> filter)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -351,7 +351,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="countHits(java.lang.String)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>int <strong>countHits</strong>(java.lang.String query)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>int <strong>countHits</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> query)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -359,7 +359,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="createCriteria()"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br><a href='../../../../../../org/grails/datastore/gorm/mongo/MongoCriteriaBuilder.html'>MongoCriteriaBuilder</a> <strong>createCriteria</strong>()</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br><a href='../../../../../../org/grails/datastore/gorm/mongo/MongoCriteriaBuilder.html'>MongoCriteriaBuilder</a> <strong>createCriteria</strong>()</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -367,7 +367,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="find(org.bson.conversions.Bson)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>FindIterable&lt;D&gt; <strong>find</strong>(<a href='../../../../../../org.bson.conversions.Bson.html'>Bson</a> filter)</h4>
+                                <h4><a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/FindIterable.html' title='FindIterable'>FindIterable</a>&lt;D&gt; <strong>find</strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/conversions/Bson.html' title='Bson'>Bson</a> filter)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -375,7 +375,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="findOneAndDelete(org.bson.conversions.Bson, com.mongodb.client.model.FindOneAndDeleteOptions)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>D <strong>findOneAndDelete</strong>(<a href='../../../../../../org.bson.conversions.Bson.html'>Bson</a> filter, <a href='../../../../../../com.mongodb.client.model.FindOneAndDeleteOptions.html'>FindOneAndDeleteOptions</a> options)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>D <strong>findOneAndDelete</strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/conversions/Bson.html' title='Bson'>Bson</a> filter, <a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/model/FindOneAndDeleteOptions.html' title='FindOneAndDeleteOptions'>FindOneAndDeleteOptions</a> options)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -383,7 +383,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="getCollection()"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>MongoCollection&lt;Document&gt; <strong>getCollection</strong>()</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br><a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/MongoCollection.html' title='MongoCollection'>MongoCollection</a>&lt;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/Document.html' title='Document'>Document</a>&gt; <strong>getCollection</strong>()</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -391,7 +391,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="getCollectionName()"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>java.lang.String <strong>getCollectionName</strong>()</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>getCollectionName</strong>()</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -399,7 +399,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="getDB()"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br><a href='../../../../../../com.mongodb.client.MongoDatabase.html'>MongoDatabase</a> <strong>getDB</strong>()</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br><a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/driver-core/com/mongodb/client/MongoDatabase.html' title='MongoDatabase'>MongoDatabase</a> <strong>getDB</strong>()</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -407,7 +407,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="search(java.lang.String, java.util.Map)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>java.util.List&lt;D&gt; <strong>search</strong>(java.lang.String query, java.util.Map options)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;D&gt; <strong>search</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> query, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html' title='Map'>Map</a> options)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -415,7 +415,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="searchTop(java.lang.String, int, java.util.Map)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>java.util.List&lt;D&gt; <strong>searchTop</strong>(java.lang.String query, int limit, java.util.Map options)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html' title='List'>List</a>&lt;D&gt; <strong>searchTop</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> query, int limit, <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html' title='Map'>Map</a> options)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -423,7 +423,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="useCollection(java.lang.String)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>java.lang.String <strong>useCollection</strong>(java.lang.String collectionName)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>useCollection</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> collectionName)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -431,7 +431,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="useDatabase(java.lang.String)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>@java.lang.Override<br>java.lang.String <strong>useDatabase</strong>(java.lang.String databaseName)</h4>
+                                <h4>@<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br><a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> <strong>useDatabase</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> databaseName)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -439,7 +439,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="withCollection(java.lang.String, Closure)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>&lt;T&gt; @java.lang.Override<br>T <strong>withCollection</strong>(java.lang.String collectionName, groovy.lang.Closure&lt;T&gt; callable)</h4>
+                                <h4>&lt;T&gt; @<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>T <strong>withCollection</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> collectionName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a>&lt;T&gt; callable)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -447,7 +447,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="withDatabase(java.lang.String, Closure)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>&lt;T&gt; @java.lang.Override<br>T <strong>withDatabase</strong>(java.lang.String databaseName, groovy.lang.Closure&lt;T&gt; callable)</h4>
+                                <h4>&lt;T&gt; @<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Override.html' title='Override'>Override</a><br>T <strong>withDatabase</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> databaseName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a>&lt;T&gt; callable)</h4>
                                 <p></p>
                             </li>
                         </ul>
@@ -455,7 +455,7 @@ implements MongoAllOperations&lt;D&gt;</pre>
                         <a name="wrapFilterWithMultiTenancy(org.bson.conversions.Bson)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>protected&nbsp;<a href='../../../../../../org.bson.conversions.Bson.html'>Bson</a> <strong>wrapFilterWithMultiTenancy</strong>(<a href='../../../../../../org.bson.conversions.Bson.html'>Bson</a> filter)</h4>
+                                <h4>protected&nbsp;<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/conversions/Bson.html' title='Bson'>Bson</a> <strong>wrapFilterWithMultiTenancy</strong>(<a href='https://mongodb.github.io/mongo-java-driver/5.5/apidocs/bson/org/bson/conversions/Bson.html' title='Bson'>Bson</a> filter)</h4>
                                 <p></p>
                             </li>
                         </ul>
