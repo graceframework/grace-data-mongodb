@@ -1,3 +1,35 @@
+=== 2024.1.0-RC1
+
+link:{github}/releases/tag/v2024.1.0-RC1[release notes]
+
+🛠 Improvements
+
+* Add release notes for 2024.1.0-RC1
+* Update README
+* Add more documentation dependencies and links for groovydc generation link:{github}/issues/77[#77]
+* Cleanup Gradle version catalog link:{github}/issues/73[#73]
+  - Remove libraries grace-bootstrap, grace-core, grace-test-support
+  - Rename version name grace-framework to grace-gradle
+* Improve tests link:{github}/issues/72[#72]
+  - Don't use grails.core.GrailsApplication in GormDatastoreSpec
+  - Use grails.gorm.annotation.Entity instead of grails.persistence.Entity
+  - Remove marked `@PendingFeature` because these tests passes
+  - Update grace-datastore-gorm-mongodb/build.gradle to remove test dependency on grace-test-support
+* Add .sdkmanrc with latest java version 17.0.19-zulu link:{github}/issues/70[#70]
+* Upgrade Release Drafter Gradle Action to v7 link:{github}/issues/69[#69]
+* Upgrade GitHub workflows: migrate java distribution from `adopt` to `zulu` link:{github}/issues/68[#68]
+
+🚀 Dependency Upgrades
+
+* Upgrade to Caffeine 3.2.4 link:{github}/issues/76[#76]
+* Upgrade to Grace Data 2024.1.0-RC1 link:{github}/issues/75[#75]
+* Upgrade to Grace Gradle Plugin 2024.1.0-M3 link:{github}/issues/74[#74]
+* Upgrade to Gradle 8.14.5 link:{github}/issues/71[#71]
+
+⚙️ Tasks
+
+* Release v2024.1.0-RC1
+
 === 2024.1.0-M1
 
 link:{github}/releases/tag/v2024.1.0-M1[release notes]
