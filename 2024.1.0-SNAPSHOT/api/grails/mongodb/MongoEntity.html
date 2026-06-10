@@ -99,20 +99,20 @@ if (location.href.indexOf('is-external=true') == -1) {
 
             <dl>
                 <dt>All Implemented Interfaces and Traits:</dt>
-                <dd><a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/GormEntity.html' title='GormEntity'>GormEntity</a>&lt;D&gt;, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/schemaless/DynamicAttributes.html' title='DynamicAttributes'>DynamicAttributes</a></dd>
+                <dd><a href='https://graceframework.org/grace-data/2024.1.0/api/org/grails/datastore/gorm/GormEntity.html' title='GormEntity'>GormEntity</a>&lt;D&gt;, <a href='https://graceframework.org/grace-data/2024.1.0/api/org/grails/datastore/gorm/schemaless/DynamicAttributes.html' title='DynamicAttributes'>DynamicAttributes</a></dd>
             </dl>
     
 
             <!-- todo: direct known subclasses -->
             <hr>
 
-<pre>@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/transform/Trait.html' title='Trait'>Trait</a>
-@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/transform/CompileStatic.html' title='CompileStatic'>CompileStatic</a>
+<pre>@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.32/html/gapi/groovy/transform/Trait.html' title='Trait'>Trait</a>
+@<a href='https://docs.groovy-lang.org/docs/groovy-4.0.32/html/gapi/groovy/transform/CompileStatic.html' title='CompileStatic'>CompileStatic</a>
 trait MongoEntity&lt;D&gt;
 extends <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html' title='Object'>Object</a>
-implements <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/GormEntity.html' title='GormEntity'>GormEntity</a>&lt;D&gt;, <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/schemaless/DynamicAttributes.html' title='DynamicAttributes'>DynamicAttributes</a></pre>
+implements <a href='https://graceframework.org/grace-data/2024.1.0/api/org/grails/datastore/gorm/GormEntity.html' title='GormEntity'>GormEntity</a>&lt;D&gt;, <a href='https://graceframework.org/grace-data/2024.1.0/api/org/grails/datastore/gorm/schemaless/DynamicAttributes.html' title='DynamicAttributes'>DynamicAttributes</a></pre>
 
-    <p> Enhances the default <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/grails/datastore/gorm/GormEntity.html' title='GormEntity'>GormEntity</a> class with MongoDB specific methods <DL><DT><B>Authors:</B></DT><DD>Graeme Rocher</DD></DL><DL><DT><B>Since:</B></DT><DD>5.0</DD></DL></p>
+    <p> Enhances the default <a href='https://graceframework.org/grace-data/2024.1.0/api/org/grails/datastore/gorm/GormEntity.html' title='GormEntity'>GormEntity</a> class with MongoDB specific methods <DL><DT><B>Authors:</B></DT><DD>Graeme Rocher</DD></DL><DL><DT><B>Since:</B></DT><DD>5.0</DD></DL></p>
 
           </li>
     </ul>
@@ -257,19 +257,19 @@ implements <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/g
                         <tr class="rowColor">
                             <td class="colFirst"><code>&lt;T&gt;</code></td>
                             <td class="colLast"><code>static&nbsp;T</code></td>
-                            <td class="colLast"><code><strong><a href="#withCollection(java.lang.String, Closure)">withCollection</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> collectionName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a>&lt;T&gt; callable)</code><br>Use the given collection for this entity for the scope of the closure call</td>
+                            <td class="colLast"><code><strong><a href="#withCollection(java.lang.String, Closure)">withCollection</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> collectionName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.32/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a>&lt;T&gt; callable)</code><br>Use the given collection for this entity for the scope of the closure call</td>
                         </tr>
                         
                         <tr class="altColor">
                             <td class="colFirst"><code>&lt;T&gt;</code></td>
                             <td class="colLast"><code>static&nbsp;T</code></td>
-                            <td class="colLast"><code><strong><a href="#withConnection(java.lang.String, groovy.lang.Closure)">withConnection</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> connectionName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a> callable)</code><br>Perform an operation with the given connection</td>
+                            <td class="colLast"><code><strong><a href="#withConnection(java.lang.String, groovy.lang.Closure)">withConnection</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> connectionName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.32/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a> callable)</code><br>Perform an operation with the given connection</td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code>&lt;T&gt;</code></td>
                             <td class="colLast"><code>static&nbsp;T</code></td>
-                            <td class="colLast"><code><strong><a href="#withDatabase(java.lang.String, Closure)">withDatabase</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> databaseName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a>&lt;T&gt; callable)</code><br>Use the given database for this entity for the scope of the closure call</td>
+                            <td class="colLast"><code><strong><a href="#withDatabase(java.lang.String, Closure)">withDatabase</a></strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> databaseName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.32/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a>&lt;T&gt; callable)</code><br>Use the given database for this entity for the scope of the closure call</td>
                         </tr>
                         
                     </table>
@@ -463,7 +463,7 @@ implements <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/g
                         <a name="withCollection(java.lang.String, Closure)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>&lt;T&gt; static&nbsp;T <strong>withCollection</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> collectionName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a>&lt;T&gt; callable)</h4>
+                                <h4>&lt;T&gt; static&nbsp;T <strong>withCollection</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> collectionName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.32/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a>&lt;T&gt; callable)</h4>
                                 <p> Use the given collection for this entity for the scope of the closure call <DL><DT><B>Parameters:</B></DT><DD><code>collectionName</code> -  The collection name</DD><DD><code>callable</code> -  The callable</DD></DL><DL><DT><B>Returns:</B></DT><DD>The result of the closure</DD></DL></p>
                             </li>
                         </ul>
@@ -471,7 +471,7 @@ implements <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/g
                         <a name="withConnection(java.lang.String, groovy.lang.Closure)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>&lt;T&gt; static&nbsp;T <strong>withConnection</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> connectionName, @<a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/DelegatesTo.html' title='DelegatesTo'>DelegatesTo</a>(value: MongoAllOperations)<br><a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a> callable)</h4>
+                                <h4>&lt;T&gt; static&nbsp;T <strong>withConnection</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> connectionName, @<a href='https://docs.groovy-lang.org/docs/groovy-4.0.32/html/gapi/groovy/lang/DelegatesTo.html' title='DelegatesTo'>DelegatesTo</a>(value: MongoAllOperations)<br><a href='https://docs.groovy-lang.org/docs/groovy-4.0.32/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a> callable)</h4>
                                 <p> Perform an operation with the given connection <DL><DT><B>Parameters:</B></DT><DD><code>connectionName</code> -  The name of the connection</DD><DD><code>callable</code> -  The operation</DD></DL><DL><DT><B>Returns:</B></DT><DD>The return value of the closure</DD></DL></p>
                             </li>
                         </ul>
@@ -479,7 +479,7 @@ implements <a href='https://graceframework.org/grace-data/2024.1.0-RC1/api/org/g
                         <a name="withDatabase(java.lang.String, Closure)"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
-                                <h4>&lt;T&gt; static&nbsp;T <strong>withDatabase</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> databaseName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.31/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a>&lt;T&gt; callable)</h4>
+                                <h4>&lt;T&gt; static&nbsp;T <strong>withDatabase</strong>(<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html' title='String'>String</a> databaseName, <a href='https://docs.groovy-lang.org/docs/groovy-4.0.32/html/gapi/groovy/lang/Closure.html' title='Closure'>Closure</a>&lt;T&gt; callable)</h4>
                                 <p> Use the given database for this entity for the scope of the closure call <DL><DT><B>Parameters:</B></DT><DD><code>databaseName</code> -  The collection name</DD><DD><code>callable</code> -  The callable</DD></DL><DL><DT><B>Returns:</B></DT><DD>The result of the closure</DD></DL></p>
                             </li>
                         </ul>
