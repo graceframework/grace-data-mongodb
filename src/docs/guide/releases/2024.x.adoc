@@ -1,3 +1,25 @@
+=== 2024.1.0
+
+link:{github}/releases/tag/v2024.1.0[release notes]
+
+🛠 Improvements
+
+* Add release notes for 2024.1.0
+* Update README
+
+🚀 Dependency Upgrades
+
+* Upgrade to Grace Data 2024.1.0 link:{github}/issues/83[#83]
+* Upgrade to Grace Gradle Plugin 2024.1.0-RC2 link:{github}/issues/78[#78]
+* Upgrade to Groovy 4.0.32 link:{github}/issues/79[#79]
+* Upgrade to JavaParser Core 3.28.2 link:{github}/issues/80[#80]
+* Upgrade to SLF4J 2.0.18 link:{github}/issues/81[#81]
+* Upgrade to Spring Framework 6.2.19 link:{github}/issues/82[#82]
+
+⚙️ Tasks
+
+* Release v2024.1.0
+
 === 2024.1.0-RC1
 
 link:{github}/releases/tag/v2024.1.0-RC1[release notes]
