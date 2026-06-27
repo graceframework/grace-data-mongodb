@@ -25,7 +25,7 @@ mongodb = "5.5.2"
 nexus-publish = "2.0.0"
 objenesis = "3.4"
 slf4j = "2.0.18"
-spock = "2.3-groovy-4.0"
+spock = "2.4-groovy-4.0"
 spring-framework = "6.2.19"
 
 [libraries]
