@@ -39,7 +39,7 @@ def mongodbVersion = versions['mongodb']
 def springFrameworkVersion = versions['spring-framework']
 
 version = project.projectVersion
-group = "org.graceframework"
+group = "org.graceframework.data"
 
 repositories {
     mavenCentral()
