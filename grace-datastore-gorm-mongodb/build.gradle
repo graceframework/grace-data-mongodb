@@ -33,10 +33,13 @@ test {
     }
 
     jvmArgs = ['-Xmx1028M']
-    afterSuite {
-        System.out.print('.')
-        System.out.flush()
-    }
+
+    addTestListener(new TestListener() {
+        void afterSuite(TestDescriptor suite, TestResult result) {
+            System.out.print('.')
+            System.out.flush()
+        }
+    })
 }
 
 test.doFirst {
