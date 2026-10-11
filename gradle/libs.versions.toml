@@ -2,7 +2,7 @@
 codenarc = "3.6.0"
 checkstyle = "10.26.1"
 caffeine = "3.2.4"
-commons-validator = "1.9.0"
+commons-validator = "1.11.0"
 embedmongo = "4.24.0"
 glassfish-expressly = "5.0.0"
 grace-data = "2024.2.0-RC1"
