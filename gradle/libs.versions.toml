@@ -3,8 +3,8 @@ codenarc = "3.6.0"
 checkstyle = "10.26.1"
 caffeine = "3.2.4"
 commons-validator = "1.11.0"
+eclipse-expressly = "6.0.0"
 embedmongo = "4.24.0"
-glassfish-expressly = "5.0.0"
 grace-data = "2024.2.0-RC1"
 grace-gradle = "2024.1.2"
 groovy = "4.0.33"
@@ -31,8 +31,8 @@ spring-framework = "6.2.19"
 [libraries]
 caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "caffeine" }
 commons-validator = { module = "commons-validator:commons-validator", version.ref = "commons-validator" }
+eclipse-expressly = { module = "org.glassfish.expressly:expressly", version.ref = "eclipse-expressly" }
 embedmongo = { module = "de.flapdoodle.embed:de.flapdoodle.embed.mongo", version.ref = "embedmongo" }
-glassfish-expressly = { module = "org.glassfish.expressly:expressly", version.ref = "glassfish-expressly" }
 grace-datastore-core = { module = "org.graceframework:grace-datastore-core", version.ref = "grace-data" }
 grace-datastore-gorm = { module = "org.graceframework:grace-datastore-gorm", version.ref = "grace-data" }
 grace-datastore-gorm-async = { module = "org.graceframework:grace-datastore-gorm-async", version.ref = "grace-data" }
