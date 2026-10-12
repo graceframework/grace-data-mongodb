@@ -1,11 +1,11 @@
 [![Main branch build status](https://github.com/graceframework/grace-data-mongodb/workflows/Grace%20CI/badge.svg?style=flat)](https://github.com/graceframework/grace-data-mongodb/actions?query=workflow%3A%Grace+CI%22)
 [![Apache 2.0 license](https://img.shields.io/badge/License-APACHE%202.0-green.svg?logo=APACHE&style=flat)](https://opensource.org/licenses/Apache-2.0)
-[![Latest version on Maven Central](https://img.shields.io/maven-central/v/org.graceframework/grace-datastore-gorm-mongodb.svg?label=Maven%20Central&logo=apache-maven&style=flat)](https://search.maven.org/search?q=g:org.graceframework)
+[![Latest version on Maven Central](https://img.shields.io/maven-central/v/org.graceframework.data/grace-datastore-gorm-mongodb.svg?label=Maven%20Central&logo=apache-maven&style=flat)](https://search.maven.org/search?q=g:org.graceframework.data)
 [![Grace Document](https://img.shields.io/badge/Grace_Document-latest-blue?style=flat&logo=asciidoctor&logoColor=E40046&labelColor=ffffff&color=f49b06)](https://graceframework.org/grace-data-mongodb/latest/)
 [![Grace on X](https://img.shields.io/twitter/follow/graceframework?style=social)](https://x.com/graceframework)
 
-[![Groovy Version](https://img.shields.io/badge/Groovy-4.0.33-blue?style=flat&color=4298b8)](https://groovy-lang.org/releasenotes/groovy-4.0.html)
-[![Grace Version](https://img.shields.io/badge/Grace-2024.2.0-blue?style=flat&color=f49b06)](https://github.com/graceframework/grace-framework/releases/tag/v2024.2.0-M2)
+[![Groovy Version](https://img.shields.io/badge/Groovy-5.0.8-blue?style=flat&color=4298b8)](https://groovy-lang.org/releasenotes/groovy-5.0.html)
+[![Grace Version](https://img.shields.io/badge/Grace-2025.0.0-blue?style=flat&color=f49b06)](https://github.com/graceframework/grace-framework/releases/tag/v2025.0.0-M1)
 
 # Grace Data MongoDB
 
@@ -22,6 +22,10 @@ This project aims to provide an Object-Mapping layer on top of MongoDB to ease c
 
 ```gradle
 dependencies {
+    // Use it directly
+    implementation "org.graceframework.data:grace-datastore-gorm-mongodb"
+
+    // or use it with Grace framework
     implementation "org.graceframework:grace-boot-mongodb"
 }
 ```
@@ -32,6 +36,7 @@ To make it easier for users to use and upgrade, Grace Data MongoDB adopts a vers
 
 | GORM Version | Grace Version | MongoDB Version |
 |--------------|---------------|-----------------|
+| 2025.0.x     | 2025.0.x      | 5.6.5           |
 | 2024.2.x     | 2024.2.x      | 5.5.2           |
 | 2024.1.x     | 2024.1.x      | 5.5.2           |
 | 2024.0.x     | 2024.0.x      | 5.2.1           |
@@ -39,7 +44,7 @@ To make it easier for users to use and upgrade, Grace Data MongoDB adopts a vers
 
 ## Ducumentation
 
-* [2024.2.x](https://graceframework.org/grace-data-mongodb/2024.2.x/)
+* [2025.0.x](https://graceframework.org/grace-data-mongodb/2025.0.x/)
 
 ## License
 
