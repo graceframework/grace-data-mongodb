@@ -1,11 +1,11 @@
 /*
- * Copyright 2017 original authors
+ * Copyright 2017-2026 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * https://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,9 +26,9 @@ import de.flapdoodle.embed.mongo.transitions.Mongod;
 import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess;
 import de.flapdoodle.reverse.TransitionWalker;
 import org.apache.groovy.util.Maps;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -40,7 +40,7 @@ import org.grails.datastore.mapping.model.PersistentEntity;
 import org.grails.datastore.mapping.mongo.MongoDatastore;
 import org.grails.datastore.mapping.mongo.config.MongoSettings;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Graeme Rocher
@@ -54,7 +54,7 @@ public class MongoResultListJavaForEachTest {
     TransitionWalker.ReachedState<RunningMongodProcess> running;
     ServerAddress serverAddress;
 
-    @Before
+    @BeforeEach
     public void setup() {
         ImmutableMongod mongodbConfig = Mongod.instance();
         Version.Main version = Version.Main.V7_0;
@@ -68,7 +68,7 @@ public class MongoResultListJavaForEachTest {
         this.transaction = transactionManager.getTransaction(new DefaultTransactionDefinition());
     }
 
-    @After
+    @AfterEach
     public void cleanup() {
         this.serverAddress = null;
         if (this.running != null) {
