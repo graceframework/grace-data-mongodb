@@ -1,0 +1,1329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>2 Release History 2025.0.0-M1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navHeader">
+        
+        <span id="logo">
+            <a href="https://graceframework.org" title="Grace Framework Website">
+                <img src="../img/grace.svg" alt="Grace Framework" />
+            </a>
+        </span>
+        
+        <div class="docHeader">
+            <h1 class="docTitle">Grace Data MongoDB</h1>
+            <h3 class="docSubTitle">Provides an Object-Mapping layer on top of MongoDB</h3>
+        </div>
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/releases.html"><strong>2</strong><span>Release History</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/objectMapping.html"><strong>4</strong><span>Mapping Domain Classes</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/querying.html"><strong>5</strong><span>Querying</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multipleDataSources.html"><strong>6</strong><span>Multiple Data Sources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/databaseSwitching.html"><strong>7</strong><span>Switching Database or Collection at Runtime</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/multiTenancy.html"><strong>8</strong><span>Multi-Tenancy</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/stateless.html"><strong>9</strong><span>Stateless Mode</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/lowLevelApi.html"><strong>10</strong><span>Using the MongoDB Driver Directly</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/transactions.html"><strong>11</strong><span>Transactions</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>12</strong><span>Unit Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/integrationTesting.html"><strong>13</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" href="../api/index.html">API Docs</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../guide/introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>2 Release History</h1>
+
+                    <p><strong>Version:</strong> 2025.0.0-M1</p>
+                </div>
+
+                
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#2025.x"><strong>2.1</strong><span>What's new in 2025.x</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#2024.x"><strong>2.2</strong><span>What's new in 2024.x</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#2023.x"><strong>2.3</strong><span>What's new in 2023.x</span></a>
+                    </div>
+                    
+                </div>
+                
+
+                
+
+<h1 id="releases"><a class="anchor" href="#releases"></a>2 Release History</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2025.0.x/src/docs/guide/releases.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>To make it easier for users to use and upgrade, Plugin adopts a version policy consistent with the <a href="https://github.com/graceframework/grace-framework">Grace Framework</a>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Plugin Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grace Version</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/graceframework/grace-data-mongodb/tree/2025.0.x">2025.0.x</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2025.0.x</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/graceframework/grace-data-mongodb/tree/2024.2.x">2024.2.x</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2024.2.x</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/graceframework/grace-data-mongodb/tree/2024.1.x">2024.1.x</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2024.1.x</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/graceframework/grace-data-mongodb/tree/2024.0.x">2024.0.x</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2024.0.x</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/graceframework/grace-data-mongodb/tree/2023.3.x">2023.3.x</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2023.3.x</p></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="2025.x"><a class="anchor" href="#2025.x"></a>2.1 What's new in 2025.x</h2>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2025.0.x/src/docs/guide/releases/2025.x.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="sect2">
+<h3 id="_2025_0_0_m1">2025.0.0-M1</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2025.0.0-M1">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>⚡️ Breaking Changes</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Change group name to 'org.graceframework.data' <a href="https://github.com/graceframework/grace-data-mongodb/issues/98">#98</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🐞 Bug Fixes</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixes some STC errors in Groovy 5 <a href="https://github.com/graceframework/grace-data-mongodb/issues/109">#109</a></p>
+</li>
+<li>
+<p>Gradle: Use addTestListener() to replace deprecated beforeSuite()</p>
+</li>
+<li>
+<p>Gradle: Avoid implicit property lookup in parent projects</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add release notes for 2025.0.0-M1</p>
+</li>
+<li>
+<p>Update README - Update the versions of Groovy and Grace badges</p>
+</li>
+<li>
+<p>Gradle: Enable Configuration Cache <a href="https://github.com/graceframework/grace-data-mongodb/issues/114">#114</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgrade to Commons Validator 1.11.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/101">#101</a></p>
+</li>
+<li>
+<p>Upgrade to Eclipse Expressly 6.0.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/104">#104</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Data 2025.0.0-M1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/112">#112</a></p>
+</li>
+<li>
+<p>Upgrade to Gradle 9.8.1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/99">#99</a></p>
+</li>
+<li>
+<p>Upgrade to Groovy 5.0.8 <a href="https://github.com/graceframework/grace-data-mongodb/issues/109">#109</a></p>
+</li>
+<li>
+<p>Upgrade to H2 2.4.240 <a href="https://github.com/graceframework/grace-data-mongodb/issues/100">#100</a></p>
+</li>
+<li>
+<p>Upgrade to Hibernate Validator 9.0.1.Final <a href="https://github.com/graceframework/grace-data-mongodb/issues/113">#113</a></p>
+</li>
+<li>
+<p>Upgrade to Jakarta Annotation 3.0.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/102">#102</a></p>
+</li>
+<li>
+<p>Upgrade to Jakarta Expression Language 6.0.1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/103">#103</a></p>
+</li>
+<li>
+<p>Upgrade to Jakarta Persistence 3.2.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/105">#105</a></p>
+</li>
+<li>
+<p>Upgrade to Jakarta Servlet 6.1.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/106">#106</a></p>
+</li>
+<li>
+<p>Upgrade to Jakarta Validation 3.1.1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/107">#107</a></p>
+</li>
+<li>
+<p>Upgrade to JUnit Jupiter 6.0.3 <a href="https://github.com/graceframework/grace-data-mongodb/issues/108">#108</a></p>
+</li>
+<li>
+<p>Upgrade to MongoDB 5.6.5 <a href="https://github.com/graceframework/grace-data-mongodb/issues/97">#97</a></p>
+</li>
+<li>
+<p>Upgrade to Spock 2.4-groovy-5.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/110">#110</a></p>
+</li>
+<li>
+<p>Upgrade to Spring Framework 7.0.9 <a href="https://github.com/graceframework/grace-data-mongodb/issues/111">#111</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Release v2025.0.0-M1</p>
+</li>
+<li>
+<p>Upgrade to gradle/actions/setup-gradle@v6.4.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/96">#96</a></p>
+</li>
+<li>
+<p>Upgrade to actions/setup-java@v6 <a href="https://github.com/graceframework/grace-data-mongodb/issues/95">#95</a></p>
+</li>
+<li>
+<p>Upgrade to actions/checkout@v7 <a href="https://github.com/graceframework/grace-data-mongodb/issues/94">#94</a></p>
+</li>
+<li>
+<p>Update doc.properties - switch to 2025.0.x branch</p>
+</li>
+<li>
+<p>Update GitHub workflows - Switch to '2025.0.x'</p>
+</li>
+<li>
+<p>Next development version: 2025.0.0-SNAPSHOT</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+<h2 id="2024.x"><a class="anchor" href="#2024.x"></a>2.2 What's new in 2024.x</h2>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2025.0.x/src/docs/guide/releases/2024.x.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="sect2">
+<h3 id="_2024_2_0_rc1">2024.2.0-RC1</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2024.2.0-RC1">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add release notes for 2024.2.0-RC1</p>
+</li>
+<li>
+<p>Update README</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgrade to Grace Data 2024.2.0-RC1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/90">#90</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Gradle Plugin 2024.1.2 <a href="https://github.com/graceframework/grace-data-mongodb/issues/88">#88</a></p>
+</li>
+<li>
+<p>Upgrade to Groovy 4.0.33 <a href="https://github.com/graceframework/grace-data-mongodb/issues/89">#89</a></p>
+</li>
+<li>
+<p>Upgrade to JUnit Jupiter 5.14.4 and JUnit Platform 1.14.4 <a href="https://github.com/graceframework/grace-data-mongodb/issues/92">#92</a></p>
+</li>
+<li>
+<p>Upgrade to SLF4J 2.0.20 <a href="https://github.com/graceframework/grace-data-mongodb/issues/91">#91</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Release v2024.2.0-RC1</p>
+</li>
+<li>
+<p>Upgrade Java version in sdkmanrc to 17.0.20-zulu <a href="https://github.com/graceframework/grace-data-mongodb/issues/93">#93</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2024_2_0_m1">2024.2.0-M1</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2024.2.0-M1">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add release notes for 2024.2.0-M1</p>
+</li>
+<li>
+<p>Update README</p>
+</li>
+<li>
+<p>Update doc.properties - switch to 2024.2.x branch - update spring version</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgrade to Grace Data 2024.2.0-M1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/86">#86</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Gradle Plugin 2024.1.1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/84">#84</a></p>
+</li>
+<li>
+<p>Upgrade to Spock 2.4 <a href="https://github.com/graceframework/grace-data-mongodb/issues/87">#87</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Release v2024.2.0-M1</p>
+</li>
+<li>
+<p>Update github workflows - Switch to '2024.2.x' branch</p>
+</li>
+<li>
+<p>Next development version: 2024.2.0-SNAPSHOT</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2024_1_0">2024.1.0</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2024.1.0">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add release notes for 2024.1.0</p>
+</li>
+<li>
+<p>Update README</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgrade to Grace Data 2024.1.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/83">#83</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Gradle Plugin 2024.1.0-RC2 <a href="https://github.com/graceframework/grace-data-mongodb/issues/78">#78</a></p>
+</li>
+<li>
+<p>Upgrade to Groovy 4.0.32 <a href="https://github.com/graceframework/grace-data-mongodb/issues/79">#79</a></p>
+</li>
+<li>
+<p>Upgrade to JavaParser Core 3.28.2 <a href="https://github.com/graceframework/grace-data-mongodb/issues/80">#80</a></p>
+</li>
+<li>
+<p>Upgrade to SLF4J 2.0.18 <a href="https://github.com/graceframework/grace-data-mongodb/issues/81">#81</a></p>
+</li>
+<li>
+<p>Upgrade to Spring Framework 6.2.19 <a href="https://github.com/graceframework/grace-data-mongodb/issues/82">#82</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Release v2024.1.0</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2024_1_0_rc1">2024.1.0-RC1</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2024.1.0-RC1">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add release notes for 2024.1.0-RC1</p>
+</li>
+<li>
+<p>Update README</p>
+</li>
+<li>
+<p>Add more documentation dependencies and links for groovydc generation <a href="https://github.com/graceframework/grace-data-mongodb/issues/77">#77</a></p>
+</li>
+<li>
+<p>Cleanup Gradle version catalog <a href="https://github.com/graceframework/grace-data-mongodb/issues/73">#73</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Remove libraries grace-bootstrap, grace-core, grace-test-support</p>
+</li>
+<li>
+<p>Rename version name grace-framework to grace-gradle</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improve tests <a href="https://github.com/graceframework/grace-data-mongodb/issues/72">#72</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Don&#8217;t use grails.core.GrailsApplication in GormDatastoreSpec</p>
+</li>
+<li>
+<p>Use grails.gorm.annotation.Entity instead of grails.persistence.Entity</p>
+</li>
+<li>
+<p>Remove marked <code>@PendingFeature</code> because these tests passes</p>
+</li>
+<li>
+<p>Update grace-datastore-gorm-mongodb/build.gradle to remove test dependency on grace-test-support</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Add .sdkmanrc with latest java version 17.0.19-zulu <a href="https://github.com/graceframework/grace-data-mongodb/issues/70">#70</a></p>
+</li>
+<li>
+<p>Upgrade Release Drafter Gradle Action to v7 <a href="https://github.com/graceframework/grace-data-mongodb/issues/69">#69</a></p>
+</li>
+<li>
+<p>Upgrade GitHub workflows: migrate java distribution from <code>adopt</code> to <code>zulu</code> <a href="https://github.com/graceframework/grace-data-mongodb/issues/68">#68</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgrade to Caffeine 3.2.4 <a href="https://github.com/graceframework/grace-data-mongodb/issues/76">#76</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Data 2024.1.0-RC1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/75">#75</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Gradle Plugin 2024.1.0-M3 <a href="https://github.com/graceframework/grace-data-mongodb/issues/74">#74</a></p>
+</li>
+<li>
+<p>Upgrade to Gradle 8.14.5 <a href="https://github.com/graceframework/grace-data-mongodb/issues/71">#71</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Release v2024.1.0-RC1</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2024_1_0_m1">2024.1.0-M1</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2024.1.0-M1">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add release notes for 2024.1.0-M1</p>
+</li>
+<li>
+<p>Update spring api link in doc.properties</p>
+</li>
+<li>
+<p>Update README</p>
+</li>
+<li>
+<p>Update doc.properties - switch to 2024.1.x branch - update spring version</p>
+</li>
+<li>
+<p>Cleanup unused <code>snakeyaml</code> in Gradle version catalog <a href="https://github.com/graceframework/grace-data-mongodb/issues/67">#67</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgrade to Embedded MongoDB 4.24.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/66">#66</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Gradle Plugin 2024.1.0-M2 <a href="https://github.com/graceframework/grace-data-mongodb/issues/59">#59</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Data 2024.1.0-M1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/62">#62</a></p>
+</li>
+<li>
+<p>Upgrade to Groovy 4.0.31 <a href="https://github.com/graceframework/grace-data-mongodb/issues/60">#60</a></p>
+</li>
+<li>
+<p>Upgrade to JUnit Jupiter 5.12.2 <a href="https://github.com/graceframework/grace-data-mongodb/issues/63">#63</a></p>
+</li>
+<li>
+<p>Upgrade to JUnit Platform 1.12.2 <a href="https://github.com/graceframework/grace-data-mongodb/issues/64">#64</a></p>
+</li>
+<li>
+<p>Upgrade to MongoDB 5.5.2 <a href="https://github.com/graceframework/grace-data-mongodb/issues/65">#65</a></p>
+</li>
+<li>
+<p>Upgrade to Spring Framework 6.2.18 <a href="https://github.com/graceframework/grace-data-mongodb/issues/61">#61</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Release v2024.1.0-M1</p>
+</li>
+<li>
+<p>Switch to branch 2024.1.x Update GitHub workflows</p>
+</li>
+<li>
+<p>Next development version: 2024.1.0-SNAPSHOT</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2024_0_0">2024.0.0</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2024.0.0">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add release notes for 2024.0.0</p>
+</li>
+<li>
+<p>Update spring api link in doc.properties</p>
+</li>
+<li>
+<p>Clean up unused versions and libraries in the Gradle version catalog <a href="https://github.com/graceframework/grace-data-mongodb/issues/58">#58</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgrade to Grace 2024.0.0-RC1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/55">#55</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Data 2024.0.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/56">#56</a></p>
+</li>
+<li>
+<p>Upgrade to Spring Framework 6.2.17 <a href="https://github.com/graceframework/grace-data-mongodb/issues/57">#57</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Release v2024.0.0</p>
+</li>
+<li>
+<p>Upgrade to gradle/actions/setup-gradle@v5.0.2</p>
+</li>
+<li>
+<p>Upgrade to actions/setup-java@v5</p>
+</li>
+<li>
+<p>Upgrade to actions/checkout@v6</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2024_0_0_rc1">2024.0.0-RC1</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2024.0.0-RC1">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add release notes for 2024.0.0-RC1</p>
+</li>
+<li>
+<p>Update copyright in doc.properties</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgrade to Grace 2024.0.0-M2 <a href="https://github.com/graceframework/grace-data-mongodb/issues/50">#50</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Data 2024.0.0-RC1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/52">#52</a></p>
+</li>
+<li>
+<p>Upgrade to Gradle 8.14.4 <a href="https://github.com/graceframework/grace-data-mongodb/issues/49">#49</a></p>
+</li>
+<li>
+<p>Upgrade to Groovy 4.0.30 <a href="https://github.com/graceframework/grace-data-mongodb/issues/51">#51</a></p>
+</li>
+<li>
+<p>Upgrade to Hibernate Validator 8.0.3.Final <a href="https://github.com/graceframework/grace-data-mongodb/issues/53">#53</a></p>
+</li>
+<li>
+<p>Upgrade to Spring Framework 6.2.16 <a href="https://github.com/graceframework/grace-data-mongodb/issues/54">#54</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Release v2024.0.0-RC1</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2024_0_0_m1">2024.0.0-M1</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2024.0.0-M1">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>⭐️ New Features</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Remove grace-datastore-gorm-mongodb-ext</p>
+</li>
+<li>
+<p>Consolidate gorm-mongodb-ext into gorm-mongodb <a href="https://github.com/graceframework/grace-data-mongodb/issues/48">#48</a></p>
+</li>
+<li>
+<p>Restructure Gradle builds <a href="https://github.com/graceframework/grace-data-mongodb/issues/42">#42</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use Gradle version catalog to simplify dependency management</p>
+</li>
+<li>
+<p>Sharing Build Logic using buildSrc</p>
+</li>
+<li>
+<p>Update Checkstyle and CodeNarc plugin</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Merge mongodb plugin into the grace-framework <a href="https://github.com/graceframework/grace-data-mongodb/issues/40">#40</a></p>
+</li>
+<li>
+<p>Relocate <code>examples</code> to the grace-data-examples <a href="https://github.com/graceframework/grace-data-mongodb/issues/41">#41</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🐞 Bug Fixes</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Remove ambiguous overloading methods 'deleteOne()' and 'find()'</p>
+</li>
+<li>
+<p>Remove deprecated methods</p>
+</li>
+<li>
+<p>Fixed failed tests: MongoDbDataStoreSpringInitializerSpec and MongoConnectionSourcesSpec <a href="https://github.com/graceframework/grace-data-mongodb/issues/43">#43</a></p>
+</li>
+<li>
+<p>Fix failed tests: initializationError caused by mongodb setup Test using Embedded MongoDB <a href="https://github.com/graceframework/grace-data-mongodb/issues/43">#43</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Update README - Update badge version of Groovy and remove the Spring Boot badge</p>
+</li>
+<li>
+<p>Add release notes for 2024.x</p>
+</li>
+<li>
+<p>Add header license</p>
+</li>
+<li>
+<p>Add Checkstyle and Codenarc versions to Gradle version catalog Improve the 'clean' 'docs' tasks <a href="https://github.com/graceframework/grace-data-mongodb/issues/45">#45</a></p>
+</li>
+<li>
+<p>Update Codenarc rules <a href="https://github.com/graceframework/grace-data-mongodb/issues/44">#44</a></p>
+</li>
+<li>
+<p>Code formatting with Checkstyle and Codenarc <a href="https://github.com/graceframework/grace-data-mongodb/issues/44">#44</a></p>
+</li>
+<li>
+<p>Update GitHub workflows Currently, don&#8217;t execute Checkstyle and Codenarc tasks, we will do it later</p>
+</li>
+<li>
+<p>Cleanup build scripts</p>
+</li>
+<li>
+<p>Build against to Grace 2024.0.0 snapshots</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Migrate to the new scaffolding, fields, cache, events, hibernate plugins</p>
+</li>
+<li>
+<p>Upgrade to Groovy 4.0.29</p>
+</li>
+<li>
+<p>Rename app/init to app/boot</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Update README</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Update document links</p>
+</li>
+<li>
+<p>Update badge version of Grace and Spring Boot</p>
+</li>
+<li>
+<p>Update supported versions</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Update README - Update badge version of Grace, Groovy and Spring Boot</p>
+</li>
+<li>
+<p>Migrate to Central Portal OSSRH Staging API <a href="https://github.com/graceframework/grace-data-mongodb/issues/34">#34</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgrade to Eclipse Expressly 5.0.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/39">#39</a></p>
+</li>
+<li>
+<p>Upgrade to Grace 2024.0.0-M1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/30">#30</a></p>
+</li>
+<li>
+<p>Upgrade to Grace 2023.3.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/29">#29</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Asset Pipeline Plugin 7.0.0-M1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/36">#36</a> <a href="https://github.com/graceframework/grace-data-mongodb/issues/37">#37</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Data 2024.0.0-M1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/46">#46</a></p>
+</li>
+<li>
+<p>Upgrade to Gradle 8.14.3 <a href="https://github.com/graceframework/grace-data-mongodb/issues/38">#38</a></p>
+</li>
+<li>
+<p>Upgrade to Groovy 4.0.27 <a href="https://github.com/graceframework/grace-data-mongodb/issues/31">#31</a></p>
+</li>
+<li>
+<p>Upgrade to MongoDB Driver 5.2.1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/35">#35</a></p>
+</li>
+<li>
+<p>Upgrade to Spring Framework 6.2.15 <a href="https://github.com/graceframework/grace-data-mongodb/issues/47">#47</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Release v2024.0.0-M1</p>
+</li>
+<li>
+<p>Update GitHub workflows</p>
+</li>
+<li>
+<p>Bump gradle/actions from 4.0.0 to 4.4.2</p>
+</li>
+<li>
+<p>Bump actions/checkout from 4 to 5</p>
+</li>
+<li>
+<p>Update GitHub workflows - Switch to 2024.0.x</p>
+</li>
+<li>
+<p>Next development version: 2024.0.0-SNAPSHOT</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+<h2 id="2023.x"><a class="anchor" href="#2023.x"></a>2.3 What's new in 2023.x</h2>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/graceframework/grace-data-mongodb/edit/2025.0.x/src/docs/guide/releases/2023.x.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="sect2">
+<h3 id="_2023_3_0">2023.3.0</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2023.3.0">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>⭐️ New Features</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Setup github docs workflows</p>
+</li>
+<li>
+<p>Use 'grace-doc' Gradle plugin to generate documentation <a href="https://github.com/graceframework/grace-data-mongodb/issues/26">#26</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Update release notes</p>
+</li>
+<li>
+<p>Update documentation - Correct the doc manual and java api links" - Add release notes</p>
+</li>
+<li>
+<p>Don&#8217;t use deprecated gradle/actions/wrapper-validation in the release workflow</p>
+</li>
+<li>
+<p>Update github workflows - Upgrade to setup-gradle@v4</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgrade to Grace 2023.3.0-RC2 <a href="https://github.com/graceframework/grace-data-mongodb/issues/25">#25</a></p>
+</li>
+<li>
+<p>Upgrade to Grace 2023.3.0-RC1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/23">#23</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Asset Pipeline Plugin 6.3.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/27">#27</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Data 2023.3.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/24">#24</a></p>
+</li>
+<li>
+<p>Upgrade to Grace Views 6.3.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/28">#28</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2023_3_0_rc1">2023.3.0-RC1</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2023.3.0-RC1">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>7ccc904 Update README Update badge versions of Grace, Groovy and Spring Boot</p>
+</li>
+<li>
+<p>f7f65b0 Remove unused dependency on groovy-templates <a href="https://github.com/graceframework/grace-data-mongodb/issues/22">#22</a></p>
+</li>
+<li>
+<p>b536938 Streamline Gradle build scripts: using the Spring Dependency Management Plugin to manage dependencies and versions <a href="https://github.com/graceframework/grace-data-mongodb/issues/21">#21</a></p>
+</li>
+<li>
+<p>1c31ef6 Remove the unnecessary workaround for removing the generated extra dependencyManagement of POM <a href="https://github.com/graceframework/grace-data-mongodb/issues/20">#20</a></p>
+</li>
+<li>
+<p>15aace7 Rename examples/test-data-service to examples/grace-test-data-service</p>
+</li>
+<li>
+<p>d8d5af9 Add missing dependency org.testcontainers:mongodb <a href="https://github.com/graceframework/grace-data-mongodb/issues/18">#18</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>50d78b5 Upgrade to Caffeine 3.1.8 <a href="https://github.com/graceframework/grace-data-mongodb/issues/16">#16</a></p>
+</li>
+<li>
+<p>16cee3a Upgrade to Grace 2023.3.0-M2 <a href="https://github.com/graceframework/grace-data-mongodb/issues/11">#11</a></p>
+</li>
+<li>
+<p>69a25d9 Upgrade to Grace Data 2023.3.0-RC1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/12">#12</a></p>
+</li>
+<li>
+<p>b6c3ff8 Upgrade to Gradle 8.13 <a href="https://github.com/graceframework/grace-data-mongodb/issues/19">#19</a></p>
+</li>
+<li>
+<p>6847aa2 Upgrade to Groovy 4.0.26 <a href="https://github.com/graceframework/grace-data-mongodb/issues/13">#13</a></p>
+</li>
+<li>
+<p>76d2ce2 Upgrade to Java Parser 3.26.4 <a href="https://github.com/graceframework/grace-data-mongodb/issues/15">#15</a></p>
+</li>
+<li>
+<p>d648d04 Upgrade to JUnit Platform 1.10.5 and Jupiter 5.10.5 <a href="https://github.com/graceframework/grace-data-mongodb/issues/17">#17</a></p>
+</li>
+<li>
+<p>e3f7601 Upgrade to Spring Boot 3.3.10 <a href="https://github.com/graceframework/grace-data-mongodb/issues/14">#14</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>9c58a3c Release v2023.3.0-RC1</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2023_3_0_m1">2023.3.0-M1</h3>
+<div class="paragraph">
+<p><a href="https://github.com/graceframework/grace-data-mongodb/releases/tag/v2023.3.0-M1">release notes</a></p>
+</div>
+<div class="paragraph">
+<p>⭐️ New Features</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>5abe4b4 Support Grace Framework and Grace Data 2023.3 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>9d1b732 Migrate mongodb plugin.doWithSpring() to Spring Boot AutoConfiguration <a href="https://github.com/graceframework/grace-data-mongodb/issues/8">#8</a></p>
+</li>
+<li>
+<p>5abe4b4 Change Java baseline to 17 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🛠 Improvements</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3ab9538 Skip integeration tests</p>
+</li>
+<li>
+<p>6a8ab1f Cleanup build srcripts in examples <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a>0</p>
+</li>
+<li>
+<p>dd4f682 Migrate examples to Grace <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a>0</p>
+</li>
+<li>
+<p>1a445a9 Rename 'grails-app' to 'app'</p>
+</li>
+<li>
+<p>d573165 Remove 'boot-plugin' module <a href="https://github.com/graceframework/grace-data-mongodb/issues/9">#9</a></p>
+</li>
+<li>
+<p>e9a9480 Migrate unknown property 'outputDir' to 'classesDirectory' property <a href="https://github.com/graceframework/grace-data-mongodb/issues/7">#7</a></p>
+</li>
+<li>
+<p>7ab69fe Update README</p>
+</li>
+<li>
+<p>fd99121 Remove extra dependencyManagement of POM</p>
+</li>
+<li>
+<p>ec2bc84 Skip testing</p>
+</li>
+<li>
+<p>68b2236 Add GitHub issue template</p>
+</li>
+<li>
+<p>5d7e3cf Mark failing tests as skipped</p>
+</li>
+<li>
+<p>3070e04 Rename to Grace artifacts</p>
+</li>
+<li>
+<p>6184fd8 Update github workflows <a href="https://github.com/graceframework/grace-data-mongodb/issues/4">#4</a></p>
+</li>
+<li>
+<p>Update Gradle build scripts <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>Migrate examples to Grace apps <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>Fixes docs task <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>🚀 Dependency Upgrades</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>4e06158 Upgrade to Asciidoctor Gradle Plugin 4.0.3 <a href="https://github.com/graceframework/grace-data-mongodb/issues/3">#3</a></p>
+</li>
+<li>
+<p>88b3a8e Upgrade to Gradle Nexus Publish Plugin 2.0.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/2">#2</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Grace Framework 2023.3.0-M1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Grace Data 2023.3.0-M1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Grace Asset Pipeline Plugin 6.3.0-M1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>3d5fd96 Upgrade to Gradle 8.12 <a href="https://github.com/graceframework/grace-data-mongodb/issues/6">#6</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Groovy 4.0.24 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>ebc4837 Upgrade to MongoDB Driver 5.0.1 <a href="https://github.com/graceframework/grace-data-mongodb/issues/5">#5</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Spock 2.3-groovy-4.0 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Spring Framework 6.1.18 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+<li>
+<p>5abe4b4 Upgrade to Spring Boot 3.3.7 <a href="https://github.com/graceframework/grace-data-mongodb/issues/1">#1</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>⚙️ Tasks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ed3e574 Release v2023.3.0-M1</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../guide/introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Beans/mongo.html">mongo</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Domain Classes</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/DB.html">DB</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/collection.html">collection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/collectionName.html">collectionName</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/countHits.html">countHits</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/dbo.html">dbo</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByGeoIntersects.html">findByGeoIntersects</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByGeoWithin.html">findByGeoWithin</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByNear.html">findByNear</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByNearSphere.html">findByNearSphere</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByWithinBox.html">findByWithinBox</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/findByWithinCircle.html">findByWithinCircle</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/search.html">search</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/searchTop.html">searchTop</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/useCollection.html">useCollection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/useDatabase.html">useDatabase</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/withCollection.html">withCollection</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Domain%20Classes/withDatabase.html">withDatabase</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    Copyright &copy; 2022-2026 Michael Yan and the original authors. The content is licensed under a Creative Commons Attribution 4.0 International (CC BY SA 4.0) license.
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>
