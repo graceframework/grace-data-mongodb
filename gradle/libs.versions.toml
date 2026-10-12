@@ -5,7 +5,7 @@ caffeine = "3.2.4"
 commons-validator = "1.11.0"
 eclipse-expressly = "6.0.0"
 embedmongo = "4.24.0"
-grace-data = "2024.2.0-RC1"
+grace-data = "2025.0.0-SNAPSHOT"
 grace-gradle = "2024.1.2"
 groovy = "4.0.33"
 h2 = "2.4.240"
@@ -33,14 +33,14 @@ caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "c
 commons-validator = { module = "commons-validator:commons-validator", version.ref = "commons-validator" }
 eclipse-expressly = { module = "org.glassfish.expressly:expressly", version.ref = "eclipse-expressly" }
 embedmongo = { module = "de.flapdoodle.embed:de.flapdoodle.embed.mongo", version.ref = "embedmongo" }
-grace-datastore-core = { module = "org.graceframework:grace-datastore-core", version.ref = "grace-data" }
-grace-datastore-gorm = { module = "org.graceframework:grace-datastore-gorm", version.ref = "grace-data" }
-grace-datastore-gorm-async = { module = "org.graceframework:grace-datastore-gorm-async", version.ref = "grace-data" }
-grace-datastore-gorm-support = { module = "org.graceframework:grace-datastore-gorm-support", version.ref = "grace-data" }
-grace-datastore-gorm-tck = { module = "org.graceframework:grace-datastore-gorm-tck", version.ref = "grace-data" }
-grace-datastore-gorm-test = { module = "org.graceframework:grace-datastore-gorm-test", version.ref = "grace-data" }
-grace-datastore-gorm-validation = { module = "org.graceframework:grace-datastore-gorm-validation", version.ref = "grace-data" }
-grace-datastore-web = { module = "org.graceframework:grace-datastore-web", version.ref = "grace-data" }
+grace-datastore-core = { module = "org.graceframework.data:grace-datastore-core", version.ref = "grace-data" }
+grace-datastore-gorm = { module = "org.graceframework.data:grace-datastore-gorm", version.ref = "grace-data" }
+grace-datastore-gorm-async = { module = "org.graceframework.data:grace-datastore-gorm-async", version.ref = "grace-data" }
+grace-datastore-gorm-support = { module = "org.graceframework.data:grace-datastore-gorm-support", version.ref = "grace-data" }
+grace-datastore-gorm-tck = { module = "org.graceframework.data:grace-datastore-gorm-tck", version.ref = "grace-data" }
+grace-datastore-gorm-test = { module = "org.graceframework.data:grace-datastore-gorm-test", version.ref = "grace-data" }
+grace-datastore-gorm-validation = { module = "org.graceframework.data:grace-datastore-gorm-validation", version.ref = "grace-data" }
+grace-datastore-web = { module = "org.graceframework.data:grace-datastore-web", version.ref = "grace-data" }
 groovy-ant = { module = "org.apache.groovy:groovy-ant", version.ref = "groovy" }
 groovy-core = { module = "org.apache.groovy:groovy", version.ref = "groovy" }
 groovy-dateutil = { module = "org.apache.groovy:groovy-dateutil", version.ref = "groovy" }
