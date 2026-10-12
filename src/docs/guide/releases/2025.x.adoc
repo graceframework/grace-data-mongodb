@@ -1,0 +1,48 @@
+=== 2025.0.0-M1
+
+link:{github}/releases/tag/v2025.0.0-M1[release notes]
+
+⚡️ Breaking Changes
+
+* Change group name to 'org.graceframework.data' link:{github}/issues/98[#98]
+
+🐞 Bug Fixes
+
+* Fixes some STC errors in Groovy 5 link:{github}/issues/109[#109]
+* Gradle: Use addTestListener() to replace deprecated beforeSuite()
+* Gradle: Avoid implicit property lookup in parent projects
+
+🛠 Improvements
+
+* Add release notes for 2025.0.0-M1
+* Update README - Update the versions of Groovy and Grace badges
+* Gradle: Enable Configuration Cache link:{github}/issues/114[#114]
+
+🚀 Dependency Upgrades
+
+* Upgrade to Commons Validator 1.11.0 link:{github}/issues/101[#101]
+* Upgrade to Eclipse Expressly 6.0.0 link:{github}/issues/104[#104]
+* Upgrade to Grace Data 2025.0.0-M1 link:{github}/issues/112[#112]
+* Upgrade to Gradle 9.8.1 link:{github}/issues/99[#99]
+* Upgrade to Groovy 5.0.8 link:{github}/issues/109[#109]
+* Upgrade to H2 2.4.240 link:{github}/issues/100[#100]
+* Upgrade to Hibernate Validator 9.0.1.Final link:{github}/issues/113[#113]
+* Upgrade to Jakarta Annotation 3.0.0 link:{github}/issues/102[#102]
+* Upgrade to Jakarta Expression Language 6.0.1 link:{github}/issues/103[#103]
+* Upgrade to Jakarta Persistence 3.2.0 link:{github}/issues/105[#105]
+* Upgrade to Jakarta Servlet 6.1.0 link:{github}/issues/106[#106]
+* Upgrade to Jakarta Validation 3.1.1 link:{github}/issues/107[#107]
+* Upgrade to JUnit Jupiter 6.0.3 link:{github}/issues/108[#108]
+* Upgrade to MongoDB 5.6.5 link:{github}/issues/97[#97]
+* Upgrade to Spock 2.4-groovy-5.0 link:{github}/issues/110[#110]
+* Upgrade to Spring Framework 7.0.9 link:{github}/issues/111[#111]
+
+⚙️ Tasks
+
+* Release v2025.0.0-M1
+* Upgrade to gradle/actions/setup-gradle@v6.4.0 link:{github}/issues/96[#96]
+* Upgrade to actions/setup-java@v6 link:{github}/issues/95[#95]
+* Upgrade to actions/checkout@v7 link:{github}/issues/94[#94]
+* Update doc.properties - switch to 2025.0.x branch
+* Update GitHub workflows - Switch to '2025.0.x'
+* Next development version: 2025.0.0-SNAPSHOT
