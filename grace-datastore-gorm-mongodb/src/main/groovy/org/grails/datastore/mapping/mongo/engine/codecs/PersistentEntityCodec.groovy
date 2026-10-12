@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2025 the original author or authors.
+ * Copyright 2015-2026 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -279,8 +279,8 @@ class PersistentEntityCodec extends BsonPersistentEntityCodec {
                         }
                         else {
                             def propKind = prop.getClass().superclass
-                            PropertyEncoder<? extends PersistentProperty> propertyEncoder = getPropertyEncoder(
-                                    (Class<? extends PersistentProperty>) propKind)
+                            PropertyEncoder<PersistentProperty> propertyEncoder = getPropertyEncoder(
+                                    (Class<PersistentProperty>) propKind)
                             propertyEncoder?.encode(writer, prop, v, access, encoderContext, codecRegistry)
                         }
                     }
@@ -363,7 +363,7 @@ class PersistentEntityCodec extends BsonPersistentEntityCodec {
                 def propKind = version.getClass().superclass
                 MongoCodecEntityPersister.incrementEntityVersion(access)
                 def v = access.getProperty(version.name)
-                getPropertyEncoder((Class<? extends PersistentProperty>) propKind)?.encode(writer, version, v, access,
+                getPropertyEncoder((Class<PersistentProperty>) propKind)?.encode(writer, version, v, access,
                         encoderContext, codecRegistry)
             }
 

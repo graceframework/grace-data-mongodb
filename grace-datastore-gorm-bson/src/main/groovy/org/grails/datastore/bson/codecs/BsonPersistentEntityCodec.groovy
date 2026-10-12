@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2025 the original author or authors.
+ * Copyright 2016-2026 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -110,7 +110,7 @@ class BsonPersistentEntityCodec implements Codec {
         DECODERS.put(type, propertyDecoder)
     }
 
-    // @Override
+    @Override
     Object decode(BsonReader bsonReader, DecoderContext decoderContext = DEFAULT_DECODER_CONTEXT) {
         bsonReader.readStartDocument()
         def persistentEntity = entity
@@ -152,13 +152,14 @@ class BsonPersistentEntityCodec implements Codec {
                 else {
                     PersistentProperty property = persistentEntity.getPropertyByName(name)
                     if (property && bsonType != BsonType.NULL) {
-                        def propKind = property.getClass().superclass
+                        Class<? extends PersistentProperty> propKind = (Class<? extends PersistentProperty>) property.getClass().superclass
 
                         if (CharSequence.isAssignableFrom(property.type) && bsonType == BsonType.STRING) {
                             access.setPropertyNoConversion(property.name, bsonReader.readString())
                         }
                         else {
-                            getPropertyDecoder((Class<? extends PersistentProperty>) propKind)?.decode(bsonReader,
+                            PropertyDecoder<PersistentProperty> decoder = (PropertyDecoder<PersistentProperty>) getPropertyDecoder(propKind)
+                            decoder?.decode(bsonReader,
                                     property, access, decoderContext, codecRegistry)
                         }
                     }
@@ -214,7 +215,7 @@ class BsonPersistentEntityCodec implements Codec {
             def propKind = prop.getClass().superclass
             Object v = access.getProperty(prop.name)
             if (v != null) {
-                PropertyEncoder<? extends PersistentProperty> encoder = getPropertyEncoder(
+                PropertyEncoder<PersistentProperty> encoder = (PropertyEncoder<PersistentProperty>) getPropertyEncoder(
                         (Class<? extends PersistentProperty>) propKind)
                 encoder?.encode(writer, (PersistentProperty) prop, v, access, encoderContext, codecRegistry)
             }
@@ -288,7 +289,7 @@ class BsonPersistentEntityCodec implements Codec {
                         else {
                             def propKind = prop.getClass().superclass
                             if (prop instanceof PersistentProperty) {
-                                PropertyEncoder<? extends PersistentProperty> propertyEncoder = getPropertyEncoder(
+                                PropertyEncoder<PersistentProperty> propertyEncoder = (PropertyEncoder<PersistentProperty>) getPropertyEncoder(
                                         (Class<? extends PersistentProperty>) propKind)
                                 propertyEncoder?.encode(writer, prop, v, access, encoderContext, codecRegistry)
                             }

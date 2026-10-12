@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2025 the original author or authors.
+ * Copyright 2015-2026 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -117,7 +117,7 @@ class MongoCodecSession extends AbstractMongoSession {
             Map<String, Integer> numberOfOptimisticUpdates = [:].withDefault { 0 }
             Map<String, Integer> numberOfPessimisticUpdates = [:].withDefault { 0 }
 
-            Map<PersistentEntity, List<WriteModel<Document>>> writeModels = [:]
+            Map<PersistentEntity, List<WriteModel<Object>>> writeModels = [:]
             for (PersistentEntity persistentEntity in pendingInserts.keySet()) {
                 final Collection<PendingInsert> inserts = pendingInserts[persistentEntity]
                 if (inserts) {
@@ -130,7 +130,7 @@ class MongoCodecSession extends AbstractMongoSession {
                         }
 
                         def object = insert.nativeEntry
-                        entityWrites << new InsertOneModel<?>(object)
+                        entityWrites << new InsertOneModel<Object>(object)
 
                         final List<PendingOperation> cascadeOperations = insert.cascadeOperations
                         addPostFlushOperations cascadeOperations
@@ -221,8 +221,8 @@ class MongoCodecSession extends AbstractMongoSession {
             }
 
             for (PersistentEntity persistentEntity : writeModels.keySet()) {
-                MongoCollection collection = getCollection(persistentEntity)
-                        .withDocumentClass(persistentEntity.javaClass)
+                MongoCollection<Object> collection = getCollection(persistentEntity)
+                        .withDocumentClass((Class<Object>) persistentEntity.javaClass)
 
                 WriteConcern wc = writeConcern
                 if (wc == null) {
@@ -236,7 +236,7 @@ class MongoCodecSession extends AbstractMongoSession {
                 else {
                     wc = collection.writeConcern
                 }
-                final List<WriteModel<?>> writes = writeModels[persistentEntity]
+                final List<WriteModel<Object>> writes = writeModels[persistentEntity]
                 if (writes) {
                     final BulkWriteResult bulkWriteResult = collection.bulkWrite(writes)
 
