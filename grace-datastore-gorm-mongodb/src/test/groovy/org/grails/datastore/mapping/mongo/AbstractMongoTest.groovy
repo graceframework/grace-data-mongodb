@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2025 the original author or authors.
+ * Copyright 2016-2026 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 package org.grails.datastore.mapping.mongo
 
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
 import org.springframework.context.support.GenericApplicationContext
 
 import org.grails.datastore.mapping.mongo.config.MongoMappingContext
@@ -24,7 +24,7 @@ abstract class AbstractMongoTest {
 
     protected MongoDatastore md
 
-    @Before
+    @BeforeEach
     void setUp() {
         md = new MongoDatastore(new MongoMappingContext(getClass().simpleName))
         def ctx = new GenericApplicationContext()
