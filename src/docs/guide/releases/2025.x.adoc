@@ -1,3 +1,25 @@
+=== 2025.0.0-M2
+
+link:{github}/releases/tag/v2025.0.0-M2[release notes]
+
+🛠 Improvements
+
+* Add release notes for 2025.0.0-M2
+* Include LICENSE and NOTICE files into the JAR file link:{github}/issues/125[#125]
+* Add Maven Snapshot repo link:{github}/issues/119[#119]
+* Migrate AbstractMongoTest and MongoResultListJavaForEachTest to JUnit 5 link:{github}/issues/116[#116]
+
+🚀 Dependency Upgrades
+
+* Upgrade to Grace Data 2025.0.0-M2 link:{github}/issues/117[#117]
+* Upgrade to Grace Gradle Plugin 2025.0.0-M2 link:{github}/issues/123[#123]
+* Upgrade to Hibernate Validator 9.0.2.Final link:{github}/issues/121[#121]
+* Upgrade to Spring Framework 7.0.10 link:{github}/issues/122[#122]
+
+⚙️ Tasks
+
+* Release v2025.0.0-M2
+
 === 2025.0.0-M1
 
 link:{github}/releases/tag/v2025.0.0-M1[release notes]
